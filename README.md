@@ -5,4 +5,4 @@ Currently this repo holds a few data dumps, and links t other sites which have a
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sashahilton00/spotify-connect-resources?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-anycontributions welcome. I will try and setup some sort of Roadmap based on what we currently know in the coming days.
+Any contributions welcome. I will try and setup some sort of Roadmap based on what we currently know in the coming days.
