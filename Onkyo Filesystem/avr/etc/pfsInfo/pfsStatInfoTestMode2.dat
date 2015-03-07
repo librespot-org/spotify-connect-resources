@@ -1,0 +1,25 @@
+GENRE	0000	
+PATH	0000	/mnt/sda1/1.44.1kHz_16bit_1kHz_0dBfs_L&R.wav
+TITLE	0000	1.44.1kHz_16bit_1kHz_0dBfs_L&R.wav
+GENRE	0001	
+PATH	0001	/mnt/sda1/2.44.1kHz_16bit_-∞dBfs_L&R.wav
+TITLE	0001	2.44.1kHz_16bit_-∞dBfs_L&R.wav
+GENRE	0002	
+PATH	0002	/mnt/sda1/3.44.1kHz_16bit_20Hz_0dBfs_L&R.wav
+TITLE	0002	3.44.1kHz_16bit_20Hz_0dBfs_L&R.wav
+GENRE	0003	
+PATH	0003	/mnt/sda1/4.44.1kHz_16bit_20kHz_0dBfs_L&R.wav
+TITLE	0003	4.44.1kHz_16bit_20kHz_0dBfs_L&R.wav
+GENRE	0004	
+PATH	0004	/mnt/sda1/5.44.1kHz_16bit_1kHz_0dBfs_Lch.wav
+TITLE	0004	5.44.1kHz_16bit_1kHz_0dBfs_Lch.wav
+GENRE	0005	
+PATH	0005	/mnt/sda1/6.44.1kHz_16bit_1kHz_0dBfs_Rch.wav
+TITLE	0005	6.44.1kHz_16bit_1kHz_0dBfs_Rch.wav
+GENRE	0006	
+PATH	0006	/mnt/sda1/7.48kHz_16bit_1kHz_0dBfs_L&R.wav
+TITLE	0006	7.48kHz_16bit_1kHz_0dBfs_L&R.wav
+GENRE	0007	
+PATH	0007	http://192.168.1.2/p4stestsignal/3-11.wav
+TITLE	0007	3-11.wav
+

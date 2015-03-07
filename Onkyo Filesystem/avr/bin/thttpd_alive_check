@@ -1,0 +1,47 @@
+#! /bin/sh
+
+CMD="/opt/onkyo/avr/bin/thttpd -C /etc/thttpd.conf -l /dev/null"
+PID_FILE="/tmp/thttpd.pid"
+INTERVAL=5
+CNT=0
+
+echo [thttpd_alive_check] started...
+sleep $INTERVAL
+echo [thttpd_alive_check] 1st check timing...
+
+while [ 1 ]; do
+    if [ ! -f $PID_FILE ]; then
+		echo [thttpd_alive_check] pid file is not found.
+		sleep 30
+    	if [ ! -f $PID_FILE ]; then
+			echo [thttpd_alive_check] thttpd is not starting.
+			echo [thttpd_alive_check] start thttpd.
+			killall thttpd
+			$CMD
+		fi
+    else
+		PID=`cat $PID_FILE`
+		ALIVE=`ps|cut -c1-5|grep $PID|wc -l`
+		if [ $ALIVE = 0 ]; then
+			echo [thttpd_alive_check] thttpd is not alive.
+			echo [thttpd_alive_check] restart thttpd.
+			killall thttpd
+			rm -rf $PID_FILE
+			$CMD
+		else
+			if [ $CNT -gt 6 ]; then
+				let CNT=0
+				wget -s http://127.0.0.1 > /dev/null 2>&1
+				if [ $? = 1 ]; then
+					echo [thttpd_alive_check] thttpd is too busy.
+					echo [thttpd_alive_check] restart thttpd.
+					killall thttpd
+					rm -rf $PID_FILE
+					$CMD
+				fi
+			fi
+		fi
+	fi
+	sleep $INTERVAL
+	let CNT=CNT+1
+done

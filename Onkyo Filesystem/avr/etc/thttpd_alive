@@ -1,0 +1,24 @@
+#!/bin/sh
+
+APP=thttpd_alive_check
+DIR=/opt/onkyo/avr/bin
+
+case "$1" in
+    start)
+        $DIR/$APP&
+        ;;
+    restart)
+        killall $APP
+        $DIR/$APP&
+        ;;
+    stop)
+        killall $APP
+        ;;
+    status)
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|status|restart}"
+        exit 1
+        ;;
+esac
+

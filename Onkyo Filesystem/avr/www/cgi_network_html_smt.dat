@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;  charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes ">
+<title>%_NETWORK_PAGE_TITLE_%</title>
+<link rel="stylesheet" href="websetup_cmn.css" type="text/css">
+<link rel="stylesheet" href="websetup_cmn_smt.css" type="text/css">
+<script language="JavaScript" type="text/JavaScript" src="websetup_cmn.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="websetup_network.js"></script>
+<style type="text/css">
+<!--
+hr.proxy{ margin-left: 2em; margin-right: 2em; }
+-->
+</style>
+</head>
+
+<body onLoad="changeWifiHref('wifi_link')" onUnload="onTerm()">
+<table class="top">
+  <tr class="header">
+    <td class="header"> 
+      <table class="header">
+        <tr class="tab">
+          <td class="header_tab"><a href="%_COMMON_PATH_UINFO_%" class="header_tab"><img src="images/ic_device_info_off.png" width="58" height="52" alt="%_TAB_UINFO_%" class="tab"></a></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_STATION_%" class="header_tab"><img src="images/ic_my_favorites_off.png" width="58" height="52" alt="%_TAB_STATION_%" class="tab"></a></td>
+          <td class="header_tab_crnt"><img src="images/ic_network_setting_on.png" width="58" height="52" alt="%_TAB_NETWORK_%" class="tab"></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_ACCOUNT_%" class="header_tab"><img src="images/ic_account_setting_off.png" width="58" height="52" alt="%_TAB_ACCOUNT_%" class="tab"></a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td class="body_top">
+      <form action="./%_COMMON_PATH_NETWORK_%" method="POST" name="network_list" onSubmit="return isSend()">
+        <table class="body">
+          <tr> 
+            <td colspan="2" class="middle_title">
+              <table class="subtitle">
+                <tr>
+                  <td class="refresh">
+                    <a href="./%_COMMON_PATH_NETWORK_%" onTouchEnd="MM_swapImgRestore()" onTouchStart="MM_swapImage('Image5','','images/btn_refresh_pressed.png',1)"><img src="images/btn_refresh_normal.png" name="Image5" width="32" height="32" alt="%_BUTTON_REFRESH_%" class="refresh"></a>
+                  </td>
+                  <td class="subtitle_left">
+                    <strong class="middle_title">%_NETWORK_MIDDLE_TITLE_%</strong>
+                  </td>
+                  <td class="subtitle_right">
+                    <button type="submit" name="save" value="SAVE" class="save">%_BUTTON_SAVE_%</button>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr><td colspan="2"><hr class="caption" noshade></td></tr>
+          <tr> 
+            <td colspan="2" class="backline">
+              <table class="subtitle">
+                <tr class="caption">
+                  <td class="subtitle_left"><strong>%_NETWORK_STATUS_TITLE_%</strong></td>
+                  <td class="subtitle_right"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_UINFO_PINFO_MACADDR_TITLE_%</td>
+            <td class="item_right">%_UINFO_MACADDR_%</td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_UINFO_NINFO_IP_TITLE_%</td>
+            <td class="item_right">%_UINFO_ADDR_00_%.%_UINFO_ADDR_01_%.%_UINFO_ADDR_02_%.%_UINFO_ADDR_03_%</td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_UINFO_NINFO_SUBNET_TITLE_%</td>
+            <td class="item_right">%_UINFO_SNET_00_%.%_UINFO_SNET_01_%.%_UINFO_SNET_02_%.%_UINFO_SNET_03_%</td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_UINFO_NINFO_GATEWAY_TITLE_%</td>
+            <td class="item_right">%_UINFO_GWAY_00_%.%_UINFO_GWAY_01_%.%_UINFO_GWAY_02_%.%_UINFO_GWAY_03_%</td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_UINFO_NINFO_DNS1_TITLE_%</td>
+            <td class="item_right">%_UINFO_DNS1_00_%.%_UINFO_DNS1_01_%.%_UINFO_DNS1_02_%.%_UINFO_DNS1_03_%</td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_UINFO_NINFO_DNS2_TITLE_%</td>
+            <td class="item_right">%_UINFO_DNS2_00_%.%_UINFO_DNS2_01_%.%_UINFO_DNS2_02_%.%_UINFO_DNS2_03_%</td>
+          </tr>
+          <tr> 
+            <td class="item_left">&nbsp;</td>
+            <td class="item_right">&nbsp;</td>
+          </tr>
+          <tr><td colspan="2"><hr class="caption" noshade></td></tr>
+          <tr> 
+            <td colspan="2" class="backline">
+              <table class="subtitle">
+                <tr class="caption">
+                  <td class="subtitle_left"><strong>%_NETWORK_NETWORKSETTING_TITLE_%</strong></td>
+                  <td class="subtitle_right"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="item_left">%_NETWORK_CONNECTION_TITLE_%</td>
+            <td class="item_right">
+              <select name="networkconnection"  onChange="changeWifiHref('wifi_link')">
+                <option value="wired" %_NETWORK_CONNECTION_WIRED_SELECTED_%> %_NETWORK_CONNECTION_WIRED_% </option>
+                <option value="wireless" %_NETWORK_CONNECTION_WIRELESS_SELECTED_%> %_NETWORK_CONNECTION_WIRELESS_% </option>
+              </select>
+            </td>
+          </tr>
+          <tr><td colspan="2" class="bottombutton"><button id="wifi_link" type="button" name="wifi_setup" class="anchor" value="WIFI" onClick="window.location.assign('./%_COMMON_PATH_WIFI_%')">%_BUTTON_WIFI_SETUP_%</button></td></tr>
+          <tr><td colspan="2"><hr class="caption" noshade></td></tr>
+          <tr> 
+            <td class="item_left">%_NETWORK_NETWORKSETTING_DHCP_TITLE_%</td>
+            <td class="item_right"> 
+              <select name="dhcpuse" >
+                <option value="dhcpon"  %_NETWORK_IS_DHCPON_SELECTED_%> %_NETWORK_NETWORKSETTING_DHCP_ENABLE_TITLE_% </option>
+                <option value="dhcpoff" %_NETWORK_IS_DHCPOFF_SELECTED_%> %_NETWORK_NETWORKSETTING_DHCP_DISABLE_TITLE_% </option>
+              </select>
+            </td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_NETWORK_MANUALSETTING_IP_TITLE_%</td>
+            <td class="inputtext item_right"><input name="ipadr" type="text" class="text" maxlength="15" value="%_NETWORK_ADDR_00_%.%_NETWORK_ADDR_01_%.%_NETWORK_ADDR_02_%.%_NETWORK_ADDR_03_%" onKeyPress="voidEnter(event||window.event);" ></td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_NETWORK_MANUALSETTING_SUBNET_TITLE_%</td>
+            <td class="inputtext item_right"><input name="subnet" type="text" class="text" maxlength="15"  value="%_NETWORK_SNET_00_%.%_NETWORK_SNET_01_%.%_NETWORK_SNET_02_%.%_NETWORK_SNET_03_%" onKeyPress="voidEnter(event||window.event);"></td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_NETWORK_MANUALSETTING_GATEWAY_TITLE_%</td>
+          <td class="inputtext item_right"><input name="gateway" type="text" class="text" maxlength="15" value="%_NETWORK_GWAY_00_%.%_NETWORK_GWAY_01_%.%_NETWORK_GWAY_02_%.%_NETWORK_GWAY_03_%" onKeyPress="voidEnter(event||window.event);"></td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_NETWORK_MANUALSETTING_DNS1_TITLE_%</td>
+            <td class="inputtext item_right"><input name="dns1" type="text" class="text" maxlength="15" value="%_NETWORK_DNS1_00_%.%_NETWORK_DNS1_01_%.%_NETWORK_DNS1_02_%.%_NETWORK_DNS1_03_%" onKeyPress="voidEnter(event||window.event);"></td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_NETWORK_MANUALSETTING_DNS2_TITLE_%</td>
+            <td class="inputtext item_right"><input name="dns2" type="text" class="text" maxlength="15" value="%_NETWORK_DNS2_00_%.%_NETWORK_DNS2_01_%.%_NETWORK_DNS2_02_%.%_NETWORK_DNS2_03_%" onKeyPress="voidEnter(event||window.event);"></td>
+          </tr>
+        <tr> 
+          <td colspan="2"><hr class="proxy"></td>
+        </tr>
+        <tr> 
+          <td class="item_left">%_NETWORK_MANUALSETTING_PROXY_TITLE_%</td>
+          <td class="item_right">
+            <select name="proxyuse">
+              <option value="proxyon"  %_NETWORK_IS_PROXYON_SELECTED_%> %_NETWORK_MANUALSETTING_PROXY_ENABLE_TITLE_% </option>
+              <option value="proxyoff" %_NETWORK_IS_PROXYOFF_SELECTED_%> %_NETWORK_MANUALSETTING_PROXY_DISABLE_TITLE_% </option>
+            </select>
+          </td>
+        </tr>
+        <tr> 
+          <td class="item_left">%_NETWORK_MANUALSETTING_PROXY_ADDR_TITLE_%</td>
+          <td class="inputtext item_right"><input name="proxyadr" type="text" class="text" maxlength="200" value="%_NETWORK_PROXY_SERVER_%" onKeyPress="voidEnter(event||window.event);"></td>
+        </tr>
+        <tr> 
+          <td class="item_left">%_NETWORK_MANUALSETTING_PROXY_PORT_TITLE_%</td>
+          <td class="inputtext item_right"><input name="proxyport" type="text" class="text" maxlength="5" value="%_NETWORK_PROXY_PORT_%" onKeyPress="voidEnter(event||window.event);"></td>
+        </tr>
+      </table></form></td>
+  </tr>
+</table>
+<div class="foot"> </div>
+</body>
+</html>

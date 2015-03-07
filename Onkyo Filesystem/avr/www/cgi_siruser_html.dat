@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;  charset=UTF-8">
+<title>%_SIRUSER_USERINFO_PAGE_TITLE_%</title>
+<link rel="stylesheet" href="websetup_cmn.css" type="text/css">
+<link rel="stylesheet" href="websetup_cmn_pc.css" type="text/css">
+<link rel="stylesheet" href="websetup_account.css" type="text/css">
+<script language="JavaScript" type="text/JavaScript" src="websetup_cmn.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="websetup_account.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+%_FUNC_SIRIUS_%
+%_FUNC_RHAPSDOY_%
+%_FUNC_PANDORA_%
+%_FUNC_LASTFM_%
+%_FUNC_SLACKER_%
+%_FUNC_AUPEO_%
+%_FUNC_MP3TUNES_%
+%_FUNC_SIMFY_%
+%_FUNC_TUNEIN_%
+%_FUNC_DEEZER_%
+//-->
+</script>
+<style type="text/css">
+<!--
+select{ width: 300px; }
+td.note{ height: 1.5em; }
+td.info_button{
+  padding: 4px 0.5em 4px 4px;
+  text-align: right;
+}
+-->
+</style>
+</head>
+<body onload="MM_preloadImages('images/btn_refresh_pressed.png','images/ic_device_info_over.png','images/ic_my_favorites_over.png','images/ic_network_setting_over.png','images/ic_device_info_on.png','images/ic_my_favorites_on.png','images/ic_network_setting_on.png')">
+<div id="topcontainer">
+<table class="top">
+  <tr class="header">
+    <td class="header">
+      <table class="header">
+        <tr class="logo">
+          <td class="logo_left" colspan="2"><img src="images/%_COMMON_LOGO_PATH_%" alt="%_COMMON_LOGO_ALT_%" width="150" height="30" class="logo"></td>
+          <td class="logo_right" colspan="2"><strong>%_COMMON_WEB_SETUP_MENU_%</strong></td>
+        </tr>
+        <tr class="tab">
+          <td class="header_tab"><a href="%_COMMON_PATH_UINFO_%" class="header_tab" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image0','','images/ic_device_info_over.png',1)" onClick="MM_swapImage('Image0','','images/ic_device_info_on.png',1)"><img src="images/ic_device_info_off.png" width="58" height="52" alt="%_TAB_UINFO_%" name="Image0" class="tab"></a></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_STATION_%" class="header_tab" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image1','','images/ic_my_favorites_over.png',1)" onClick="MM_swapImage('Image1','','images/ic_my_favorites_on.png',1)"><img src="images/ic_my_favorites_off.png" width="58" height="52" alt="%_TAB_STATION_%" name="Image1" class="tab"></a></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_NETWORK_%" class="header_tab" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2','','images/ic_network_setting_over.png',1)" onClick="MM_swapImage('Image2','','images/ic_network_setting_on.png',1)"><img src="images/ic_network_setting_off.png" width="58" height="52" alt="%_TAB_NETWORK_%" name="Image2" class="tab"></a></td>
+          <td class="header_tab_crnt"><img src="images/ic_account_setting_on.png" width="58" height="52" alt="%_TAB_ACCOUNT_%" name="Image3" class="tab"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td class="body_top">
+      <form action="./%_COMMON_PATH_ACCOUNT_%" method="post" name="siruser_list">
+        <table class="body">
+          <tr> 
+            <td colspan="3" class="middle_title">
+              <table class="subtitle">
+                <tr> 
+                  <td class="subtitle_left"><strong class="middle_title">%_SIRUSER_USERINFO_MIDDLE_TITLE_%</strong></td>
+                  <td class="subtitle_right"> 
+                    <a href="./%_COMMON_PATH_ACCOUNT_%" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image5','','images/btn_refresh_over.png',1)" onClick="MM_swapImage('Image5','','images/btn_refresh_pressed.png',1)"><img src="images/btn_refresh_normal.png" alt="%_BUTTON_REFRESH_%" class="refresh" name="Image5" height="32" width="32"></a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+%_USERINFO_TUNEIN_%
+%_USERINFO_PANDORA_%
+%_USERINFO_RHAPSDOY_%
+%_USERINFO_SIRIUS_%
+%_USERINFO_LASTFM_%
+%_USERINFO_SLACKER_%
+%_USERINFO_AUPEO_%
+%_USERINFO_SIMFY_%
+%_USERINFO_MP3TUNES_%
+%_USERINFO_DEEZER_%
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+<div class="foot"> </div>
+</div>
+</body>
+</html>

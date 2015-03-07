@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Gregg Kellogg (Kellogg Associates) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:uits="http://www.udirector.net/schemas/2009/uits/1.1" targetNamespace="http://www.udirector.net/schemas/2009/uits/1.1">
+	<xs:element name="UITS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="metadata" type="uits:metadataType"/>
+				<xs:element name="signature" type="uits:signatureType">
+					<xs:annotation>
+						<xs:documentation>A cryptographic signature is used to verify the integrity of the metadata element.  The contents of the metadata element are signed including the opening and closing metadata tags.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:anyAttribute namespace="##other" processContents="lax"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="metadataType">
+		<xs:sequence>
+			<xs:element name="nonce">
+				<xs:annotation>
+					<xs:documentation>The nonce is an 8 digit Base64 encoded random value generated at the time of sale that is used to randomize the hash computation of the signature value for security purposes.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Distributor">
+				<xs:annotation>
+					<xs:documentation>This is the retailer or distributor’s name or an associated identifier in clear text.  Note that this does not identify the CDN or entity generating and/or embedding the UITS payload, but rather the name of the company that has the record of sale (or its agent) and issues sales reports back to the Content Owner.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:anyAttribute namespace="##other" processContents="lax"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Time">
+				<xs:annotation>
+					<xs:documentation>The date and time of the purchase (not download or signature) in ISO 8601 format. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:dateTime">
+							<xs:anyAttribute namespace="##other" processContents="lax"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductID">
+				<xs:annotation>
+					<xs:documentation>The Product ID identifies the parent collection from which the current item originates. If the entire collection has been purchased or completed during the transaction, then this is indicated through the “completed” attribute. The ProductID type is passed as an attribute.
+
+Valid ProductID Types currently include "UPC" or "GRID". 
+
+For example, if a user purchases a single track from an album, the Product ID identifies the associated album and the completed attribute is set to "false".  If instead the user purchases the entire album, the Product ID still identifies the associated album, but the completed attribute is set to "true."  Some retailers support a "complete my album" sale, and for those transactions the completed attribute would also be set to true.  Only when the entire collection is completed in the same transaction is the completed attribute set to true.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="type" use="required">
+								<xs:simpleType>
+									<xs:union>
+										<xs:simpleType>
+											<xs:restriction base="xs:NCName">
+												<xs:enumeration value="UPC"/>
+												<xs:enumeration value="GRID"/>
+											</xs:restriction>
+										</xs:simpleType>
+										<xs:simpleType>
+											<xs:restriction base="xs:QName"/>
+										</xs:simpleType>
+									</xs:union>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="completed" type="xs:boolean"/>
+							<xs:anyAttribute namespace="##other" processContents="lax"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AssetID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Asset ID identifies an individual element of a product, such as a track or video.  The AssetID type is passed as an attribute.  Valid AssetID types currently include “ISRC”. Delimiters such as dashes MUST NOT be included.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:NMTOKEN">
+							<xs:attribute name="type" use="required">
+								<xs:simpleType>
+									<xs:union>
+										<xs:simpleType>
+											<xs:restriction base="xs:NCName">
+												<xs:enumeration value="ISRC"/>
+											</xs:restriction>
+										</xs:simpleType>
+										<xs:simpleType>
+											<xs:restriction base="xs:QName"/>
+										</xs:simpleType>
+									</xs:union>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:anyAttribute namespace="##other" processContents="lax"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:choice maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>At least one of TID or UID is REQUIRED.</xs:documentation>
+				</xs:annotation>
+				<xs:element name="TID">
+					<xs:annotation>
+						<xs:documentation>The transaction ID is the unique identifier for the transaction.  Currently the only valid version is “1”.  
+
+Obfuscation MAY be used so long as the algorithm is deterministic, meaning the same output is calculated given the same input. For example, a standard cryptographic HMAC algorithm may be used. A list MUST be maintained of all issued identifiers to prevent collisions and to assist with breach detection.    
+</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="version" type="xs:unsignedInt" use="required">
+									<xs:annotation>
+										<xs:documentation>Currently, the only valid version is "1".</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:anyAttribute namespace="##other" processContents="lax"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="UID">
+					<xs:annotation>
+						<xs:documentation>The User ID is the unique identifier for the user.  Currently the only valid version is “1”.  
+
+Obfuscation MAY be used so long as the algorithm is deterministic, meaning the same output is calculated given the same input. For example, a standard cryptographic HMAC algorithm may be used. A list MUST be maintained of all issued identifiers to prevent collisions and to assist with breach detection.
+</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="version" type="xs:unsignedInt" use="required">
+									<xs:annotation>
+										<xs:documentation>Currently, the only valid version is "1".</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:anyAttribute namespace="##other" processContents="lax"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="Media">
+				<xs:annotation>
+					<xs:documentation>A hash of the media (e.g. the audio, video, etc.) portion of the file MUST be included, such that the UITS payload can be directly tied to the file associated with it. The hash type is passed as an attribute, and the currently valid type is “SHA256”.  Metadata fields MUST NOT be included in the hash computation, because it must be possible for users to update standard ID3 or similar tags without affecting the audio hash.  Note that the hash can be pre-computed so that it is not necessary to compute it at the time of sale. 
+
+					Instructions for MP3s:  The hash value for the audio part of the MP3 is calculated using the hash algorithm over all of the audio frames within the file in the order in which they appear in the file. The audio frames all start with a 12-bit syncword, their frame size is calculated in the standard manner from the bitrate, sampling and padding.  Frames that are not audio (such as frames containing ID3 tags) are excluded.  In addition, one type of audio-related frame must be identified and not included in the cryptographic hash, specifically, older Xing variable byte rate data frames. They are documented at: http://gabriel.mp3-tech.org/mp3infotag.html and http://www.codeproject.com/KB/audio-video/mpegaudioinfo.aspx.  
+
+					Note that future versions of UITS may support fingerprints, embedded watermarks, or other techniques for identifying audio. 
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:base64Binary">
+							<xs:attribute name="algorithm" use="required">
+								<xs:annotation>
+									<xs:documentation>The only defined type is "SHA256". Any other values, if specified, must be in the form of a Qualified Name against a different namespace.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:union>
+										<xs:simpleType>
+											<xs:restriction base="xs:NCName">
+												<xs:enumeration value="SHA256"/>
+											</xs:restriction>
+										</xs:simpleType>
+										<xs:simpleType>
+											<xs:restriction base="xs:QName"/>
+										</xs:simpleType>
+									</xs:union>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:anyAttribute namespace="##other" processContents="lax"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="URL" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The URL field is used for links that are worth transporting in a cryptographically signed manner.  The type field specifies the URL type and currently uses a subset of ID3v2.3 tag names.  Options for the type field include WCOM, WCOP, WOAF, WOAR, WOAS, WORS, WPAY, and WPUB, which have the meaning described in the ID3 specification.  In addition, a legal URL type is KeyURI, which identifies the public key needed to validate the signature (see the Implementation Details section below).  More than one URL element MAY be included.
+
+Applications may perform discovery on included URLs to identify associated services. (See http://tools.ietf.org/html/draft-hammer-discovery).</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:anyURI">
+							<xs:attribute name="type">
+								<xs:simpleType>
+									<xs:union>
+										<xs:simpleType>
+											<xs:restriction base="xs:NCName">
+												<xs:enumeration value="WCOM"/>
+												<xs:enumeration value="WCOP"/>
+												<xs:enumeration value="WOAF"/>
+												<xs:enumeration value="WOAR"/>
+												<xs:enumeration value="WOAS"/>
+												<xs:enumeration value="WORS"/>
+												<xs:enumeration value="WPAY"/>
+												<xs:enumeration value="WPUB"/>
+												<xs:enumeration value="KeyURI"/>
+											</xs:restriction>
+										</xs:simpleType>
+										<xs:simpleType>
+											<xs:restriction base="xs:QName"/>
+										</xs:simpleType>
+									</xs:union>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:anyAttribute namespace="##other" processContents="lax"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PA" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Parental Advisory field is used to indicate the parental advisory status for the track. The three valid values are “unspecified”, “explicit”, and “edited”.  The absence of the PA element can be interpreted as “unspecified”.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:union>
+						<xs:simpleType>
+							<xs:restriction base="xs:NCName">
+								<xs:enumeration value="unspecified"/>
+								<xs:enumeration value="explicit"/>
+								<xs:enumeration value="edited"/>
+							</xs:restriction>
+						</xs:simpleType>
+						<xs:simpleType>
+							<xs:restriction base="xs:QName"/>
+						</xs:simpleType>
+					</xs:union>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Copyright" type="uits:copyrightType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This field can be used to communicate copyright information about the associated track.  The value field can be one of these pre-defined values: “unspecified”, “allrightsreserved ”, “prerelease ”, or “other”.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Extra" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The Extra field is used for miscellaneous metadata that is worth transporting in a cryptographically signed manner.  The type field specifies the type of metadata and the value field specifies the value. More than one Extra element MAY be included.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType mixed="true">
+					<xs:sequence>
+						<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="type" type="xs:Name"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="signatureType">
+		<xs:simpleContent>
+			<xs:extension base="xs:base64Binary">
+				<xs:attribute name="algorithm" use="required">
+					<xs:annotation>
+						<xs:documentation>identifies the signature and hash algorithms plus any critical configuration details such as padding used to generate the signature.  Current options are “RSA2048” and “DSA2048” and distributors can pick either one.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:union>
+							<xs:simpleType>
+								<xs:restriction base="xs:NCName">
+									<xs:enumeration value="RSA2048"/>
+									<xs:enumeration value="DSA2048"/>
+									<xs:enumeration value="DSS1"/>
+								</xs:restriction>
+							</xs:simpleType>
+							<xs:simpleType>
+								<xs:restriction base="xs:QName"/>
+							</xs:simpleType>
+						</xs:union>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="canonicalization" use="required">
+					<xs:annotation>
+						<xs:documentation>identifies the XML canonicalization method used to normalize the data contained within the metadata element. Currently, the only method supported is “none” – No canonicalization is performed. Future versions may define other canonicalization methods.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:union>
+							<xs:simpleType>
+								<xs:restriction base="xs:NCName">
+									<xs:enumeration value="none"/>
+									<xs:enumeration value="clear_whitespace"/>
+								</xs:restriction>
+							</xs:simpleType>
+							<xs:simpleType>
+								<xs:restriction base="xs:QName"/>
+							</xs:simpleType>
+						</xs:union>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="keyID" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>an identifier associated with the public/private key pair used by the distributor or CDN for computing the signature value.  The keyID is the SHA1 hash of the public key needed to validate the signature.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:anyAttribute namespace="##other" processContents="lax"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="copyrightType" mixed="true">
+		<xs:simpleContent>
+			<xs:extension base="xs:anyURI">
+				<xs:attribute name="value">
+					<xs:annotation>
+						<xs:documentation>Current values are "allrightsreserved", "prerelease", "publicdomain" and "unspecified". Unknown values MUST be in the form of a Qualified Name from a different namespace and are treated as "unspecified".</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:union>
+							<xs:simpleType>
+								<xs:restriction base="xs:NCName">
+									<xs:enumeration value="unspecified"/>
+									<xs:enumeration value="allrightsreserved"/>
+									<xs:enumeration value="prerelease"/>
+									<xs:enumeration value="other"/>
+								</xs:restriction>
+							</xs:simpleType>
+							<xs:simpleType>
+								<xs:restriction base="xs:QName"/>
+							</xs:simpleType>
+						</xs:union>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:anyAttribute namespace="##other" processContents="lax"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

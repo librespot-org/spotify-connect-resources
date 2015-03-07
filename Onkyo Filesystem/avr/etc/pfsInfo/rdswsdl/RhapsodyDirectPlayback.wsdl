@@ -1,0 +1,1093 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:rhapsodydirectplayback" xmlns:intf="urn:rhapsodydirectplayback" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://kani.common.real.com" xmlns:tns2="http://commerce.kani.common.real.com" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:rhapsodydirectplayback">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:rhapsodydirectplayback">
+   <import namespace="http://commerce.kani.common.real.com" />
+   <import namespace="http://kani.common.real.com" />
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+   <complexType name="ArrayOf_xsd_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]" />
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_PurchasedTrackDownloadInfo">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:PurchasedTrackDownloadInfo[]" />
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_TrackPlaybackInfo">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:TrackPlaybackInfo[]" />
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_LiteTrackMetadata">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:LiteTrackMetadata[]" />
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://commerce.kani.common.real.com">
+   <import namespace="urn:rhapsodydirectplayback" />
+   <import namespace="http://kani.common.real.com" />
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+   <complexType name="MediaEncoding">
+    <sequence>
+     <element name="bitrate" nillable="true" type="xsd:int" />
+     <element name="mediaFormat" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="PurchasedTrackDownloadInfo">
+    <sequence>
+     <element name="mediaUrl" nillable="true" type="xsd:string" />
+     <element name="trackEncoding" nillable="true" type="tns2:MediaEncoding" />
+     <element name="trackId" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://kani.common.real.com">
+   <import namespace="http://commerce.kani.common.real.com" />
+   <import namespace="urn:rhapsodydirectplayback" />
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+   <complexType name="MultipleTrackDownloadInfo">
+    <sequence>
+     <element name="trackDownloadInfos" nillable="true" type="impl:ArrayOf_tns2_PurchasedTrackDownloadInfo" />
+     <element name="zipDownloadStatusUrl" nillable="true" type="xsd:string" />
+     <element name="zipFileUrl" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="Money">
+    <sequence>
+     <element name="amount" nillable="true" type="xsd:string" />
+     <element name="currencyCode" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="LiteTrackMetadata">
+    <sequence>
+     <element name="albumId" nillable="true" type="xsd:string" />
+     <element name="artistId" nillable="true" type="xsd:string" />
+     <element name="discIndex" nillable="true" type="xsd:int" />
+     <element name="displayAlbumName" nillable="true" type="xsd:string" />
+     <element name="displayArtistName" nillable="true" type="xsd:string" />
+     <element name="genreId" nillable="true" type="xsd:string" />
+     <element name="name" nillable="true" type="xsd:string" />
+     <element name="playbackSeconds" nillable="true" type="xsd:int" />
+     <element name="previewURL" nillable="true" type="xsd:string" />
+     <element name="price" nillable="true" type="tns1:Money" />
+     <element name="rightFlags" nillable="true" type="xsd:long" />
+     <element name="trackId" nillable="true" type="xsd:string" />
+     <element name="trackIndex" nillable="true" type="xsd:int" />
+    </sequence>
+   </complexType>
+   <complexType name="TrackPlaybackFormat">
+    <sequence>
+     <element name="bitRate" nillable="true" type="xsd:int" />
+     <element name="format" nillable="true" type="xsd:string" />
+     <element name="radVersion" nillable="true" type="xsd:int" />
+    </sequence>
+   </complexType>
+   <complexType name="TrackPlaybackInfo">
+    <sequence>
+     <element name="mediaUrl" nillable="true" type="xsd:string" />
+     <element name="trackMetadata" nillable="true" type="tns1:LiteTrackMetadata" />
+     <element name="trackPlaybackFormat" nillable="true" type="tns1:TrackPlaybackFormat" />
+    </sequence>
+   </complexType>
+   <complexType name="DownloadInfo">
+    <sequence>
+     <element name="downloadUrl" nillable="true" type="xsd:string" />
+     <element name="fileSize" nillable="true" type="xsd:int" />
+     <element name="leafLicense" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="TrackDownloadInfo">
+    <sequence>
+     <element name="bitRate" nillable="true" type="xsd:int" />
+     <element name="format" nillable="true" type="xsd:string" />
+     <element name="mediaUrl" nillable="true" type="xsd:string" />
+     <element name="trackMetadata" nillable="true" type="tns1:LiteTrackMetadata" />
+    </sequence>
+   </complexType>
+   <complexType name="LogMeteringResult">
+    <sequence>
+     <element name="logged" type="xsd:boolean" />
+    </sequence>
+   </complexType>
+   <complexType name="LiteAlbumMetadata">
+    <sequence>
+     <element name="albumArt162x162Url" nillable="true" type="xsd:string" />
+     <element name="albumId" nillable="true" type="xsd:string" />
+     <element name="albumType" nillable="true" type="xsd:int" />
+     <element name="compilation" nillable="true" type="xsd:boolean" />
+     <element name="displayName" nillable="true" type="xsd:string" />
+     <element name="displayableAlbumTypes" nillable="true" type="impl:ArrayOf_xsd_string" />
+     <element name="name" nillable="true" type="xsd:string" />
+     <element name="numberOfDiscs" nillable="true" type="xsd:int" />
+     <element name="parentalAuthority" nillable="true" type="xsd:boolean" />
+     <element name="primaryArtistDisplayName" nillable="true" type="xsd:string" />
+     <element name="primaryArtistId" nillable="true" type="xsd:string" />
+     <element name="primaryStyle" nillable="true" type="xsd:string" />
+     <element name="releaseYear" nillable="true" type="xsd:int" />
+     <element name="rightFlags" nillable="true" type="xsd:long" />
+     <element name="shortcut" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="LiteArtistMetadata">
+    <sequence>
+     <element name="artistId" nillable="true" type="xsd:string" />
+     <element name="name" nillable="true" type="xsd:string" />
+     <element name="rightFlags" nillable="true" type="xsd:long" />
+     <element name="shortcut" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="AlbumMetadata">
+    <complexContent>
+     <extension base="tns1:LiteAlbumMetadata">
+      <sequence>
+       <element name="albumArt70x70Url" nillable="true" type="xsd:string" />
+       <element name="copyright" nillable="true" type="xsd:string" />
+       <element name="label" nillable="true" type="xsd:string" />
+       <element name="nonDisplayableAlbumTypes" nillable="true" type="impl:ArrayOf_xsd_string" />
+       <element name="price" nillable="true" type="tns1:Money" />
+       <element name="primaryArtist" nillable="true" type="tns1:LiteArtistMetadata" />
+       <element name="trackMetadatas" nillable="true" type="impl:ArrayOf_tns1_LiteTrackMetadata" />
+       <element name="upccode" nillable="true" type="xsd:string" />
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ChannelPlaybackInfo">
+    <sequence>
+     <element name="album" nillable="true" type="tns1:AlbumMetadata" />
+     <element name="channelTrackId" nillable="true" type="xsd:string" />
+     <element name="playbackInfo" nillable="true" type="tns1:TrackPlaybackInfo" />
+     <element name="skippable" type="xsd:boolean" />
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="meterSkipForChannelResponse">
+
+      <wsdl:part name="meterSkipForChannelReturn" type="tns1:LogMeteringResult" />
+
+   </wsdl:message>
+
+   <wsdl:message name="endPlaybackSessionResponse">
+
+      <wsdl:part name="endPlaybackSessionReturn" type="xsd:boolean" />
+
+   </wsdl:message>
+
+   <wsdl:message name="meterStreamForChannelResponse">
+
+      <wsdl:part name="meterStreamForChannelReturn" type="tns1:LogMeteringResult" />
+
+   </wsdl:message>
+
+   <wsdl:message name="logMeteringInfoForStationTrackPlayRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="stationId" type="xsd:string" />
+
+      <wsdl:part name="trackId" type="xsd:string" />
+
+      <wsdl:part name="actionId" type="xsd:string" />
+
+      <wsdl:part name="playtime" type="xsd:int" />
+
+      <wsdl:part name="format" type="xsd:string" />
+
+      <wsdl:part name="bitrate" type="xsd:int" />
+
+      <wsdl:part name="clientType" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getEAForChannelResponse">
+
+      <wsdl:part name="getEAForChannelReturn" type="xsd:base64Binary" />
+
+   </wsdl:message>
+
+   <wsdl:message name="startPlaybackSessionRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="clientType" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getTrackDownloadInfosResponse">
+
+      <wsdl:part name="getTrackDownloadInfosReturn" type="tns1:MultipleTrackDownloadInfo" />
+
+   </wsdl:message>
+
+   <wsdl:message name="startPlaybackSessionResponse">
+
+      <wsdl:part name="startPlaybackSessionReturn" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getTrackPlaybackInfoResponse">
+
+      <wsdl:part name="getTrackPlaybackInfoReturn" type="tns1:TrackPlaybackInfo" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getTrackPlaybackInfoRequest1">
+
+      <wsdl:part name="trackId" type="xsd:string" />
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="playbackSessionId" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="radversion" type="xsd:int" />
+
+      <wsdl:part name="format" type="xsd:string" />
+
+      <wsdl:part name="bitrate" type="xsd:int" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getTrackPlaybackInfoResponse1">
+
+      <wsdl:part name="getTrackPlaybackInfoReturn" type="tns1:TrackPlaybackInfo" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getTrackDownloadInfoResponse">
+
+      <wsdl:part name="getTrackDownloadInfoReturn" type="tns1:TrackDownloadInfo" />
+
+   </wsdl:message>
+
+   <wsdl:message name="meterStreamForChannelRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="channelTrackId" type="xsd:string" />
+
+      <wsdl:part name="playtime" type="xsd:int" />
+
+      <wsdl:part name="format" type="xsd:string" />
+
+      <wsdl:part name="bitrate" type="xsd:int" />
+
+      <wsdl:part name="clientType" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getTrackDownloadInfosRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="trackIds" type="impl:ArrayOf_xsd_string" />
+
+      <wsdl:part name="format" type="xsd:string" />
+
+      <wsdl:part name="bitrate" type="xsd:int" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getEARequest1">
+
+      <wsdl:part name="trackId" type="xsd:string" />
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="playbackSessionId" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="position" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="radversion" type="xsd:int" />
+
+      <wsdl:part name="format" type="xsd:string" />
+
+      <wsdl:part name="bitrate" type="xsd:int" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getEAResponse">
+
+      <wsdl:part name="getEAReturn" type="xsd:base64Binary" />
+
+   </wsdl:message>
+
+   <wsdl:message name="logMeteringInfoRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="trackId" type="xsd:string" />
+
+      <wsdl:part name="actionId" type="xsd:string" />
+
+      <wsdl:part name="playtime" type="xsd:int" />
+
+      <wsdl:part name="format" type="xsd:string" />
+
+      <wsdl:part name="bitrate" type="xsd:int" />
+
+      <wsdl:part name="clientType" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getTrackDownloadInfoRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="trackId" type="xsd:string" />
+
+      <wsdl:part name="format" type="xsd:string" />
+
+      <wsdl:part name="bitrate" type="xsd:int" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getEAResponse1">
+
+      <wsdl:part name="getEAReturn" type="xsd:base64Binary" />
+
+   </wsdl:message>
+
+   <wsdl:message name="meterSkipForChannelRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="channelTrackId" type="xsd:string" />
+
+      <wsdl:part name="clientType" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getVersionStringResponse">
+
+      <wsdl:part name="getVersionStringReturn" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getEAForChannelRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="playbackSessionId" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="channelTrackId" type="xsd:string" />
+
+      <wsdl:part name="channelId" type="xsd:string" />
+
+      <wsdl:part name="position" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="format" type="xsd:string" />
+
+      <wsdl:part name="bitrate" type="xsd:int" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getNextPlaybackInfoForChannelRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="playbackSessionId" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="channelId" type="xsd:string" />
+
+      <wsdl:part name="format" type="xsd:string" />
+
+      <wsdl:part name="bitrate" type="xsd:int" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getTrackDownloadInfosByTransactionIdRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="transactionId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getTrackPlaybackInfosRequest1">
+
+      <wsdl:part name="trackId" type="xsd:string" />
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="playbackSessionId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getTrackPlaybackInfosResponse">
+
+      <wsdl:part name="getTrackPlaybackInfosReturn" type="impl:ArrayOf_tns1_TrackPlaybackInfo" />
+
+   </wsdl:message>
+
+   <wsdl:message name="logMeteringInfoResponse">
+
+      <wsdl:part name="logMeteringInfoReturn" type="tns1:LogMeteringResult" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getVersionStringResponse1">
+
+      <wsdl:part name="getVersionStringReturn" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="endPlaybackSessionRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="clientType" type="xsd:string" />
+
+      <wsdl:part name="playbackSessionId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getTrackPlaybackInfosResponse1">
+
+      <wsdl:part name="getTrackPlaybackInfosReturn" type="impl:ArrayOf_tns1_TrackPlaybackInfo" />
+
+   </wsdl:message>
+
+   <wsdl:message name="logMeteringInfoForStationTrackPlayResponse">
+
+      <wsdl:part name="logMeteringInfoForStationTrackPlayReturn" type="tns1:LogMeteringResult" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getMediaLocationResponse">
+
+      <wsdl:part name="getMediaLocationReturn" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getDrmTrackDownloadInfoResponse">
+
+      <wsdl:part name="getDrmTrackDownloadInfoReturn" type="tns1:DownloadInfo" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   
+
+   <wsdl:message name="getDrmTrackDownloadInfoRequest">
+
+      <wsdl:part name="format" type="xsd:string" />
+
+      <wsdl:part name="trackId" type="xsd:string" />
+
+      <wsdl:part name="machineGuid" type="xsd:string" />
+
+      <wsdl:part name="wmDrmInfo" type="xsd:string" />
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getMediaLocationRequest">
+
+      <wsdl:part name="trackId" type="xsd:string" />
+
+      <wsdl:part name="format" type="xsd:string" />
+
+      <wsdl:part name="bitrate" type="xsd:int" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getNextPlaybackInfoForChannelResponse">
+
+      <wsdl:part name="getNextPlaybackInfoForChannelReturn" type="tns1:ChannelPlaybackInfo" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getTrackDownloadInfosByTransactionIdResponse">
+
+      <wsdl:part name="getTrackDownloadInfosByTransactionIdReturn" type="tns1:MultipleTrackDownloadInfo" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getVersionStringRequest1">
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:portType name="RhapsodyDirectPlaybackAxisAdapter">
+
+      <wsdl:operation name="getTrackDownloadInfos" parameterOrder="logon cobrandId password trackIds format bitrate developerKey">
+
+         <wsdl:input message="impl:getTrackDownloadInfosRequest" name="getTrackDownloadInfosRequest" />
+
+         <wsdl:output message="impl:getTrackDownloadInfosResponse" name="getTrackDownloadInfosResponse" />
+
+      </wsdl:operation>
+
+      
+
+      <wsdl:operation name="getVersionString" parameterOrder="developerKey">
+
+         <wsdl:input message="impl:getVersionStringRequest1" name="getVersionStringRequest1" />
+
+         <wsdl:output message="impl:getVersionStringResponse1" name="getVersionStringResponse1" />
+
+      </wsdl:operation>
+
+      
+
+      <wsdl:operation name="getEA" parameterOrder="trackId logon playbackSessionId cobrandId position count radversion format bitrate developerKey">
+
+         <wsdl:input message="impl:getEARequest1" name="getEARequest1" />
+
+         <wsdl:output message="impl:getEAResponse1" name="getEAResponse1" />
+
+      </wsdl:operation>
+
+      
+
+      <wsdl:operation name="getTrackPlaybackInfo" parameterOrder="trackId logon playbackSessionId cobrandId radversion format bitrate developerKey">
+
+         <wsdl:input message="impl:getTrackPlaybackInfoRequest1" name="getTrackPlaybackInfoRequest1" />
+
+         <wsdl:output message="impl:getTrackPlaybackInfoResponse1" name="getTrackPlaybackInfoResponse1" />
+
+      </wsdl:operation>
+
+      
+
+      
+
+      <wsdl:operation name="getTrackPlaybackInfos" parameterOrder="trackId logon cobrandId playbackSessionId developerKey">
+
+         <wsdl:input message="impl:getTrackPlaybackInfosRequest1" name="getTrackPlaybackInfosRequest1" />
+
+         <wsdl:output message="impl:getTrackPlaybackInfosResponse1" name="getTrackPlaybackInfosResponse1" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDrmTrackDownloadInfo" parameterOrder="format trackId machineGuid wmDrmInfo logon cobrandId password developerKey">
+
+         <wsdl:input message="impl:getDrmTrackDownloadInfoRequest" name="getDrmTrackDownloadInfoRequest" />
+
+         <wsdl:output message="impl:getDrmTrackDownloadInfoResponse" name="getDrmTrackDownloadInfoResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTrackDownloadInfo" parameterOrder="logon cobrandId password trackId format bitrate developerKey">
+
+         <wsdl:input message="impl:getTrackDownloadInfoRequest" name="getTrackDownloadInfoRequest" />
+
+         <wsdl:output message="impl:getTrackDownloadInfoResponse" name="getTrackDownloadInfoResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTrackDownloadInfosByTransactionId" parameterOrder="logon cobrandId password transactionId developerKey">
+
+         <wsdl:input message="impl:getTrackDownloadInfosByTransactionIdRequest" name="getTrackDownloadInfosByTransactionIdRequest" />
+
+         <wsdl:output message="impl:getTrackDownloadInfosByTransactionIdResponse" name="getTrackDownloadInfosByTransactionIdResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="startPlaybackSession" parameterOrder="logon cobrandId password clientType developerKey">
+
+         <wsdl:input message="impl:startPlaybackSessionRequest" name="startPlaybackSessionRequest" />
+
+         <wsdl:output message="impl:startPlaybackSessionResponse" name="startPlaybackSessionResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="endPlaybackSession" parameterOrder="logon clientType playbackSessionId developerKey">
+
+         <wsdl:input message="impl:endPlaybackSessionRequest" name="endPlaybackSessionRequest" />
+
+         <wsdl:output message="impl:endPlaybackSessionResponse" name="endPlaybackSessionResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logMeteringInfo" parameterOrder="logon cobrandId trackId actionId playtime format bitrate clientType developerKey">
+
+         <wsdl:input message="impl:logMeteringInfoRequest" name="logMeteringInfoRequest" />
+
+         <wsdl:output message="impl:logMeteringInfoResponse" name="logMeteringInfoResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logMeteringInfoForStationTrackPlay" parameterOrder="logon cobrandId stationId trackId actionId playtime format bitrate clientType developerKey">
+
+         <wsdl:input message="impl:logMeteringInfoForStationTrackPlayRequest" name="logMeteringInfoForStationTrackPlayRequest" />
+
+         <wsdl:output message="impl:logMeteringInfoForStationTrackPlayResponse" name="logMeteringInfoForStationTrackPlayResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMediaLocation" parameterOrder="trackId format bitrate developerKey">
+
+         <wsdl:input message="impl:getMediaLocationRequest" name="getMediaLocationRequest" />
+
+         <wsdl:output message="impl:getMediaLocationResponse" name="getMediaLocationResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNextPlaybackInfoForChannel" parameterOrder="logon playbackSessionId cobrandId channelId format bitrate developerKey">
+
+         <wsdl:input message="impl:getNextPlaybackInfoForChannelRequest" name="getNextPlaybackInfoForChannelRequest" />
+
+         <wsdl:output message="impl:getNextPlaybackInfoForChannelResponse" name="getNextPlaybackInfoForChannelResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEAForChannel" parameterOrder="logon playbackSessionId cobrandId channelTrackId channelId position count format bitrate developerKey">
+
+         <wsdl:input message="impl:getEAForChannelRequest" name="getEAForChannelRequest" />
+
+         <wsdl:output message="impl:getEAForChannelResponse" name="getEAForChannelResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="meterStreamForChannel" parameterOrder="logon cobrandId channelTrackId playtime format bitrate clientType developerKey">
+
+         <wsdl:input message="impl:meterStreamForChannelRequest" name="meterStreamForChannelRequest" />
+
+         <wsdl:output message="impl:meterStreamForChannelResponse" name="meterStreamForChannelResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="meterSkipForChannel" parameterOrder="logon cobrandId channelTrackId clientType developerKey">
+
+         <wsdl:input message="impl:meterSkipForChannelRequest" name="meterSkipForChannelRequest" />
+
+         <wsdl:output message="impl:meterSkipForChannelResponse" name="meterSkipForChannelResponse" />
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="RhapsodyDirectPlaybackSoapBinding" type="impl:RhapsodyDirectPlaybackAxisAdapter">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+
+      <wsdl:operation name="getTrackDownloadInfos">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getTrackDownloadInfosRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getTrackDownloadInfosResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      
+
+      <wsdl:operation name="getVersionString">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getVersionStringRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getVersionStringResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      
+
+      <wsdl:operation name="getEA">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getEARequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getEAResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      
+
+      <wsdl:operation name="getTrackPlaybackInfo">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getTrackPlaybackInfoRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getTrackPlaybackInfoResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      
+
+      
+
+      <wsdl:operation name="getTrackPlaybackInfos">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getTrackPlaybackInfosRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getTrackPlaybackInfosResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDrmTrackDownloadInfo">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getDrmTrackDownloadInfoRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getDrmTrackDownloadInfoResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTrackDownloadInfo">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getTrackDownloadInfoRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getTrackDownloadInfoResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTrackDownloadInfosByTransactionId">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getTrackDownloadInfosByTransactionIdRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getTrackDownloadInfosByTransactionIdResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="startPlaybackSession">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="startPlaybackSessionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="startPlaybackSessionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="endPlaybackSession">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="endPlaybackSessionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="endPlaybackSessionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logMeteringInfo">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="logMeteringInfoRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="logMeteringInfoResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logMeteringInfoForStationTrackPlay">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="logMeteringInfoForStationTrackPlayRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="logMeteringInfoForStationTrackPlayResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMediaLocation">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getMediaLocationRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getMediaLocationResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNextPlaybackInfoForChannel">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getNextPlaybackInfoForChannelRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getNextPlaybackInfoForChannelResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEAForChannel">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getEAForChannelRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getEAForChannelResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="meterStreamForChannel">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="meterStreamForChannelRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="meterStreamForChannelResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="meterSkipForChannel">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="meterSkipForChannelRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="meterSkipForChannelResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectplayback" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="RhapsodyDirectPlaybackAxisAdapterService">
+
+      <wsdl:port binding="impl:RhapsodyDirectPlaybackSoapBinding" name="RhapsodyDirectPlayback">
+
+         <wsdlsoap:address location="https://secure-direct.rhapsody.com/playback/services/RhapsodyDirectPlayback" />
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,12 @@
+Just a list of sites that offer information/code relating to Spotify Connect. Useful for background reading/seeing what has already been done.
+
+http://divideoverflow.com/2014/08/reversing-spotify-connect/
+http://divideoverflow.com/2015/02/update_on_spotify_connect_protocol_reversing/
+https://gist.github.com/Fornoth/562a2db691051c381a8f (POC for Spotify Connect zeroconf)
+https://github.com/mopidy/mopidy-spotify/issues/14
+https://github.com/wouterdevinck/clonos-poc-spotify
+https://github.com/neandrake/spirc (Connect Communication Protocol?)
+https://developer.spotify.com/technologies/libspotify/
+http://blog.richdillon.me/how-spotify-changed-their-local-api/ (Not sure if helpful atm)
+http://cgbystrom.com/articles/deconstructing-spotifys-builtin-http-server/ (Not sure if helpful atm)
+https://medium.com/@b3ngr33ni3r/hijacking-spotify-web-control-5014b0a1a360 (Not sure if helpful atm)

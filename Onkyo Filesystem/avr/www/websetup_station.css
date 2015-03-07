@@ -1,0 +1,32 @@
+@charset "utf-8";
+table.body{ table-layout: auto; }
+
+tr.caption{ color: #B2B2B2; }
+
+td.info_no{
+  width: 22px;
+  padding: 4px;
+  text-align: right;
+  vertical-align: middle;
+  font-size: small;
+}
+
+td.info_name{
+  padding: 4px 8px 4px 4px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+td.info_url{
+  padding: 4px 8px 4px 4px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+td.info_del{
+  width: 24px;
+  padding: 4px 6px 4px 2px;
+  text-align: center;
+  vertical-align: middle;
+}
+

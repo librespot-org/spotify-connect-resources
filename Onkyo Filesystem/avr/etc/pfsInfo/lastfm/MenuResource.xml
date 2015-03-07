@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resource>
+	<menu id="lastfm://SignIn">
+		<self>
+			<name>$LA_EDIT_SCRNTXT_SIGNIN</name>
+			<title>$LA_POP_POPTXT_SIGNIN_MSG</title>
+			<message>$LA_POP_POPTXT_SIGNIN_MSG</message>
+			<objclass>object.container.popup.text</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+		<child>
+			<object id="SignInConfirm">
+				<title>$LA_LIST_TEXT_SIGNIN</title>
+				<objclass>object.action.signin</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+		</child>
+	</menu>
+	<menu id="lastfm://">
+		<self>
+			<name>$CMN_LIST_TEXT_LASTFM</name>
+			<title>$CMN_LIST_TEXT_LASTFM</title>
+			<objclass>object.container.iradio.top</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+		<child>
+			<object id="lastfm://SearchStation">
+				<title>$LA_LIST_TEXT_SEARCH_STATION</title>
+				<objclass>object.container.actions</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+			<object id="lastfm://TopArtists">
+				<title>$LA_LIST_TEXT_TOP_ARTIST_STATION</title>
+				<objclass>object.container</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+			<object id="lastfm://TagStation">
+				<title>$LA_LIST_TEXT_TOP_TAGS_STATION</title>
+				<objclass>object.container</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+			<object id="lastfm://PersonalStationsSelect">
+				<title>$LA_LIST_TEXT_TOP_PERSONAL_STATION</title>
+				<objclass>object.container</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+			<object id="lastfm://ProfileSelect">
+				<title>$LA_LIST_TEXT_PROFILE</title>
+				<objclass>object.container</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+			<object id="lastfm://AccountInfo">
+				<title>$LA_LIST_TEXT_ACCOUNT_INFO</title>
+				<objclass>object.container.info</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+			<object id="lastfm://LastFmSignOut">
+				<title>$CMN_LIST_TEXT_SIGNOUT</title>
+				<objclass>object.action.signout</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+		</child>
+	</menu>
+	<menu id="lastfm://SearchStation">
+		<self>
+			<name>$LA_LIST_TEXT_SEARCH_STATION</name>
+			<title>$LA_LIST_TEXT_SEARCH_STATION</title>
+			<objclass>object.container.actions</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+		<child>
+			<object id="lastfm://PlaylistSimilarSearchByArtist">
+				<title>$LA_LIST_TEXT_SEARCH_BY_ARTIST</title>
+				<objclass>object.action.search.artist</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+			<object id="lastfm://PlaylistSimilarSearchByTag">
+				<title>$LA_LIST_TEXT_SEARCH_BY_TAG</title>
+				<objclass>object.action.search.tag</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+			<object id="lastfm://PlaylistSimilarSearchByUserName">
+				<title>$LA_LIST_TEXT_SEARCH_BY_USER</title>
+				<objclass>object.action.search.username</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+		</child>
+	</menu>
+	<menu id="lastfm://PersonalStationsSelect">
+		<self>
+			<name>$LA_LIST_TEXT_TOP_PERSONAL_STATION</name>
+			<title>$LA_LIST_TEXT_TOP_PERSONAL_STATION</title>
+			<objclass>object.container</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+		<child>
+			<object id="lastfm://PlaylistParsonal">
+				<title>$LA_LIST_TEXT_YOUR_LIBRARY</title>
+				<objclass>object.container.playlist</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+			<object id="lastfm://PlaylistYourNeighbourhood">
+				<title>$LA_LIST_TEXT_YOUR_NEIGHBOURHOOD</title>
+				<objclass>object.container.playlist</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+			<object id="lastfm://PlaylistRecommendation">
+				<title>$LA_LIST_TEXT_YOUR_RECOMMENDATIONS</title>
+				<objclass>object.container.playlist</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+		</child>
+	</menu>
+	<menu id="lastfm://ProfileSelect">
+		<self>
+			<name>$LA_LIST_TEXT_PROFILE</name>
+			<title>$LA_LIST_TEXT_PROFILE</title>
+			<objclass>object.container</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+		<child>
+			<object id="lastfm://RecentlyListenedTracks">
+				<title>$LA_LIST_TEXT_PROFILE_RECENTLY_TRACKS</title>
+				<objclass>object.container</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+			<object id="lastfm://Library">
+				<title>$LA_LIST_TEXT_PROFILE_LIBRARY</title>
+				<objclass>object.container</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+			<object id="lastfm://LovedTracks">
+				<title>$LA_LIST_TEXT_PROFILE_LOVED_TRACKS</title>
+				<objclass>object.container</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+			<object id="lastfm://Neighbours">
+				<title>$LA_LIST_TEXT_PROFILE_NEIGHBOURS</title>
+				<objclass>object.container</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+		</child>
+	</menu>
+	<menu id="lastfm://ScrobbleCtlMenu">
+		<self>
+			<name>$LA_LIST_SCRNTXT_MENU</name>
+			<title>$LA_LIST_SCRNTXT_MENU</title>
+			<objclass>object.container</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+		<child>
+			<object id="lastfm://ScrobbleCtlPopupMenu">
+				<title>$LA_LIST_TEXT_SCROBBLING_CONTROL</title>
+				<objclass>object.container.popup.text</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+		</child>
+	</menu>
+	<menu id="lastfm://ScrobbleCtlPopupMenu">
+		<self>
+			<name>$LA_LIST_TEXT_SCROBBLING_CONTROL</name>
+			<title>$LA_LIST_TEXT_SCROBBLING_CONTROL</title>
+			<message>$LA_POP_POPTXT_SCROBBLING_CONTROL_MSG</message>
+			<objclass>object.container.popup.text</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+		<child>
+			<object id="selectionMenu://Enable">
+				<title>$LA_POP_SELTXT_ENABLE</title>
+				<objclass>object.menuaction.item</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+			<object id="selectionMenu://Disable">
+				<title>$LA_POP_SELTXT_DISABLE</title>
+				<objclass>object.menuaction.item</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+		</child>
+	</menu>
+	<menu id="lastfm://BadRegion">
+		<self>
+			<name>$CMN_LIST_TEXT_LASTFM</name>
+			<title>$CMN_LIST_TEXT_LASTFM</title>
+			<message>$LA_POP_POPTXT_BAD_REGION_ERR</message>
+			<objclass>object.container.popup.text</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+		<child>
+			<object id="Back">
+				<title>$CMN_POP_SELTXT_BACK</title>
+				<objclass>object.action.back</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+		</child>
+	</menu>
+	<menu id="lastfm://AccountInfo">
+		<self>
+			<name>$LA_LIST_TEXT_ACCOUNT_INFO</name>
+			<title>$LA_LIST_TEXT_ACCOUNT_INFO</title>
+			<message>$LA_POP_POPTXT_USERNAME</message>
+			<objclass>object.container.info</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+		<child>
+			<object id="Back">
+				<title>$CMN_POP_SELTXT_BACK</title>
+				<objclass>object.action.back</objclass>
+				<artist></artist>
+				<album></album>
+				<extended_uri></extended_uri>
+			</object>
+		</child>
+	</menu>
+	<dynamic_menu id="lastfm://TagStation">
+		<self>
+			<name>$LA_LIST_TEXT_TOP_TAGS_STATION</name>
+			<title>$LA_LIST_TEXT_TOP_TAGS_STATION</title>
+			<objclass>object.container</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+	</dynamic_menu>
+	<dynamic_menu id="lastfm://TopArtists">
+		<self>
+			<name>$LA_LIST_TEXT_TOP_ARTIST_STATION</name>
+			<title>$LA_LIST_TEXT_TOP_ARTIST_STATION</title>
+			<objclass>object.container</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+	</dynamic_menu>
+	<dynamic_menu id="lastfm://RecentlyListenedTracks">
+		<self>
+			<name>$LA_LIST_TEXT_PROFILE_RECENTLY_TRACKS</name>
+			<title>$LA_LIST_TEXT_PROFILE_RECENTLY_TRACKS</title>
+			<objclass>object.container</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+	</dynamic_menu>
+	<dynamic_menu id="lastfm://Library">
+		<self>
+			<name>$LA_LIST_TEXT_PROFILE_LIBRARY</name>
+			<title>$LA_LIST_TEXT_PROFILE_LIBRARY</title>
+			<objclass>object.container</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+	</dynamic_menu>
+	<dynamic_menu id="lastfm://LovedTracks">
+		<self>
+			<name>$LA_LIST_TEXT_PROFILE_LOVED_TRACKS</name>
+			<title>$LA_LIST_TEXT_PROFILE_LOVED_TRACKS</title>
+			<objclass>object.container</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+	</dynamic_menu>
+	<dynamic_menu id="lastfm://Neighbours">
+		<self>
+			<name>$LA_LIST_TEXT_PROFILE_NEIGHBOURS</name>
+			<title>$LA_LIST_TEXT_PROFILE_NEIGHBOURS</title>
+			<objclass>object.container</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+	</dynamic_menu>
+	<dynamic_menu id="lastfm://Playlists">
+		<self>
+			<name>Playlists</name>
+			<title>Playlists</title>
+			<objclass>object.container</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+	</dynamic_menu>
+	<dynamic_menu id="lastfm://PlaylistSimilarSearchByArtist">
+		<self>
+			<name>$LA_LIST_TEXT_SEARCH_BY_ARTIST</name>
+			<title>$LA_LIST_TEXT_SEARCH_BY_ARTIST</title>
+			<objclass>object.container.playlist</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+	</dynamic_menu>
+	<dynamic_menu id="lastfm://PlaylistSimilarSearchByTag">
+		<self>
+			<name>$LA_LIST_TEXT_SEARCH_BY_TAG</name>
+			<title>$LA_LIST_TEXT_SEARCH_BY_TAG</title>
+			<objclass>object.container.playlist</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+	</dynamic_menu>
+	<dynamic_menu id="lastfm://PlaylistYourNeighbourhood">
+		<self>
+			<name>$LA_LIST_TEXT_YOUR_NEIGHBOURHOOD</name>
+			<title>$LA_LIST_TEXT_YOUR_NEIGHBOURHOOD</title>
+			<objclass>object.container.playlist</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+	</dynamic_menu>
+	<dynamic_menu id="lastfm://PlaylistSimilarSearchByUserName">
+		<self>
+			<name>$LA_LIST_TEXT_SEARCH_BY_USER</name>
+			<title>$LA_LIST_TEXT_SEARCH_BY_USER</title>
+			<objclass>object.container.playlist</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+	</dynamic_menu>
+	<dynamic_menu id="lastfm://PlaylistParsonal">
+		<self>
+			<name>$LA_LIST_TEXT_YOUR_LIBRARY</name>
+			<title>$LA_LIST_TEXT_YOUR_LIBRARY</title>
+			<objclass>object.container.playlist</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+	</dynamic_menu>
+	<dynamic_menu id="lastfm://PlaylistLovedTracks">
+		<self>
+			<name>$LA_LIST_TEXT_YOUR_LOVED_TRACKS</name>
+			<title>$LA_LIST_TEXT_YOUR_LOVED_TRACKS</title>
+			<objclass>object.container.playlist</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+	</dynamic_menu>
+	<dynamic_menu id="lastfm://PlaylistRecommendation">
+		<self>
+			<name>$LA_LIST_TEXT_YOUR_RECOMMENDATIONS</name>
+			<title>$LA_LIST_TEXT_YOUR_RECOMMENDATIONS</title>
+			<objclass>object.container.playlist</objclass>
+			<artist></artist>
+			<album></album>
+			<extended_uri></extended_uri>
+		</self>
+	</dynamic_menu>
+</resource>

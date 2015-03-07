@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>%_STATION_PAGE_TITLE_%</title>
+<link rel="stylesheet" href="websetup_cmn.css" type="text/css">
+<link rel="stylesheet" href="websetup_cmn_pc.css" type="text/css">
+<link rel="stylesheet" href="websetup_station.css" type="text/css">
+<script language="JavaScript" type="text/JavaScript" src="websetup_cmn.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="websetup_station.js"></script>
+<style type="text/css">
+<!--
+input.text{ width: 100%; }
+div.delete{
+  float: left;
+  overflow: hidden;
+}
+-->
+</style>
+</head>
+<body onLoad="MM_preloadImages('images/btn_refresh_pressed.png','images/btn_refresh_over.png','images/btn_delete_pressed.png','images/btn_delete_over.png','images/ic_device_info_over.png','images/ic_network_setting_over.png','images/ic_account_setting_over.png','images/ic_device_info_on.png','images/ic_network_setting_on.png','images/ic_account_setting_on.png')">
+<div id="topcontainer">
+<table class="top">
+  <tr class="header">
+    <td class="header">
+      <table class="header">
+        <tr class="logo">
+          <td class="logo_left" colspan="2"><img src="images/%_COMMON_LOGO_PATH_%" alt="%_COMMON_LOGO_ALT_%" width="150" height="30" class="logo"></td>
+          <td class="logo_right" colspan="2"><strong>%_COMMON_WEB_SETUP_MENU_%</strong></td>
+        </tr>
+        <tr class="tab">
+          <td class="header_tab"><a href="./%_COMMON_PATH_UINFO_%" class="header_tab" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image0','','images/ic_device_info_over.png',1)" onClick="MM_swapImage('Image0','','images/ic_device_info_on.png',1)"><img src="images/ic_device_info_off.png" width="58" height="52" alt="%_TAB_UINFO_%" name="Image0" class="tab"></a></td>
+          <td class="header_tab_crnt"><img src="images/ic_my_favorites_on.png" width="58" height="52" alt="%_TAB_STATION_%" name="Image1" class="tab"></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_NETWORK_%" class="header_tab" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2','','images/ic_network_setting_over.png',1)" onClick="MM_swapImage('Image2','','images/ic_network_setting_on.png',1)"><img src="images/ic_network_setting_off.png" width="58" height="52" alt="%_TAB_NETWORK_%" name="Image2" class="tab"></a></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_ACCOUNT_%" class="header_tab" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image3','','images/ic_account_setting_over.png',1)" onClick="MM_swapImage('Image3','','images/ic_account_setting_on.png',1)"><img src="images/ic_account_setting_off.png" width="58" height="52" alt="%_TAB_ACCOUNT_%" name="Image3" class="tab"></a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td class="body_top">
+      <form action="./%_COMMON_PATH_STATION_%" method="POST" name="station_list">
+        <table class="body">
+          <tr>
+            <td colspan="4" class="middle_title">
+              <table class="subtitle">
+                <tr>
+                  <td class="subtitle_left">
+                    <strong class="middle_title">%_STATION_MIDDLE_TITLE_%</strong>
+                  </td>
+                  <td class="subtitle_right">
+                    <a href="./%_COMMON_PATH_STATION_%" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','images/btn_refresh_over.png',1)" onClick="MM_swapImage('Image5','','images/btn_refresh_pressed.png',1)"><img src="images/btn_refresh_normal.png" name="Image5" width="32" height="32" alt="%_BUTTON_REFRESH_%" class="refresh"></a>
+                    <button type="submit" name="save" value="SAVE" class="save">%_BUTTON_SAVE_%</button>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr class="info">
+            <td class="info_no">%_STATION_LIST_NO_TITLE_%</td>
+            <td class="info_name">%_STATION_LIST_NAME_TITLE_%</td>
+            <td class="info_url">%_STATION_LIST_URL_TITLE_%</td>
+            <td class="info_del"></td>
+          </tr>
+%_STATION_LIST_STATIONS_INFO_%        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+<div class="foot"> </div>
+</div>
+</body>
+</html>

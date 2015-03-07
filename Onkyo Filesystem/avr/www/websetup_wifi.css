@@ -1,0 +1,22 @@
+@charset "utf-8";
+input.text{
+  width: 100%;
+  ime-mode:disabled;
+}
+select:disabled{ color: #737373; }
+td.pbc_left{
+  padding: 4px 4px 4px 28px;
+  text-align: left;
+  white-space: nowrap;
+}
+td.pbc_right{
+  padding: 4px;
+  color: #FFFFFF;
+  text-align: left;
+  white-space: nowrap;
+}
+td.description{
+  color: #FFFFFF;
+  padding: 16px 1em 4px;
+  text-align: left;
+}

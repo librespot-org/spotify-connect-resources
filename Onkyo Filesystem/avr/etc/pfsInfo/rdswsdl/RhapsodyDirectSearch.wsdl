@@ -1,0 +1,1254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:rhapsodydirectsearch" xmlns:intf="urn:rhapsodydirectsearch" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://list.kani.common.real.com" xmlns:tns2="http://kani.common.real.com" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:rhapsodydirectsearch">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:rhapsodydirectsearch">
+   <import namespace="http://list.kani.common.real.com" />
+   <import namespace="http://kani.common.real.com" />
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+   <complexType name="ArrayOf_xsd_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]" />
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_xsd_anyType">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:anyType[]" />
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_LiteAlbumMetadata">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:LiteAlbumMetadata[]" />
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_LiteArtistMetadata">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:LiteArtistMetadata[]" />
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_LiteTrackMetadata">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:LiteTrackMetadata[]" />
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://list.kani.common.real.com">
+   <import namespace="urn:rhapsodydirectsearch" />
+   <import namespace="http://kani.common.real.com" />
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+   <complexType abstract="true" name="Sublist">
+    <sequence>
+     <element name="data" nillable="true" type="impl:ArrayOf_xsd_anyType" />
+     <element name="fullArraySize" type="xsd:int" />
+     <element name="rangeSize" type="xsd:int" />
+     <element name="rangeStart" type="xsd:int" />
+    </sequence>
+   </complexType>
+   <complexType name="LiteAlbumMetadataList">
+    <complexContent>
+     <extension base="tns1:Sublist">
+      <sequence>
+       <element name="albums" nillable="true" type="impl:ArrayOf_tns2_LiteAlbumMetadata" />
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="LiteArtistMetadataList">
+    <complexContent>
+     <extension base="tns1:Sublist">
+      <sequence>
+       <element name="artists" nillable="true" type="impl:ArrayOf_tns2_LiteArtistMetadata" />
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="LiteTrackMetadataList">
+    <complexContent>
+     <extension base="tns1:Sublist">
+      <sequence>
+       <element name="tracks" nillable="true" type="impl:ArrayOf_tns2_LiteTrackMetadata" />
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://kani.common.real.com">
+   <import namespace="http://list.kani.common.real.com" />
+   <import namespace="urn:rhapsodydirectsearch" />
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+   <complexType name="LiteAlbumMetadata">
+    <sequence>
+     <element name="albumArt162x162Url" nillable="true" type="xsd:string" />
+     <element name="albumId" nillable="true" type="xsd:string" />
+     <element name="albumType" nillable="true" type="xsd:int" />
+     <element name="compilation" nillable="true" type="xsd:boolean" />
+     <element name="displayName" nillable="true" type="xsd:string" />
+     <element name="displayableAlbumTypes" nillable="true" type="impl:ArrayOf_xsd_string" />
+     <element name="name" nillable="true" type="xsd:string" />
+     <element name="numberOfDiscs" nillable="true" type="xsd:int" />
+     <element name="parentalAuthority" nillable="true" type="xsd:boolean" />
+     <element name="primaryArtistDisplayName" nillable="true" type="xsd:string" />
+     <element name="primaryArtistId" nillable="true" type="xsd:string" />
+     <element name="primaryStyle" nillable="true" type="xsd:string" />
+     <element name="releaseYear" nillable="true" type="xsd:int" />
+     <element name="rightFlags" nillable="true" type="xsd:long" />
+     <element name="shortcut" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="LiteArtistMetadata">
+    <sequence>
+     <element name="artistId" nillable="true" type="xsd:string" />
+     <element name="name" nillable="true" type="xsd:string" />
+     <element name="rightFlags" nillable="true" type="xsd:long" />
+     <element name="shortcut" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="Money">
+    <sequence>
+     <element name="amount" nillable="true" type="xsd:string" />
+     <element name="currencyCode" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="LiteTrackMetadata">
+    <sequence>
+     <element name="albumId" nillable="true" type="xsd:string" />
+     <element name="artistId" nillable="true" type="xsd:string" />
+     <element name="discIndex" nillable="true" type="xsd:int" />
+     <element name="displayAlbumName" nillable="true" type="xsd:string" />
+     <element name="displayArtistName" nillable="true" type="xsd:string" />
+     <element name="genreId" nillable="true" type="xsd:string" />
+     <element name="name" nillable="true" type="xsd:string" />
+     <element name="playbackSeconds" nillable="true" type="xsd:int" />
+     <element name="previewURL" nillable="true" type="xsd:string" />
+     <element name="price" nillable="true" type="tns2:Money" />
+     <element name="rightFlags" nillable="true" type="xsd:long" />
+     <element name="trackId" nillable="true" type="xsd:string" />
+     <element name="trackIndex" nillable="true" type="xsd:int" />
+    </sequence>
+   </complexType>
+   <complexType name="MultipleSearchResults">
+    <sequence>
+     <element name="albums" nillable="true" type="tns1:LiteAlbumMetadataList" />
+     <element name="artists" nillable="true" type="tns1:LiteArtistMetadataList" />
+     <element name="tracks" nillable="true" type="tns1:LiteTrackMetadataList" />
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="fastFindTracksResponse1">
+
+      <wsdl:part name="fastFindTracksReturn" type="tns1:LiteTrackMetadataList" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="searchTracksByArtistIdAlbumNameAndTrackNameResponse">
+
+      <wsdl:part name="searchTracksByArtistIdAlbumNameAndTrackNameReturn" type="tns1:LiteTrackMetadataList" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="searchTracksByNamesResponse">
+
+      <wsdl:part name="searchTracksByNamesReturn" type="tns1:LiteTrackMetadataList" />
+
+   </wsdl:message>
+
+   <wsdl:message name="fastFindArtistsRequest">
+
+      <wsdl:part name="prefix" type="xsd:string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="searchAlbumsByAlbumNameResponse">
+
+      <wsdl:part name="searchAlbumsByAlbumNameReturn" type="tns1:LiteAlbumMetadataList" />
+
+   </wsdl:message>
+
+   <wsdl:message name="fastFindArtistsResponse1">
+
+      <wsdl:part name="fastFindArtistsReturn" type="tns1:LiteArtistMetadataList" />
+
+   </wsdl:message>
+
+   <wsdl:message name="searchMultipleByKeywordsRequest">
+
+      <wsdl:part name="keywords" type="impl:ArrayOf_xsd_string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   <wsdl:message name="searchTracksByKeywordsResponse1">
+
+      <wsdl:part name="searchTracksByKeywordsReturn" type="tns1:LiteTrackMetadataList" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   <wsdl:message name="searchTracksByNamesRequest">
+
+      <wsdl:part name="artistName" type="xsd:string" />
+
+      <wsdl:part name="albumName" type="xsd:string" />
+
+      <wsdl:part name="trackName" type="xsd:string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getVersionStringResponse1">
+
+      <wsdl:part name="getVersionStringReturn" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getVersionStringResponse">
+
+      <wsdl:part name="getVersionStringReturn" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   
+
+   <wsdl:message name="searchMultipleByKeywordsResponse">
+
+      <wsdl:part name="searchMultipleByKeywordsReturn" type="tns2:MultipleSearchResults" />
+
+   </wsdl:message>
+
+   <wsdl:message name="searchAlbumsByArtistIdAndAlbumNameRequest">
+
+      <wsdl:part name="artistId" type="xsd:string" />
+
+      <wsdl:part name="albumName" type="xsd:string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   <wsdl:message name="searchTracksByKeywordsResponse">
+
+      <wsdl:part name="searchTracksByKeywordsReturn" type="tns1:LiteTrackMetadataList" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   <wsdl:message name="fastFindAlbumsRequest">
+
+      <wsdl:part name="prefix" type="xsd:string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="lookupUserAliasResponse">
+
+      <wsdl:part name="lookupUserAliasReturn" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   <wsdl:message name="searchAlbumsByArtistNameAndAlbumNameResponse">
+
+      <wsdl:part name="searchAlbumsByArtistNameAndAlbumNameReturn" type="tns1:LiteAlbumMetadataList" />
+
+   </wsdl:message>
+
+   <wsdl:message name="lookupUserAliasRequest">
+
+      <wsdl:part name="email" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="fastFindArtistsRequest1">
+
+      <wsdl:part name="prefix" type="xsd:string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="fastFindAlbumsRequest1">
+
+      <wsdl:part name="prefix" type="xsd:string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   
+
+   <wsdl:message name="searchAlbumsByArtistIdAndAlbumNameResponse">
+
+      <wsdl:part name="searchAlbumsByArtistIdAndAlbumNameReturn" type="tns1:LiteAlbumMetadataList" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="fastFindAlbumsResponse">
+
+      <wsdl:part name="fastFindAlbumsReturn" type="tns1:LiteAlbumMetadataList" />
+
+   </wsdl:message>
+
+   <wsdl:message name="searchTracksByAlbumIdAndTrackNameResponse">
+
+      <wsdl:part name="searchTracksByAlbumIdAndTrackNameReturn" type="tns1:LiteTrackMetadataList" />
+
+   </wsdl:message>
+
+   <wsdl:message name="searchArtistsByArtistNameResponse">
+
+      <wsdl:part name="searchArtistsByArtistNameReturn" type="tns1:LiteArtistMetadataList" />
+
+   </wsdl:message>
+
+   <wsdl:message name="searchMultipleByKeywordsResponse1">
+
+      <wsdl:part name="searchMultipleByKeywordsReturn" type="tns2:MultipleSearchResults" />
+
+   </wsdl:message>
+
+   <wsdl:message name="searchArtistsByArtistNameRequest">
+
+      <wsdl:part name="artistName" type="xsd:string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="fastFindTracksRequest1">
+
+      <wsdl:part name="prefix" type="xsd:string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   
+
+   <wsdl:message name="searchAlbumsByAlbumNameRequest">
+
+      <wsdl:part name="albumName" type="xsd:string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="fastFindAlbumsResponse1">
+
+      <wsdl:part name="fastFindAlbumsReturn" type="tns1:LiteAlbumMetadataList" />
+
+   </wsdl:message>
+
+   <wsdl:message name="searchMultipleByKeywordsRequest1">
+
+      <wsdl:part name="keywords" type="impl:ArrayOf_xsd_string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="fastFindArtistsResponse">
+
+      <wsdl:part name="fastFindArtistsReturn" type="tns1:LiteArtistMetadataList" />
+
+   </wsdl:message>
+
+   <wsdl:message name="fastFindTracksResponse">
+
+      <wsdl:part name="fastFindTracksReturn" type="tns1:LiteTrackMetadataList" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="searchTracksByArtistIdAlbumNameAndTrackNameRequest">
+
+      <wsdl:part name="artistId" type="xsd:string" />
+
+      <wsdl:part name="albumName" type="xsd:string" />
+
+      <wsdl:part name="trackName" type="xsd:string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+   </wsdl:message>
+
+   <wsdl:message name="fastFindTracksRequest">
+
+      <wsdl:part name="prefix" type="xsd:string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="searchTracksByKeywordsRequest">
+
+      <wsdl:part name="keywords" type="impl:ArrayOf_xsd_string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="searchAlbumsByArtistNameAndAlbumNameRequest">
+
+      <wsdl:part name="artistName" type="xsd:string" />
+
+      <wsdl:part name="albumName" type="xsd:string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   <wsdl:message name="searchTracksByKeywordsRequest1">
+
+      <wsdl:part name="keywords" type="impl:ArrayOf_xsd_string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getVersionStringRequest1">
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="searchTracksByTrackNameRequest">
+
+      <wsdl:part name="trackName" type="xsd:string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="searchTracksByAlbumIdAndTrackNameRequest">
+
+      <wsdl:part name="albumId" type="xsd:string" />
+
+      <wsdl:part name="trackName" type="xsd:string" />
+
+      <wsdl:part name="start" type="xsd:int" />
+
+      <wsdl:part name="count" type="xsd:int" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+      <wsdl:part name="filterRightsKey" type="xsd:long" />
+
+   </wsdl:message>
+
+   <wsdl:message name="searchTracksByTrackNameResponse">
+
+      <wsdl:part name="searchTracksByTrackNameReturn" type="tns1:LiteTrackMetadataList" />
+
+   </wsdl:message>
+
+   <wsdl:portType name="RhapsodyDirectSearchAxisAdapter">
+
+      
+
+      <wsdl:operation name="getVersionString" parameterOrder="developerKey">
+
+         <wsdl:input message="impl:getVersionStringRequest1" name="getVersionStringRequest1" />
+
+         <wsdl:output message="impl:getVersionStringResponse1" name="getVersionStringResponse1" />
+
+      </wsdl:operation>
+
+      
+
+      
+
+      
+
+      
+
+      <wsdl:operation name="fastFindArtists" parameterOrder="prefix start count developerKey">
+
+         <wsdl:input message="impl:fastFindArtistsRequest" name="fastFindArtistsRequest" />
+
+         <wsdl:output message="impl:fastFindArtistsResponse" name="fastFindArtistsResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fastFindArtists" parameterOrder="prefix start count cobrandId filterRightsKey developerKey">
+
+         <wsdl:input message="impl:fastFindArtistsRequest1" name="fastFindArtistsRequest1" />
+
+         <wsdl:output message="impl:fastFindArtistsResponse1" name="fastFindArtistsResponse1" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fastFindAlbums" parameterOrder="prefix start count developerKey">
+
+         <wsdl:input message="impl:fastFindAlbumsRequest" name="fastFindAlbumsRequest" />
+
+         <wsdl:output message="impl:fastFindAlbumsResponse" name="fastFindAlbumsResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fastFindAlbums" parameterOrder="prefix start count cobrandId filterRightsKey developerKey">
+
+         <wsdl:input message="impl:fastFindAlbumsRequest1" name="fastFindAlbumsRequest1" />
+
+         <wsdl:output message="impl:fastFindAlbumsResponse1" name="fastFindAlbumsResponse1" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fastFindTracks" parameterOrder="prefix start count developerKey">
+
+         <wsdl:input message="impl:fastFindTracksRequest" name="fastFindTracksRequest" />
+
+         <wsdl:output message="impl:fastFindTracksResponse" name="fastFindTracksResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fastFindTracks" parameterOrder="prefix start count cobrandId filterRightsKey developerKey">
+
+         <wsdl:input message="impl:fastFindTracksRequest1" name="fastFindTracksRequest1" />
+
+         <wsdl:output message="impl:fastFindTracksResponse1" name="fastFindTracksResponse1" />
+
+      </wsdl:operation>
+
+      
+
+      
+
+      <wsdl:operation name="searchTracksByKeywords" parameterOrder="keywords cobrandId developerKey filterRightsKey">
+
+         <wsdl:input message="impl:searchTracksByKeywordsRequest" name="searchTracksByKeywordsRequest" />
+
+         <wsdl:output message="impl:searchTracksByKeywordsResponse" name="searchTracksByKeywordsResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchTracksByKeywords" parameterOrder="keywords start count cobrandId developerKey filterRightsKey">
+
+         <wsdl:input message="impl:searchTracksByKeywordsRequest1" name="searchTracksByKeywordsRequest1" />
+
+         <wsdl:output message="impl:searchTracksByKeywordsResponse1" name="searchTracksByKeywordsResponse1" />
+
+      </wsdl:operation>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <wsdl:operation name="searchMultipleByKeywords" parameterOrder="keywords cobrandId developerKey filterRightsKey">
+
+         <wsdl:input message="impl:searchMultipleByKeywordsRequest" name="searchMultipleByKeywordsRequest" />
+
+         <wsdl:output message="impl:searchMultipleByKeywordsResponse" name="searchMultipleByKeywordsResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchMultipleByKeywords" parameterOrder="keywords start count cobrandId developerKey filterRightsKey">
+
+         <wsdl:input message="impl:searchMultipleByKeywordsRequest1" name="searchMultipleByKeywordsRequest1" />
+
+         <wsdl:output message="impl:searchMultipleByKeywordsResponse1" name="searchMultipleByKeywordsResponse1" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="lookupUserAlias" parameterOrder="email developerKey">
+
+         <wsdl:input message="impl:lookupUserAliasRequest" name="lookupUserAliasRequest" />
+
+         <wsdl:output message="impl:lookupUserAliasResponse" name="lookupUserAliasResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchAlbumsByAlbumName" parameterOrder="albumName start count cobrandId developerKey filterRightsKey">
+
+         <wsdl:input message="impl:searchAlbumsByAlbumNameRequest" name="searchAlbumsByAlbumNameRequest" />
+
+         <wsdl:output message="impl:searchAlbumsByAlbumNameResponse" name="searchAlbumsByAlbumNameResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchAlbumsByArtistIdAndAlbumName" parameterOrder="artistId albumName start count cobrandId developerKey filterRightsKey">
+
+         <wsdl:input message="impl:searchAlbumsByArtistIdAndAlbumNameRequest" name="searchAlbumsByArtistIdAndAlbumNameRequest" />
+
+         <wsdl:output message="impl:searchAlbumsByArtistIdAndAlbumNameResponse" name="searchAlbumsByArtistIdAndAlbumNameResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchAlbumsByArtistNameAndAlbumName" parameterOrder="artistName albumName start count cobrandId developerKey filterRightsKey">
+
+         <wsdl:input message="impl:searchAlbumsByArtistNameAndAlbumNameRequest" name="searchAlbumsByArtistNameAndAlbumNameRequest" />
+
+         <wsdl:output message="impl:searchAlbumsByArtistNameAndAlbumNameResponse" name="searchAlbumsByArtistNameAndAlbumNameResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchArtistsByArtistName" parameterOrder="artistName start count cobrandId developerKey filterRightsKey">
+
+         <wsdl:input message="impl:searchArtistsByArtistNameRequest" name="searchArtistsByArtistNameRequest" />
+
+         <wsdl:output message="impl:searchArtistsByArtistNameResponse" name="searchArtistsByArtistNameResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchTracksByNames" parameterOrder="artistName albumName trackName start count cobrandId developerKey filterRightsKey">
+
+         <wsdl:input message="impl:searchTracksByNamesRequest" name="searchTracksByNamesRequest" />
+
+         <wsdl:output message="impl:searchTracksByNamesResponse" name="searchTracksByNamesResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchTracksByTrackName" parameterOrder="trackName start count cobrandId developerKey filterRightsKey">
+
+         <wsdl:input message="impl:searchTracksByTrackNameRequest" name="searchTracksByTrackNameRequest" />
+
+         <wsdl:output message="impl:searchTracksByTrackNameResponse" name="searchTracksByTrackNameResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchTracksByAlbumIdAndTrackName" parameterOrder="albumId trackName start count cobrandId developerKey filterRightsKey">
+
+         <wsdl:input message="impl:searchTracksByAlbumIdAndTrackNameRequest" name="searchTracksByAlbumIdAndTrackNameRequest" />
+
+         <wsdl:output message="impl:searchTracksByAlbumIdAndTrackNameResponse" name="searchTracksByAlbumIdAndTrackNameResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchTracksByArtistIdAlbumNameAndTrackName" parameterOrder="artistId albumName trackName start count cobrandId developerKey filterRightsKey">
+
+         <wsdl:input message="impl:searchTracksByArtistIdAlbumNameAndTrackNameRequest" name="searchTracksByArtistIdAlbumNameAndTrackNameRequest" />
+
+         <wsdl:output message="impl:searchTracksByArtistIdAlbumNameAndTrackNameResponse" name="searchTracksByArtistIdAlbumNameAndTrackNameResponse" />
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="RhapsodyDirectSearchSoapBinding" type="impl:RhapsodyDirectSearchAxisAdapter">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+
+      
+
+      <wsdl:operation name="getVersionString">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getVersionStringRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getVersionStringResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      
+
+      
+
+      
+
+      
+
+      <wsdl:operation name="fastFindArtists">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="fastFindArtistsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="fastFindArtistsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fastFindArtists">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="fastFindArtistsRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="fastFindArtistsResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fastFindAlbums">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="fastFindAlbumsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="fastFindAlbumsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fastFindAlbums">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="fastFindAlbumsRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="fastFindAlbumsResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fastFindTracks">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="fastFindTracksRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="fastFindTracksResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fastFindTracks">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="fastFindTracksRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="fastFindTracksResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      
+
+      
+
+      <wsdl:operation name="searchTracksByKeywords">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="searchTracksByKeywordsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="searchTracksByKeywordsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchTracksByKeywords">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="searchTracksByKeywordsRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="searchTracksByKeywordsResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <wsdl:operation name="searchMultipleByKeywords">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="searchMultipleByKeywordsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="searchMultipleByKeywordsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchMultipleByKeywords">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="searchMultipleByKeywordsRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="searchMultipleByKeywordsResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="lookupUserAlias">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="lookupUserAliasRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="lookupUserAliasResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchAlbumsByAlbumName">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="searchAlbumsByAlbumNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="searchAlbumsByAlbumNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchAlbumsByArtistIdAndAlbumName">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="searchAlbumsByArtistIdAndAlbumNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="searchAlbumsByArtistIdAndAlbumNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchAlbumsByArtistNameAndAlbumName">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="searchAlbumsByArtistNameAndAlbumNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="searchAlbumsByArtistNameAndAlbumNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchArtistsByArtistName">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="searchArtistsByArtistNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="searchArtistsByArtistNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchTracksByNames">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="searchTracksByNamesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="searchTracksByNamesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchTracksByTrackName">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="searchTracksByTrackNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="searchTracksByTrackNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchTracksByAlbumIdAndTrackName">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="searchTracksByAlbumIdAndTrackNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="searchTracksByAlbumIdAndTrackNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchTracksByArtistIdAlbumNameAndTrackName">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="searchTracksByArtistIdAlbumNameAndTrackNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="searchTracksByArtistIdAlbumNameAndTrackNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectsearch" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="RhapsodyDirectSearchAxisAdapterService">
+
+      <wsdl:port binding="impl:RhapsodyDirectSearchSoapBinding" name="RhapsodyDirectSearch">
+
+         <wsdlsoap:address location="http://direct.rhapsody.com/search/services/RhapsodyDirectSearch" />
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

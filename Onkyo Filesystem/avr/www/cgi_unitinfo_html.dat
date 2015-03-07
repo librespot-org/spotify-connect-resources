@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>%_UINFO_PAGE_TITLE%</title>
+<link rel="stylesheet" href="websetup_cmn.css" type="text/css">
+<link rel="stylesheet" href="websetup_cmn_pc.css" type="text/css">
+<script language="JavaScript" type="text/JavaScript" src="websetup_cmn.js"></script>
+<style type="text/css">
+<!--
+input.text{ width: 234px; }
+td.uniticon{
+  padding: 1em 4px;
+  text-align: center;
+  vertical-align: top;
+}
+td.deviceinfo{ padding: 1em 4px; }
+span.control4{ font-weight: bold; }
+-->
+</style>
+</head>
+<body onLoad="MM_preloadImages('images/btn_refresh_pressed.png','images/btn_refresh_over.png', 'images/ic_my_favorites_over.png','images/ic_network_setting_over.png','images/ic_account_setting_over.png', 'images/ic_my_favorites_on.png','images/ic_network_setting_on.png','images/ic_account_setting_on.png')">
+<div id="topcontainer">
+<table class="top">
+  <tr class="header">
+    <td class="header">
+      <table class="header">
+        <tr class="logo">
+          <td class="logo_left" colspan="2"><img src="images/%_COMMON_LOGO_PATH_%" alt="%_COMMON_LOGO_ALT_%" width="150" height="30" class="logo"></td>
+          <td class="logo_right" colspan="2"><strong>%_COMMON_WEB_SETUP_MENU_%</strong></td>
+        </tr>
+        <tr class="tab">
+          <td class="header_tab_crnt"><img src="images/ic_device_info_on.png" width="58" height="52" alt="%_TAB_UINFO_%" name="Image0" class="tab"></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_STATION_%" class="header_tab" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image1','','images/ic_my_favorites_over.png',1)" onClick="MM_swapImage('Image1','','images/ic_my_favorites_on.png',1)"><img src="images/ic_my_favorites_off.png" width="58" height="52" alt="%_TAB_STATION_%" name="Image1" class="tab"></a></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_NETWORK_%" class="header_tab" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2','','images/ic_network_setting_over.png',1)" onClick="MM_swapImage('Image2','','images/ic_network_setting_on.png',1)"><img src="images/ic_network_setting_off.png" width="58" height="52" alt="%_TAB_NETWORK_%" name="Image2" class="tab"></a></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_ACCOUNT_%" class="header_tab" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image3','','images/ic_account_setting_over.png',1)" onClick="MM_swapImage('Image3','','images/ic_account_setting_on.png',1)"><img src="images/ic_account_setting_off.png" width="58" height="52" alt="%_TAB_ACCOUNT_%" name="Image3" class="tab"></a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="body_top">
+      <form action="./%_COMMON_PATH_UINFO_%" method="post" name="unitinfo_form">
+        <table class="body">
+          <tr>
+            <td colspan="2" class="middle_title">
+              <table class="subtitle">
+                <tr>
+                  <td class="subtitle_left">
+                    <strong class="middle_title">%_UINFO_MIDDLE_TITLE_%</strong>
+                  </td>
+                  <td class="subtitle_right">
+                    <a href="./%_COMMON_PATH_UINFO_%" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','images/btn_refresh_over.png',1)" onClick="MM_swapImage('Image5','','images/btn_refresh_pressed.png',1)"><img src="images/btn_refresh_normal.png" name="Image5" width="32" height="32" alt="%_BUTTON_REFRESH_%" class="refresh"></a>
+                    <button type="submit" name="save" value="SAVE" class="save">%_BUTTON_SAVE_%</button>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td class="uniticon"><img src="%_UINFO_ICON_%" width="128" height="116" class="uniticon" alt="%_UINFO_ICON_ALT_%"></td>
+            <td class="deviceinfo">
+              <table>
+                <tr>
+                  <td class="item_left">%_UINFO_PINFO_NAME_TITLE_%</td>
+                  <td class="item_right">%_UINFO_NAME_%</td>
+                </tr>
+                <tr>
+                  <td class="item_left">%_UINFO_PINFO_FRIENDLY_NAME_TITLE_%</td>
+                  <td class="inputtext item_right"><input name="friendly_name" class="text" maxlength="128" value="%_UINFO_FRIENDLY_NAME_%" onkeypress="voidEnter(event||window.event);" type="text"></td>
+                </tr>
+%_UINFO_LANGUAGE_%
+%_UINFO_PINFO_WIN7MAXVOLUME_%
+%_UINFO_IS_AUTOPLAYON_SELECTED_%
+%_UINFO_REGION_%
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="item_left">&nbsp;</td>
+            <td class="item_right">&nbsp;</td>
+          </tr>
+          <tr><td colspan="2"><hr class="caption" noshade></td></tr>
+          <tr>
+            <td colspan="2" class="backline">
+              <table class="subtitle">
+                <tr class="caption">
+                  <td class="subtitle_left"><strong>%_UINFO_CONTROL4_TITLE_%</strong></td>
+                  <td class="subtitle_right"><button type="submit" name="control4" value="IDENTIFY" class="identify">%_BUTTON_IDENTIFY_%</button></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+<div class="foot"> </div>
+</div>
+</body>
+</html>

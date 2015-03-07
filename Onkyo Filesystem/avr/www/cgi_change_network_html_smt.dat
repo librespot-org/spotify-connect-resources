@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>%_NETWORK_PAGE_TITLE_%</title>
+<style type="text/css">
+<!--
+body{ 
+	font-family: "Helvetica", "Arial", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+	margin: 0px;
+	background-color: #262626;
+	color: #B2B2B2;
+}
+
+table tr td{ padding: 0; }
+
+table{
+	width: 100%;
+	border-width: 0;
+	border-collapse: collapse;
+}
+
+td{ font-family: "Helvetica", "Arial", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif; }
+
+table.top{ width: 100%; }
+
+td.body_top{
+	text-align: center;
+	vertical-align: top;
+}
+div.line1{ margin-bottom: 1em; }
+
+table.body{
+	margin: 0px auto;
+	padding: 4px;
+}
+
+td.middle_title{
+	height: 30px;
+}
+
+table.textbody{
+	text-align: center;
+	vertical-align: middle;
+}
+
+td.textbody_top{
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+td.textbody_bottom{
+	padding-top: 1em;
+	padding-bottom: 2em;
+}
+
+table.textbox{
+	width: 80%;
+	height: auto;
+	border: 1px solid #666666;
+	margin: 0px auto;
+}
+
+td.textbox{
+	padding: 15px 4px 15px 4px;
+}
+
+ol{
+	padding: 0;
+	margin: 0 0 0 2em;
+}
+div.foot{height: 30px;}
+p{
+  text-indent: 1em;
+  padding: 0;
+  margin: 0;
+}
+-->
+</style>
+</head>
+<table class="top">
+  <tr> 
+    <td class="body_top">
+      <table class="body">
+        <tr> 
+          <td class="middle_title"></td>
+        </tr>
+        <tr > 
+          <td>
+%_CHANGINGPAGE_CHANGE_MSG_%
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<div class="foot"> </div>
+</body>
+</html>

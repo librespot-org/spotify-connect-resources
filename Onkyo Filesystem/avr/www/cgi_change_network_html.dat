@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>%_NETWORK_PAGE_TITLE_%</title>
+<style type="text/css">
+<!--
+html{ height: 100%; }
+body{ 
+  font-family: "Helvetica", "Arial", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  margin: 0px;
+  height: 100%;
+  background-color: #1a1a1a;
+  color: #B2B2B2;
+}
+div#topcontainer{
+  background-color: #262626;
+  margin:0 auto;
+  position: relative;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  width: 672px;
+}
+table tr td{ padding: 0; }
+table{
+  border-width: 0;
+  border-collapse: collapse;
+}
+td{ font-family: "Helvetica", "Arial", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif; }
+table.top{ width: 100%; }
+td.header{ height: 6em; background-color: #1a1a1a; }
+td.body_top{
+  text-align: center;
+  vertical-align: top;
+}
+table.body{
+  background-color: #262626;
+  margin: 0px auto;
+  padding: 4px;
+  width: 672px;
+  margin-bottom: 60px;
+}
+td.middle_title{
+  height: 30px;
+}
+table.textbody{
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
+td.textbody_top{ height: 80px; }
+div.line1{ margin-bottom: 0.5em; }
+td.textbody_bottom{
+  padding-top: 1em;
+  padding-bottom: 2em;
+}
+table.textbox{
+  width: 400px;
+  height: auto;
+  border: 1px solid #666666;
+  margin: 0px auto;
+}
+td.textbox{
+  padding: 15px;
+}
+ol{
+  padding: 0;
+  margin: 1em 0 1em 2em;
+}
+div.foot{
+  background-color: #1a1a1a;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3em;
+  width: 100%;
+}
+p{
+  text-indent: 1em;
+  padding: 0;
+  margin: 0;
+}
+-->
+</style>
+</head>
+<body>
+<div id="topcontainer">
+<table class="top">
+  <tr>
+    <td class="header"> </td>
+  </tr>
+  <tr> 
+    <td class="body_top">
+      <table class="body">
+        <tr> 
+          <td class="middle_title"></td>
+        </tr>
+        <tr > 
+          <td>
+%_CHANGINGPAGE_CHANGE_MSG_%
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<div class="foot"> </div>
+</div>
+</body>
+</html>

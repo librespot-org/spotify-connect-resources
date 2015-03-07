@@ -1,0 +1,19 @@
+@charset "UTF-8";
+input.text{ width: 100%; }
+td.note{ 
+  color: #999999;
+  text-align: left;
+  vertical-align: top;
+  padding-left: 8px;
+}
+
+td.info_title{
+  padding: 4px 4px 4px 8px;
+  color: #FFFFFF;
+  text-align: left;
+}
+
+td.info_list{
+  padding: 4px 8px 4px 4px;
+  text-align: left;
+}

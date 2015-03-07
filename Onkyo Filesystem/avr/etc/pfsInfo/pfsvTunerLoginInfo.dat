@@ -1,0 +1,6 @@
+KEY=F35304AC13835C7E51885E9E2DE32018
+INIT_VECTOR=B56E64B09EF5E22F
+LANG_CODE=eng
+FIRM_VER=1.2
+PRIMARY_ROOT=http://onkyo.vtuner.com/setupapp/onkyo/asp/BrowseXML/loginXML.asp
+BACKUP_ROOT=http://onkyo2.vtuner.com/setupapp/onkyo/asp/BrowseXML/loginXML.asp

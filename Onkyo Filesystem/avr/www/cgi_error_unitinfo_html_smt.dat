@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes ">
+<title>%_ERRORPAGE_TITLE_%</title>
+<link rel="stylesheet" href="websetup_cmn.css" type="text/css">
+<link rel="stylesheet" href="websetup_cmn_smt.css" type="text/css">
+<link rel="stylesheet" href="websetup_err.css" type="text/css">
+</head>
+
+<body>
+<table class="top">
+  <tr class="header">
+    <td class="header">
+      <table class="header">
+        <tr class="tab">
+          <td class="header_tab_crnt"><img src="images/ic_device_info_on.png" width="58" height="52" alt="%_TAB_UINFO_%" class="tab"></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_STATION_%" class="header_tab"><img src="images/ic_my_favorites_off.png" width="58" height="52" alt="%_TAB_STATION_%" class="tab"></a></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_NETWORK_%" class="header_tab"><img src="images/ic_network_setting_off.png" width="58" height="52" alt="%_TAB_NETWORK_%" class="tab"></a></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_ACCOUNT_%" class="header_tab"><img src="images/ic_account_setting_off.png" width="58" height="52" alt="%_TAB_ACCOUNT_%" class="tab"></a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="body_top">
+      <table class="body">
+        <tr> 
+          <td class="middle_title">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table class="attention">
+              <tr> 
+                <td class="attention"><img src="images/ic_caution_mark.png" width="60" height="60" alt="%_ERRORPAGE_IMAGE_%" class="caution"></td>
+              </tr>
+              <tr> 
+                <td class="message">%_ERRORPAGE_MESSAGE_%</td>
+              </tr>
+              <tr> 
+                <td class="button">
+                  <button type="button" name="return" value="RETURN" onClick="javascript:history.back()" class="return">%_BUTTON_RETURN_%</button>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<div class="foot"> </div>
+</body>
+</html>

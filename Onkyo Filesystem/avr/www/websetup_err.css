@@ -1,0 +1,30 @@
+@charset "utf-8";
+td.middle_title{
+  background: none;
+  height: 46px;
+}
+
+table.attention{
+  width: 100%;
+}
+
+td.attention{
+  padding: 4px;
+  height: 100px;
+}
+
+td.message{
+  padding: 4px;
+  vertical-align: top;
+  text-align: center;
+  font-size: small;
+}
+
+td.button{
+  padding: 1em;
+  vertical-align: top;
+  text-align: center;
+}
+
+span.errno { color: #B2B2B2; }
+

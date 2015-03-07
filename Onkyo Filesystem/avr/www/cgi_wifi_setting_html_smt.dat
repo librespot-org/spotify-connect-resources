@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;  charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes ">
+<title>%_WIFI_PAGE_TITLE_%</title>
+<link rel="stylesheet" href="websetup_cmn.css" type="text/css">
+<link rel="stylesheet" href="websetup_cmn_smt.css" type="text/css">
+<link rel="stylesheet" href="websetup_wifi.css" type="text/css">
+<script language="JavaScript" type="text/JavaScript" src="websetup_cmn.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="websetup_wifi.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+var ap_security_list = new Array( %_WIFI_MANUAL_SETUP_AP_SECURITIES_% );
+var ap_securityid_list = new Array( %_WIFI_MANUAL_SETUP_AP_SECURITY_IDS_% );
+//-->
+</script>
+<style type="text/css">
+<!--
+table.body{ table-layout: auto; }
+td.item_left{ width: 34%; }
+td.item_right{ width: auto; }
+td.pbc_left,td.pbc_right{ font-size: small; }
+td.pbc_left{ width: 34%; }
+select#apchoose{ width: 100%; }
+-->
+</style>
+</head>
+<body onLoad="InitWepIdSelect()" onUnload="onTerm()">
+<table class="top">
+  <tr class="header">
+    <td class="header"> 
+      <table class="header">
+        <tr class="tab">
+          <td class="header_tab"><a href="%_COMMON_PATH_UINFO_%" class="header_tab"><img src="images/ic_device_info_off.png" width="58" height="52" alt="%_TAB_UINFO_%" class="tab"></a></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_STATION_%" class="header_tab"><img src="images/ic_my_favorites_off.png" width="58" height="52" alt="%_TAB_STATION_%" class="tab"></a></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_NETWORK_%" class="header_tab"><img src="images/ic_network_setting_off.png" width="58" height="52" alt="%_TAB_NETWORK_%" class="tab"></a></td>
+          <td class="header_tab"><a href="%_COMMON_PATH_ACCOUNT_%" class="header_tab"><img src="images/ic_account_setting_off.png" width="58" height="52" alt="%_TAB_ACCOUNT_%" class="tab"></a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td class="body_top">
+      <form action="./%_COMMON_PATH_WIFI_%" method="POST" name="wifi_setup" onSubmit="return isSend()">
+        <table class="body">
+          <tr>
+            <td colspan="2" class="middle_title">
+              <table class="subtitle">
+                <tr> 
+                  <td class="refresh">
+                    <a href="./%_COMMON_PATH_WIFI_%" onTouchEnd="MM_swapImgRestore()" onTouchStart="MM_swapImage('Image5','','images/btn_refresh_pressed.png',1)"><img src="images/btn_refresh_normal.png" name="Image5" width="32" height="32" alt="%_BUTTON_REFRESH_%" class="refresh"></a>
+                  </td>
+                  <td class="subtitle_left">
+                    <strong class="middle_title">%_WIFI_MIDDLE_TITLE_%</strong>
+                  </td>
+                  <td class="subtitle_right"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr><td colspan="2"><hr class="caption" noshade></td></tr>%_WIFI_STATUS_%
+          <tr> 
+            <td colspan="2" class="backline">
+              <table class="subtitle">
+                <tr class="caption">
+                   <td class="subtitle_left"><strong>%_WIFI_MANUAL_SETUP_TITLE_%</strong></td>
+                   <td class="subtitle_right"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_WIFI_MANUAL_SETUP_AP_TITLE_%</td>
+            <td class="item_right"> 
+              <select name="apchoose" id="apchoose" size="1" onchange="selectAp()">
+                %_WIFI_MANUAL_SETUP_AP_OPTIONS_%
+              </select>
+              <input type="hidden" name="apchoosessid" value="%_WIFI_MANUAL_SETUP_AP_SSID_DEFAULT_%" >
+              <input type="hidden" name="apchoosesec" value="%_WIFI_MANUAL_SETUP_AP_SECURITY_DEFAULT_%" >
+            </td>
+          </tr>
+          <tr>
+            <td class="item_left">%_WIFI_MANUAL_SETUP_SECURITY_TITLE_%</td>
+            <td class="item_right" id="apsecurity">%_WIFI_MANUAL_SETUP_SECURITY_DEFAULT_%</td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_WIFI_MANUAL_SETUP_KEY_TITLE_%</td>
+            <td class="inputtext item_right">
+              <input name="apkey" type="password" class="text" maxlength="64" value="" onKeyPress="voidEnter(event||window.event);" >
+            </td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_WIFI_MANUAL_SETUP_DEFAULT_KEY_ID_TITLE_%</td>
+            <td class="item_right">
+              <select name="apwepId" size="1" class="wepId" id="apWepId">
+                <option value="0" selected>1</option>
+                <option value="1">2</option>
+                <option value="2">3</option>
+                <option value="3">4</option>
+              </select>
+            </td>
+          </tr>
+          <tr><td colspan="2" class="bottombutton"><button type="submit" name="saveManual" value="CONNECT" class="connect">%_BUTTON_CONNECT_%</button></td></tr>
+          <tr><td colspan="2"><hr class="caption" noshade></td></tr>
+          <tr> 
+            <td colspan="2" class="backline">
+              <table class="subtitle">
+                <tr class="caption">
+                  <td class="subtitle_left"><strong>%_WIFI_DIRECT_INPUT_TITLE_%</strong></td>
+                  <td class="subtitle_right"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="item_left">%_WIFI_DIRECT_INPUT_SSID_TITLE_%</td>
+            <td class="inputtext item_right">
+              <input name="dissid" type="text" class="text" maxlength="32" value="" onKeyPress="voidEnter(event||window.event);" >
+              <input type="hidden" name="dissidindex" value="%_WIFI_DIRECT_INPUT_SSID_INDEX_%" >
+            </td>
+          </tr>
+          <tr>
+            <td class="item_left">%_WIFI_DIRECT_INPUT_SECURITY_TITLE_%</td>
+            <td class="item_right"> 
+              <select name="disecchoose" size="1" onchange="selectDiSec()">
+                %_WIFI_DIRECT_INPUT_SECURITY_OPTIONS_%
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="item_left">%_WIFI_DIRECT_INPUT_KEY_TITLE_%</td>
+            <td class="inputtext item_right">
+              <input name="dikey" type="password" class="text" maxlength="64" value="" onKeyPress="voidEnter(event||window.event);" >
+            </td>
+          </tr>
+          <tr> 
+            <td class="item_left">%_WIFI_MANUAL_SETUP_DEFAULT_KEY_ID_TITLE_%</td>
+            <td class="item_right">
+              <select name="diwepId" size="1" class="wepId" id="diWepId">
+                <option value="0" selected>1</option>
+                <option value="1">2</option>
+                <option value="2">3</option>
+                <option value="3">4</option>
+              </select>
+            </td>
+          </tr>
+          <tr><td colspan="2" class="bottombutton"><button type="submit" name="saveDirectInput" value="CONNECT" class="connect">%_BUTTON_CONNECT_%</button></td></tr>
+        </table>
+        <table class="body">
+          <tr><td colspan="2"><hr class="caption" noshade></td></tr>
+          <tr> 
+            <td colspan="2" class="backline">
+              <table class="subtitle">
+                <tr class="caption">
+                  <td class="subtitle_left"><strong>%_WIFI_AUTO_SETUP_TITLE_%</strong></td>
+                  <td class="subtitle_right"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="pbc_left"><label><input type="radio" name="radioPbc" value="push_button" checked>%_WIFI_AUTO_SETUP_PUSH_TITLE_%</label><br></td>
+            <td class="pbc_right"> </td>
+          </tr>
+          <tr>
+            <td class="pbc_left"><label><input type="radio" name="radioPbc" value="pin_code">%_WIFI_AUTO_SETUP_PIN_CODE_TITLE_%</label></td>
+            <td class="pbc_right">%_WIFI_AUTO_SETUP_PIN_CODE_VALUE_%</td>
+          </tr>
+          <tr><td colspan="2" class="bottombutton"><button type="submit" name="savePbc" value="CONNECT" class="connect">%_BUTTON_CONNECT_%</button></td></tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+<div class="foot"> </div>
+</body>
+</html>

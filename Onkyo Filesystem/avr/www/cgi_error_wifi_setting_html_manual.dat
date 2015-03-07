@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>%_ERRORPAGE_TITLE_%</title>
+<link rel="stylesheet" href="websetup_cmn.css" type="text/css">
+<link rel="stylesheet" href="websetup_cmn_pc.css" type="text/css">
+<link rel="stylesheet" href="websetup_err.css" type="text/css">
+<script language="JavaScript" type="text/JavaScript" src="websetup_cmn.js"></script>
+</head>
+<body>
+<div id="topcontainer">
+<table class="top">
+  <tr class="header">
+    <td class="header">
+      <table class="header">
+        <tr class="logo">
+          <td class="logo_left" colspan="2"><img src="images/%_COMMON_LOGO_PATH_%" alt="%_COMMON_LOGO_ALT_%" width="150" height="30" class="logo"></td>
+          <td class="logo_right" colspan="2"><strong>%_COMMON_WEB_SETUP_MENU_%</strong></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td class="body_top">
+      <table class="body">
+        <tr> 
+          <td class="middle_title">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table class="attention">
+              <tr> 
+                <td class="attention"><img src="images/ic_caution_mark.png" width="60" height="60" alt="%_ERRORPAGE_IMAGE_%" class="caution"></td>
+              </tr>
+              <tr> 
+                <td class="message">%_ERRORPAGE_MESSAGE_%</td>
+              </tr>
+              <tr>
+                <td class="button"><button type="button" name="return" value="RETURN" onClick="javascript:history.back()" class="return">%_BUTTON_RETURN_%</button><td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<div class="foot"> </div>
+</div>
+</body>
+</html>

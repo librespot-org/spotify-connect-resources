@@ -1,0 +1,1853 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:rhapsodydirectaccountmgmt" xmlns:intf="urn:rhapsodydirectaccountmgmt" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://kani.common.real.com" xmlns:tns2="http://cobrands.kani.common.real.com" xmlns:tns3="http://accountmgmt.kani.common.real.com" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:rhapsodydirectaccountmgmt">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://kani.common.real.com">
+   <import namespace="http://accountmgmt.kani.common.real.com" />
+   <import namespace="urn:rhapsodydirectaccountmgmt" />
+   <import namespace="http://cobrands.kani.common.real.com" />
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+   <complexType name="Member">
+    <sequence>
+     <element name="DRMGuid" nillable="true" type="xsd:string" />
+     <element name="alias" nillable="true" type="xsd:string" />
+     <element name="cobrandId" nillable="true" type="xsd:string" />
+     <element name="emailAddress" nillable="true" type="xsd:string" />
+     <element name="guid" nillable="true" type="xsd:string" />
+     <element name="id" nillable="true" type="xsd:string" />
+     <element name="licenseKey" nillable="true" type="xsd:string" />
+     <element name="logon" nillable="true" type="xsd:string" />
+     <element name="originCode" nillable="true" type="xsd:string" />
+     <element name="subscriptionGuid" nillable="true" type="xsd:string" />
+     <element name="subscriptionLicenseKey" nillable="true" type="xsd:string" />
+     <element name="subscriptionTeirType" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="MemberCredentials">
+    <sequence>
+     <element name="cobrand" nillable="true" type="xsd:string" />
+     <element name="logon" nillable="true" type="xsd:string" />
+     <element name="password" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="AccountMetaData">
+    <sequence>
+     <element name="accountType" nillable="true" type="xsd:string" />
+     <element name="cobrand" nillable="true" type="xsd:string" />
+     <element name="country" nillable="true" type="xsd:string" />
+     <element name="dateCreated" nillable="true" type="xsd:dateTime" />
+     <element name="email" nillable="true" type="xsd:string" />
+     <element name="firstName" nillable="true" type="xsd:string" />
+     <element name="freePlaysAllowed" type="xsd:int" />
+     <element name="freePlaysRemaining" type="xsd:int" />
+     <element name="freeTrialTimeLeftInMillis" type="xsd:long" />
+     <element name="isSuspended" nillable="true" type="xsd:boolean" />
+     <element name="lastName" nillable="true" type="xsd:string" />
+     <element name="rhapsody25MonthReset" nillable="true" type="xsd:dateTime" />
+     <element name="trialTerminationDate" nillable="true" type="xsd:dateTime" />
+     <element name="userName" nillable="true" type="xsd:string" />
+     <element name="zip" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="UpgradeMemberAccountResult">
+    <sequence>
+     <element name="upgradeResult" type="xsd:boolean" />
+    </sequence>
+   </complexType>
+   <complexType name="CobrandMetaData">
+    <sequence>
+     <element name="cobrandId" nillable="true" type="xsd:string" />
+     <element name="name" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="MachineLicenses">
+    <sequence>
+     <element name="helixHarmonyLicense" nillable="true" type="xsd:string" />
+     <element name="helixPurchaseLicense" nillable="true" type="xsd:string" />
+     <element name="helixSubscriptionLicense" nillable="true" type="xsd:string" />
+     <element name="wmLicense" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="MachineRevocations">
+    <sequence>
+     <element name="helixHarmonyRevocation" nillable="true" type="xsd:string" />
+     <element name="helixPurchaseRevocation" nillable="true" type="xsd:string" />
+     <element name="helixSubscriptionRevocation" nillable="true" type="xsd:string" />
+     <element name="wmRevocation" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="TrackRevocations">
+    <sequence>
+     <element name="wmRevocations" nillable="true" type="impl:ArrayOf_xsd_string" />
+    </sequence>
+   </complexType>
+   <complexType name="LogonInfo">
+    <sequence>
+     <element name="cobrandId" nillable="true" type="xsd:string" />
+     <element name="logon" nillable="true" type="xsd:string" />
+     <element name="password" nillable="true" type="xsd:string" />
+     <element name="privateKey" nillable="true" type="xsd:string" />
+     <element name="publicKey" nillable="true" type="xsd:string" />
+     <element name="token" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+   <complexType name="MachineTokenInfo">
+    <sequence>
+     <element name="memberMachineActive" type="xsd:boolean" />
+     <element name="token" nillable="true" type="xsd:string" />
+     <element name="tokenActive" type="xsd:boolean" />
+    </sequence>
+   </complexType>
+   <complexType name="AssociateMachineTokenToCredentialsResult">
+    <sequence>
+     <element name="newLogonAssociatedToMachine" nillable="true" type="xsd:string" />
+     <element name="oldLogonAssociatedToMachine" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:rhapsodydirectaccountmgmt">
+   <import namespace="http://accountmgmt.kani.common.real.com" />
+   <import namespace="http://kani.common.real.com" />
+   <import namespace="http://cobrands.kani.common.real.com" />
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+   <complexType name="ArrayOf_tns1_CobrandMetaData">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:CobrandMetaData[]" />
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_UserCobrandMetadata">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:UserCobrandMetadata[]" />
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_MachineRevocations">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:MachineRevocations[]" />
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_xsd_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]" />
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://cobrands.kani.common.real.com">
+   <import namespace="http://accountmgmt.kani.common.real.com" />
+   <import namespace="urn:rhapsodydirectaccountmgmt" />
+   <import namespace="http://kani.common.real.com" />
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+   <complexType name="UserCobrandMetadata">
+    <complexContent>
+     <extension base="tns1:CobrandMetaData">
+      <sequence>
+       <element name="subscriptionLevel" nillable="true" type="xsd:string" />
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="MemberCobrandDetails">
+    <sequence>
+     <element name="logon" nillable="true" type="xsd:string" />
+     <element name="userCobrands" nillable="true" type="impl:ArrayOf_tns2_UserCobrandMetadata" />
+    </sequence>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://accountmgmt.kani.common.real.com">
+   <import namespace="urn:rhapsodydirectaccountmgmt" />
+   <import namespace="http://kani.common.real.com" />
+   <import namespace="http://cobrands.kani.common.real.com" />
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+   <complexType name="WMDRMMeteringResponse">
+    <sequence>
+     <element name="WMDRMMeteringResponse" nillable="true" type="xsd:string" />
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="upgradeMemberAccountRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="newLogon" type="xsd:string" />
+
+      <wsdl:part name="newCobrandId" type="xsd:string" />
+
+      <wsdl:part name="newPassword" type="xsd:string" />
+
+      <wsdl:part name="accountType" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getCredentialsForMachineTokenResponse">
+
+      <wsdl:part name="getCredentialsForMachineTokenReturn" type="tns1:MemberCredentials" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getMemberAccountResponse">
+
+      <wsdl:part name="getMemberAccountReturn" type="tns1:MemberCredentials" />
+
+   </wsdl:message>
+
+   <wsdl:message name="isMemberAliasAvailableRequest">
+
+      <wsdl:part name="alias" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="unregisterMachineRequest">
+
+      <wsdl:part name="machineGuid" type="xsd:string" />
+
+      <wsdl:part name="revocationChallenge" type="xsd:string" />
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   <wsdl:message name="addServiceRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="paymentId" type="xsd:string" />
+
+      <wsdl:part name="partnerPlan" type="xsd:string" />
+
+      <wsdl:part name="couponCode" type="xsd:string" />
+
+      <wsdl:part name="offerCode" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="isUserSuspendedResponse">
+
+      <wsdl:part name="isUserSuspendedReturn" type="xsd:boolean" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="isMemberAliasAvailableResponse">
+
+      <wsdl:part name="isMemberAliasAvailableReturn" type="xsd:boolean" />
+
+   </wsdl:message>
+
+   <wsdl:message name="associateMachineTokenToCredentialsResponse">
+
+      <wsdl:part name="associateMachineTokenToCredentialsReturn" type="tns1:AssociateMachineTokenToCredentialsResult" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getAllCobrandsResponse">
+
+      <wsdl:part name="getAllCobrandsReturn" type="impl:ArrayOf_tns1_CobrandMetaData" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getAccountPropertiesResponse2">
+
+      <wsdl:part name="getAccountPropertiesReturn" type="tns1:AccountMetaData" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getAccountPropertiesResponse1">
+
+      <wsdl:part name="getAccountPropertiesReturn" type="tns1:AccountMetaData" />
+
+   </wsdl:message>
+
+   <wsdl:message name="upgradeMemberAccountResponse">
+
+      <wsdl:part name="upgradeMemberAccountReturn" type="tns1:UpgradeMemberAccountResult" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getMachineTokenResponse">
+
+      <wsdl:part name="getMachineTokenReturn" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getLogonFromTokenRequest">
+
+      <wsdl:part name="token" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getTrackRevocationsRequest">
+
+      <wsdl:part name="machineGuid" type="xsd:string" />
+
+      <wsdl:part name="revocationChallenge" type="xsd:string" />
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getAccountPropertiesRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   <wsdl:message name="getVersionStringResponse">
+
+      <wsdl:part name="getVersionStringReturn" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getMemberCobrandDetailsResponse">
+
+      <wsdl:part name="getMemberCobrandDetailsReturn" type="tns2:MemberCobrandDetails" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getVersionStringResponse1">
+
+      <wsdl:part name="getVersionStringReturn" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getAccountPropertiesRequest1">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="machineId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getAccountPropertiesRequest2">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="machineId" type="xsd:string" />
+
+      <wsdl:part name="ocode" type="xsd:string" />
+
+      <wsdl:part name="src" type="xsd:string" />
+
+      <wsdl:part name="opage" type="xsd:string" />
+
+      <wsdl:part name="pcode" type="xsd:string" />
+
+      <wsdl:part name="cpath" type="xsd:string" />
+
+      <wsdl:part name="rsrc" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   <wsdl:message name="getLogonTokenResponse">
+
+      <wsdl:part name="getLogonTokenReturn" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="IsGeoBlockedRequest">
+
+      <wsdl:part name="ip" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   
+
+   <wsdl:message name="getCustomerSupportIdResponse">
+
+      <wsdl:part name="getCustomerSupportIdReturn" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getCustomerSupportIdRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   <wsdl:message name="IsGeoBlockedResponse">
+
+      <wsdl:part name="IsGeoBlockedReturn" type="xsd:boolean" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getAccountPropertiesResponse">
+
+      <wsdl:part name="getAccountPropertiesReturn" type="tns1:AccountMetaData" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getMachineTokenRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="machineId" type="xsd:string" />
+
+      <wsdl:part name="domainName" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="addServiceResponse">
+
+      <wsdl:part name="addServiceReturn" type="xsd:boolean" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   
+
+   <wsdl:message name="getCobrandsResponse">
+
+      <wsdl:part name="getCobrandsReturn" type="impl:ArrayOf_tns1_CobrandMetaData" />
+
+   </wsdl:message>
+
+   <wsdl:message name="createMemberAccountRequest5">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="machineId" type="xsd:string" />
+
+      <wsdl:part name="email" type="xsd:string" />
+
+      <wsdl:part name="firstname" type="xsd:string" />
+
+      <wsdl:part name="lastname" type="xsd:string" />
+
+      <wsdl:part name="address1" type="xsd:string" />
+
+      <wsdl:part name="address2" type="xsd:string" />
+
+      <wsdl:part name="city" type="xsd:string" />
+
+      <wsdl:part name="state" type="xsd:string" />
+
+      <wsdl:part name="country" type="xsd:string" />
+
+      <wsdl:part name="zipcode" type="xsd:string" />
+
+      <wsdl:part name="telephone" type="xsd:string" />
+
+      <wsdl:part name="age" type="xsd:int" />
+
+      <wsdl:part name="gender" type="xsd:string" />
+
+      <wsdl:part name="emailOptIn" type="xsd:boolean" />
+
+      <wsdl:part name="ocode" type="xsd:string" />
+
+      <wsdl:part name="src" type="xsd:string" />
+
+      <wsdl:part name="opage" type="xsd:string" />
+
+      <wsdl:part name="pcode" type="xsd:string" />
+
+      <wsdl:part name="cpath" type="xsd:string" />
+
+      <wsdl:part name="rsrc" type="xsd:string" />
+
+      <wsdl:part name="lsrc" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="createMemberAccountRequest4">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="email" type="xsd:string" />
+
+      <wsdl:part name="firstname" type="xsd:string" />
+
+      <wsdl:part name="lastname" type="xsd:string" />
+
+      <wsdl:part name="address1" type="xsd:string" />
+
+      <wsdl:part name="address2" type="xsd:string" />
+
+      <wsdl:part name="city" type="xsd:string" />
+
+      <wsdl:part name="state" type="xsd:string" />
+
+      <wsdl:part name="country" type="xsd:string" />
+
+      <wsdl:part name="zipcode" type="xsd:string" />
+
+      <wsdl:part name="telephone" type="xsd:string" />
+
+      <wsdl:part name="age" type="xsd:int" />
+
+      <wsdl:part name="gender" type="xsd:string" />
+
+      <wsdl:part name="emailOptIn" type="xsd:boolean" />
+
+      <wsdl:part name="ocode" type="xsd:string" />
+
+      <wsdl:part name="src" type="xsd:string" />
+
+      <wsdl:part name="opage" type="xsd:string" />
+
+      <wsdl:part name="pcode" type="xsd:string" />
+
+      <wsdl:part name="cpath" type="xsd:string" />
+
+      <wsdl:part name="rsrc" type="xsd:string" />
+
+      <wsdl:part name="lsrc" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="createMemberAccountResponse">
+
+      <wsdl:part name="createMemberAccountReturn" type="tns1:AccountMetaData" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getCobrandsRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getMemberCobrandDetailsRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="createMemberAccountRequest1">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="machineId" type="xsd:string" />
+
+      <wsdl:part name="email" type="xsd:string" />
+
+      <wsdl:part name="firstname" type="xsd:string" />
+
+      <wsdl:part name="lastname" type="xsd:string" />
+
+      <wsdl:part name="address1" type="xsd:string" />
+
+      <wsdl:part name="address2" type="xsd:string" />
+
+      <wsdl:part name="city" type="xsd:string" />
+
+      <wsdl:part name="state" type="xsd:string" />
+
+      <wsdl:part name="country" type="xsd:string" />
+
+      <wsdl:part name="zipcode" type="xsd:string" />
+
+      <wsdl:part name="telephone" type="xsd:string" />
+
+      <wsdl:part name="age" type="xsd:int" />
+
+      <wsdl:part name="gender" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="unregisterMachineResponse">
+
+      <wsdl:part name="unregisterMachineReturn" type="tns1:MachineRevocations" />
+
+   </wsdl:message>
+
+   <wsdl:message name="createMemberAccountRequest3">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="machineId" type="xsd:string" />
+
+      <wsdl:part name="email" type="xsd:string" />
+
+      <wsdl:part name="firstname" type="xsd:string" />
+
+      <wsdl:part name="lastname" type="xsd:string" />
+
+      <wsdl:part name="address1" type="xsd:string" />
+
+      <wsdl:part name="address2" type="xsd:string" />
+
+      <wsdl:part name="city" type="xsd:string" />
+
+      <wsdl:part name="state" type="xsd:string" />
+
+      <wsdl:part name="country" type="xsd:string" />
+
+      <wsdl:part name="zipcode" type="xsd:string" />
+
+      <wsdl:part name="telephone" type="xsd:string" />
+
+      <wsdl:part name="age" type="xsd:int" />
+
+      <wsdl:part name="gender" type="xsd:string" />
+
+      <wsdl:part name="ocode" type="xsd:string" />
+
+      <wsdl:part name="src" type="xsd:string" />
+
+      <wsdl:part name="opage" type="xsd:string" />
+
+      <wsdl:part name="pcode" type="xsd:string" />
+
+      <wsdl:part name="cpath" type="xsd:string" />
+
+      <wsdl:part name="rsrc" type="xsd:string" />
+
+      <wsdl:part name="lsrc" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="createMemberAccountRequest2">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="email" type="xsd:string" />
+
+      <wsdl:part name="firstname" type="xsd:string" />
+
+      <wsdl:part name="lastname" type="xsd:string" />
+
+      <wsdl:part name="address1" type="xsd:string" />
+
+      <wsdl:part name="address2" type="xsd:string" />
+
+      <wsdl:part name="city" type="xsd:string" />
+
+      <wsdl:part name="state" type="xsd:string" />
+
+      <wsdl:part name="country" type="xsd:string" />
+
+      <wsdl:part name="zipcode" type="xsd:string" />
+
+      <wsdl:part name="telephone" type="xsd:string" />
+
+      <wsdl:part name="age" type="xsd:int" />
+
+      <wsdl:part name="gender" type="xsd:string" />
+
+      <wsdl:part name="ocode" type="xsd:string" />
+
+      <wsdl:part name="src" type="xsd:string" />
+
+      <wsdl:part name="opage" type="xsd:string" />
+
+      <wsdl:part name="pcode" type="xsd:string" />
+
+      <wsdl:part name="cpath" type="xsd:string" />
+
+      <wsdl:part name="rsrc" type="xsd:string" />
+
+      <wsdl:part name="lsrc" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="createMemberAccountRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="email" type="xsd:string" />
+
+      <wsdl:part name="firstname" type="xsd:string" />
+
+      <wsdl:part name="lastname" type="xsd:string" />
+
+      <wsdl:part name="address1" type="xsd:string" />
+
+      <wsdl:part name="address2" type="xsd:string" />
+
+      <wsdl:part name="city" type="xsd:string" />
+
+      <wsdl:part name="state" type="xsd:string" />
+
+      <wsdl:part name="country" type="xsd:string" />
+
+      <wsdl:part name="zipcode" type="xsd:string" />
+
+      <wsdl:part name="telephone" type="xsd:string" />
+
+      <wsdl:part name="age" type="xsd:int" />
+
+      <wsdl:part name="gender" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getLogonTokenRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="createMemberAccountResponse2">
+
+      <wsdl:part name="createMemberAccountReturn" type="tns1:AccountMetaData" />
+
+   </wsdl:message>
+
+   <wsdl:message name="createMemberAccountResponse3">
+
+      <wsdl:part name="createMemberAccountReturn" type="tns1:AccountMetaData" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="createMemberAccountResponse1">
+
+      <wsdl:part name="createMemberAccountReturn" type="tns1:AccountMetaData" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getCredentialsForMachineTokenRequest">
+
+      <wsdl:part name="token" type="xsd:string" />
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="associateMachineTokenToCredentialsRequest">
+
+      <wsdl:part name="token" type="xsd:string" />
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="encryptedPassword" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="createMemberAccountResponse4">
+
+      <wsdl:part name="createMemberAccountReturn" type="tns1:AccountMetaData" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getLogonFromTokenResponse">
+
+      <wsdl:part name="getLogonFromTokenReturn" type="tns1:LogonInfo" />
+
+   </wsdl:message>
+
+   <wsdl:message name="createMemberAccountResponse5">
+
+      <wsdl:part name="createMemberAccountReturn" type="tns1:AccountMetaData" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getMemberGuidFromAliasRequest">
+
+      <wsdl:part name="alias" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   <wsdl:message name="createAnonymousMemberRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="machineId" type="xsd:string" />
+
+      <wsdl:part name="ocode" type="xsd:string" />
+
+      <wsdl:part name="src" type="xsd:string" />
+
+      <wsdl:part name="opage" type="xsd:string" />
+
+      <wsdl:part name="pcode" type="xsd:string" />
+
+      <wsdl:part name="cpath" type="xsd:string" />
+
+      <wsdl:part name="rsrc" type="xsd:string" />
+
+      <wsdl:part name="lsrc" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getMemberAccountRequest">
+
+      <wsdl:part name="machineId" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="accountType" type="xsd:string" />
+
+      <wsdl:part name="domainName" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="createAnonymousMemberResponse">
+
+      <wsdl:part name="createAnonymousMemberReturn" type="tns1:AccountMetaData" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllCobrandsRequest">
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getTrackRevocationsResponse">
+
+      <wsdl:part name="getTrackRevocationsReturn" type="tns1:TrackRevocations" />
+
+   </wsdl:message>
+
+   <wsdl:message name="getMemberGuidFromAliasResponse">
+
+      <wsdl:part name="getMemberGuidFromAliasReturn" type="xsd:string" />
+
+   </wsdl:message>
+
+   <wsdl:message name="isUserSuspendedRequest">
+
+      <wsdl:part name="logon" type="xsd:string" />
+
+      <wsdl:part name="cobrandId" type="xsd:string" />
+
+      <wsdl:part name="password" type="xsd:string" />
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   <wsdl:message name="getVersionStringRequest1">
+
+      <wsdl:part name="developerKey" type="xsd:string" />
+
+   </wsdl:message>
+
+   
+
+   
+
+   <wsdl:portType name="RhapsodyDirectAccountMgmtAxisAdapter">
+
+      <wsdl:operation name="addService" parameterOrder="logon password paymentId partnerPlan couponCode offerCode cobrandId developerKey">
+
+         <wsdl:input message="impl:addServiceRequest" name="addServiceRequest" />
+
+         <wsdl:output message="impl:addServiceResponse" name="addServiceResponse" />
+
+      </wsdl:operation>
+
+      
+
+      
+
+      <wsdl:operation name="getVersionString" parameterOrder="developerKey">
+
+         <wsdl:input message="impl:getVersionStringRequest1" name="getVersionStringRequest1" />
+
+         <wsdl:output message="impl:getVersionStringResponse1" name="getVersionStringResponse1" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMemberAccount" parameterOrder="machineId cobrandId accountType domainName developerKey">
+
+         <wsdl:input message="impl:getMemberAccountRequest" name="getMemberAccountRequest" />
+
+         <wsdl:output message="impl:getMemberAccountResponse" name="getMemberAccountResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createAnonymousMember" parameterOrder="logon cobrandId password machineId ocode src opage pcode cpath rsrc lsrc developerKey">
+
+         <wsdl:input message="impl:createAnonymousMemberRequest" name="createAnonymousMemberRequest" />
+
+         <wsdl:output message="impl:createAnonymousMemberResponse" name="createAnonymousMemberResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMemberAccount" parameterOrder="logon password email firstname lastname address1 address2 city state country zipcode telephone age gender cobrandId developerKey">
+
+         <wsdl:input message="impl:createMemberAccountRequest" name="createMemberAccountRequest" />
+
+         <wsdl:output message="impl:createMemberAccountResponse" name="createMemberAccountResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMemberAccount" parameterOrder="logon password machineId email firstname lastname address1 address2 city state country zipcode telephone age gender cobrandId developerKey">
+
+         <wsdl:input message="impl:createMemberAccountRequest1" name="createMemberAccountRequest1" />
+
+         <wsdl:output message="impl:createMemberAccountResponse1" name="createMemberAccountResponse1" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMemberAccount" parameterOrder="logon password email firstname lastname address1 address2 city state country zipcode telephone age gender ocode src opage pcode cpath rsrc lsrc cobrandId developerKey">
+
+         <wsdl:input message="impl:createMemberAccountRequest2" name="createMemberAccountRequest2" />
+
+         <wsdl:output message="impl:createMemberAccountResponse2" name="createMemberAccountResponse2" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMemberAccount" parameterOrder="logon password machineId email firstname lastname address1 address2 city state country zipcode telephone age gender ocode src opage pcode cpath rsrc lsrc cobrandId developerKey">
+
+         <wsdl:input message="impl:createMemberAccountRequest3" name="createMemberAccountRequest3" />
+
+         <wsdl:output message="impl:createMemberAccountResponse3" name="createMemberAccountResponse3" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMemberAccount" parameterOrder="logon password email firstname lastname address1 address2 city state country zipcode telephone age gender emailOptIn ocode src opage pcode cpath rsrc lsrc cobrandId developerKey">
+
+         <wsdl:input message="impl:createMemberAccountRequest4" name="createMemberAccountRequest4" />
+
+         <wsdl:output message="impl:createMemberAccountResponse4" name="createMemberAccountResponse4" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMemberAccount" parameterOrder="logon password machineId email firstname lastname address1 address2 city state country zipcode telephone age gender emailOptIn ocode src opage pcode cpath rsrc lsrc cobrandId developerKey">
+
+         <wsdl:input message="impl:createMemberAccountRequest5" name="createMemberAccountRequest5" />
+
+         <wsdl:output message="impl:createMemberAccountResponse5" name="createMemberAccountResponse5" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="upgradeMemberAccount" parameterOrder="logon cobrandId password newLogon newCobrandId newPassword accountType developerKey">
+
+         <wsdl:input message="impl:upgradeMemberAccountRequest" name="upgradeMemberAccountRequest" />
+
+         <wsdl:output message="impl:upgradeMemberAccountResponse" name="upgradeMemberAccountResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllCobrands" parameterOrder="developerKey">
+
+         <wsdl:input message="impl:getAllCobrandsRequest" name="getAllCobrandsRequest" />
+
+         <wsdl:output message="impl:getAllCobrandsResponse" name="getAllCobrandsResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCobrands" parameterOrder="logon password developerKey">
+
+         <wsdl:input message="impl:getCobrandsRequest" name="getCobrandsRequest" />
+
+         <wsdl:output message="impl:getCobrandsResponse" name="getCobrandsResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMemberCobrandDetails" parameterOrder="logon password developerKey">
+
+         <wsdl:input message="impl:getMemberCobrandDetailsRequest" name="getMemberCobrandDetailsRequest" />
+
+         <wsdl:output message="impl:getMemberCobrandDetailsResponse" name="getMemberCobrandDetailsResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAccountProperties" parameterOrder="logon cobrandId password developerKey">
+
+         <wsdl:input message="impl:getAccountPropertiesRequest" name="getAccountPropertiesRequest" />
+
+         <wsdl:output message="impl:getAccountPropertiesResponse" name="getAccountPropertiesResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAccountProperties" parameterOrder="logon cobrandId password machineId developerKey">
+
+         <wsdl:input message="impl:getAccountPropertiesRequest1" name="getAccountPropertiesRequest1" />
+
+         <wsdl:output message="impl:getAccountPropertiesResponse1" name="getAccountPropertiesResponse1" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAccountProperties" parameterOrder="logon cobrandId password machineId ocode src opage pcode cpath rsrc developerKey">
+
+         <wsdl:input message="impl:getAccountPropertiesRequest2" name="getAccountPropertiesRequest2" />
+
+         <wsdl:output message="impl:getAccountPropertiesResponse2" name="getAccountPropertiesResponse2" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isUserSuspended" parameterOrder="logon cobrandId password developerKey">
+
+         <wsdl:input message="impl:isUserSuspendedRequest" name="isUserSuspendedRequest" />
+
+         <wsdl:output message="impl:isUserSuspendedResponse" name="isUserSuspendedResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMemberGuidFromAlias" parameterOrder="alias developerKey">
+
+         <wsdl:input message="impl:getMemberGuidFromAliasRequest" name="getMemberGuidFromAliasRequest" />
+
+         <wsdl:output message="impl:getMemberGuidFromAliasResponse" name="getMemberGuidFromAliasResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isMemberAliasAvailable" parameterOrder="alias developerKey">
+
+         <wsdl:input message="impl:isMemberAliasAvailableRequest" name="isMemberAliasAvailableRequest" />
+
+         <wsdl:output message="impl:isMemberAliasAvailableResponse" name="isMemberAliasAvailableResponse" />
+
+      </wsdl:operation>
+
+      
+
+      <wsdl:operation name="unregisterMachine" parameterOrder="machineGuid revocationChallenge logon cobrandId password developerKey">
+
+         <wsdl:input message="impl:unregisterMachineRequest" name="unregisterMachineRequest" />
+
+         <wsdl:output message="impl:unregisterMachineResponse" name="unregisterMachineResponse" />
+
+      </wsdl:operation>
+
+      
+
+      <wsdl:operation name="getTrackRevocations" parameterOrder="machineGuid revocationChallenge logon cobrandId password developerKey">
+
+         <wsdl:input message="impl:getTrackRevocationsRequest" name="getTrackRevocationsRequest" />
+
+         <wsdl:output message="impl:getTrackRevocationsResponse" name="getTrackRevocationsResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCustomerSupportId" parameterOrder="logon cobrandId developerKey">
+
+         <wsdl:input message="impl:getCustomerSupportIdRequest" name="getCustomerSupportIdRequest" />
+
+         <wsdl:output message="impl:getCustomerSupportIdResponse" name="getCustomerSupportIdResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getLogonToken" parameterOrder="logon cobrandId password developerKey">
+
+         <wsdl:input message="impl:getLogonTokenRequest" name="getLogonTokenRequest" />
+
+         <wsdl:output message="impl:getLogonTokenResponse" name="getLogonTokenResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getLogonFromToken" parameterOrder="token developerKey">
+
+         <wsdl:input message="impl:getLogonFromTokenRequest" name="getLogonFromTokenRequest" />
+
+         <wsdl:output message="impl:getLogonFromTokenResponse" name="getLogonFromTokenResponse" />
+
+      </wsdl:operation>
+
+      
+
+      
+
+      <wsdl:operation name="getMachineToken" parameterOrder="logon cobrandId machineId domainName developerKey">
+
+         <wsdl:input message="impl:getMachineTokenRequest" name="getMachineTokenRequest" />
+
+         <wsdl:output message="impl:getMachineTokenResponse" name="getMachineTokenResponse" />
+
+      </wsdl:operation>
+
+      
+
+      <wsdl:operation name="associateMachineTokenToCredentials" parameterOrder="token logon cobrandId encryptedPassword developerKey">
+
+         <wsdl:input message="impl:associateMachineTokenToCredentialsRequest" name="associateMachineTokenToCredentialsRequest" />
+
+         <wsdl:output message="impl:associateMachineTokenToCredentialsResponse" name="associateMachineTokenToCredentialsResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCredentialsForMachineToken" parameterOrder="token logon cobrandId developerKey">
+
+         <wsdl:input message="impl:getCredentialsForMachineTokenRequest" name="getCredentialsForMachineTokenRequest" />
+
+         <wsdl:output message="impl:getCredentialsForMachineTokenResponse" name="getCredentialsForMachineTokenResponse" />
+
+      </wsdl:operation>
+
+      <wsdl:operation name="IsGeoBlocked" parameterOrder="ip cobrandId developerKey">
+
+         <wsdl:input message="impl:IsGeoBlockedRequest" name="IsGeoBlockedRequest" />
+
+         <wsdl:output message="impl:IsGeoBlockedResponse" name="IsGeoBlockedResponse" />
+
+      </wsdl:operation>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+   </wsdl:portType>
+
+   <wsdl:binding name="RhapsodyDirectAccountMgmtSoapBinding" type="impl:RhapsodyDirectAccountMgmtAxisAdapter">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+
+      <wsdl:operation name="addService">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="addServiceRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="addServiceResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      
+
+      
+
+      <wsdl:operation name="getVersionString">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getVersionStringRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getVersionStringResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMemberAccount">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getMemberAccountRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getMemberAccountResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createAnonymousMember">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="createAnonymousMemberRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="createAnonymousMemberResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMemberAccount">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="createMemberAccountRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="createMemberAccountResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMemberAccount">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="createMemberAccountRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="createMemberAccountResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMemberAccount">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="createMemberAccountRequest2">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="createMemberAccountResponse2">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMemberAccount">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="createMemberAccountRequest3">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="createMemberAccountResponse3">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMemberAccount">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="createMemberAccountRequest4">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="createMemberAccountResponse4">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMemberAccount">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="createMemberAccountRequest5">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="createMemberAccountResponse5">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="upgradeMemberAccount">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="upgradeMemberAccountRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="upgradeMemberAccountResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllCobrands">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getAllCobrandsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllCobrandsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCobrands">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getCobrandsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getCobrandsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMemberCobrandDetails">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getMemberCobrandDetailsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getMemberCobrandDetailsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAccountProperties">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getAccountPropertiesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getAccountPropertiesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAccountProperties">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getAccountPropertiesRequest1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getAccountPropertiesResponse1">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAccountProperties">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getAccountPropertiesRequest2">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getAccountPropertiesResponse2">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isUserSuspended">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="isUserSuspendedRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="isUserSuspendedResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMemberGuidFromAlias">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getMemberGuidFromAliasRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getMemberGuidFromAliasResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isMemberAliasAvailable">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="isMemberAliasAvailableRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="isMemberAliasAvailableResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      
+
+      <wsdl:operation name="unregisterMachine">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="unregisterMachineRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="unregisterMachineResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      
+
+      <wsdl:operation name="getTrackRevocations">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getTrackRevocationsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getTrackRevocationsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCustomerSupportId">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getCustomerSupportIdRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getCustomerSupportIdResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getLogonToken">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getLogonTokenRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getLogonTokenResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getLogonFromToken">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getLogonFromTokenRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getLogonFromTokenResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      
+
+      
+
+      <wsdl:operation name="getMachineToken">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getMachineTokenRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getMachineTokenResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      
+
+      <wsdl:operation name="associateMachineTokenToCredentials">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="associateMachineTokenToCredentialsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="associateMachineTokenToCredentialsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCredentialsForMachineToken">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="getCredentialsForMachineTokenRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="getCredentialsForMachineTokenResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="IsGeoBlocked">
+
+         <wsdlsoap:operation soapAction="" />
+
+         <wsdl:input name="IsGeoBlockedRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:input>
+
+         <wsdl:output name="IsGeoBlockedResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:rhapsodydirectaccountmgmt" use="encoded" />
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+   </wsdl:binding>
+
+   <wsdl:service name="RhapsodyDirectAccountMgmtAxisAdapterService">
+
+      <wsdl:port binding="impl:RhapsodyDirectAccountMgmtSoapBinding" name="RhapsodyDirectAccountMgmt">
+
+         <wsdlsoap:address location="https://secure-direct.rhapsody.com/account/services/RhapsodyDirectAccountMgmt" />
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
