@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# start ntpd to sync time.
+TIME_SERVER="pool.ntp.org"
+TMP_NTPD="/mnt/sda/ntpd_tmp.txt"
+retryCnt=1
+
+rm -f $TMP_NTPD
+while [ "a" = "a" ]
+do 
+/sbin/ntpd -q -n -p $TIME_SERVER 2>&1 | tee $TMP_NTPD
+read ntpdRet < $TMP_NTPD
+ntpdRet_C=`echo $ntpdRet|grep "setting"`
+if [ "$ntpdRet"x = "$ntpdRet_C"x ]; then
+	echo "ntpd sync time with $TIME_SERVER success."
+	break;
+else
+	retryCnt=`expr $retryCnt + 1`
+	if [ $retryCnt -ge 3 ]; then
+		echo "ntpd have retry $retryCnt times, give up."
+		date --set "2014-08-01 22:55"
+		/sbin/ntpd -p $TIME_SERVER
+		break;
+	fi	
+	echo "ntpd retry once again..."	
+fi
+done
+rm -f $TMP_NTPD
+

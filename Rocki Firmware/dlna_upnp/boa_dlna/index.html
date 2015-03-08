@@ -1,0 +1,602 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="expires" content="0">
+  <meta pragma="no-cache">
+  <meta cache-control="no-cache">
+  <meta http-equiv="cache-control" content="no-store" />
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="shortcut icon" href="images/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROCKI Control Panel</title>
+  <link href='style.css' type='text/css' rel='stylesheet' />
+  <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="row">
+      <div class="columns eleven" id="nav">
+        <img src="images/logo.png" class="title" >
+        <a href="index.html">Control Panel</a>&nbsp;&nbsp;
+        <a target="_blank" href="http://myrocki.com">myROCKI</a>
+        <p id="playing">Now playing: </p>
+      </div>
+      <div class="columns one">
+      </div>
+    </div>            
+  </header>
+  <div class="container hd" id="main">
+   <div class="row">
+    <div class="columns eleven">
+      <h3 style="color: #26C493;" id="rockiname">&nbsp;</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="columns eleven">
+      <h3>ROCKI Settings</h3>
+    </div>
+    <div class="columns one">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="columns two"><p>ROCKI name:</p></div>
+    <div class="columns four">
+      <input type="text" id="Devicename"  name="Devicename" maxlength="64" />
+    </div>
+
+  <div class="row">
+    <div class="columns eleven">
+      <h3>Network Configuration</h3>
+    </div>
+    <div class="columns one">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="columns two"><p>SSID:</p></div>
+    <div class="columns four">
+          <select onchange="getSelectedValue(this)" id="Username" name="Username"></select>
+    </div>
+    <div class="columns two"><p>Wifi Password:</p></div>
+    <div class="columns four">
+          <input type="text" id="Password" name="Password" maxlength="64" />
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="columns two"><p>Security Mode:</p></div>
+    <div class="columns four">
+      <select id="Security Mode" name="Security Mode" size=1>
+        <option value="No Encryption">No Encryption</option>
+        <option value="WEP">WEP</option>
+        <option value="WPA/WPA2" selected="selected">WPA/WPA2</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row"><br/>
+    <input type="submit" id="formSubmit" value="Save Settings" onclick="postAllData();"/>
+  </div>
+
+  <div class="row">
+    <div class="columns six" style="border: 1px;" id="standalone">
+
+      <div>
+        <h3>Switch to standalone hotspot mode</h3>
+      </div>
+
+      <div>
+        <p id="hotspotStatus">Reboot your ROCKI in hotspot mode</p>
+      </div>
+      
+      <div class="row">
+        <div class="columns four"><p>Channel:</p></div>
+        <div class="columns eight">
+         <select id="APChannel" name="APChannel" size="1">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6" selected="selected">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+        </select>
+        </div>
+      </div>
+    <br/>
+      <div>
+        <input style="margin-top: 9px;" type="submit" id="APButton" value="Reboot ROCKI to Hotspot Mode" onclick="changeChannel();"/>
+      </div>
+    </div>
+
+      <div class="columns six">
+       <div>
+        <h3>Voice feedback</h3>
+      </div>
+        <br/><br/>      <br/><br/>
+      <div>
+        <p id="voiceStatus">Voice feedback is On</p>
+
+      </div>
+        <br/>
+      <div>
+        <input style="margin-top: 6px;" type="submit" id="voiceSwitch" value="Turn Voice Off" onclick="execVoiceCommand();"/>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="columns six">
+      <h3>Firmware Update</h3>
+  <form action="cgi-bin/uploadfile.cgi" method="post" enctype="multipart/form-data" name="UPLOADFILE-TEST" id="UPLOADFILE-TEST">
+      <div>
+       <p>Select a firmware file to update your ROCKI with</p>
+      </div>
+
+      <div>
+        <input name="file" type="file">
+      </div>
+
+      <div>
+        <input type="submit" value="upload file" name="submit"></p>
+      </div>
+  </form>
+  </div>
+
+  <div class="columns six">
+    <div>
+      <h3>Reboot ROCKI</h3>
+    </div>
+
+    <div>
+
+      <p>Reboot to apply settings</p>
+      <br/>
+    </div>
+  
+    <div>
+<br/>
+      <input style="margin-top: 14px;" type="submit" id="rebootButton" value="Reboot" onclick="execRebootCommand();"/>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="columns ten"><h3>Control ROCKI LED</h3>
+      <p>Don't know which ROCKI you're currently using? Check it by changing the LED</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="columns three">
+      <input type="submit" id="ledRedon" value="Red LED On" onclick="execLedCommand('Red','on', 'on');"/>
+    </div>
+    <div class="columns three">
+      <input type="submit" id="ledRedblink" value="Blink Red LED" onclick="execLedCommand('Red', 'blink', 'blinking');"/>
+    </div>
+    <div class="columns three">
+      <input type="submit" id="ledGreenon" value="Green LED On" onclick="execLedCommand('Green', 'on', 'on');"/>
+    </div>
+    <div class="columns three">
+      <input type="submit" id="ledGreenblink" value="Blink Green LED" onclick="execLedCommand('Green','blink','blinking');"/>
+    </div>
+
+  </div>
+  <div class="row">
+<br/> <p> Use this button to change the LED to the default state </p>
+    <div class="colums ten">
+      <input type="submit" value="LED's Normal" onclick="execLedCommand('Green', 'on', 'normal');"/>
+    </div>
+  </div>
+</div>
+
+
+<br/><br/><br/><br/>
+
+  <div class="row">
+   <div class="columns eleven">
+      <h3>Factory Reset</h3>
+    </div>
+    <input type="submit" id="factoryReset" value="Factory Reset" onclick="factoryReset();"/>
+      <div class="columns four">
+      </div>
+  </div>
+</div>
+  
+  <div id="blackOverlayReboot">
+      <div id="pop"><h4>ROCKI is Rebooting</h4> <p>Refresh when the button turns green</p>
+        <div id="leds">
+        </div>
+      <input type="submit" style="background-color:grey; width:90%; margin:0 auto;" id="refresh" value="Reload Page" onclick="document.location.reload(true);"/>
+    </div>
+  </div>
+  
+  <div id="blackOverlayAP">
+    <div id="popAP"><h4>ROCKI is Rebooting</h4><p>ROCKI is switched to access point mode and disconnected from this network</p><p>ROCKI should be available in your device's WiFi list in a few seconds.<br/> This interface is accessible at <a href="192.168.0.1">192.168.0.1</a> after connecting to the ROCKI hotspot.</p></div>
+  </div>
+
+  <div id="blackOverlayReset">
+    <div id="popReset"><h4>ROCKI has been factory reset</h4><p>ROCKI should be available in your WiFi list in a minute. This interface is accessible at <a href="192.168.0.1">192.168.0.1</a> after connecting to the ROCKI hotspot.</p></div>
+  </div>
+
+  <div id="blackOverlayVoice">
+    <div id="popVoice"><h4 id="voicestate">Switching Voice Mode</h4><p>ROCKI is moving files around to switch the voice mode.</p><p>Please wait...</p>
+    <div id="led1">
+      </div>
+    </div> 
+  </div>
+  
+  <div id="blackOverlaySave">
+    <div id="popSave">
+      <div id="savedata">
+        <div id="led2">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<script language="JavaScript" type="text/javascript">
+$(document).ready(function(){
+    getNowPlaying();
+    getRockiName();
+    getVoiceStatus();
+});
+var j,old_image;
+function change_over(){
+  var ob = change_over.arguments;
+  for(i = 0; i < document.all.length; i++)
+  if(document.all[i].name == ob[0]) j = i;
+  old_image = document.all[j].src;
+  document.all[j].src = ob[1];
+} 
+function change_out(){
+  document.all[j].src = old_image;
+}
+function getSelectedValue(){
+var val = document.getElementById("Username").value;
+return val;
+}
+function showDialog(){
+    $("#blackOverlayReboot").toggle();
+    $("#pop").toggle();
+}
+function showDialogAP(){
+    $("#blackOverlayAP").toggle();
+    $("#popAP").toggle();
+}
+function showDialogReset(){
+    $("#blackOverlayReset").toggle();
+    $("#popReset").toggle();
+}
+function showDialogSave(){
+    $("#blackOverlaySave").toggle();
+    $("#popSave").toggle();
+}
+function showVoiceDialog(state){
+    $("#blackOverlayVoice").toggle();
+    $("#popVoice").toggle();
+    $("#voicestate").html('Switching Voice Feedback '+state);
+    addLed('led1');
+      var timesRun = 0;
+      var interval = setInterval(function(){
+      timesRun += 1;
+      addLed('led1');
+        if(timesRun === 6){
+          clearInterval(interval);
+          $("#blackOverlayVoice").toggle();
+          $("#popVoice").toggle();
+        }
+      }, 1000);
+}
+
+// Factory Reset
+function factoryReset(){
+var r=confirm("Are you sure you want to reset your ROCKI?");
+  if (r==true) {
+    $.ajax({url: 'cgi-bin/rocki.cgi?FactoryReset=true'});
+    showDialogReset();
+  }
+}
+
+// Set AP WiFi Channel
+function changeChannel() {
+  var channel = document.getElementById("APChannel").value;  
+    $.ajax({url: 'cgi-bin/rocki.cgi?HotspotChannel=' + channel, success:function(result){
+    
+       execAPCommand();
+    }
+  });
+}
+
+// Get Now Playing
+function getNowPlaying(){
+  $.ajax({url: 'nowplaying', success:function(result){
+  if(result == null) {
+   $('#playing').html(' '); 
+  } else {
+   $('#playing').html('Now Playing: ' + result); 
+  }
+    }
+  });
+}
+// Get Rocki Name
+function getRockiName(){
+  $.ajax({url: 'name', success:function(result){
+  if(result == null) {
+  } else {
+    var splitresult = result.split('_');
+   $('#rockiname').html(splitresult[1]); 
+  }
+    }
+  });
+}
+// Get Voice State
+function getVoiceStatus(){
+  $.ajax({url: 'voice', success:function(result){
+    if(result.search('off') != '-1') {
+     $('#voiceStatus').html('Voice feedback is Off');
+     $('#voiceSwitch').val('Switch Voice On');
+    } else {
+     $('#voiceStatus').html('Voice feedback is On');
+     $('#voiceSwitch').val('Switch Voice Off');
+     }
+  }});
+}
+// Turn Voice Mode
+function execVoiceCommand(){
+$.ajax({url: 'voice', success:function(result){
+  if(result.search('off') != '-1') {
+    $.ajax({url: 'cgi-bin/rocki.cgi?VoiceFeedback=on'});
+    $('#voiceStatus').html('Voice feedback is On');
+    $('#voiceSwitch').val('Voice switched On');
+    showVoiceDialog('On');
+  } else {
+    $.ajax({url: 'cgi-bin/rocki.cgi?VoiceFeedback=off'});
+    $('#voiceStatus').html('Voice feedback is Off');
+    $('#voiceSwitch').val('Voice switched Off');
+    showVoiceDialog('Off');
+  }
+}});
+}
+//Show Leds
+function execLedCommand(color, action, actionname){
+  $('#ledRedblink').val('Blink Red Led');
+  $('#ledRedon').val('Red LED On');
+  $('#ledGreenon').val('Green Led On');
+  $('#ledGreenblink').val('Blink Green Led');
+  if(actionname == 'normal') {
+    $('#ledGreenon').val('Green Led On');
+  } else {
+    $('#led'+color+action).val(color +' is ' + actionname + '...');
+  }
+  $.ajax({url: 'cgi-bin/rocki.cgi?'+ color + 'Led=' + action});
+}
+
+// Reboot Rocki
+function execRebootCommand(){
+  $('#rebootButton').val('Rebooting...');
+  $.ajax({url: 'cgi-bin/rocki.cgi?Reboot=true'});
+  showDialog();  
+  addLed('leds');
+  var timesRun = 0;
+  var interval = setInterval(function(){
+  timesRun += 1;
+    addLed('leds');
+    if(timesRun === 9){
+        clearInterval(interval);
+        showRefreshButton();
+    }
+  }, 1500);
+}
+function showRefreshButton() {
+    $("#refresh").css("background-color","#26C493");
+}
+function addLed(id) {
+    var leds = document.getElementById(id);
+    var led = document.createElement("div");
+    led.id = 'sensor';
+    leds.appendChild(led);
+}
+
+// Turn to AP Mode
+function execAPCommand(){
+  $('#APButton').val('Switching to access point... ROCKI is Rebooting');
+  $.ajax({url: 'cgi-bin/rocki.cgi?APMode=on'});
+  showDialogAP();  
+  var timesRun = 0;
+}
+  
+function postAllData(){
+  var devicename_nourl = document.getElementById("Devicename").value; 
+  var devicename = encodeURIComponent(document.getElementById("Devicename").value);
+  var rockiname = 'ROCKI_'+devicename;
+  var rockiname_nourl ='ROCKI_'+devicename_nourl
+  var username = document.getElementById("Username").value;
+  var securityMode = document.getElementById("Security Mode").value;
+   if(username.length == 0){ securityMode = ''; }
+  var password = document.getElementById("Password").value;
+  showDialogSave();
+  var popup = '<h4>Saving Data and Rebooting your ROCKI</h4>';
+  if(devicename.length != 0) {
+    popup += '<p>Changed name to: ' + rockiname_nourl + '</p>';
+  }
+  if(username.length != 0) {
+  popup += '<p>ROCKI is rebooting and connecting to: <b>' + username + '</b></p>';
+  popup += '<p>You can\'t refresh this page after the reboot. Connect to Wifi Network: <b>' + username + '</b> and find the ROCKI</p>';
+  } else {
+    popup += '<p>Name has been set to: <b>' + rockiname_nourl + '</b> click refresh to continue or reboot to apply changes</p>';
+    popup += '<br/><div class="row"><div class="columns four">&nbsp;</div><div class="columns three">';
+    popup += '<input type="submit" id="refresh" value="Reload Page" onclick="document.location.reload(true);"/></div>';
+    popup += '<div class="columns three"><input type="submit" id="rebootButton" value="Reboot" onclick="execRebootCommand();"/></div></div>';
+  }
+
+  $('#savedata').html(popup);
+  var url = 'cgi-bin/router-info.cgi?'; 
+  url += 'Devicename='+rockiname;
+  url += '&Username='+username;
+  url += '&Security Mode='+securityMode;
+  url += '&Password='+password;
+  url += '&ApUsername=';
+  url += '&ApPassword=';
+  url += '&devdefault=no';
+  url += '&appautoupdate=yes';
+  $.ajax({url: 'cgi-bin/rocki.cgi?Name='+rockiname});
+  $.ajax({url: url , success:function(result){
+    if(result == null) {
+      $('#formSubmit').val('Some items are not set');
+      myfun_submit(); 
+    } else {
+      $('#formSubmit').val('Succes, Reboot to Continue'); 
+    }
+  }
+ }); 
+}                  
+
+function myfun_submit(){
+  var ApPassword_val = document.getElementById("ApPassword").value;
+  if(ApPassword_val != "")
+  if(ApPassword_val.length < 8){
+    alert("error : WiFi Password should be between 8~63 characters or 64 HEX");
+    document.getElementById("ApPassword").value = "";
+    return false;
+  }
+   var StaUsername_val = getSelectedValue(document.getElementById("Username"));
+   
+  if(StaUsername_val != "")
+  {
+    var Security_val = document.getElementById("Security Mode").value;
+    if(Security_val != "No Encryption")
+    {
+      var StaPassword_val = document.getElementById("Password").value;
+      if(StaPassword_val == "")
+      {
+        StaUsername_val = "";
+        
+        alert("Please enter Wifi Password");
+        return false;
+      }
+      if(StaPassword_val.length < 8){
+        alert("error : Wifi Password should be between 8~63 characters or 64 HEX");
+        document.getElementById("Password").value = "";
+        return false;
+      }
+    }
+  }else{
+    if(document.getElementById("Password").value != ""){
+      alert("please set a password for your network!")
+      document.getElementById("Password").value = "";
+      return false;
+    }
+  }
+  return true;
+}
+</script>
+<script language="javascript" type="text/javascript">
+  var fso, ts, s ;
+            var ForReading = 1;
+ /*
+ * AJAX
+ * */
+function InitAjax()
+{
+    var ajax = false;
+    try {
+        ajax = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (e) {
+        try {
+            ajax = new ActiveXObject("Microsoft.XMLHTTP");
+        } catch (E) {
+            ajax = false;
+        }
+    }
+    if (!ajax && typeof XMLHttpRequest != 'undefined') {
+        ajax = new XMLHttpRequest();
+    }
+    return ajax;
+}
+
+
+function sendRequestPost(url,param,callback){
+    var xmlHttpRequest=InitAjax();
+    xmlHttpRequest.open("GET",url,true);
+    xmlHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    xmlHttpRequest.onreadystatechange = function(){
+        if(xmlHttpRequest.readyState == 4){
+            if(xmlHttpRequest.status == 200){
+                var res = xmlHttpRequest.responseText;
+
+                callback(res);
+            }
+      else{
+          }
+        }
+    };
+    xmlHttpRequest.send(null);
+  
+}
+
+function sendRequestPost(url,param,callback){
+    var xmlHttpRequest=InitAjax();
+    xmlHttpRequest.open("GET",url,true);
+    xmlHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    xmlHttpRequest.onreadystatechange = function(){
+        if(xmlHttpRequest.readyState == 4){
+            if(xmlHttpRequest.status == 200){
+                var res = xmlHttpRequest.responseText;
+
+                callback(res);
+//                window.alert(res);
+            }
+      else{
+          }
+        }
+    };
+    xmlHttpRequest.send(null);
+  
+}
+      sendRequestPost("/wifi_scan_tab_html.info","",function(data){
+        
+      // var mys = new Array()    
+      // mys = data.split("\n");
+        if(data == "") {
+          var  temp = "";
+          var ss = temp;
+          var op = new Option();
+      //  op.text = ss;
+          op.value = ss;
+          document.getElementById("Username").options.add(op);
+        } else {
+            var mys = new Array()    
+            mys = data.split("\n");
+            for (var j = 0 ; j < mys.length; j++) { 
+              if( j == 0 ) {
+                var  temp = "";
+                var ss = temp;
+              } else {
+                var ss = mys[j - 1];
+              }
+              
+                var op = new Option();
+                  op.text = ss;
+                  op.value = ss;
+                
+                document.getElementById("Username").options.add(op);
+            }
+        }                
+      });
+
+</script>
+</div>
+<footer>
+  <p>ROCKI<sup>&reg;</sup> 2014 &nbsp;&nbsp; - &nbsp;&nbsp; <a style="color: white;" href="http://app.myrocki.com">ROCKI APP</a></p> 
+</footer>
+</body>
+</html>

@@ -1,0 +1,5 @@
+Dpid=$( ps | grep start_det_ctr_sh | grep bin | awk '{print $1}')
+#echo $Dpid
+kill $Dpid
+
+/mnt/sd/dlna_upnp/airaudio/sh_airaudio_end

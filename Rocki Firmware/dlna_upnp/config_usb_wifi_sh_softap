@@ -1,0 +1,40 @@
+mount -t tmpfs tmfps 	/var/
+
+echo "NC+NMODE=2" > /tmp/NET_CTL_fifo_write
+
+ifconfig wlan0 192.168.0.1 up
+mkdir /var/run/ -p
+
+if test  -r /mnt/sd/dlna_upnp/boa_dlna/tmp/rtl_hostapd_2G_update.conf; then
+	echo "rtl_hostapd_2G_update.conf: YES"
+	mv /mnt/sd/dlna_upnp/boa_dlna/tmp/rtl_hostapd_2G_update.conf 	 /mnt/sd/dlna_upnp/networkconfig/hostapd/rtl_hostapd_2G.conf
+	sync
+fi
+
+cd /mnt/sd/dlna_upnp/networkconfig/hostapd
+#./hostapd-rtl-08 ./rtl_hostapd_2G.conf -dd &
+./hostapd-rtl-08 ./rtl_hostapd_2G.conf -B
+
+ifconfig lo 127.0.0.1 up
+#mount -t tmpfs tmfps 	/var/
+mkdir -p /var/lib/misc/
+cd /mnt/sd/dlna_upnp/networkconfig/dnsmasq/
+#echo 1 > /proc/sys/net/ipv4/ip_forward
+#./iptables -t nat -A POSTROUTING o ra0 -j MASQUERADE
+#./iptables -t nat -F 
+#./iptables -t nat -I POSTROUTING -s 192.168.2.0/24 -j MASQUERADE
+./dnsmasq -i wlan0 --conf-file=./dnsmasq.conf  -dd	 &
+#./dnsmasq -i wlan0 --conf-file=./dnsmasq.conf  -D
+
+echo "NC+NMODE=4" > /tmp/NET_CTL_fifo_write
+ifconfig wlan0 192.168.0.1 up
+
+cd /mnt/sd/dlna_upnp/networkconfig/
+echo "wifi scaning......"
+./nettools/iwlist wlan0 scanning |grep "ESSID:" > ./wifi_connect_conf/wifi_scan_tab.info
+./nettools/wifi_scan_tab_html.sh  /mnt/sd/dlna_upnp/networkconfig/wifi_connect_conf/  /mnt/sd/dlna_upnp/boa_dlna/
+sync
+echo "wifi scan tab info:"
+cat ./wifi_connect_conf/wifi_scan_tab.info
+
+/mnt/sd/dlna_upnp/dlna/dlna_run_sh

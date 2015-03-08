@@ -1,0 +1,10 @@
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/lib
+export LD_PRELOAD=$LD_PRELOAD:/mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/lib/preloadable_libiconv.so
+cd /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin
+#./mnt_sd
+#./mnt_sda
+mac_var=$(ifconfig wlan0 | grep HWaddr | awk '{print $5}' | cut -c 10-17)
+echo $mac_var
+dev_name=$(cat ./arg/device_name_utf8)
+echo $dev_name
+./ushare -n share_${dev_name}_${mac_var} -i wlan0 -c /mnt/  -D

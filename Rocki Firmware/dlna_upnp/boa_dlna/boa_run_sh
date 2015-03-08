@@ -1,0 +1,11 @@
+if [ -d /mnt/sd/dlna_upnp/boa_dlna/tmp/ ]
+then
+	echo "/mnt/sd/dlna_upnp/boa_dlna/tmp/ : YES"
+else
+	mkdir -p  /mnt/sd/dlna_upnp/boa_dlna/tmp
+fi
+
+export UPDATE_FILE_PATH=/mnt/sd/dlna_upnp/boa_dlna/tmp
+export BOA_TMP_PATH=/mnt/sd/dlna_upnp/boa_dlna/tmp
+
+/mnt/sd/dlna_upnp/boa_dlna/boa -c /mnt/sd/dlna_upnp/boa_dlna

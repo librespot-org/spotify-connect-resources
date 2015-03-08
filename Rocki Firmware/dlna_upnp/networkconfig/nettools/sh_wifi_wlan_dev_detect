@@ -1,0 +1,12 @@
+for i in 1 2 3 4 5 6
+do
+if test -r /sys/class/usb_device/usbdev1.$i/device/idVendor ; then
+	usbdev_id=$(cat /sys/class/usb_device/usbdev1.$i/device/idVendor)
+	#echo $usbdev_id
+	if [ "$usbdev_id" = "0bda" ] ; then
+		exit 0
+	fi
+fi
+done
+
+reboot

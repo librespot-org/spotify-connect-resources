@@ -1,0 +1,372 @@
+body {
+    background: 0 0;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    background-size: 100%}
+.bar {
+    height: 18px;
+    background: #26C493;
+    border: #28AB82 solid 1px;
+}
+#fileupload {
+    background-color: #26C493;
+    border: 0;
+    color: #FFF;
+    padding: 5px;
+    font-size: 15px;
+    width: 88.4%;
+}
+#install{
+    display: none;
+}
+#blackOverlayReboot {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+#blackOverlayAP {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+#blackOverlayReset {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+#blackOverlayVoice {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+#blackOverlaySave {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+#pop {
+    width:80%;
+    margin:0 auto;
+    text-align: center;
+    display: none;
+    border-radius: 10px;
+    height: 300px;
+    padding: 20px;
+    background-color: #FFF;
+    margin-top: 50px;
+}
+#popVoice {
+    width:80%;
+    margin:0 auto;
+    text-align: center;
+    display: none;
+    border-radius: 10px;
+    height: 300px;
+    padding: 20px;
+    background-color: #FFF;
+    margin-top: 50px;
+}
+#popAP {
+    width:80%;
+    margin:0 auto;
+    text-align: center;
+    display: none;
+    border-radius: 10px;
+    height: 300px;
+    padding: 20px;
+    background-color: #FFF;
+    margin-top: 50px;
+}
+#popReset {
+    width:80%;
+    margin:0 auto;
+    text-align: center;
+    display: none;
+    border-radius: 10px;
+    height: 300px;
+    padding: 20px;
+    background-color: #FFF;
+    margin-top: 50px;
+}
+#popSave {
+    width:80%;
+    margin:0 auto;
+    text-align: center;
+    display: none;
+    border-radius: 10px;
+    height: 300px;
+    padding: 20px;
+    background-color: #FFF;
+    margin-top: 50px;
+}
+#leds {
+    width:80%;
+    margin:0 auto;
+}
+#sensor {
+  height: 15px;
+  width: 15px;
+  margin-right: 2%;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  display:inline-block;
+    -webkit-animation: sensor 0.3s linear infinite;
+    -moz-animation: sensor 0.3s linear infinite;
+    -ms-animation: sensor 0.3s linear infinite;
+    -o-animation: sensor 0.3s linear infinite;
+    animation: sensor 0.3s linear infinite;
+}
+@keyframes sensor {  
+    0% { background-color: #26C493; }
+    100% { background-color: grey; }
+}
+@-webkit-keyframes sensor {
+    0% { background-color: #26C493; }
+    100% { background-color: grey; }
+}
+
+html.flexbox .row {
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex: 1 1 auto;
+    -moz-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-flex-flow: row nowrap;
+    -moz-flex-flow: row nowrap;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-align-items: flex-start;
+    -moz-align-items: flex-start;
+    -ms-align-items: flex-start;
+    flex-align: flex-start;
+    -webkit-justify-content: flex-start;
+    -moz-justify-content: flex-start;
+    -ms-justify-content: flex-start;
+    justify-content: flex-start;
+    width: 100%}
+.container {
+    max-width: 940px;
+    padding: 0 1.06383%;
+    margin: 0 auto;
+}
+.container, .row {
+    zoom: 1;
+}
+.container:after, .container:before, .row:after, .row:before {
+    content: "";
+    display: table;
+}
+.container:after, .row:after {
+    clear: both;
+}
+@media (min-width:481px) {
+    .columns {
+    float: left;
+    margin: 0;
+    width: 6.38298%}
+.columns:first-child {
+    margin-left: 0;
+}
+html.flexbox .columns {
+    float: none;
+}
+.columns.two {
+    width: 14.89362%}
+.columns.one-fourth, .columns.three {
+    width: 23.40426%}
+.columns.four, .columns.one-third {
+    width: 31.91489%}
+.columns.five {
+    width: 40.42553%}
+.columns.one-half, .columns.six {
+    width: 47.93617%}
+.columns.seven {
+    width: 57.44681%}
+.columns.eight, .columns.two-thirds {
+    width: 65.95745%}
+.columns.nine, .columns.three-fourths {
+    width: 74.46808%}
+.columns.ten {
+    width: 82.97872%}
+.columns.eleven {
+    width: 91.48936%}
+.columns.full, .columns.twelve {
+    width: 100%}
+.columns.offset-one {
+    margin-left: 10.6383%}
+.columns.offset-one:first-child {
+    margin-left: 8.51064%}
+.columns.offset-two {
+    margin-left: 19.14894%}
+.columns.offset-two:first-child {
+    margin-left: 17.02128%}
+.columns.offset-three {
+    margin-left: 27.65957%}
+.columns.offset-three:first-child {
+    margin-left: 25.53191%}
+.columns.offset-four {
+    margin-left: 36.17021%}
+.columns.offset-four:first-child {
+    margin-left: 34.04255%}
+.columns.offset-five {
+    margin-left: 44.68085%}
+.columns.offset-five:first-child {
+    margin-left: 42.55319%}
+.columns.offset-six {
+    margin-left: 53.19149%}
+.columns.offset-six:first-child {
+    margin-left: 51.06383%}
+.columns.offset-seven {
+    margin-left: 61.70213%}
+.columns.offset-seven:first-child {
+    margin-left: 59.57447%}
+.columns.offset-eight {
+    margin-left: 70.21277%}
+.columns.offset-eight:first-child {
+    margin-left: 68.08511%}
+.columns.offset-nine {
+    margin-left: 78.7234%}
+.columns.offset-nine:first-child {
+    margin-left: 76.59574%}
+.columns.offset-ten {
+    margin-left: 87.23404%}
+.columns.offset-ten:first-child {
+    margin-left: 85.10638%}
+.columns.offset-eleven {
+    margin-left: 95.74468%}
+.columns.offset-eleven:first-child {
+    margin-left: 93.61702%}
+.h3 {
+    text-align:  left;
+}
+}
+h3 {
+    text-align: left;
+    font-size: 30px;
+    font-weight: 100;
+    letter-spacing: 6px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+h4 {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 100;
+    letter-spacing: 6px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+p {
+    margin-top: 6px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #6B6B6B;
+}
+p a {
+    font-style: bold;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #26C493;
+}
+a {
+    font-style: bold;
+    text-decoration: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #26C493;
+}
+ form {
+    padding-top: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #6B6B6B;
+}
+input {
+    margin-right: 5%;
+    width: 91.5%}
+label.radio-label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #6B6B6B;
+    float: left;
+    margin-right: 10px;
+    margin-left: 5%}
+.uneditable-input:focus, input[type=password]:focus, input[type=text]:focus, select:focus, textarea:focus {
+    background-color: rgba(38, 196, 147, .175);
+    outline: 0 1px 1px rgba(38, 196, 147, .075) inset, 3px 5px 8px rgba(38, 196, 147, .6);
+}
+input[type=text] {
+    height: 30px;
+    box-shadow: 0 1px 1px rgba(255, 255, 255, .075) inset, 3px 5px 8px rgba(255, 255, 255, .6);
+}
+select {
+    min-width: 92%;
+    background: rgba(38, 196, 147, .5);
+    padding: 5px;
+    font-size: 16px;
+    border-color: #fff;
+    line-height: 1;
+    border-radius: 0;
+    height: 34px;
+    -webkit-appearance: none;
+}
+input[type=submit] {
+    background-color: #26C493;
+    border: 0;
+    color: #FFF;
+    padding: 5px;
+    font-size: 15px;
+}
+header {
+    width: 100%;
+    background-color: #26C493;
+    border-bottom: #28AB82 solid 3px;
+}
+footer {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px;
+    height: 40px;
+    background-color: #26C493;
+    border-top: #28AB82 solid 3px;
+}
+footer p {
+    color: #fff;
+}
+#nav {
+    padding-left: 10px;
+}
+#nav ul {
+    float: left;
+    list-style: none;
+}
+#nav a {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 49px;
+    text-transform: uppercase;
+    color: #FFF;
+}
+#nav a:hover {
+    color: #93E2C9;
+}

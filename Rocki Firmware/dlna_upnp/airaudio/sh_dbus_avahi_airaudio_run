@@ -1,0 +1,31 @@
+cd  /mnt/sd/dlna_upnp/airaudio/
+date 101608082013
+
+mount -t tmpfs tmpfs /home/
+mkdir -p /home/lib_cross_pro_install/shairport/
+
+cp  -fr avahi-0.6.31_install/etc/dbus-1/system.d/avahi-dbus.conf		 dbus-1.5.0_install/etc/dbus-1/system.d
+cp  -fr dbus-1.5.0_install 										 /home/lib_cross_pro_install/shairport/
+cp  -fr avahi-0.6.31_install  										/home/lib_cross_pro_install/shairport/
+cp  -fr libao-1.1.0_install  										/home/lib_cross_pro_install/shairport/
+
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:dbus_avahi_airaudio_lib_so
+export PATH=$PATH:dbus_avahi_airaudio_bin
+
+dbus-daemon --system
+
+#avahi-daemon -c && avahi-daemon -D
+avahi-daemon -D
+
+mac_var=$(ifconfig wlan0 | grep HWaddr | awk '{print $5}' | cut -c 7-17)
+echo $mac_var
+dev_name=$(cat /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/arg/device_name_utf8)
+echo $dev_name
+div_name=_
+if [ "$dev_name" != "Epitome" ]
+then
+	airaudio -b 162 -a $dev_name  -na $mac_var -d
+else
+	airaudio -b 162 -a $dev_name$div_name$mac_var  -na $mac_var -d
+fi

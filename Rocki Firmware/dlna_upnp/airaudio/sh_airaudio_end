@@ -1,0 +1,5 @@
+pidof airaudio | awk '{print $1}'|xargs kill
+pidof airaudio | awk '{print $1}'|xargs kill
+
+pidof avahi-publish-service | awk '{print $1}'|xargs kill
+pidof airaudio | awk '{print $1}'|xargs kill

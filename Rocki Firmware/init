@@ -1,0 +1,18 @@
+ls /mnt/sd
+ulimit -s 1024
+date --set "2014-08-01 22:55"
+/mnt/sd/update_sh
+/mnt/sd/dlna_upnp/dlna_upnp_start &
+
+#Custom led startup animation
+/app_back/app_led_ctl_alone 0 0
+sleep 0.2
+/app_back/app_led_ctl_alone 1 0
+sleep 0.2
+/app_back/app_led_ctl_alone 2 0
+sleep 0.2
+/app_back/app_led_ctl_alone 2 1
+sleep 0.2
+/app_back/app_led_ctl_alone 1 0
+
+#echo "" > /mnt/sd/dlna_upnp/boa_dlna/nowplaying

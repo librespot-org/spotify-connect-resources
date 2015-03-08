@@ -1,0 +1,25 @@
+len=$(pidof airaudio | awk '{printf("%d\n", length($0));}')
+start=0
+i=1
+while [ $start -lt $len ]
+do
+  pidairaudio=$(pidof airaudio | awk '{printf("%d\n", $i);}')
+  echo $pidairaudio
+  strlen=${#pidairaudio}
+  echo $strlen
+  ret=$(ls /proc/$pidairaudio/fd -la|grep "/dev/dsp")
+  if [ -n "$ret" ]; then
+   	pkill airaudio
+   	sleep 1
+	 	sh /mnt/sd/dlna_upnp/airaudio/sh_airaudio_reload &
+	 	break
+	fi
+  #start=$start+$strlen
+  #i=$i+1 
+  start=`expr $start + $strlen`
+  start=`expr $start + 1`
+	i=`expr $i + 1`
+done
+echo $i
+
+

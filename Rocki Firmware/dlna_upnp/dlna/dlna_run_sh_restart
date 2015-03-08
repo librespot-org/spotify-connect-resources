@@ -1,0 +1,30 @@
+mkdir -p /dev/sound
+ln -s /dev/dsp /dev/sound/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/lib
+export LD_PRELOAD=$LD_PRELOAD:/mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/lib/preloadable_libiconv.so
+
+cd /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin
+
+if test  -r /mnt/sd/dlna_upnp/boa_dlna/tmp/device_name_update.conf; then
+	echo "device_name_update: YES"
+	mv /mnt/sd/dlna_upnp/boa_dlna/tmp/device_name_update.conf	 ./arg/device_name
+	sync
+fi
+#./font_convert -i /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/arg/device_name -o /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/arg/device_name_utf8 -f CP2U
+cp /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/arg/device_name /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/arg/device_name_utf8
+cp /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/arg/device_name /mnt/sd/dlna_upnp/boa_dlna/name
+#./ushare_run_sh
+
+ps -ef | grep -v grep | grep  "udhcpc" 
+dhcpc_var=$(echo $?)
+if [ $dhcpc_var -eq 0 ];then
+	NetMode=$(echo "STA")
+else
+	NetMode=$(echo "AP")
+fi
+
+dev_name=$(cat ./arg/device_name_utf8)
+echo $dev_name
+#./gmediarender -I 192.168.0.1
+#./gmediarender -i wlan0 -f $dev_name -m $NetMode &
+./gmediarender -i wlan0 -c /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/arg/device_name_utf8 -m $NetMode &

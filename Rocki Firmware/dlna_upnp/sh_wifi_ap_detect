@@ -1,0 +1,50 @@
+$wifi_ap_detect_var 
+
+cd /mnt/sd/dlna_upnp/
+if test  -r /mnt/sd/dlna_upnp/boa_dlna/tmp/tkip_wpa_update.conf; then
+	echo "tkip_wpa_update.conf: YES"
+	mv /mnt/sd/dlna_upnp/boa_dlna/tmp/tkip_wpa_update.conf 	/mnt/sd/dlna_upnp/networkconfig/wifi_connect_conf/wifi_connected_last.conf
+	sync
+fi
+./start_mode_select /mnt/sd/dlna_upnp/networkconfig/wifi_connect_conf/wifi_connected_last.conf /mnt/sd/dlna_upnp/networkconfig/wifi_work_mode.conf
+
+wifi_ap_detect_var=$(cat /mnt/sd/dlna_upnp/networkconfig/wifi_work_mode.conf|awk -F / 'NR==1{print $1}')
+#wifi_ap_detect_var=$(cat /dev/wifi_ap_detect)
+echo $wifi_ap_detect_var
+
+wlan_var=$(ifconfig -a |grep wlan0)
+echo $wlan_var
+
+if [ "$wifi_ap_detect_var" = "1" ] ;then
+	echo "wifi_ap_detect_var: 1"
+	cd /mnt/sd/dlna_upnp/networkconfig/nettools/
+	./wifi_wps_ap_sta_local_share /mnt/sd/dlna_upnp/networkconfig/wifi_work_mode.conf '1' /mnt/sd/dlna_upnp/dev_default.conf &
+	usleep 500000
+	./EXT_COMM_Protocol 1 100 /dev/ttyDBG0 &
+	usleep 500000
+	pidof rootfs_def_key_det | awk '{print $1}'|xargs kill
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/lib/
+	./wifi_key_det -u ftp://guest:guest@58.241.4.51:88/app_auto_update/Rocki/wb120/Rocki_wb120_auto_update_last.tar.gz -o /mnt/sd/dlna_upnp/boa_dlna/tmp/dlna_upnp_auto_update.tar.gz -c /mnt/sd/dlna_upnp/boa_dlna/tmp/ftp_auto_update.info &
+	
+	if [ -n "$wlan_var" ];then
+	        /mnt/sd/dlna_upnp/config_usb_wifi_sh
+       else
+		echo "NC+NETDEVERR" > /tmp/NET_CTL_fifo_write
+	fi
+else
+	echo "wifi_ap_detect_var: 0"
+	cd /mnt/sd/dlna_upnp/networkconfig/nettools/
+	./wifi_wps_ap_sta_local_share /mnt/sd/dlna_upnp/networkconfig/wifi_work_mode.conf '0' /mnt/sd/dlna_upnp/dev_default.conf &
+	usleep 500000
+	./EXT_COMM_Protocol 0 100 /dev/ttyDBG0 &
+	usleep 500000
+	pidof rootfs_def_key_det | awk '{print $1}'|xargs kill
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/lib/
+	./wifi_key_det -u ftp://guest:guest@58.241.4.51:88/app_auto_update/Rocki/wb120/Rocki_wb120_auto_update_last.tar.gz -o /mnt/sd/dlna_upnp/boa_dlna/tmp/dlna_upnp_auto_update.tar.gz -c /mnt/sd/dlna_upnp/boa_dlna/tmp/ftp_auto_update.info &
+	
+	if [ -n "$wlan_var" ];then
+	        /mnt/sd/dlna_upnp/config_usb_wifi_sh_softap
+	else
+		echo "NC+NETDEVERR" > /tmp/NET_CTL_fifo_write
+	fi
+fi

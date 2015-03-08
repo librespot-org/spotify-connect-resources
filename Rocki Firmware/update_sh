@@ -1,0 +1,147 @@
+path_app_snd=/app_back/app_snd_play_alone
+path_snd_updateing=/mnt/sd/dlna_upnp/networkconfig/nettools/status_sound/status_sound_AutoUpdateIng.wav
+path_snd_updateing_back=/app_back/status_sound/status_sound_AutoUpdateIng.wav
+path_snd_update_success=/mnt/sd/dlna_upnp/networkconfig/nettools/status_sound/status_sound_AutoUpdateSuccess.wav
+snd_play_vol=80
+path_led_ctl=/app_back/app_led_ctl_alone
+
+dev_default_var=$(cat /mnt/sd/dlna_upnp/dev_default.conf|awk -F / 'NR==1{print $1}')
+echo $dev_default_var
+if [ "$dev_default_var" = "1" ] ;then
+	echo "dev_default_var: 1"
+	if test  -r /app_back/dlna_upnp_rootfs.tar.gz; then
+		echo "dlna_upnp_rootfs.tar.gz: YES"
+		#/app_back/app_led_ctl_alone	2	0
+		/app_back/app_led_ctl_alone	1     2
+		cat /mnt/sd/dlna_upnp/networkconfig/nettools/status_sound/status_sound_AutoUpdateIng.wav > /dev/dsp
+		rm /mnt/sd/dlna_upnp -fr
+		
+		mkdir -p /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/
+		tar xzvf  /app_back/mplayer.tar.gz -C /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/
+		sync
+		
+		tar xzvf  /app_back/dlna_upnp_rootfs.tar.gz -C /mnt/sd/
+		cat /mnt/sd/dlna_upnp/networkconfig/nettools/status_sound/status_sound_AutoUpdateSuccess.wav > /dev/dsp
+		#/app_back/app_led_ctl_alone	2	1
+		/app_back/app_led_ctl_alone	1     0
+		echo '0' >  /mnt/sd/dlna_upnp/dev_default.conf
+		sync
+	fi
+else
+	echo "dev_default_var: 0"
+fi
+
+if test  -r /mnt/sd/dlna_upnp/boa_dlna/tmp/dlna_upnp.tar.gz; then
+	echo "dlna_upnp.tar.gz: YES"
+	mv /mnt/sd/dlna_upnp/boa_dlna/tmp/dlna_upnp.tar.gz 	/mnt/sd/dlna_upnp.tar.gz
+	#/app_back/app_led_ctl_alone	2	0
+	/app_back/app_led_ctl_alone	1     2
+	cat /mnt/sd/dlna_upnp/networkconfig/nettools/status_sound/status_sound_AutoUpdateIng.wav > /dev/dsp
+	
+	mkdir /mnt/sd/user_data_bck -p
+	cp /mnt/sd/dlna_upnp/networkconfig/wifi_work_mode.conf				/mnt/sd/user_data_bck -fr
+	cp /mnt/sd/dlna_upnp/networkconfig/wifi_connect_conf					/mnt/sd/user_data_bck -fr
+	cp /mnt/sd/dlna_upnp/networkconfig/hostapd/rtl_hostapd_2G.conf		/mnt/sd/user_data_bck -fr
+	cp /mnt/sd/dlna_upnp/dev_default.conf								/mnt/sd/user_data_bck -fr
+	cp /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/arg				/mnt/sd/user_data_bck -fr
+	cp /mnt/sd/dlna_upnp/boa_dlna/tmp/app_auto_update.conf				/mnt/sd/user_data_bck -fr
+
+#	rm /mnt/sd/dlna_upnp -fr
+	tar xzvf  /mnt/sd/dlna_upnp.tar.gz -C /mnt/sd/
+	
+	cp /mnt/sd/user_data_bck/wifi_work_mode.conf	/mnt/sd/dlna_upnp/networkconfig/	 -fr
+	cp /mnt/sd/user_data_bck/wifi_connect_conf		/mnt/sd/dlna_upnp/networkconfig/	 -fr
+	cp /mnt/sd/user_data_bck/rtl_hostapd_2G.conf		/mnt/sd/dlna_upnp/networkconfig/hostapd/	 -fr
+	cp /mnt/sd/user_data_bck/dev_default.conf		/mnt/sd/dlna_upnp/	 -fr
+	cp /mnt/sd/user_data_bck/arg					/mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/	 -fr
+	cp /mnt/sd/user_data_bck/app_auto_update.conf	/mnt/sd/dlna_upnp/boa_dlna/tmp/	 -fr
+	rm /mnt/sd/user_data_bck -fr
+
+	cat /mnt/sd/dlna_upnp/networkconfig/nettools/status_sound/status_sound_AutoUpdateSuccess.wav > /dev/dsp
+	#/app_back/app_led_ctl_alone	2	1
+	/app_back/app_led_ctl_alone	1     0
+	rm -fr /mnt/sd/dlna_upnp.tar.gz
+	sync
+fi
+
+if test  -r /mnt/sd/dlna_upnp/boa_dlna/tmp/dlna_upnp_auto_update.tar.gz; then
+	echo "dlna_upnp_auto_update.tar.gz: YES"
+	ftp_auto_update_flag=$(cat /mnt/sd/dlna_upnp/boa_dlna/tmp/ftp_auto_update.info|awk -F = 'NR==2{print $2}')
+	echo $ftp_auto_update_flag
+	if [ "$ftp_auto_update_flag" = "1" ] ;then
+		echo "ftp_auto_update_flag == 1 : YES"
+		mv /mnt/sd/dlna_upnp/boa_dlna/tmp/dlna_upnp_auto_update.tar.gz 	/mnt/sd/dlna_upnp_auto_update.tar.gz
+
+		#/app_back/app_led_ctl_alone	2	0
+		/app_back/app_led_ctl_alone	1     2
+		cat /mnt/sd/dlna_upnp/networkconfig/nettools/status_sound/status_sound_AutoUpdateIng.wav > /dev/dsp
+		
+		mkdir /mnt/sd/user_data_bck -p
+		cp /mnt/sd/dlna_upnp/networkconfig/wifi_work_mode.conf				/mnt/sd/user_data_bck -fr
+		cp /mnt/sd/dlna_upnp/networkconfig/wifi_connect_conf					/mnt/sd/user_data_bck -fr
+		cp /mnt/sd/dlna_upnp/networkconfig/hostapd/rtl_hostapd_2G.conf		/mnt/sd/user_data_bck -fr
+		cp /mnt/sd/dlna_upnp/dev_default.conf								/mnt/sd/user_data_bck -fr
+		cp /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/arg				/mnt/sd/user_data_bck -fr
+		cp /mnt/sd/dlna_upnp/boa_dlna/tmp/app_auto_update.conf				/mnt/sd/user_data_bck -fr
+		cp /mnt/sd/dlna_upnp/boa_dlna/tmp/ftp_auto_update.info				/mnt/sd/user_data_bck -fr
+		
+#		rm /mnt/sd/dlna_upnp -fr
+		tar xzvf  /mnt/sd/dlna_upnp_auto_update.tar.gz -C /mnt/sd/
+		
+		cp /mnt/sd/user_data_bck/wifi_work_mode.conf	/mnt/sd/dlna_upnp/networkconfig/	 -fr
+		cp /mnt/sd/user_data_bck/wifi_connect_conf		/mnt/sd/dlna_upnp/networkconfig/	 -fr
+		cp /mnt/sd/user_data_bck/rtl_hostapd_2G.conf		/mnt/sd/dlna_upnp/networkconfig/hostapd/	 -fr
+		cp /mnt/sd/user_data_bck/dev_default.conf		/mnt/sd/dlna_upnp/	 -fr
+		cp /mnt/sd/user_data_bck/arg					/mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/	 -fr
+		cp /mnt/sd/user_data_bck/app_auto_update.conf	/mnt/sd/dlna_upnp/boa_dlna/tmp/	 -fr
+		cp /mnt/sd/user_data_bck/ftp_auto_update.info	/mnt/sd/dlna_upnp/boa_dlna/tmp/	 -fr
+		rm /mnt/sd/user_data_bck -fr
+		
+		cat /mnt/sd/dlna_upnp/networkconfig/nettools/status_sound/status_sound_AutoUpdateSuccess.wav > /dev/dsp
+		#/app_back/app_led_ctl_alone	2	1
+		/app_back/app_led_ctl_alone	1     0
+	fi
+	rm -fr /mnt/sd/dlna_upnp_auto_update.tar.gz
+	sync
+fi
+
+if test  -r /mnt/sd/dlna_upnp/boa_dlna/tmp/dlna_upnp_web_manual_update*.tar.gz; then
+mv /mnt/sd/dlna_upnp/boa_dlna/tmp/dlna_upnp_web_manual_update*.tar.gz 	 /mnt/sd/dlna_upnp/boa_dlna/tmp/dlna_upnp_web_manual_update.tar.gz
+sync
+fi
+if test  -r /mnt/sd/dlna_upnp/boa_dlna/tmp/dlna_upnp_web_manual_update.tar.gz; then
+	echo "dlna_upnp_web_manual_update.tar.gz: YES"
+	mv /mnt/sd/dlna_upnp/boa_dlna/tmp/dlna_upnp_web_manual_update.tar.gz 	/mnt/sd/dlna_upnp_web_manual_update.tar.gz
+	$path_led_ctl	1	2
+	cat /mnt/sd/dlna_upnp/networkconfig/nettools/status_sound/status_sound_AutoUpdateIng.wav > /dev/dsp
+	
+	mkdir /mnt/sd/user_data_bck -p
+	cp /mnt/sd/dlna_upnp/networkconfig/wifi_work_mode.conf				/mnt/sd/user_data_bck -fr
+	cp /mnt/sd/dlna_upnp/networkconfig/wifi_connect_conf					/mnt/sd/user_data_bck -fr
+	cp /mnt/sd/dlna_upnp/networkconfig/hostapd/rtl_hostapd_2G.conf		/mnt/sd/user_data_bck -fr
+	cp /mnt/sd/dlna_upnp/dev_default.conf								/mnt/sd/user_data_bck -fr
+	cp /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/arg				/mnt/sd/user_data_bck -fr
+	cp /mnt/sd/dlna_upnp/boa_dlna/tmp/app_auto_update.conf				/mnt/sd/user_data_bck -fr
+
+#	rm /mnt/sd/dlna_upnp -fr
+	tar xzvf  /mnt/sd/dlna_upnp_web_manual_update.tar.gz -C /mnt/sd/
+	
+	cp /mnt/sd/user_data_bck/wifi_work_mode.conf	/mnt/sd/dlna_upnp/networkconfig/	 -fr
+	cp /mnt/sd/user_data_bck/wifi_connect_conf		/mnt/sd/dlna_upnp/networkconfig/	 -fr
+	cp /mnt/sd/user_data_bck/rtl_hostapd_2G.conf		/mnt/sd/dlna_upnp/networkconfig/hostapd/	 -fr
+	cp /mnt/sd/user_data_bck/dev_default.conf		/mnt/sd/dlna_upnp/	 -fr
+	cp /mnt/sd/user_data_bck/arg					/mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/	 -fr
+	cp /mnt/sd/user_data_bck/app_auto_update.conf	/mnt/sd/dlna_upnp/boa_dlna/tmp/	 -fr
+	rm /mnt/sd/user_data_bck -fr
+
+	cat /mnt/sd/dlna_upnp/networkconfig/nettools/status_sound/status_sound_AutoUpdateSuccess.wav > /dev/dsp
+	$path_led_ctl	1	0
+	rm -fr /mnt/sd/dlna_upnp_web_manual_update.tar.gz
+	sync
+fi
+
+#if test ! -e /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/m_1_1; then
+#	echo "m_1_1: YES"
+#	cp /app_back/m_1_1   /mnt/sd/dlna_upnp/dlna/gmediarender-0.0.6/bin/ -fr
+#	sync
+#fi

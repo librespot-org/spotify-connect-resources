@@ -1,0 +1,58 @@
+cd /
+#mount -t tmpfs tmfps 	/tmp/
+
+mount -t tmpfs tmfps /wpa_net/run/wpa_supplicant
+ifconfig wlan0 up
+
+echo "NC+NMODE=3" > /tmp/NET_CTL_fifo_write
+
+cd /mnt/sd/dlna_upnp/networkconfig/
+echo "wifi scaning......"
+./nettools/iwlist wlan0 scanning |grep "ESSID:" > ./wifi_connect_conf/wifi_scan_tab.info
+./nettools/wifi_scan_tab_html.sh  /mnt/sd/dlna_upnp/networkconfig/wifi_connect_conf/  /mnt/sd/dlna_upnp/boa_dlna/
+sync
+echo "wifi scan tab info:"
+cat ./wifi_connect_conf/wifi_scan_tab.info
+
+if test  -r /mnt/sd/dlna_upnp/boa_dlna/tmp/tkip_wpa_update.conf; then
+	echo "tkip_wpa_update.conf: YES"
+	mv /mnt/sd/dlna_upnp/boa_dlna/tmp/tkip_wpa_update.conf 	/mnt/sd/dlna_upnp/networkconfig/wifi_connect_conf/wifi_connected_last.conf
+	sync
+fi
+
+./nettools/pro_wifi_conn_conf ./wifi_connect_conf/wifi_scan_tab.info ./wifi_connect_conf/wifi_connected_tab.info ./wifi_connect_conf/wifi_connected_last.conf ./wifi_connect_conf/wifi_wps.conf ./wifi_connect_conf/
+
+#./wpa_supplicant -Dwext -ira0 -c /mnt/sd/dlna_upnp/tkip_wpa.conf -d -B
+#./wpa_supplicant -Dwext -iwlan0 -c /mnt/sd/wpa_0_8.conf -d -B
+#cd /mnt/sd/
+./nettools/wpa_supplicant -Dwext -iwlan0 -c ./wifi_connect_conf/wifi_connected_last.conf -d -B
+
+##man IP
+#ifconfig ra0 down
+#ifconfig ra0 up
+#rm /wpa_net/run/wpa_supplicant/ra0 -fr
+#./wpa_supplicant -Dwext -ira0 -c tkip_wpa.conf -d -B
+#ifconfig ra0 192.168.0.188
+
+##auto IP
+#/mnt/sd/dlna_upnp/networkconfig/ifconfig-ra0
+#/mnt/sd/dlna_upnp/networkconfig/ifconfig-dhcp-eth0
+#/mnt/sd/dlna_upnp/networkconfig/ifconfig-dhcp-ra0
+#/mnt/sd/dlna_upnp/networkconfig/ifconfig-dhcp-wlan0
+
+cd /mnt/sd/dlna_upnp/networkconfig/nettools/
+./change_to_ap &
+udhcpc -i wlan0 -s ./simple.script
+
+ifconfig lo 127.0.0.1 up
+
+#ps -ef | grep -v grep | grep  "udhcpc" 
+#var=$(echo $?)
+#if [ $var -eq 0 ];then
+var=$(ifconfig wlan0 | grep "inet addr:")
+echo $var
+if [ -n "$var" ];then
+	echo "NC+NMODE=5" > /tmp/NET_CTL_fifo_write
+	/mnt/sd/dlna_upnp/dlna/dlna_run_sh
+fi
+#echo "NC+NMODE=5" > /tmp/NET_CTL_fifo_write

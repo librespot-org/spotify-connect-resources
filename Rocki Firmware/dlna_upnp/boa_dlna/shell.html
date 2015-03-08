@@ -1,0 +1,75 @@
+<html>
+<head>
+<link href="http://fonts.googleapis.com/css?family=VT323" rel="stylesheet" type="text/css">
+
+<title>ROCKI SHELL</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+ 	$("#rockiconsole").html("ROCKI SHELL SIMULATOR v0.2 20140114<br>You are ROOT, remember: with great power comes great responsibility!<br>");
+
+
+$('#commandinput').keyup(function(e) {
+	if(e.keyCode == 13){
+		execShellCommand();
+	}
+});
+});
+
+
+
+var cdCommands = new Array();
+function execShellCommand(){
+	var commandInput = $('#commandinput').val();
+	$("#rockiconsole").append('<br># ' + commandInput);
+	var elem = document.getElementById('rockiconsole');
+	elem.scrollTop = elem.scrollHeight;
+	var i = 0;
+        var cmdTmp = commandInput.split("");
+	if(cmdTmp[0] == 'c' && cmdTmp[1] == 'd'){
+		cdCommands[cdCommands.length] = commandInput;
+	}
+	/*result.split("").map(function (c) { 
+		if( c.charCodeAt(0) ==10){
+			resultTmp[i] = "<br>";
+		}
+		i++;
+	}));*/
+	var finalCommand = commandInput;
+	if(cdCommands.length>0){
+		for(var i =cdCommands.length-1;i>-1;i--){
+			finalCommand = cdCommands[i] + ";" + finalCommand;
+		}
+	}
+	
+	$.ajax({url: 'cgi-bin/rocki.cgi?ShellCMD=' + finalCommand,success:function(result){
+		result = result.replace(/(\n)+/g,'<br>');
+		result = result.replace(/\t/g,'&nbsp;&nbsp;&nbsp;&nbsp;');
+		$("#rockiconsole").append('<br>' + result);
+		var elem = document.getElementById('rockiconsole');
+		elem.scrollTop = elem.scrollHeight;
+	
+	}});
+
+	$('#commandinput').val("");
+}
+
+
+</script>
+</head>
+<body>
+
+
+
+<div style="background-color:#000000;color:#FFFFFF;font-family:monospace;width:800px;height:600px;overflow:auto;" id="rockiconsole">
+
+</div>
+
+<div>
+<input type="text" id="commandinput"></input>
+<input type="submit" value="Execute" onclick="execShellCommand();"/>
+</div>
+
+</body
+</html>
