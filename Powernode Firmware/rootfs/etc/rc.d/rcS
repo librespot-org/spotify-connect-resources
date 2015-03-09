@@ -1,0 +1,153 @@
+#!/bin/bash
+
+echo "rcS $1"
+if [[ $1 == "stop" ]]; then
+	umount /var/data
+	exit 0
+fi
+
+# mount /proc and /sys
+mount -n -t proc proc /proc
+mount -n -t sysfs sys /sys
+mount -n -t debugfs debugfs /proc/sys/debug
+
+# setup tmpfs for /tmp, /mnt and /var
+mount -n -o mode=1777 -t tmpfs tmpfs /tmp
+mkdir /tmp/mnt
+mkdir /tmp/var
+mkdir /var/data
+mkdir /var/lock
+mkdir /var/mnt
+mkdir -p /var/run/dbus
+mkdir -p /var/avahi/services
+mkdir -p /var/avahi/browse
+ln -s data/log /var/log
+
+# disable hotplug, setup basic /dev in tmpfs
+echo "" > /proc/sys/kernel/hotplug
+mount -n -o mode=0755 -t tmpfs tmpfs /dev
+mknod /dev/console c 5 1
+mknod /dev/null c 1 3
+mknod /dev/mmcblk0 b 179 0
+mknod /dev/mmcblk0p1 b 179 1
+mknod /dev/mmcblk0p2 b 179 2
+mknod /dev/mmcblk0p3 b 179 3
+
+# mount rw data partion
+mount -t ext4 -o noatime,nodiratime,commit=30 /dev/mmcblk0p3 /var/data
+mkdir -p /var/data/log
+
+# setup logging as soon as we have the data partition mounted
+/etc/rc.d/rc.syslog
+logger "Booting main image."
+
+# start udev
+echo "Starting the hotplug events dispatcher udevd"
+udevd --daemon
+echo "Synthesizing initial hotplug events"
+udevtrigger
+udevsettle --timeout=300
+mkdir /dev/pts
+mount -n -t devpts devpts /dev/pts
+mkdir /dev/shm
+mount -n -t tmpfs shm /dev/shm
+ln -s /proc/self/fd /dev/fd
+
+# start watchdog timer, just in case something goes wrong
+watchdog /dev/watchdog
+
+function get_sovi_info
+{
+	sed -r "s:.*<$1>(.*)</$1>.*:\1:;t;d" /etc/sovi_info.xml
+}
+
+# parse sovi_info.xml
+BOARD=$(get_sovi_info board)
+DEBUG_BUILD=$(get_sovi_info debugbuild)
+WIFI=$(get_sovi_info wifi)
+SERVER=$(get_sovi_info server)
+
+# setup player_name and hostname
+if [[ ! -s /var/data/player_name ]]
+then
+	MAC_ADDRESS=$(sed -r 's/..:..:..:..:(..):(..)/\1\2/' /sys/class/net/eth0/address | tr 'a-z' 'A-Z')
+	NAME=$(sovi_hal --name)
+	echo $NAME-$MAC_ADDRESS > /var/data/player_name
+fi
+/root/hostname-update.sh
+
+sovi_hal
+
+# setup audio
+modprobe snd-soc-imx-spdif
+[[ -e /etc/asound.state ]] && alsactl restore 0
+
+# setup lo
+ifconfig lo 127.0.0.1 netmask 255.0.0.0
+
+# setup eth0 (if rootfs is not nfs)
+if grep -v -q "nfs" /proc/cmdline; then
+	ifconfig eth0 up
+	ifplugd -i eth0 -I -r /etc/ifplugd.action
+fi
+
+function ssh_gen_key
+{
+	echo "Generating keys for the dropbear ssh server: "
+	mkdir -p /var/data/etc
+	rm -f /var/data/etc/dropbear_rsa_host_key
+	dropbearkey -t rsa -f /var/data/etc/dropbear_rsa_host_key
+}
+
+function ssh_start
+{
+	echo "Start dropbear ssh server"
+	dropbear -r /var/data/etc/dropbear_rsa_host_key
+}
+
+# generate ssh key if it does not exist, start ssh server with one retry
+[[ -s /var/data/etc/dropbear_rsa_host_key ]] || ssh_gen_key
+ssh_start || (ssh_gen_key && ssh_start)
+
+# setup wifi
+if [[ $WIFI != "none" ]]; then
+	/etc/rc.d/rc.wifi
+fi
+
+# setup samba
+if [[ $SERVER == "yes" ]]; then
+	# create required directories/files
+	mkdir /var/samba
+	mkdir -p /var/data/samba
+
+	# start required daemons
+	smbd -D
+	nmbd -D
+fi
+
+# start dbus, avahi and sovi discovery
+dbus-daemon --system
+avahi-daemon -D
+avahi-browse-sovi &
+/etc/rc.d/rc.discover &
+
+# bluetooth
+/etc/rc.d/rc.bluetooth &
+
+# start mfg tester
+if [[ -e /usr/bin/sovi-mfg ]]; then
+	sovi-mfg &
+fi
+
+# always allow overcommit, allows fork of player even when memory is low
+echo 1 > /proc/sys/vm/overcommit_memory
+
+if [[ -e /var/data/intertek ]]; then
+	mount -o remount junk /
+	/usr/bin/etf_serv &
+else
+	# start sovi
+	/etc/rc.d/rc.sovi &
+fi
+
+echo "All done"

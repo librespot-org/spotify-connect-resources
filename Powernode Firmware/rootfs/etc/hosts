@@ -1,0 +1,10 @@
+# Do not remove the following line, or various programs
+# that require network functionality will fail.
+127.0.0.1       localhost
+192.168.0.254 hostname
+192.168.0.2   gateway0
+192.168.0.3   gateway1
+192.168.0.4   gateway2
+192.168.0.5   gateway3
+192.168.0.6   gateway4
+

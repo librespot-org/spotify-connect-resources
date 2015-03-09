@@ -1,0 +1,43 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Download from HIGHRESAUDIO</title> 
+
+<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.min.css" />
+<link rel="stylesheet" href="css/custom_styles.css">
+<link rel="stylesheet" href="css/themes/custom/Bluesound_DraftTest0-1.min.css" />
+<script src="js/jquery.js"></script>
+<script src="js/jquery.mobile-1.1.0.min.js"></script>
+
+</head>
+<body>
+<div data-role="page" id="hralistpage">
+[metarefresh]
+    <div data-theme="b" data-role="header" [headervisible]>
+        <a href="/" data-icon="back" data-rel="back" data-iconpos="notext"></a>
+        <h1>Download from HIGHRESAUDIO</h1>
+        <a href="/" data-icon="home" data-iconpos="notext"></a>
+    </div>
+    <div data-role="content">
+        <div class="ui-grid-a">
+            <div class="ui-block-a bs-header-image">
+                <a href="http://m.highresaudio.com/"><img src="/images/HRA_Logo_NEGATIV_RZ.jpg" /></a>
+            </div>
+            <div class="ui-block-b bs-header-text">
+                <div >           
+                 [status]<a href="/hradownload?action=[action]&noheader=[noheader]" data-ajax="false" data-inline="true" data-icon="arrow-r" data-iconpos="right" data-role="button">[action]
+                        <span class="ui-li-count" data-inline="true" style="padding-left:2em">[count]</span></a>
+                </div> 
+            </div>
+        </div>
+        <div class="content-primary" style="padding-top: 2em;">
+        <ul data-role="listview" data-divider-theme="a">
+        [list]
+        </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

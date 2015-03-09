@@ -1,0 +1,101 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Make Service Request</title> 
+
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" href="css/custom_styles.css">
+	<link rel="stylesheet" href="css/themes/custom/Bluesound_DraftTest0-1.min.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+	
+    </head>
+    <body>
+	<div data-role="page" id="servicerequestpage">
+	    <div data-theme="b" data-role="header">
+                <a href="/" data-icon="back" data-rel="back" data-iconpos="notext"></a>
+	        <h1>Make Service Request</h1>
+                <a href="/" data-icon="home" data-transition="slideup" data-iconpos="notext"></a>
+	    </div>
+	    <div data-role="content">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a bs-header-image"><img src="images/logo.png" /></div>
+                    <div class="ui-block-b bs-header-text"></div>
+                </div>
+	        <form action="/diag" method="POST" data-ajax="false" id="requestForm">
+			<div id="emailDiv" data-role="fieldcontain">
+				<label for="subject">Subject:</label>		
+				<input id="subject" name="subject" type="text" />
+			</div>
+	
+			<div id="emailDiv" data-role="fieldcontain">
+				<label for="email">Email address:</label>		
+				<input id="email" name="email" type="text" />
+			</div>
+			<div id="phoneDiv" data-role="fieldcontain">
+				<label for="phone">Phone number: </label>		
+				<input id="phone" name="phone" type="text" />
+			</div>
+			<div id="nameDiv" data-role="fieldcontain">
+				<label for="name">Your name: </label>		
+				<input id="name" name="name" type="text" />
+			</div>
+			<div id="descDiv" data-role="fieldcontain">
+				<label for="desc">Brief description: </label>
+				<textarea id="desc" name="desc" rows="3"></textarea>
+			</div>
+			<div id="regionDiv" data-rol="fieldcontain">
+				<label for="region">Location: </label>
+				<select id="region" name="region">
+					<option value="100">Choose Country</option>
+					<option value="20">Australia</option>
+					<option value="1">Austria</option>
+					<option value="9">Belgium</option>
+					<option value="3">Canada</option>
+					<option value="31">China</option>
+					<option value="17">Czech Republic</option>
+					<option value="4">Denmark</option>
+					<option value="21">Finland</option>
+					<option value="14">France</option>
+					<option value="13">Germany</option>
+					<option value="29">Greece</option>
+					<option value="18">India</option>
+					<option value="32">Indonesia</option>
+					<option value="33">Ireland</option>
+					<option value="22">Italy</option>
+					<option value="11">Luxembourg</option>
+					<option value="23">Mexico</option>
+					<option value="10">Nederland</option>
+					<option value="24">New Zealand</option>
+					<option value="5">Norway</option>
+					<option value="34">Philippines</option>
+					<option value="25">Poland</option>
+					<option value="26">Portugal</option>
+					<option value="30">Russia</option>
+					<option value="12">Singapore</option>
+					<option value="19">Slovakia</option>
+					<option value="27">South Africa</option>
+					<option value="28">Spain</option>
+					<option value="6">Sweden</option>
+					<option value="15">Switzerland</option>
+					<option value="35">Thailand</option>
+					<option value="16">United Kingdom</option>
+					<option value="7">United States</option>
+					<option value="8">Other</option>
+				</select>
+			<div id="submitDiv" data-role="fieldcontain">    
+				<input type="submit" value="Send Request" data-inline="true"/>
+			</div>
+		</form>
+    <script type="text/javascript">
+	$('#requestForm').submit(function(){
+		$('[type="submit"]').button('disable');
+		return true;
+	});
+    </script>
+	    </div>
+	</div>
+    </body>
+</html>

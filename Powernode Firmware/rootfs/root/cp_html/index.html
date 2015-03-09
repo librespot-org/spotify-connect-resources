@@ -1,0 +1,50 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Home</title> 
+
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" href="css/custom_styles.css">
+	<link rel="stylesheet" href="css/themes/custom/Bluesound_DraftTest0-1.min.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+	
+	</head>
+	<body>
+	<div data-role="page" id="homepage">
+	    <div data-theme="b" data-role="header">
+	        <h1>Home</h1>
+	    </div>
+	    <div data-role="content" id="contentMain" name="contentMain">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a bs-header-image"><img src="images/logo.png" /></div>
+                    <div class="ui-block-b bs-header-text"><h2>[current_name] Control Panel</h2></div>
+                </div>
+	        
+	        <ul data-role="listview" data-divider-theme="b" data-inset="true">
+		    <li data-role="list-divider" role="heading">Main Navigation</li>
+	            <li data-theme="c"><a href="/nodename" data-transition="slide">Set Player (Room) Name</a></li>
+	            <li data-theme="c"><a href="http://[myip]:2000/" data-transition="slide">Rip / Encode Control Panel</a></li>
+	            <li data-theme="c"><a href="/wificfg" data-transition="slide">Configure WiFi</a></li>
+                    <li data-theme="c"><a href="/audiosettings" data-transition="slide">Audio Settings</a></li>
+                    <li data-theme="c"><a href="/bluetooth" data-transition="slide">Bluetooth Settings</a></li>
+	            <li data-theme="c"><a href="/spkr_opts" data-transition="slide">Speaker Setup</a></li>
+	            <li data-theme="c"><a href="/sharecfg" data-transition="slide">Configure Network Shares</a></li>
+	            <li data-theme="c"><a href="/services" data-transition="slide">Configure Music Services</a></li>
+	            <li data-theme="c"><a href="/playurl" data-transition="slide">Play Internet URL</a></li>
+		    <li data-theme="c"><a href="/show_your_nodes" data-transition="slide">Show Your Other Players</a></li>
+		    <li data-theme="c"><a href="/backup_playlists" data-ajax="false">Backup Playlists</a></li>
+		    <li data-theme="c"><a href="/restore_playlists" data-ajax="false">Restore Playlists</a></li>
+		    <li data-theme="c"><a href="/backup" data-ajax="false">Backup Music Library</a></li>
+		    <li data-theme="c"><a href="/delete_index" data-ajax="false">Delete Index</a></li>
+		    <li data-theme="c"> <a href="/upgrade" data-ajax="false">Check For Upgrade</a></li>
+                    <li data-theme="c"> <a href="/diagnostics" data-ajax="false">Diagnostics </a> </li>   
+		    <li data-theme="c"><a href="/diag" data-transition="slide">Send Support Request</a></li>
+	        </ul>
+	    </div>
+Version: [gitversion]
+	</div>
+</body>
+</html>

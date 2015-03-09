@@ -1,0 +1,60 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Find Network Share</title> 
+
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" href="css/custom_styles.css">
+	<link rel="stylesheet" href="css/themes/custom/Bluesound_DraftTest0-1.min.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+	
+    </head>
+    <body>
+	<div data-role="page" id="nodenamepage">
+	    <div data-theme="b" data-role="header">
+                <a href="/" data-icon="back" data-rel="back" data-iconpos="notext"></a>
+	        <h1>Find Network Share</h1>
+                <a href="/" data-icon="home" data-transition="slideup" data-iconpos="notext"></a>
+	    </div>
+	    <div data-role="content">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a bs-header-image"><img src="images/logo.png" /></div>
+                    <div class="ui-block-b bs-header-text"></div>
+                </div>
+		<form id="findshareform" method="POST" action="/addshares" data-ajax="false">
+	        <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup" data-type="vertical">
+<!--
+                        <legend>
+                            Shares found:
+                        </legend>
+-->
+<!-- SHARES -->
+<!--
+                        <input name="checkbox1" id="checkbox1" type="checkbox" />
+                        <label for="checkbox1">
+                            homes on ERL (\\ERL\homes)
+                        </label>
+                        <input name="checkbox2" id="checkbox2" type="checkbox" />
+                        <label for="checkbox2">
+                            Public on SHEILAP (\\SHEILAP\Public)
+                        </label>
+                        <input name="checkbox3" id="checkbox3" type="checkbox" />
+                        <label for="checkbox3">
+                            Users on ERIC-PC (\\ERIC-PC\Users)
+                        </label>
+-->
+                    </fieldset>
+                </div>
+<!-- ADDSHAREBUTTON -->
+                <a data-role="button" data-ajax="false" href="/manshare">
+                   Enter share name manually
+                </a>
+		</form>
+	    </div>
+	</div>
+    </body>
+</html>

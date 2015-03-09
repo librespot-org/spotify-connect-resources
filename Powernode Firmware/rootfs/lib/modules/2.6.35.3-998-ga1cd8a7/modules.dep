@@ -1,0 +1,34 @@
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko: 
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/bluetooth/bcm203x.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/bluetooth/bluetooth.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/lib80211.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/bluetooth/ath3k.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/bluetooth/bluetooth.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/cfg80211.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/kernel/sound/core/snd-rawmidi.ko: 
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/net/wireless/cw1200/cw1200_wlan_sagrad.ko: 
+/lib/modules/2.6.35.3-998-ga1cd8a7/kernel/sound/usb/snd-usb-audio.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/kernel/sound/core/snd-hwdep.ko /lib/modules/2.6.35.3-998-ga1cd8a7/kernel/sound/usb/snd-usbmidi-lib.ko /lib/modules/2.6.35.3-998-ga1cd8a7/kernel/sound/core/snd-rawmidi.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/lib80211_crypt_wep.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/lib80211.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/kernel/drivers/usb/gadget/g_file_storage.ko: 
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/net/wireless/ath/ath6kl/ath6kl_core.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/cfg80211.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/sch_fq_codel.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/bluetooth/bluetooth.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/kernel/lib/crc-ccitt.ko: 
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/net/wireless/cw1200/cw1200_core.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/mac80211/mac80211.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/cfg80211.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/kernel/sound/soc/imx/snd-soc-imx-spdif-dai.ko: 
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/lib80211_crypt_tkip.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/lib80211.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/kernel/drivers/scsi/scsi_wait_scan.ko: 
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/net/wireless/ath/ath.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/cfg80211.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/sch_codel.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/mac80211/mac80211.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/cfg80211.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/kernel/sound/core/snd-hwdep.ko: 
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/net/wireless/cw1200/cw1200_wlan_sdio.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/net/wireless/cw1200/cw1200_core.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/cfg80211.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/net/wireless/cw1200/cw1200_wlan_sagrad.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/mac80211/mac80211.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/kernel/sound/soc/codecs/snd-soc-mxc-spdif.ko: 
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/net/wireless/ath/ath6kl/ath6kl_sdio.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/net/wireless/ath/ath6kl/ath6kl_core.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/cfg80211.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/kernel/drivers/usb/gadget/g_ether.ko: 
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/lib80211_crypt_ccmp.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/lib80211.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/kernel/sound/usb/snd-usbmidi-lib.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/kernel/sound/core/snd-rawmidi.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/net/wireless/ath/ath6kl/ath6kl_usb.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/net/wireless/ath/ath6kl/ath6kl_core.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/cfg80211.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/kernel/drivers/usb/gadget/g_serial.ko: 
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/net/wireless/cw1200/cw1200_wlan_spi.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/net/wireless/cw1200/cw1200_core.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/mac80211/mac80211.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/wireless/cfg80211.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/kernel/sound/soc/imx/snd-soc-imx-spdif.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/kernel/sound/soc/codecs/snd-soc-mxc-spdif.ko /lib/modules/2.6.35.3-998-ga1cd8a7/kernel/sound/soc/imx/snd-soc-imx-spdif-dai.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/updates/drivers/bluetooth/btusb.ko: /lib/modules/2.6.35.3-998-ga1cd8a7/updates/net/bluetooth/bluetooth.ko /lib/modules/2.6.35.3-998-ga1cd8a7/updates/compat/compat.ko
+/lib/modules/2.6.35.3-998-ga1cd8a7/kernel/drivers/hid/usbhid/usbhid.ko: 

@@ -1,0 +1,47 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Configure Output Level</title> 
+
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" href="css/custom_styles.css">
+	<link rel="stylesheet" href="css/themes/custom/Bluesound_DraftTest0-1.min.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+	
+	</head>
+	<body>
+        <div data-role="page" id="nodenamepage">
+            <div data-theme="b" data-role="header">
+                <a href="/" data-icon="back" data-rel="back" data-iconpos="notext"></a>
+                <h1>Configure Speakers</h1>
+                <a href="/" data-icon="home" data-transition="slideup" data-iconpos="notext"></a>
+            </div>
+            <div data-role="content">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a bs-header-image"><img src="images/logo.png" /></div>
+                    <div class="ui-block-b bs-header-text"></div>
+                </div>
+                <form id="analogForm" method="POST" action="/spkr_opts" data-ajax="false">
+    
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup" data-type="vertical">
+                            <legend>Select attached speakers:</legend>
+                            <input name="radiobuttons1" id="radio1" value="d30" type="radio" />
+                            <label for="radio1">Bluesound Duo</label>
+                            <input name="radiobuttons1" id="radio2" value="withsub" type="radio" />
+                            <label for="radio2">Other (with subwoofer)</label>
+                            <input name="radiobuttons1" id="radio3" value="default" type="radio" />
+                            <label for="radio3">Other (without subwoofer)</label>
+                        </fieldset>
+                    </div>
+                    <div id="submitDiv" data-role="fieldcontain">
+                        <input type="submit" value="Update" data-inline="true" />
+                    </div>
+                </form>
+            </div>
+        </div>
+</body>
+</html>

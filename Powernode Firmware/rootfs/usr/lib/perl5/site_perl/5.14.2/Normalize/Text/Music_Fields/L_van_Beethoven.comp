@@ -1,0 +1,4227 @@
+# format = mail-header
+
+
+
+
+## Format: "title; opus (date)"
+## The dates are taken from CODM, beethovenlv, or wikipedia
+## The most expanded date is taken; if there is a conflict, the first
+## available date (in the order above) is taken
+
+
+
+# dup_opus_rex ^(?i)WoO\s+(15|74|105|116|158)\b
+
+# opus_prefix Op.
+
+
+
+## These titles are taken from wikipedia site:
+
+Title-Count: Three
+Title-Type: Piano Trios
+Title-Opus: 1
+Title-Dates: 1792--1794
+
+Title-Type: Piano Trio
+Title-No: 1
+Title-Key: E flat major
+Title-Opus: 1-1
+Title-Dates: 1792--1793
+
+Title-Type: Piano Trio
+Title-No: 2
+Title-Key: G major
+Title-Opus: 1-2
+Title-Dates: 1792--1794
+
+Title-Type: Piano Trio
+Title-No: 3
+Title-Key: C minor
+Title-Opus: 1-3
+Title-Dates: 1792--1794
+
+Title-Count: Three
+Title-Type: Piano Sonatas
+Title-Opus: 2
+Title-Dates: 1794--1795
+
+Title-Type: Piano Sonata
+Title-No: 1
+Title-Key: F minor
+Title-Opus: 2-1
+Title-Dates: 1793--1795
+
+Title-Type: Piano Sonata
+Title-No: 2
+Title-Key: A major
+Title-Opus: 2-2
+Title-Dates: 1794--1795
+
+Title-Type: Piano Sonata
+Title-No: 3
+Title-Key: C major
+Title-Opus: 2-3
+Title-Dates: 1794--1795
+
+Title-Type: String Trio
+Title-No: 1
+Title-Key: E flat major
+Title-Opus: 3
+Title-Dates: pre-1794
+
+Title-Type: String Quintet
+Title-Key: E flat major
+Title-Opus: 4
+Title-Dates: 1795
+
+Title-Count: Two
+Title-Type: Cello Sonatas
+Title-Opus: 5
+Title-Dates: 1796
+
+Title-Type: Sonata
+Title-For: Piano and Cello
+Title-No: 1
+Title-Key: F major
+Title-Opus: 5-1
+Title-Dates: 1796
+
+Title-Type: Sonata
+Title-For: Piano and Cello
+Title-No: 2
+Title-Key: G minor
+Title-Opus: 5-2
+Title-Dates: 1796
+
+Title-Type: Piano Sonata
+Title-For: four hands
+Title-Opus: 6
+Title-Dates: 1797
+
+Title-Type: Piano Sonata
+Title-No: 4
+Title-Key: E flat major
+Title-Opus: 7
+Title-Dates: 1796
+
+Title-Type: Serenade
+Title-Key: D major
+Title-For: string trio
+Title-Opus: 8
+Title-Dates: 1797
+
+Title-Count: Three
+Title-Type: String Trios
+Title-Opus: 9
+Title-Dates: 1798
+
+Title-Type: String Trio
+Title-No: 2
+Title-Key: G major
+Title-Opus: 9-1
+Title-Dates: 1798
+
+Title-Type: String Trio
+Title-No: 3
+Title-Key: D major
+Title-Opus: 9-2
+Title-Dates: 1798
+
+Title-Type: String Trio
+Title-No: 4
+Title-Key: C minor
+Title-Opus: 9-3
+Title-Dates: 1798
+
+Title-Count: Three
+Title-Type: Piano Sonatas
+Title-Opus: 10
+Title-Dates: 1798
+
+Title-Type: Piano Sonata
+Title-No: 5
+Title-Key: C minor
+Title-Opus: 10-1
+Title-Dates: 1795--1797
+
+Title-Type: Piano Sonata
+Title-No: 6
+Title-Key: F major
+Title-Opus: 10-2
+Title-Dates: 1796--1797
+
+Title-Type: Piano Sonata
+Title-No: 7
+Title-Key: D major
+Title-Opus: 10-3
+Title-Dates: 1797--1798
+
+Title-Type: Piano Trio
+Title-No: 4
+Title-Key: B flat major
+Title-Opus: 11
+Title-Dates: 1797
+
+Title-Count: Three
+Title-Type: Violin Sonatas
+Title-Opus: 12
+Title-Dates: 1798
+
+Title-Type: Violin Sonata
+Title-No: 1
+Title-Key: D major
+Title-Opus: 12-1
+Title-Dates: 1798
+
+Title-Type: Violin Sonata
+Title-No: 2
+Title-Key: A major
+Title-Opus: 12-2
+Title-Dates: 1798
+
+Title-Type: Violin Sonata
+Title-No: 3
+Title-Key: E flat major
+Title-Opus: 12-3
+Title-Dates: 1798
+
+Title-Type: Piano Sonata
+Title-No: 8
+Title-Key: C minor
+Title-Name: Pathetique
+Title-Opus: 13
+Title-Dates: 1799
+
+Title-Count: Two
+Title-Type: Piano Sonatas
+Title-Opus: 14
+Title-Dates: 1799
+
+Title-Type: Piano Sonata
+Title-No: 9
+Title-Key: E major
+Title-Opus: 14-1
+Title-Dates: 1798--1799
+
+Title-Type: Piano Sonata
+Title-No: 10
+Title-Key: G major
+Title-Opus: 14-2
+Title-Dates: 1799
+
+Title-Type: Piano Concerto
+Title-No: 1
+Title-Key: C major
+Title-Punct: ;
+Title-Comment: Op. 15 (comp. 1795--1798, f.p. (presumed) Vienna, 1800-4-2, soloist Beethoven, cond. Wranitzky; pubd. 1801-3)
+
+Title-Type: Quintet
+Title-For: Piano and Winds
+Title-Opus: 16
+Title-Dates: 1796, pubd. 1801
+
+Title-Type: Horn Sonata
+Title-Key: F major
+Title-Opus: 17
+Title-Dates: 1800
+
+Title-Count: Six
+Title-Type: String Quartets
+Title-Opus: 18
+Title-Dates: 1800
+
+Title-Type: String Quartet
+Title-No: 1
+Title-Key: F major
+Title-Opus: 18-1
+Title-Dates: 1800
+
+Title-Type: String Quartet
+Title-No: 2
+Title-Key: G major
+Title-Opus: 18-2
+Title-Dates: 1800
+
+Title-Type: String Quartet
+Title-No: 3
+Title-Key: D major
+Title-Opus: 18-3
+Title-Dates: 1800
+
+Title-Type: String Quartet
+Title-No: 4
+Title-Key: C minor
+Title-Opus: 18-4
+Title-Dates: 1800
+
+Title-Type: String Quartet
+Title-No: 5
+Title-Key: A major
+Title-Opus: 18-5
+Title-Dates: 1800
+
+Title-Type: String Quartet
+Title-No: 6
+Title-Key: B flat major
+Title-Opus: 18-6
+Title-Dates: 1800
+
+Title-Type: Piano Concerto
+Title-No: 2
+Title-Key: B flat major
+Title-Opus: 19
+Title-Dates: comp. 1794--1795, f.p. Vienna, 1795-03-29, soloist Beethoven; pubd. 1801-12
+
+Title-Type: Septet
+Title-Key: E flat major
+Title-Opus: 20
+Title-Dates: 1799
+
+Title-Type: Symphony
+Title-No: 1
+Title-Key: C major
+Title-Opus: 21
+Title-Dates: comp. 1799--1800, f.p. Vienna, 1800-04-02, cond. P. Wranitzky; pubd. 1801
+
+Title-Type: Piano Sonata
+Title-No: 11
+Title-Key: B flat major
+Title-Opus: 22
+Title-Dates: 1800
+
+Title-Type: Violin Sonata
+Title-No: 4
+Title-Key: A minor
+Title-Opus: 23
+Title-Dates: 1800
+
+Title-Type: Violin Sonata
+Title-No: 5
+Title-Key: F major
+Title-Name: Spring
+Title-Opus: 24
+Title-Dates: 1801
+
+Title-Type: Serenade
+Title-Key: D major
+Title-For: Flute, Violin and Viola
+Title-Opus: 25
+Title-Dates: 1801
+
+Title-Type: Piano Sonata
+Title-No: 12
+Title-Key: A flat major
+Title-Opus: 26
+Title-Dates: 1801
+
+Title-Count: Two
+Title-Type: Piano Sonatas
+Title-Opus: 27
+Title-Dates: 1801
+
+Title-Type: Piano Sonata
+Title-No: 13
+Title-Key: E flat major
+Title-Opus: 27-1
+Title-Dates: 1801
+
+Title-Type: Piano Sonata
+Title-No: 14
+Title-Key: C sharp minor
+Title-Name: Moonlight
+Title-Opus: 27-2
+Title-Dates: 1800--1801
+
+Title-Type: Piano Sonata
+Title-No: 15
+Title-Key: D major
+Title-Opus: 28
+Title-Dates: 1801
+
+Title-Type: String Quintet
+Title-Key: C major
+Title-Opus: 29
+Title-Dates: 1801
+
+Title-Count: Three
+Title-Type: Violin Sonatas
+Title-Opus: 30
+Title-Dates: 1801--1802
+
+Title-Type: Violin Sonata
+Title-No: 6
+Title-Key: A major
+Title-Opus: 30-1
+Title-Dates: 1801--1802
+
+Title-Type: Violin Sonata
+Title-No: 7
+Title-Key: C minor
+Title-Opus: 30-2
+Title-Dates: 1801--1802
+
+Title-Type: Violin Sonata
+Title-No: 8
+Title-Key: G major
+Title-Opus: 30-3
+Title-Dates: 1801--1802
+
+Title-Count: Three
+Title-Type: Piano Sonatas
+Title-Opus: 31
+Title-Dates: 1802
+
+Title-Type: Piano Sonata
+Title-No: 16
+Title-Key: G major
+Title-Opus: 31-1
+Title-Dates: 1802
+
+Title-Type: Piano Sonata
+Title-No: 17
+Title-Key: D minor
+Title-Name: Tempest
+Title-Opus: 31-2
+Title-Dates: 1802
+
+Title-Type: Piano Sonata
+Title-No: 18
+Title-Key: E flat major
+Title-Name: The Hunt
+Title-Opus: 31-3
+Title-Dates: 1802
+
+Title-RAW: Song - An die Hoffnung
+Title-Opus: 32
+Title-Dates: 1805
+
+Title-Count: Seven
+Title-Type: Bagatelles
+Title-For: piano
+Title-Opus: 33
+Title-Dates: 1802
+
+Title-Count: Six
+Title-Type: variations
+Title-For: piano
+Title-Related-On: an original theme
+Title-Key: F major
+Title-Opus: 34
+Title-Dates: 1802
+
+Title-RAW: Fifteen variations and a fugue for piano on an original theme
+Title-Key: E flat major
+Title-Name: Eroica
+Title-Opus: 35
+Title-Dates: 1802
+
+Title-Type: Symphony
+Title-No: 2
+Title-Key: D major
+Title-Opus: 36
+Title-Dates: comp. 1801--1802, f.p. Vienna, 1803-04-05, cond. Beethoven; pubd. 1804
+
+Title-Type: Piano Concerto
+Title-No: 3
+Title-Key: C minor
+Title-Opus: 37
+Title-Dates: comp. 1800--1801, f.p. Vienna, 1803-04-05, soloist Beethoven; pubd. 1804
+
+Title-RAW: Piano Trio No. 8 (Arrangement of the Septet; Op. 20))
+Title-Opus: 38
+Title-Dates: 1820--1823
+
+Title-RAW: Two Preludes through all twelve major keys
+Title-For: piano
+Title-Opus: 39
+Title-Dates: 1789
+
+Title-Type: Romance
+Title-For: Violin
+Title-Key: G major
+Title-Opus: 40
+Title-Dates: 1802
+
+Title-Type: Serenade
+Title-For: Piano and Flute or Violin
+Title-Key: D major
+Title-Opus: 41
+Title-Dates: 1803
+
+Title-Type: Notturno
+Title-For: Viola and Piano
+Title-Key: D major
+Title-Opus: 42
+Title-Dates: 1803
+
+Title-RAW: The Creatures of Prometheus, Overture and Ballet music
+Title-Opus: 43
+Title-Dates: 1801
+
+Title-RAW: Piano Trio No. 10 (Variations on an original theme in E flat major)
+Title-Opus: 44
+Title-Dates: 1802--1803
+
+Title-Count: Three
+Title-Type: Marches
+Title-For: Piano, 4 hands
+Title-Opus: 45
+Title-Dates: 1803
+
+Title-RAW: Song - Adelaide
+Title-Opus: 46
+Title-Dates: 1795
+
+Title-Type: Violin Sonata
+Title-No: 9
+Title-Key: A major
+Title-Name: Kreutzer
+Title-Opus: 47
+Title-Dates: 1802
+
+Title-Count: Six
+Title-Type: Songs
+Title-Opus: 48
+Title-Dates: 1802
+
+Title-RAW: Bitten
+Title-Opus: 48-1
+Title-Dates: 1802
+
+Title-RAW: Die Liebe des Nächsten
+Title-Opus: 48-2
+Title-Dates: 1802
+
+Title-RAW: Vom Tode
+Title-Opus: 48-3
+Title-Dates: 1802
+
+Title-RAW: Die Ehre Gottes aus der Natur
+Title-Opus: 48-4
+Title-Dates: 1802
+
+Title-RAW: Gottes Macht und Vorsehung, Bußlied
+Title-Opus: 48-5
+Title-Dates: 1802
+
+Title-Count: Two
+Title-Type: Piano Sonatas
+Title-Opus: 49
+Title-Dates: 1802
+
+Title-Type: Piano Sonata
+Title-No: 19
+Title-Key: G minor
+Title-Opus: 49-1
+Title-Dates: 1797
+
+Title-Type: Piano Sonata
+Title-No: 20
+Title-Key: G major
+Title-Opus: 49-2
+Title-Dates: 1795--1796
+
+Title-Type: Romance
+Title-For: Violin
+Title-Key: F major
+Title-Opus: 50
+Title-Dates: 1798
+
+Title-Count: Two
+Title-Type: Rondos
+Title-For: Piano
+Title-Opus: 51
+Title-Dates: 1797
+
+Title-Type: Rondo
+Title-Key: C major
+Title-Opus: 51-1
+Title-Dates: 1796--1797
+
+Title-Type: Rondo
+Title-Key: G major
+Title-Opus: 51-2
+Title-Dates: 1798
+
+Title-Count: Eight
+Title-Type: Songs
+Title-Opus: 52
+Title-Dates: 1785--1793
+
+Title-RAW: Urians Reise um die Welt
+Title-Opus: 52-1
+Title-Dates: 1785--1793
+
+Title-RAW: Feuerfab
+Title-Opus: 52-2
+Title-Dates: 1785--1793
+
+Title-RAW: Das Liedchen von der Ruhe
+Title-Opus: 52-3
+Title-Dates: 1785--1793
+
+Title-RAW: Maigesang
+Title-Opus: 52-4
+Title-Dates: 1785--1793
+
+Title-RAW: Mollys Abschied
+Title-Opus: 52-5
+Title-Dates: 1785--1793
+
+Title-RAW: Die Liebe
+Title-Opus: 52-6
+Title-Dates: 1785--1793
+
+Title-RAW: Marmotte
+Title-Opus: 52-7
+Title-Dates: 1785--1793
+
+Title-RAW: Das Blümchen Wunderhold
+Title-Opus: 52-8
+Title-Dates: 1785--1793
+
+Title-Type: Piano Sonata
+Title-No: 21
+Title-Key: C major
+Title-Name: Waldstein
+Title-Opus: 53
+Title-Dates: 1804
+
+Title-Type: Piano Sonata
+Title-No: 22
+Title-Key: F major
+Title-Opus: 54
+Title-Dates: 1804
+
+Title-Type: Symphony
+Title-No: 3
+Title-Key: E flat major
+Title-Name: Eroica
+Title-Opus: 55
+Title-Dates: comp. 1803--1804, f.pub.p. Vienna, 1805-04-07; pubd. 1806
+
+Title-Type: Triple Concerto
+Title-Key: C major
+Title-Opus: 56
+Title-Dates: comp. 1804, f.p. 1808; pubd. 1807
+
+Title-Type: Piano Sonata
+Title-No: 23
+Title-Key: F minor
+Title-Name: Appassionata
+Title-Opus: 57
+Title-Dates: 1805
+
+Title-Type: Piano Concerto
+Title-No: 4
+Title-Key: G major
+Title-Opus: 58
+Title-Dates: comp. 1805--1806, f.p. Vienna, 1808-12-22, soloist Beethoven; pubd. 1808
+
+Title-RAW: Three String Quartets, the Rasumovsky quartets
+Title-Opus: 59
+Title-Dates: comp. 1806
+
+Title-Type: String Quartet
+Title-No: 7
+Title-Key: F major
+Title-Opus: 59-1
+Title-Dates: comp. 1806
+
+Title-Type: String Quartet
+Title-No: 8
+Title-Key: E minor
+Title-Opus: 59-2
+Title-Dates: comp. 1806
+
+Title-Type: String Quartet
+Title-No: 9
+Title-Key: C major
+Title-Opus: 59-3
+Title-Dates: comp. 1806
+
+Title-Type: Symphony
+Title-No: 4
+Title-Key: B flat major
+Title-Opus: 60
+Title-Dates: comp. 1806, f.pub.p. Vienna, 1807-11-15, cond. Clement; pubd. 1808
+
+Title-Type: Concerto
+Title-For: Violin and Orchestra
+Title-Key: D major
+Title-Opus: 61
+Title-Dates: arr. for pf. by Beethoven 1807, pubd. 1808 / comp. 1806, f.p. Vienna, 1806-12-23, soloist Franz Clement; pub. 1809
+
+Title-RAW: Overture - Coriolan
+Title-Opus: 62
+Title-Dates: 1807
+
+Title-RAW: Arrangement of String Quintet (Op. 4)
+Title-For: Piano Trio
+Title-Opus: 63
+Title-Dates: 1806
+
+Title-RAW: Arrangement of String Trio (Op. 3)
+Title-For: Piano and Cello
+Title-Opus: 64
+Title-Dates: 1807
+
+Title-RAW: Aria - Ah perfido!
+Title-Opus: 65
+Title-Dates: comp. 1796
+
+Title-RAW: Variations for Cello on Mozart's Ein Mädchen oder Weibchen
+Title-Opus: 66
+Title-Dates: 1796
+
+Title-Type: Symphony
+Title-No: 5
+Title-Key: C minor
+Title-Opus: 67
+Title-Dates: comp. 1804--1808, f.p. Vienna, 1808-12-22, cond. Beethoven; pubd. 1809
+
+Title-Type: Symphony
+Title-No: 6
+Title-Key: F major
+Title-Name: Pastoral
+Title-Opus: 68
+Title-Dates: comp. 1807--1808, f.p. Vienna, 1808-12-22, cond. Beethoven; pubd. 1809
+
+Title-Type: Sonata
+Title-For: Piano and Violoncello
+Title-No: 3
+Title-Key: A major
+Title-Opus: 69
+Title-Dates: 1808
+
+Title-Count: Two
+Title-Type: Piano Trios
+Title-Opus: 70
+Title-Dates: 1808
+
+Title-Type: Piano Trio
+Title-No: 5
+Title-Key: D major
+Title-Name: Ghost
+Title-Opus: 70-1
+Title-Dates: 1808
+
+Title-Type: Piano Trio
+Title-No: 6
+Title-Key: E flat major
+Title-Opus: 70-2
+Title-Dates: 1808
+
+Title-Type: Wind sextet
+Title-Key: E flat major
+Title-Opus: 71
+Title-Dates: 1796
+
+Title-RAW: Opera - Fidelio (c. 1803-5; Fidelio Overture composed 1814)
+Title-Opus: 72
+Title-Dates: 1805, rev. 1806 and 1814 / 1814
+
+Title-RAW: Opera - Leonore (earlier version of Fidelio, with Leonore No. 2 Overture)
+Title-Opus: 72a
+Title-Dates: 1805
+
+Title-RAW: Opera - Leonore (earlier version of Fidelio, with Leonore No. 3 Overture)
+Title-Opus: 72b
+Title-Dates: 1806
+
+Title-Type: Piano Concerto
+Title-No: 5
+Title-Key: E flat major
+Title-Name: Emperor
+Title-Opus: 73
+Title-Dates: comp. 1809, f.p. Leipzig, 1810-12, soloist F. Schneider, f. Vienna p. 1812-02-12, soloist Czerny; pubd. 1811
+
+Title-Type: String Quartet
+Title-No: 10
+Title-Key: E flat major
+Title-Name: Harp
+Title-Opus: 74
+Title-Dates: 1809
+
+Title-Count: Six
+Title-Type: Songs
+Title-Opus: 75
+Title-Dates: 1809
+
+Title-Type: Mignon
+Title-Opus: 75-1
+Title-Dates: 1809
+
+Title-RAW: Neue Liebe neues Leben
+Title-Opus: 75-2
+Title-Dates: 1809
+
+Title-RAW: Aus Goethes Faust: Es war einmal ein König
+Title-Opus: 75-3
+Title-Dates: 1809
+
+Title-RAW: Gretels Warnung
+Title-Opus: 75-4
+Title-Dates: 1809
+
+Title-RAW: An die fernen Geliebten
+Title-Opus: 75-5
+Title-Dates: 1809
+
+Title-RAW: Der Zufriedene
+Title-Opus: 75-6
+Title-Dates: 1809
+
+Title-Count: Six
+Title-Type: variations
+Title-For: piano
+Title-Related-On: an original theme
+Title-Key: D major
+Title-Opus: 76
+Title-Dates: 1810
+
+Title-Type: Piano Fantasia
+Title-Opus: 77
+Title-Dates: 1810
+
+Title-Type: Piano Sonata
+Title-No: 24
+Title-Key: F sharp major
+Title-Opus: 78
+Title-Dates: 1809
+
+Title-Type: Piano Sonata
+Title-No: 25
+Title-Key: G major
+Title-Opus: 79
+Title-Dates: 1809
+
+Title-Type: Fantasy
+Title-Key: C minor
+Title-For: piano, chorus, and orchestra
+Title-Opus: 80
+Title-Dates: 1808
+
+Title-Type: Piano Sonata
+Title-No: 26
+Title-Key: E flat major
+Title-Name: Les Adieux
+Title-Opus: 81a
+Title-Dates: 1809
+
+Title-Type: Sextet
+Title-Key: E flat major
+Title-Opus: 81b
+Title-Dates: ?1795
+
+Title-RAW: Four Ariettas and a Duet
+Title-Opus: 82
+Title-Dates: 1809
+
+Title-RAW: Dimmi, ben mio, che m'ami
+Title-Opus: 82-1
+Title-Dates: 1809
+
+Title-RAW: T'intendo si, mio cor
+Title-Opus: 82-2
+Title-Dates: 1809
+
+Title-RAW: L'amante impaziente (first version)
+Title-Opus: 82-3
+Title-Dates: 1809
+
+Title-RAW: L'amante impatiente (second version)
+Title-Opus: 82-4
+Title-Dates: 1809
+
+Title-RAW: Duet: Odi 'laura che dolce sospira
+Title-Opus: 82-5
+Title-Dates: 1809
+
+Title-Count: Three
+Title-Type: Songs
+Title-Opus: 83
+Title-Dates: 1810
+
+Title-RAW: Wonne der Wehmut
+Title-Opus: 83-1
+Title-Dates: 1810
+
+Title-RAW: Sehnsucht
+Title-Opus: 83-2
+Title-Dates: 1810
+
+Title-RAW: Mit einem gemalten Band
+Title-Opus: 83-3
+Title-Dates: 1810
+
+Title-RAW: Egmont (Overture and Incidental Music)
+Title-Opus: 84
+Title-Dates: 1810
+
+Title-RAW: Christus am Ölberge or Christ on the Mount of Olives
+Title-Opus: 85
+Title-Dates: 1803
+
+Title-Type: Mass
+Title-Key: C major
+Title-Opus: 86
+Title-Dates: 1807
+
+Title-Type: Trio
+Title-For: two Oboes and English Horn
+Title-Key: C major
+Title-Opus: 87
+Title-Dates: 1795
+
+Title-RAW: Song - Das Gluck der Freundschaft
+Title-Opus: 88
+Title-Dates: 1803
+
+Title-Type: Polonaise
+Title-Key: C major
+Title-Opus: 89
+Title-Dates: 1814
+
+Title-Type: Piano Sonata
+Title-No: 27
+Title-Key: E minor
+Title-Opus: 90
+Title-Dates: 1814
+
+Title-RAW: Wellington's Victory ("Battle" Symphony)
+Title-Opus: 91
+Title-Dates: comp. 1813, f.p. Vienna, 1813-12-08, cond. Beethoven; pubd. 1816
+
+Title-Type: Symphony
+Title-No: 7
+Title-Key: A major
+Title-Opus: 92
+Title-Dates: comp. 1811--1812, f.p. Vienna, 1813-12-08, cond. Beethoven; pubd. 1816
+
+Title-Type: Symphony
+Title-No: 8
+Title-Key: F major
+Title-Opus: 93
+Title-Dates: comp. 1812, f.p. Vienna, 1814-02-27, cond. Beethoven; pubd. 1816
+
+Title-RAW: Song - An die Hoffnung
+Title-Opus: 94
+Title-Dates: 1813--1815
+
+Title-Type: String Quartet
+Title-No: 11
+Title-Key: F minor
+Title-Name: Serioso
+Title-Opus: 95
+Title-Dates: 1810
+
+Title-Type: Violin Sonata
+Title-No: 10
+Title-Key: G major
+Title-Opus: 96
+Title-Dates: 1812, rev. 1815
+
+Title-Type: Piano Trio
+Title-No: 7
+Title-Key: B flat major
+Title-Name: Archduke
+Title-Opus: 97
+Title-Dates: 1810--1811
+
+Title-RAW: Song Cycle - An die ferne Geliebte
+Title-Opus: 98
+Title-Dates: 1816
+
+Title-RAW: Song - Der Mann von Wort
+Title-Opus: 99
+Title-Dates: 1816
+
+Title-RAW: Song - Merkenstein
+Title-Opus: 100
+Title-Dates: 1815
+
+Title-Type: Piano Sonata
+Title-No: 28
+Title-Key: A major
+Title-Opus: 101
+Title-Dates: 1816
+
+Title-Count: Two
+Title-Type: Cello Sonatas
+Title-Opus: 102
+Title-Dates: 1815
+
+Title-Type: Sonata
+Title-For: Piano and Cello
+Title-No: 4
+Title-Key: C major
+Title-Opus: 102-1
+Title-Dates: 1815
+
+Title-Type: Sonata
+Title-For: Piano and Cello
+Title-No: 5
+Title-Key: D minor
+Title-Opus: 102-2
+Title-Dates: 1815
+
+Title-Type: Wind octet
+Title-Key: E flat major
+Title-Opus: 103
+Title-Dates: 1792
+
+Title: String Quintet (arrangement of Piano Trio No. 3, 1817); Op. 104 (arr. by Beethoven in 1817 of his pf. trio (1792-4))
+
+Title-Count: Six
+Title-Type: sets of variations
+Title-For: Piano and Flute
+Title-Opus: 105
+Title-Dates: 1819
+
+Title-Type: Piano Sonata
+Title-No: 29
+Title-Key: B flat major
+Title-Name: Hammerklavier
+Title-Opus: 106
+Title-Dates: 1818
+
+Title-Count: Ten
+Title-Type: sets of variations
+Title-For: Piano and Flute
+Title-Opus: 107
+Title-Dates: 1820
+
+Title-RAW: Twenty-Five Scottish Songs
+Title-Opus: 108
+Title-Dates: 1815-1816
+
+Title-Type: Piano Sonata
+Title-No: 30
+Title-Key: E major
+Title-Opus: 109
+Title-Dates: 1820
+
+Title-Type: Piano Sonata
+Title-No: 31
+Title-Key: A flat major
+Title-Opus: 110
+Title-Dates: 1821
+
+Title-Type: Piano Sonata
+Title-No: 32
+Title-Key: C minor
+Title-Opus: 111
+Title-Dates: 1822
+
+Title-RAW: Meeresstille und glückliche Fahrt (for chorus and orchestra)
+Title-Opus: 112
+Title-Dates: 1815
+
+Title-RAW: Overture and incidental music for Die Ruinen von Athen (The ruins of Athens)
+Title-Opus: 113
+Title-Dates: 1811
+
+Title-RAW: March and Chorus - Die Weihe des Hauses ("The Consecration of the House"; 1822)
+Title-Opus: 114
+Title-Dates: 1822
+
+Title-RAW: Overture - Zur Namensfeier
+Title-Opus: 115
+Title-Dates: 1815
+
+Title-RAW: Vocal Trio with Orchestra - Tramte, empi tremate
+Title-Opus: 116
+Title-Dates: 1802
+
+Title-RAW: Overture to King Stephen
+Title-Opus: 117
+Title-Dates: 1811
+
+Title-RAW: Elegischer Gesang (for chorus and orchestra)
+Title-Opus: 118
+Title-Dates: 1814
+
+Title-RAW: Eleven new Bagatelles
+Title-For: piano
+Title-Opus: 119
+Title-Dates: 1821
+
+Title-RAW: Thirty-three variations for piano on a waltz by Diabelli, C major (Diabelli Variations)
+Title-Opus: 120
+Title-Dates: 1823
+
+Title-RAW: Piano Trio No. 11 (Variations on Ich bin der Schneider Kakadu)
+Title-Opus: 121
+Title-Dates: 1803
+
+Title-RAW: Opferlied (for chorus and orchestra)
+Title-Opus: 121b
+Title-Dates: 1822
+
+Title-RAW: Bundeslied (for chorus and orchestra)
+Title-Opus: 122
+Title-Dates: 1824
+
+Title-RAW: Mass in D major (Missa Solemnis)
+Title-Opus: 123
+Title-Dates: 1819--1822
+
+Title-RAW: Overture - Die Weihe des Hauses (Consecration of the House)
+Title-Opus: 124
+Title-Dates: 1822
+
+Title-Type: Symphony
+Title-No: 9
+Title-Key: D minor
+Title-Name: Choral
+Title-Opus: 125
+Title-Dates: comp. 1817--1823, f.p. Vienna, 1824-05-07, cond. Beethoven; pubd. 1826
+
+Title-Count: Six
+Title-Type: Bagatelles
+Title-For: piano
+Title-Opus: 126
+Title-Dates: 1824
+
+Title-Type: String Quartet
+Title-No: 12
+Title-Key: E flat major
+Title-Opus: 127
+Title-Dates: 1825
+
+Title-RAW: Song - Der Kuss
+Title-Opus: 128
+Title-Dates: 1822
+
+Title-RAW: Rondo Capriccio for piano in G major (Rage over a lost penny)
+Title-Opus: 129
+Title-Dates: 1825--1826
+
+Title-Type: String Quartet
+Title-No: 13
+Title-Key: B flat major
+Title-Opus: 130
+Title-Dates: 1825
+
+Title-Type: String Quartet
+Title-No: 14
+Title-Key: C sharp minor
+Title-Opus: 131
+Title-Dates: 1826
+
+Title-Type: String Quartet
+Title-No: 15
+Title-Key: A minor
+Title-Opus: 132
+Title-Dates: 1825
+
+Title-RAW: Große Fuge
+Title-Key: B flat major
+Title-For: string quartet
+Title-Opus: 133
+Title-Dates: 1825
+
+Title-RAW: Piano arrangement (4 hands) of Große Fuge
+Title-Opus: 134
+Title-Dates: 1826
+
+Title-Type: String Quartet
+Title-No: 16
+Title-Key: F major
+Title-Opus: 135
+Title-Dates: 1826
+
+Title-RAW: Cantata - Der glorreiche Augenblick
+Title-Opus: 136
+Title-Dates: 1814
+
+Title-RAW: String Quintet (fugue)
+Title-Key: D major
+Title-Opus: 137
+Title-Dates: 1817
+
+Title-RAW: Opera - Leonore (earlier version of Fidelio, with Leonore No. 1 Overture)
+Title-Opus: 138
+Title-Dates: 1807
+
+## Music for a Ritterballett; WoO 1 (1790--1791)			    
+## Triumphal March for orchestra for Christoph Kuffner's tragedy Tarpeja; WoO 2a
+## Prelude to Act II of Tarpeja; WoO 2b				    
+## "Gratulations-Menuett", minuet for orchestra; WoO 3 (1822)	    
+## Piano Concerto in E flat major (solo part only with indications of orchestration); WoO 4 (1784)
+## Violin Concerto movement in C major, fragment; WoO 5 (1790--1792)   
+## Rondo in B flat major for piano and orchestra, fragment, possibly part of initial version of the Piano Concerto No. 2; WoO 6 (1793)
+## Twelve minuets for orchestra; WoO 7 (1795)			    
+## Twelve German Dances for orchestra (later arranged for piano); WoO 8 (1795)
+## Six minuets for two violins and cello; WoO 9 (1795)		    
+## Six minuets for orchestra (original version lost, only an arrangement for piano is extant); WoO 10 (1795)
+## Seven Ländler for two violins and cello (original version lost, only an arrangement for piano is extant); WoO 11 (1799)
+## Twelve minuets for orchestra (probably spurious, actually by Beethoven's brother Carl); WoO 12 (1799)
+## Twelve German Dances for orchestra (only a version for piano is extant); WoO 13 (1792--1797)
+## Twelve contredanses for orchestra; WoO 14			    
+## Six Laendler for two violins and cello (also arranged for piano); WoO 15 (1802)
+## Twelve Ecossaises for orchestra (probably spurious); WoO 16	    
+## Eleven "Mödlinger Tänze" for seven instruments (probably spurious); WoO 17 (1819)
+## March for Military Band (trio added later); WoO 18 (1809--1810)	    
+## March for Military Band (trio added later); WoO 19 (1810)	    
+## March for Military Band (trio added later); WoO 20 (1809--1822)	    
+## Polonaise for Military Band; WoO 21 (1810)			    
+## Ecossaise for Military Band; WoO 22 (1809--1810)		    
+## Ecossaise for Military Band (only a piano arrangement by Carl Czerny is extant); WoO 23 (1810)
+## March for Military Band; WoO 24 (1816)				    
+## Rondo for two oboes, two clarinets, two French horns and two bassoons (original finale of the Octet, opus 103; WoO 25 (1792--1793)
+## Duo for two flutes; WoO 26 (1792)				    
+## Three duets for clarinet and bassoon (possibly spurious); WoO 27    
+## Variations for two oboes and cor anglais on "Là ci darem la mano" from Wolfgang Amadeus Mozart's opera Don Giovanni; WoO 28 (1795)
+## March for wind; WoO 29 (1797--1798)				    
+## Three Equali for four trombones (also arranged for four male voices); WoO 30 (1812)
+## Fugue for organ; WoO 31 (1783)					    
+## Duo for viola and cello, "mit zwei obligaten Augengläsern" ("with two obbligato eyeglasses"); WoO 32 (1796--1797)
+## Five pieces for mechanical clock or flute; WoO 33		    
+## Duet for two violins; WoO 34 (1822)				    
+## Canon for two violins; WoO 35 (1825)				    
+## Three piano quartets; WoO 36 (1785)				    
+## Trio in G major for piano, flute and bassoon; WoO 37 (1786)	    
+## Piano Trio No. 8 in E flat major; WoO 38 (1785--1791)		    
+## Allegretto in B flat major for piano trio; WoO 39 (1812)	    
+## Twelve variations for piano and violin on "Se vuol ballare" from Mozart's The Marriage of Figaro; WoO 40 (1792--1793)
+## Rondo in G major for piano and violin; WoO 41 (1793--1794)	    
+## Six German Dances for violin and piano; WoO 42 (1796)		    
+## Sonatina for mandolin and harpsichord; WoO 43a			    
+## Adagio for mandolin and harpsichord; WoO 43b			    
+## Sonatina for mandolin and piano; WoO 44a			    
+## Andante and variations for mandolin and harpsichord; WoO 44b	    
+## Twelve variations for cello and piano "See the conqu'ring hero comes" from George Frideric Händel's oratorio Judas Maccabaeus; WoO 45 (1796)
+## Seven variations for cello and piano on "Bei Männern, welche Liebe fühlen" from Mozart's opera Die Zauberflöte; WoO 46 (1801)
+## Andante Favori - Original middle movement from Piano Sonata No. 21 (Waldstein); WoO 57 (1803--1804)
+## Für Elise - Bagatelle in A minor for solo piano; WoO 59 (1808)	    
+## String Quintet in C major (Fragment, Piano Transcription); WoO 62 (1826)
+## Nine variations for piano on a march by Ernst Christoph Dressler; WoO 63 (1782)
+## Six variations for piano or harp on a Swiss song; WoO 64 (1790--1792)
+## Twenty-four variations for piano on Vincenzio Righini's aria "Venni Amore"; WoO 65 (1790--1791)
+## Thirteen variations for piano on the aria "Es war einmal ein alter Mann" from Carl Ditters von Dittersdorf's opera Das rote Käppchen; WoO 66 (1792)
+## Eight variations for piano four hands on a theme by Count Waldstein; WoO 67 (1792)
+## Twelve variations for piano on the "Menuet a la Vigano" from Jakob Haibel's ballet La nozza disturbate; WoO 68 (1795)
+## Nine variations for piano on "Quant'e piu bello" from Giovanni Paisiello's opera La Molinara; WoO 69 (1795)
+## Six variations for piano on "Nel cor piu non mi sento" from Giovanni Paisiello's opera La Molinara; WoO 70 (1795)
+## Twelve variations for piano on the Russian dance from Paul Wranitzky's ballet Das Waldmädchen; WoO 71 (1796--1797)
+## Eight variations for piano on "Mich brennt ein heisses Fieber" from André-Ernest-Modeste Grétry's opera Richard Löwenherz; WoO 72 (1795--1798)
+## Ten variations for piano on "La stessa, la stessissima" from Antonio Salieri's opera Falstaff; WoO 73 (1799)
+## "Ich denke dein" - song with six variations for piano four hands; WoO 74 (1799--1803)
+## Seven variations for piano on "Kind, willst du ruhig schlafen" from Peter Winter's opera Das unterbrochene Opferfest; WoO 75 (1792--1799)
+## Eight variations for piano on "Tandeln und scherzen" from Franz Xaver Süssmayr's opera Soliman II; WoO 76 (1799)
+## Six easy variations for piano on an original theme; WoO 77 (1800)   
+## Seven variations for piano on "God Save the King"; WoO 78 (1802--1803)
+## Five variations for piano on "Rule Britannia"; WoO 79 (1803)	    
+## Thirty-two variations in C minor on an original theme; WoO 80 (1806)
+
+
+
+## These titles are taken from beethovenlv site:
+
+Title-RAW: Ballet Music "Ritterballet", music for a ballet of knights
+Title-Opus: WoO 1
+Title-Dates: 1790--1791
+
+Title-RAW: Triumphal March
+Title-For: Orchestra
+Title-Key: C major
+Title-Name: Tarpeja
+Title-Opus: WoO 2-1
+Title-Dates: 1813
+
+Title-RAW: Entr’acte
+Title-Key: D major
+Title-Name: Tarpeja
+Title-Comment: (now thought to be from the opening of Act II from Leonore 1805)
+Title-Opus: WoO 2-2
+Title-Dates: 1813
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: E flat major
+Title-Name: Gratulations - Menuett
+Title-Opus: WoO 3
+Title-Dates: 1822
+
+Title-Type: Concerto
+Title-For: Piano & Orchestra
+Title-Key: E flat major
+Title-Punct: ;
+Title-Comment: authorship: reconstruction
+Title-Opus: WoO 4
+Title-Dates: 1784
+
+Title-Type: Concerto
+Title-For: Violin & Orchestra
+Title-Key: C major
+Title-Punct: :
+Title-Comment: fragment of first movement; three completions made; authorship: unfinished
+Title-Opus: WoO 5
+Title-Dates: 1790--1792
+
+Title-Type: Rondo
+Title-For: Piano & Orchestra
+Title-Key: B flat major
+Title-Punct: :
+Title-Comment: fragment, completed by Carl Czerny
+Title-Opus: WoO 6
+Title-Dates: 1793
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 1 of 12 Minuets for Orchestra; piano version is Hess 101
+Title-Opus: WoO 7-1
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: B flat major
+Title-Punct: :
+Title-Comment: No. 2 of 12 Minuets for Orchestra; piano version is Hess 101
+Title-Opus: WoO 7-2
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: G major
+Title-Punct: :
+Title-Comment: No. 3 of 12 Minuets for Orchestra; piano version is Hess 101
+Title-Opus: WoO 7-3
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: No. 4 of 12 Minuets for Orchestra; piano version is Hess 101
+Title-Opus: WoO 7-4
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: C major
+Title-Punct: :
+Title-Comment: No. 5 of 12 Minuets for Orchestra; piano version is Hess 101
+Title-Opus: WoO 7-5
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: A major
+Title-Punct: :
+Title-Comment: No. 6 of 12 Minuets for Orchestra; piano version is Hess 101
+Title-Opus: WoO 7-6
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 7 of 12 Minuets for Orchestra; piano version is Hess 101
+Title-Opus: WoO 7-7
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: B flat major
+Title-Punct: :
+Title-Comment: No. 8 of 12 Minuets for Orchestra; piano version is Hess 101
+Title-Opus: WoO 7-8
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: G major
+Title-Punct: :
+Title-Comment: No. 9 of 12 Minuets for Orchestra; piano version is Hess 101
+Title-Opus: WoO 7-9
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: No. 10 of 12 Minuets for Orchestra; piano version is Hess 101
+Title-Opus: WoO 7-10
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: C major
+Title-Punct: :
+Title-Comment: No. 11 of 12 Minuets for Orchestra; piano version is Hess 101
+Title-Opus: WoO 7-11
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: F major
+Title-Punct: :
+Title-Comment: No. 12 of 12 Minuets for Orchestra; piano version is Hess 101
+Title-Opus: WoO 7-12
+Title-Dates: 1795
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: C major
+Title-Punct: :
+Title-Comment: No. 1 of 12 German Dances
+Title-Opus: WoO 8-1
+Title-Dates: 1795
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: A major
+Title-Punct: :
+Title-Comment: No. 2 of 12 German Dances
+Title-Opus: WoO 8-2
+Title-Dates: 1795
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: F major
+Title-Punct: :
+Title-Comment: No. 3 of 12 German Dances
+Title-Opus: WoO 8-3
+Title-Dates: 1795
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: B flat major
+Title-Punct: :
+Title-Comment: No. 4 of 12 German Dances
+Title-Opus: WoO 8-4
+Title-Dates: 1795
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: No. 5 of 12 German Dances
+Title-Opus: WoO 8-5
+Title-Dates: 1795
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: G major
+Title-Punct: :
+Title-Comment: No. 6 of 12 German Dances
+Title-Opus: WoO 8-6
+Title-Dates: 1795
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: C major
+Title-Punct: :
+Title-Comment: No. 7 of 12 German Dances
+Title-Opus: WoO 8-7
+Title-Dates: 1795
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: A major
+Title-Punct: :
+Title-Comment: No. 8 of 12 German Dances
+Title-Opus: WoO 8-8
+Title-Dates: 1795
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: F major
+Title-Punct: :
+Title-Comment: No. 9 of 12 German Dances
+Title-Opus: WoO 8-9
+Title-Dates: 1795
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 10 of 12 German Dances
+Title-Opus: WoO 8-10
+Title-Dates: 1795
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: G major
+Title-Punct: :
+Title-Comment: No. 11 of 12 German Dances
+Title-Opus: WoO 8-11
+Title-Dates: 1795
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: C major
+Title-Punct: :
+Title-Comment: No. 12 of 12 German Dances
+Title-Opus: WoO 8-12
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Violins & Cello
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: No. 1 of 6 Minuets
+Title-Opus: WoO 9-1
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Violins & Cello
+Title-Key: G major
+Title-Punct: :
+Title-Comment: No. 2 of 6 Minuets
+Title-Opus: WoO 9-2
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Violins & Cello
+Title-Key: C major
+Title-Punct: :
+Title-Comment: No. 3 of 6 Minuets
+Title-Opus: WoO 9-3
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Violins & Cello
+Title-Key: F major
+Title-Punct: :
+Title-Comment: No. 4 of 6 Minuets
+Title-Opus: WoO 9-4
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Violin & Cello
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 5 of 6 Minuets
+Title-Opus: WoO 9-5
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Violins & Cello
+Title-Key: G major
+Title-Punct: :
+Title-Comment: No. 6 of 6 Minuets
+Title-Opus: WoO 9-6
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: C major
+Title-Punct: :
+Title-Comment: No. 1 of 6 minuets; surviving piano version
+Title-Opus: WoO 10-1
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: G major
+Title-Punct: :
+Title-Comment: No. 2 of 6 minuets; surviving piano version
+Title-Opus: WoO 10-2
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: No. 3 of 6 minuets; surviving piano version
+Title-Opus: WoO 10-3
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: B flat major
+Title-Punct: :
+Title-Comment: No. 4 of 6 minuets; surviving piano version
+Title-Opus: WoO 10-4
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 5 of 6 minuets; surviving piano version
+Title-Opus: WoO 10-5
+Title-Dates: 1795
+
+Title-Type: Minuet
+Title-For: Orchestra
+Title-Key: C major
+Title-Punct: :
+Title-Comment: No. 6 of 6 minuets; surviving piano version
+Title-Opus: WoO 10-6
+Title-Dates: 1795
+
+Title-Count: 7
+Title-Type: Ländler
+Title-For: Violins & Cello
+Title-Key: D major
+Title-Punct: :
+Title-Comment: surviving piano version
+Title-Opus: WoO 11
+Title-Dates: 1799
+
+Title-RAW: 12 Minuets for Orchestra; authorship: not certain
+Title-Opus: WoO 12
+Title-Dates: 1799
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 1 of 12 German Dances; surviving piano version
+Title-Opus: WoO 13-1
+Title-Dates: 1792--1797
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: B flat major
+Title-Punct: :
+Title-Comment: No. 2 of 12 German Dances; surviving piano version
+Title-Opus: WoO 13-2
+Title-Dates: 1792--1797
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: G major
+Title-Punct: :
+Title-Comment: No. 3 of 12 German Dances; surviving piano version
+Title-Opus: WoO 13-3
+Title-Dates: 1792--1797
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 4 of 12 German Dances; surviving piano version
+Title-Opus: WoO 13-4
+Title-Dates: 1792--1797
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: F major
+Title-Punct: :
+Title-Comment: No. 5 of 12 German Dances; surviving piano version
+Title-Opus: WoO 13-5
+Title-Dates: 1792--1797
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: B flat major
+Title-Punct: :
+Title-Comment: No. 6 of 12 German Dances; surviving piano version
+Title-Opus: WoO 13-6
+Title-Dates: 1792--1797
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 7 of 12 German Dances; surviving piano version
+Title-Opus: WoO 13-7
+Title-Dates: 1792--1797
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: G major
+Title-Punct: :
+Title-Comment: No. 8 of 12 German Dances; surviving piano version
+Title-Opus: WoO 13-8
+Title-Dates: 1792--1797
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: No. 9 of 12 German Dances; surviving piano version
+Title-Opus: WoO 13-9
+Title-Dates: 1792--1797
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: C major
+Title-Punct: :
+Title-Comment: No. 10 of 12 German Dances; surviving piano version
+Title-Opus: WoO 13-10
+Title-Dates: 1792--1797
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: A major
+Title-Punct: :
+Title-Comment: No. 11 of 12 German Dances; surviving piano version
+Title-Opus: WoO 13-11
+Title-Dates: 1792--1797
+
+Title-Type: Dance
+Title-For: Orchestra
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 12 of 12 German Dances; surviving piano version
+Title-Opus: WoO 13-12
+Title-Dates: 1792--1797
+
+Title-Type: Contredanse
+Title-For: Small Orchestra
+Title-Key: C major
+Title-Punct: :
+Title-Comment: No. 1 of 12 Contredanses
+Title-Opus: WoO 14-1
+Title-Dates: 1791--1802
+
+Title-Type: Contredanse
+Title-For: Small Orchestra
+Title-Key: A major
+Title-Punct: :
+Title-Comment: No. 2 of 12 Contredanses
+Title-Opus: WoO 14-2
+Title-Dates: 1801--1802
+
+Title-Type: Contredanse
+Title-For: Small Orchestra
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 3 of 12 Contredanses
+Title-Opus: WoO 14-3
+Title-Dates: 1795--1802
+
+Title-Type: Contredanse
+Title-For: Small Orchestra
+Title-Key: B flat major
+Title-Punct: :
+Title-Comment: No. 4 of 12 Contredanses
+Title-Opus: WoO 14-4
+Title-Dates: 1795--1802
+
+Title-Type: Contredanse
+Title-For: Small Orchestra
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: No. 5 of 12 Contredanses
+Title-Opus: WoO 14-5
+Title-Dates: 1791--1802
+
+Title-Type: Contredanse
+Title-For: Small Orchestra
+Title-Key: C major
+Title-Punct: :
+Title-Comment: No. 6 of 12 Contredanses
+Title-Opus: WoO 14-6
+Title-Dates: 1795--1802
+
+Title-Type: Contredanse
+Title-For: Small Orchestra
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: No. 7 of 12 Contredanses
+Title-Opus: WoO 14-7
+Title-Dates: 1800--1802
+
+Title-Type: Contredanse
+Title-For: Small Orchestra
+Title-Key: C major
+Title-Punct: :
+Title-Comment: No. 8 of 12 Contredanses
+Title-Opus: WoO 14-8
+Title-Dates: 1791--1802
+
+Title-Type: Contredanse
+Title-For: Small Orchestra
+Title-Key: A major
+Title-Punct: :
+Title-Comment: No. 9 of 12 Contredanses
+Title-Opus: WoO 14-9
+Title-Dates: 1801--1802
+
+Title-Type: Contredanse
+Title-For: Small Orchestra
+Title-Key: C major
+Title-Punct: :
+Title-Comment: No. 10 of 12 Contredanses
+Title-Opus: WoO 14-10
+Title-Dates: 1801--1802
+
+Title-Type: Contredanse
+Title-For: Small Orchestra
+Title-Key: G major
+Title-Punct: :
+Title-Comment: No. 11 of 12 Contredanses
+Title-Opus: WoO 14-11
+Title-Dates: 1800--1802
+
+Title-Type: Contredanse
+Title-For: Small Orchestra
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: No. 12 of 12 Contredanses
+Title-Opus: WoO 14-12
+Title-Dates: 1791--1802
+
+Title-Type: Dance
+Title-For: Violins & Bass
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 1 of 6 ländlerische Tänze
+Title-Opus: WoO 15-1
+Title-Dates: 1802
+
+Title-Type: Dance
+Title-For: Piano
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 1 of 6 ländlerische Tänze, piano version
+Title-Opus: WoO 15-1
+Title-Dates: 1802
+
+Title-Type: Dance
+Title-For: Violins & Bass
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 2 of 6 ländlerische Tänze
+Title-Opus: WoO 15-2
+Title-Dates: 1802
+
+Title-Type: Dance
+Title-For: Piano
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 2 of 6 ländlerische Tänze, piano version
+Title-Opus: WoO 15-2
+Title-Dates: 1802
+
+Title-Type: Dance
+Title-For: Violins & Bass
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 3 of 6 ländlerische Tänze
+Title-Opus: WoO 15-3
+Title-Dates: 1802
+
+Title-Type: Dance
+Title-For: Piano
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 3 of 6 ländlerische Tänze, piano version
+Title-Opus: WoO 15-3
+Title-Dates: 1802
+
+Title-Type: Dance
+Title-For: Violins & Bass
+Title-Key: D minor
+Title-Punct: :
+Title-Comment: No. 4 of 6 ländlerische Tänze
+Title-Opus: WoO 15-4
+Title-Dates: 1802
+
+Title-Type: Dance
+Title-For: Piano
+Title-Key: D minor
+Title-Punct: :
+Title-Comment: No. 4 of 6 ländlerische Tänze, piano version
+Title-Opus: WoO 15-4
+Title-Dates: 1802
+
+Title-Type: Dance
+Title-For: Violins & Bass
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 5 of 6 ländlerische Tänze
+Title-Opus: WoO 15-5
+Title-Dates: 1802
+
+Title-Type: Dance
+Title-For: Piano
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 5 of 6 ländlerische Tänze, piano version
+Title-Opus: WoO 15-5
+Title-Dates: 1802
+
+Title-Type: Dance
+Title-For: Violins & Bass
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 6 of 6 ländlerische Tänze
+Title-Opus: WoO 15-6
+Title-Dates: 1802
+
+Title-Type: Dance
+Title-For: Piano
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 6 of 6 ländlerische Tänze, piano version
+Title-Opus: WoO 15-6
+Title-Dates: 1802
+
+Title-RAW: 12 Ecossaises for Piano; authorship: fraudulent
+Title-Opus: WoO 16
+
+Title-Type: Waltz
+Title-For: Instrument(s)
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: No. 1 of 11 Mödlinger Tänze for 7 String & Wind Instruments; authorship: probably spurious
+Title-Opus: WoO 17-1
+Title-Dates: 1819
+
+Title-Type: Minuet
+Title-For: Instrument(s)
+Title-Key: B flat major
+Title-Punct: :
+Title-Comment: No. 2 of 11 Mödlinger Tänze for 7 String & Wind Instruments; authorship: probably spurious
+Title-Opus: WoO 17-2
+Title-Dates: 1819
+
+Title-Type: Waltz
+Title-For: Instrument(s)
+Title-Key: B flat major
+Title-Punct: :
+Title-Comment: No. 3 of 11 Mödlinger Tänze for 7 String & Wind Instruments; authorship: probably spurious
+Title-Opus: WoO 17-3
+Title-Dates: 1819
+
+Title-Type: Minuet
+Title-For: Instrument(s)
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: No. 4 of 11 Mödlinger Tänze for 7 String & Wind Instruments; authorship: probably spurious
+Title-Opus: WoO 17-4
+Title-Dates: 1819
+
+Title-Type: Minuet
+Title-For: Instrument(s)
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: No. 5 of 11 Mödlinger Tänze for 7 String & Wind Instruments; authorship: probably spurious
+Title-Opus: WoO 17-5
+Title-Dates: 1819
+
+Title-Type: Ländler
+Title-For: Instrument(s)
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: No. 6 of 11 Mödlinger Tänze for 7 String & Wind Instruments; authorship: probably spurious
+Title-Opus: WoO 17-6
+Title-Dates: 1819
+
+Title-Type: Minuet
+Title-For: Instrument(s)
+Title-Key: B flat major
+Title-Punct: :
+Title-Comment: No. 7 of 11 Mödlinger Tänze for 7 String & Wind Instruments; authorship: probably spurious
+Title-Opus: WoO 17-7
+Title-Dates: 1819
+
+Title-Type: Ländler
+Title-For: Instrument(s)
+Title-Key: B flat major
+Title-Punct: :
+Title-Comment: No. 8 of 11 Mödlinger Tänze for 7 String & Wind Instruments; authorship: probably spurious
+Title-Opus: WoO 17-8
+Title-Dates: 1819
+
+Title-Type: Minuet
+Title-For: Instrument(s)
+Title-Key: G major
+Title-Punct: :
+Title-Comment: No. 9 of 11 Mödlinger Tänze for 7 String & Wind Instruments; authorship: probably spurious
+Title-Opus: WoO 17-9
+Title-Dates: 1819
+
+Title-Type: Waltz
+Title-For: Instrument(s)
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 10 of 11 Mödlinger Tänze for 7 String & Wind Instruments; authorship: probably spurious
+Title-Opus: WoO 17-10
+Title-Dates: 1819
+
+Title-Type: Waltz
+Title-For: Instrument(s)
+Title-Key: D major
+Title-Punct: :
+Title-Comment: No. 11 of 11 Mödlinger Tänze for 7 String & Wind Instruments; authorship: probably spurious
+Title-Opus: WoO 17-11
+Title-Dates: 1819
+
+Title-RAW: March & Trio
+Title-For: Wind Band
+Title-Key: F major
+Title-Name: York’scher (Yorkscher) March für die bohmische Landwehr
+Title-Opus: WoO 18
+Title-Dates: 1809--1810
+
+Title-RAW: March & Trio
+Title-For: Wind Band
+Title-Key: F major
+Title-Opus: WoO 19
+Title-Dates: 1810
+
+Title-RAW: March & Trio
+Title-For: Wind Band
+Title-Key: C major
+Title-Name: Zapfenstreich
+Title-Comment: (The Tattoo)
+Title-Opus: WoO 20
+Title-Dates: 1809--1822
+
+Title-Type: Polonaise
+Title-For: Wind Band
+Title-Key: D major
+Title-Opus: WoO 21
+Title-Dates: 1810
+
+Title-Type: Ecossaise
+Title-For: Wind Band
+Title-Key: D major
+Title-Opus: WoO 22
+Title-Dates: 1809--1810
+
+Title-Type: Ecossaise
+Title-For: Wind Band
+Title-Key: G major
+Title-Punct: ;
+Title-Comment: authorship: reconstruction
+Title-Opus: WoO 23
+Title-Dates: 1810
+
+Title-Type: March
+Title-For: Wind Band
+Title-Key: D major
+Title-Opus: WoO 24
+Title-Dates: 1816
+
+Title-Type: Rondino
+Title-For: Oboes, Clarinets, Horns & Bassoons
+Title-Key: E flat major
+Title-Opus: WoO 25
+Title-Dates: 1792--1793
+
+Title-Type: Duo
+Title-For: Flutes
+Title-Key: G major
+Title-Punct: :
+Title-Comment: Allegro and Minuet
+Title-Opus: WoO 26
+Title-Dates: 1792
+
+Title-Type: Duo
+Title-No: 1
+Title-For: Clarinet & Bassoon
+Title-Key: C major
+Title-Punct: ;
+Title-Comment: authorship: doubtful
+Title-Opus: WoO 27-1
+
+Title-Type: Duo
+Title-No: 2
+Title-For: Clarinet & Bassoon
+Title-Key: F major
+Title-Punct: ;
+Title-Comment: authorship: doubtful
+Title-Opus: WoO 27-2
+
+Title-Type: Duo
+Title-No: 3
+Title-For: Clarinet & Bassoon
+Title-Key: B flat major
+Title-Punct: ;
+Title-Comment: authorship: doubtful
+Title-Opus: WoO 27-3
+
+Title-Type: Variations
+Title-For: Oboes & English Horn
+Title-Key: C major
+Title-Punct: :
+Title-Comment: on "Là ci darem la mano" from Mozart’s opera
+Title-Name: Don Giovanni
+Title-Opus: WoO 28
+Title-Dates: 1795
+
+Title-Type: March
+Title-For: Clarinets, Horns & Bassoons
+Title-Key: B flat major
+Title-Name: Grenadiermarsch
+Title-Opus: WoO 29
+Title-Dates: 1797--1798
+
+Title-Type: Equali
+Title-For: Trombones
+Title-Key: D minor
+Title-Opus: WoO 30-1
+Title-Dates: 1812
+
+Title-Type: Equali
+Title-For: Trombones
+Title-Key: D major
+Title-Opus: WoO 30-2
+Title-Dates: 1812
+
+Title-Type: Equali
+Title-For: Trombones
+Title-Key: B flat major
+Title-Opus: WoO 30-3
+Title-Dates: 1812
+
+Title-Type: Fugue
+Title-For: Organ
+Title-Key: D major
+Title-Opus: WoO 31
+Title-Dates: 1783
+
+Title-Type: Duo
+Title-For: Viola & Cello
+Title-Key: E flat major
+Title-Name: mit zwei obligaten Augengläsern
+Title-Comment: (with 2 obbligato eyeglasses)
+Title-Opus: WoO 32
+Title-Dates: 1796--1797
+
+Title-RAW: Piece for Musical Clock
+Title-Key: F major
+Title-Punct: :
+Title-Comment: or for flute; Adagio assai; No. 1 of 5 pieces
+Title-Opus: WoO 33-1
+Title-Dates: 1799
+
+Title-RAW: Piece for Musical Clock
+Title-Key: G major
+Title-Punct: :
+Title-Comment: or for flute; Scherzo-Allegro; No. 2 of 5 pieces
+Title-Opus: WoO 33-2
+Title-Dates: 1799--1800
+
+Title-RAW: Piece for Musical Clock
+Title-Key: G major
+Title-Punct: :
+Title-Comment: or for flute; Allegro; No. 3 of 5 pieces
+Title-Opus: WoO 33-3
+Title-Dates: 1799
+
+Title-RAW: Piece for Musical Clock
+Title-Key: C major
+Title-Punct: :
+Title-Comment: or for flute; Allegro non piu molto; No. 4 of 5 pieces
+Title-Opus: WoO 33-4
+Title-Dates: 1794
+
+Title-RAW: Piece for Musical Clock
+Title-Key: C major
+Title-Punct: :
+Title-Comment: or for flute; Minuet-Allegretto; No. 5 of 5 pieces
+Title-Opus: WoO 33-5
+Title-Dates: 1794
+
+Title-Type: Duo
+Title-For: Violins
+Title-Key: A major
+Title-Punct: :
+Title-Comment: for Alexandre Boucher
+Title-Opus: WoO 34
+Title-Dates: 1822
+
+Title-Type: Canon
+Title-Key: A major
+Title-Punct: :
+Title-Comment: for 2 violins or for 2 cellos; for Samson de Boer
+Title-Opus: WoO 35
+Title-Dates: 1825
+
+Title-Type: Piano Quartet
+Title-Key: E flat major
+Title-Opus: WoO 36-1
+Title-Dates: 1785
+
+Title-Type: Piano Quartet
+Title-Key: D major
+Title-Opus: WoO 36-2
+Title-Dates: 1785
+
+Title-Type: Piano Quartet
+Title-Key: C major
+Title-Opus: WoO 36-3
+Title-Dates: 1785
+
+Title-Type: Trio
+Title-For: Piano, Flute & Bassoon
+Title-Key: G major
+Title-Opus: WoO 37
+Title-Dates: 1786
+
+Title-Type: Piano Trio
+Title-No: 8
+Title-Key: E flat major
+Title-Opus: WoO 38
+Title-Dates: 1785--1791
+
+Title-Type: Allegretto
+Title-For: Piano Trio
+Title-Key: B flat major
+Title-Opus: WoO 39
+Title-Dates: 1812
+
+Title-Count: 12
+Title-Type: Variations
+Title-For: Piano & Violin
+Title-Key: F major
+Title-Punct: :
+Title-Comment: on the theme "Se vuol ballare" from Mozart’s opera
+Title-Name: The Marriage of Figaro
+Title-Opus: WoO 40
+Title-Dates: 1792--1793
+
+Title-Type: Rondo
+Title-For: Piano & Violin
+Title-Key: G major
+Title-Opus: WoO 41
+Title-Dates: 1793--1794
+
+Title-RAW: 6 German Dances for Piano & Violin: Allemandes in F
+Title-Key: D major
+Title-Key: F major
+Title-Key: A major
+Title-Key: D major
+Title-Key: G major
+Title-Opus: WoO 42
+Title-Dates: 1796
+
+Title-Type: Sonatina
+Title-For: Mandolin & Harpsichord
+Title-Key: C minor
+Title-Punct: :
+Title-Comment: (WoO 43a)
+Title-Opus: WoO 43-1
+Title-Dates: 1796
+
+Title-RAW: Adagio
+Title-For: Mandolin & Harpsichord
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: (WoO 43b)
+Title-Opus: WoO 43-2
+Title-Dates: 1796
+
+Title-Type: Sonatina
+Title-For: Mandolin & Harpsichord
+Title-Key: C major
+Title-Punct: :
+Title-Comment: (WoO 44a)
+Title-Opus: WoO 44-1
+Title-Dates: 1796
+
+Title-RAW: Andante con Variazioni
+Title-For: Mandolin & Harpsichord
+Title-Key: D major
+Title-Punct: :
+Title-Comment: (WoO 44b)
+Title-Opus: WoO 44-2
+Title-Dates: 1796
+
+Title-Count: 12
+Title-Type: Variations
+Title-For: Piano & Cello
+Title-Key: G major
+Title-Punct: :
+Title-Comment: on "See the conquering hero comes" fm Handel’s oratorio
+Title-Name: Judas Maccabaeus
+Title-Opus: WoO 45
+Title-Dates: 1796
+
+Title-Count: 7
+Title-Type: Variations
+Title-For: Piano & Cello
+Title-Key: E flat major
+Title-Punct: :
+Title-Comment: on the duet "Bei Männern, welche Liebe fühlen" from Mozart’s
+Title-Name: Zauberflöte
+Title-Opus: WoO 46
+Title-Dates: 1801
+
+Title-Type: Piano Sonata
+Title-Key: E flat major
+Title-Name: Kurfürstensonate
+Title-Comment: (Electoral)
+Title-No: 1
+Title-Opus: WoO 47-1
+Title-Dates: 1783
+
+Title-Type: Piano Sonata
+Title-Key: F minor
+Title-Name: Kurfürstensonate
+Title-Comment: (Electoral)
+Title-No: 2
+Title-Opus: WoO 47-2
+Title-Dates: 1783
+
+Title-Type: Piano Sonata
+Title-Key: D major
+Title-Name: Kurfürstensonate
+Title-Comment: (Electoral)
+Title-No: 3
+Title-Opus: WoO 47-3
+Title-Dates: 1783
+
+Title-Type: Rondo
+Title-For: Piano
+Title-Key: C major
+Title-Opus: WoO 48
+Title-Dates: 1783
+
+Title-Type: Rondo
+Title-For: Piano
+Title-Key: A major
+Title-Opus: WoO 49
+Title-Dates: 1783
+
+Title-RAW: 2 Sonata Movements
+Title-For: Piano
+Title-Key: F major
+Title-Opus: WoO 50
+Title-Dates: 1790--1792
+
+Title-RAW: Easy Piano Sonata
+Title-Key: C major
+Title-Opus: WoO 51
+Title-Dates: 1791--1798
+
+Title-Type: Bagatelle
+Title-For: Piano
+Title-Key: C minor
+Title-Punct: :
+Title-Comment: presto
+Title-Opus: WoO 52
+Title-Dates: 1795--1822
+
+Title-Type: Allegretto
+Title-For: Piano
+Title-Key: C minor
+Title-Opus: WoO 53
+Title-Dates: 1796--1797
+
+Title-Type: Piece
+Title-For: Piano
+Title-Key: C major
+Title-Name: Lustig - traurig
+Title-Comment: (Merry - Sad) in C & c
+Title-Opus: WoO 54
+Title-Dates: 1802
+
+Title-Type: Prelude
+Title-For: Piano
+Title-Key: F minor
+Title-Opus: WoO 55
+Title-Dates: 1803
+
+Title-Type: Bagatelle
+Title-For: Piano
+Title-Key: C major
+Title-Punct: :
+Title-Comment: Allegretto
+Title-Opus: WoO 56
+Title-Dates: 1803--1822
+
+Title-Type: Andante
+Title-For: Piano
+Title-Key: F major
+Title-Name: Andante favori
+Title-Opus: WoO 57
+Title-Dates: 1803--1804
+
+Title-Type: Cadenza
+Title-For: Piano
+Title-Key: D minor
+Title-Punct: :
+Title-Comment: for Mozart’s piano concerto in d minor K 466 1st mvmt
+Title-Opus: WoO 58-1
+Title-Dates: 1809
+
+Title-Type: Cadenza
+Title-For: Piano & Orchestra
+Title-Key: D minor
+Title-Punct: :
+Title-Comment: for Mozart’s piano concerto in d minor K 466 3rd mvmt
+Title-Opus: WoO 58-2
+Title-Dates: 1809
+
+Title-Type: Bagatelle
+Title-For: Piano
+Title-Key: A minor
+Title-Name: Für Elise
+Title-Opus: WoO 59
+Title-Dates: 1808
+
+Title-Type: Bagatelle
+Title-For: Piano
+Title-Key: B flat major
+Title-Name: Zeimlich lebhaft
+Title-Comment: (A little lively)
+Title-Opus: WoO 60
+Title-Dates: 1818
+
+Title-Type: Allegretto
+Title-For: Piano
+Title-Key: B minor
+Title-Opus: WoO 61
+Title-Dates: 1821
+
+Title-Type: Bagatelle
+Title-For: Piano
+Title-Key: G minor
+Title-Punct: :
+Title-Comment: called
+Title-Opus: WoO 61a
+Title-Opus: WoO 61-1
+Title-Dates: 1825
+
+Title-Type: String Quintet
+Title-Key: C major
+Title-Name: Letzter musikalischer Gedanke
+Title-Comment: (last musical thought); authorship: unfinished at death
+Title-Opus: WoO 62
+Title-Dates: 1826
+
+Title-Count: 9
+Title-Type: Variations
+Title-For: Piano
+Title-Key: C minor
+Title-Punct: :
+Title-Comment: on a march by Ernst Christoph Dressler
+Title-Opus: WoO 63
+Title-Dates: 1782
+
+Title-Count: 6
+Title-Type: Variations
+Title-For: Piano or Harp
+Title-Key: F major
+Title-Punct: :
+Title-Comment: on a Swiss air
+Title-Opus: WoO 64
+Title-Dates: 1790--1792
+
+Title-Count: 24
+Title-Type: Variations
+Title-For: Piano
+Title-Key: D major
+Title-Punct: :
+Title-Comment: on Vincenzo Righini’s arietta
+Title-Name: Venni Amore
+Title-Opus: WoO 65
+Title-Dates: 1790--1791
+
+Title-Count: 13
+Title-Type: Variations
+Title-For: Piano
+Title-Key: A major
+Title-Punct: :
+Title-Comment: on Dittersdorf’s arietta
+Title-Name: Es war einmal ein alter Mann
+Title-Related-How: from
+Title-Related-Name: Das rote Käppchen
+Title-Opus: WoO 66
+Title-Dates: 1792
+
+Title-Count: 8
+Title-Type: Variations
+Title-For: Piano Four Hands
+Title-Key: C major
+Title-Punct: :
+Title-Comment: on a theme by Count Ferdinand von Waldstein
+Title-Opus: WoO 67
+Title-Dates: 1792
+
+Title-Count: 12
+Title-Type: Variations
+Title-For: Piano
+Title-Key: C major
+Title-Punct: :
+Title-Comment: on the "Menuett à la Viganò" from Jakob Haibel’s ballet
+Title-Name: Le nozze disturbate
+Title-Opus: WoO 68
+Title-Dates: 1795
+
+Title-Count: 9
+Title-Type: Variations
+Title-For: Piano
+Title-Key: A major
+Title-Punct: :
+Title-Comment: on Giovanni Paisello’s air
+Title-Name: Quant’ è più bello
+Title-Related-How: from
+Title-Related-Name: La Molinara
+Title-Opus: WoO 69
+Title-Dates: 1795
+
+Title-Count: 6
+Title-Type: Variations
+Title-For: Piano
+Title-Key: G major
+Title-Punct: :
+Title-Comment: on the duet "Nel cor più non mi sento" from Giovanni Paisello’s opera
+Title-Name: La Molinara
+Title-Opus: WoO 70
+Title-Dates: 1795
+
+Title-Count: 12
+Title-Type: Variations
+Title-For: Piano
+Title-Key: A major
+Title-Punct: :
+Title-Comment: on a Russian dance from Paul Wranitsky’s ballet
+Title-Name: Das Waldmädchen
+Title-Opus: WoO 71
+Title-Dates: 1796--1797
+
+Title-Count: 8
+Title-Type: Variations
+Title-For: Piano
+Title-Key: C major
+Title-Punct: :
+Title-Comment: on the Romance "Une fièvre brûlante" from Grétry’s opera
+Title-Name: Richard Cœur de Lion
+Title-Opus: WoO 72
+Title-Dates: 1795--1798
+
+Title-Count: 10
+Title-Type: Variations
+Title-For: Piano
+Title-Key: B major
+Title-Punct: :
+Title-Comment: on Salieri’s duet
+Title-Name: La stessa la stessissima
+Title-Related-How: from
+Title-Related-Name: Falstaff
+Title-Opus: WoO 73
+Title-Dates: 1799
+
+Title-Type: Song
+Title-Name: Ich denke dein
+Title-Alternative-Name: Ich denke dein, wenn mir der Sonne Schimmer
+Title-Opus: WoO 74
+Title-Dates: 1799--1803
+
+Title-Count: 6
+Title-Type: Variations
+Title-For: Piano Four Hands
+Title-Key: D major
+Title-Punct: :
+Title-Related-How: on
+Title-Related-Name: Ich denke dein
+Title-Opus: WoO 74
+Title-Dates: 1799--1803
+
+Title-Count: 7
+Title-Type: Variations
+Title-For: Piano
+Title-Key: F major
+Title-Punct: :
+Title-Comment: on the Quartet "Kind, willst du ruhig schlafen?" from Peter Winter’s opera
+Title-Name: Das unterbrochene Opferfest
+Title-Opus: WoO 75
+Title-Dates: 1792--1799
+
+Title-Count: 8
+Title-Type: Variations
+Title-For: Piano
+Title-Key: F major
+Title-Punct: :
+Title-Comment: on the Trio "Tändeln und Scherzen" from Franz Xaver Süssmayr’s opera
+Title-Name: Soliman II
+Title-Opus: WoO 76
+Title-Dates: 1799
+
+Title-Count: 6
+Title-Type: Easy Variations
+Title-For: Piano
+Title-Key: G major
+Title-Punct: :
+Title-Comment: on an original theme
+Title-Opus: WoO 77
+Title-Dates: 1800
+
+Title-Count: 7
+Title-Type: Variations
+Title-For: Piano
+Title-Key: C major
+Title-Punct: :
+Title-Comment: on the English folk song
+Title-Name: God Save the King
+Title-Opus: WoO 78
+Title-Dates: 1802--1803
+
+Title-Count: 5
+Title-Type: Variations
+Title-For: Piano
+Title-Key: D major
+Title-Punct: :
+Title-Comment: on the English song "Rule Britannia" from Arne’s
+Title-Name: Alfred
+Title-Opus: WoO 79
+Title-Dates: 1803
+
+Title-Count: 32
+Title-Type: Variations
+Title-For: Piano
+Title-Key: C minor
+Title-Punct: :
+Title-Comment: on an original theme
+Title-Opus: WoO 80
+Title-Dates: 1806
+
+Title-Type: Allemande
+Title-For: Piano
+Title-Key: A major
+Title-Opus: WoO 81
+Title-Dates: 1793--1822
+
+Title-Type: Minuet
+Title-For: Piano
+Title-Key: E flat major
+Title-Opus: WoO 82
+Title-Dates: 1803
+
+Title-Count: 6
+Title-Type: Ecossaises
+Title-For: Piano
+Title-Key: E flat major
+Title-Opus: WoO 83
+Title-Dates: 1806
+
+Title-Type: Waltz
+Title-For: Piano
+Title-Key: E flat major
+Title-Opus: WoO 84
+Title-Dates: 1824
+
+Title-Type: Waltz
+Title-For: Piano
+Title-Key: D major
+Title-Opus: WoO 85
+Title-Dates: 1825
+
+Title-Type: Ecossaise
+Title-For: Piano
+Title-Key: E flat major
+Title-Opus: WoO 86
+Title-Dates: 1825
+
+Title-RAW: Cantata "Trauerkantate auf den Tod Joseph II" (on the Death of Joseph II)
+Title-Opus: WoO 87
+Title-Dates: 1790
+
+Title-RAW: Cantata "Kantate auf die Erhebung Leopold II zur Kaiserwürde" (on the Elevation of Leopold II to the Imperial Dignity)
+Title-Opus: WoO 88
+Title-Dates: 1790
+
+Title-Type: Aria
+Title-Key: F major
+Title-Name: Prüfung des Küssens
+Title-Punct: ;
+Title-For: bass & orchestra
+Title-Name: Meine weise Mutter spricht
+Title-Opus: WoO 89
+Title-Dates: 1790--1792
+
+Title-Type: Aria
+Title-Key: D major
+Title-Name: Mit Mädeln sich vertragen
+Title-Punct: ;
+Title-For: bass & orchestra
+Title-Opus: WoO 90
+Title-Dates: 1790--1792
+
+Title-Type: Aria
+Title-Key: F major
+Title-Name: O welch ein Leben!
+Title-Punct: ;
+Title-Comment: for tenor & orchestra for Umlauf’s Singspiel "Die schöne Schusterin" (The Beautiful Shoemaker’s Wife)
+Title-Opus: WoO 91-1
+Title-Dates: 1795
+
+Title-Type: Aria
+Title-Key: B flat major
+Title-Name: Soll ein Schuh nicht drücken?
+Title-Punct: ;
+Title-Comment: for soprano & orchestra for Umlauf’s Singspiel "Die schöne Schusterin" (The Beautiful Shoemaker’s Wife)
+Title-Opus: WoO 91-2
+Title-Dates: 1795
+
+Title-RAW: Scene & Aria
+Title-Key: A major
+Title-Name: Primo amore
+Title-Punct: ;
+Title-Comment: for soprano w/ orchestra
+Title-Opus: WoO 92
+Title-Dates: 1791--1792
+
+Title-RAW: Scene & Aria "No, non turbarti"; for soprano w/ string orchestra (WoO 92a)
+Title-Opus: WoO 92-1
+Title-Dates: 1802
+
+Title-RAW: Duo for Solo Voice(s) & Orchestra "Ne’ giorni tuoi felici"; for soprano & tenor w/ orchestra
+Title-Opus: WoO 93
+Title-Dates: 1802
+
+Title-RAW: Music for a drama
+Title-For: Orchestra, Chorus & Solo Voice(s)
+Title-Key: B flat major
+Title-Name: Germania
+Title-Punct: ,
+Title-Comment: finale for Trietschke’s Singspiel "Die gute Nachricht" (The Good News)
+Title-Opus: WoO 94
+Title-Dates: 1814
+
+Title-Type: Chorus
+Title-For: Orchestra & Chorus
+Title-Key: A major
+Title-Name: Chor auf die verbündeten Fürsten
+Title-Comment: (Chorus for the Allied Princes)
+Title-Name: Ihr weisen Gründer
+Title-Opus: WoO 95
+Title-Dates: 1814
+
+Title-RAW: Music for a drama
+Title-For: Orchestra, Chorus & Solo Voice(s)
+Title-Name: Leonore Prohaska
+Title-Opus: WoO 96
+Title-Dates: 1815
+
+Title-Type: Chorus
+Title-For: Orchestra, Chorus & Solo Voice(s)
+Title-Key: D major
+Title-Name: Es ist vollbracht
+Title-Comment: (It is fulfilled), final chorus from Treitschke’s Singspiel "Die Ehrenpforten" (The Triumphal Arches)
+Title-Opus: WoO 97
+Title-Dates: 1815
+
+Title-RAW: Chorus for Orchestra, Chorus & Solo Voice(s) "Wo sich die Pulse jugendlich jagen" chorus with soprano solo for the festive play
+Title-Name: Die Weihe des Hauses
+Title-Opus: WoO 98
+Title-Dates: 1822
+
+Title-Type: Duet
+Title-Name: Bei labbri, che Amore
+Title-Opus: WoO 99-1
+Title-Dates: 1801--1803
+
+Title-Type: Trio
+Title-For: Solo Voice(s)
+Title-Name: Chi mai di questo core
+Title-Opus: WoO 99-2
+Title-Dates: 1801--1803
+
+Title-RAW: Duet "Fra tutte le pene" (WoO 99, No. 3a) 1 of 3 settings
+Title-Opus: WoO 99-3.1
+Title-Dates: 1801--1803
+
+Title-RAW: Trio for Solo Voice(s) "Fra tutte le pene" (WoO 99, No. 3b); 2 of 3 settings
+Title-Opus: WoO 99-3.2
+Title-Dates: 1801--1803
+
+Title-RAW: Quartet for Solo Voice(s) "Fra tutte le pene" (WoO 99, No. 3c) 3 of 3 settings
+Title-Opus: WoO 99-3.3
+Title-Dates: 1801--1803
+
+Title-RAW: Quartet for Solo Voice(s) "Già la notte s’avvicina" (WoO 99, No. 4a) 1 of 2 settings
+Title-Opus: WoO 99-4.1
+Title-Dates: 1801--1803
+
+Title-RAW: Trio for Solo Voice(s) "Già la notte s’avvicina" (WoO 99, No. 4b) 2 of 2 settings
+Title-Opus: WoO 99-4.2
+Title-Dates: 1801--1803
+
+Title-RAW: Quartet for Solo Voice(s) "Giura il nocchier" (WoO 99, No. 5a) 1 of 2 settings
+Title-Opus: WoO 99-5.1
+Title-Dates: 1801--1803
+
+Title-RAW: Trio for Solo Voice(s) "Giura il nocchier" (WoO 99, No. 5b) 2 of 2 settings
+Title-Opus: WoO 99-5.2
+Title-Dates: 1801--1803
+
+Title-Type: Trio
+Title-For: Solo Voice(s)
+Title-Name: Ma tu tremi
+Title-Opus: WoO 99-6
+Title-Dates: 1801--1803
+
+Title-RAW: Quartet for Solo Voice(s) "Nei campi e nelle selve" (WoO 99, No. 7a) 1 of 2 settings
+Title-Opus: WoO 99-7.1
+Title-Dates: 1801--1803
+
+Title-RAW: Quartet for Solo Voice(s) "Nei campi e nelle selve" (WoO 99, No. 7b) 2 of 2 settings
+Title-Opus: WoO 99-7.2
+Title-Dates: 1801--1803
+
+Title-Type: Song
+Title-Key: G major
+Title-Name: O care selve
+Title-Punct: ,
+Title-Comment: with unison chorus
+Title-Opus: WoO 99-8
+Title-Dates: 1794--1795
+
+Title-Type: Trio
+Title-For: Solo Voice(s)
+Title-Name: Per te d’amico aprile
+Title-Opus: WoO 99-9
+Title-Dates: 1801--1803
+
+Title-RAW: Quartet for Solo Voice(s) "Quella cetra ah pur tu sei" (WoO 99, No. 10a) 1 of 3 settings
+Title-Opus: WoO 99-10.1
+Title-Dates: 1801--1803
+
+Title-RAW: Trio for Solo Voice(s) "Quella cetra ah pur tu sei" (WoO 99, No. 10b) 2 of 3 settings
+Title-Opus: WoO 99-10.2
+Title-Dates: 1801--1803
+
+Title-RAW: Quartet for Solo Voice(s) "Quella cetra ah pur tu sei" (WoO 99, No. 10c) 3 of 3 settings
+Title-Opus: WoO 99-10.3
+Title-Dates: 1801--1803
+
+Title-Type: Duet
+Title-Name: Scrivo in te
+Title-Opus: WoO 99-11
+Title-Dates: 1801--1803
+
+Title-Type: Quartet
+Title-For: Solo Voice(s)
+Title-Key: C major
+Title-Name: Silvio, amante disperato
+Title-Opus: WoO 99-12
+Title-Dates: 1801--1802
+
+Title-Type: Joke
+Title-Key: G major
+Title-Name: Lob auf den Dicken
+Title-Name: Schuppanzigh ist ein Lump
+Title-Opus: WoO 100
+Title-Dates: 1801
+
+Title-Type: Joke
+Title-Key: E flat major
+Title-Name: Graf, liebster Graf, liebstes Schaf
+Title-Opus: WoO 101
+Title-Dates: 1802
+
+Title-RAW: Song "Abschiedsgesang" (Song of Farewell)
+Title-For: tenor & 2 basses
+Title-Name: Die Stunde schlägt
+Title-Opus: WoO 102
+Title-Dates: 1814
+
+Title-Type: Cantata
+Title-Key: B flat major
+Title-Name: Un lieto brindisi: Cantata campestre
+Title-Comment: for 4 voices & piano acc
+Title-Name: Johannisfeier begehn wir heute
+Title-Opus: WoO 103
+Title-Dates: 1814
+
+Title-RAW: Song "Gesang der Mönche" (Song of the Monks) from Schiller’s
+Title-Name: William Tell
+Title-Alternative-Name: Rasch tritt der Tod den Menchen an
+Title-Opus: WoO 104
+Title-Dates: 1817
+
+Title-Type: Song
+Title-Key: C major
+Title-Name: Hochzeitslied
+Title-For: bass, chorus & piano
+Title-Name: Auf Freunde, singt dem Gott der Ehen!
+Title-Opus: WoO 105
+Title-Dates: 1819
+
+Title-Type: Song
+Title-Key: A major
+Title-Name: Hochzeitslied
+Title-Comment: unison version of Hess 124
+Title-Opus: WoO 105
+Title-Dates: 1819
+
+Title-Type: Cantata
+Title-Name: Lobkowitz-Kantate
+Title-For: soprano, chorus & piano
+Title-Opus: WoO 106
+Title-Dates: 1823
+
+Title-Type: Song
+Title-Name: Schilderung eines Mädchens
+Title-Alternative-Name: Schildern, willst du Freund, soll ich dir Elisen?
+Title-Opus: WoO 107
+Title-Dates: 1782
+
+Title-Type: Song
+Title-Key: A major
+Title-Name: An einen Säugling
+Title-Alternative-Name: Noch weisst du nicht, wes Kind du bist
+Title-Opus: WoO 108
+Title-Dates: 1783
+
+Title-Type: Song
+Title-Key: C major
+Title-Name: Trinklied (beim Abschied zu singen)
+Title-Alternative-Name: Erhebt das Glas mit froher Hand
+Title-Opus: WoO 109
+Title-Dates: 1791--1792
+
+Title-Type: Song
+Title-Key: F minor
+Title-Name: Elegie auf den Tod eines Pudels
+Title-Alternative-Name: Stirb immerhin, es welken ja so viele der Freuden
+Title-Opus: WoO 110
+Title-Dates: 1790
+
+Title-Type: Song
+Title-Key: G major
+Title-Name: Punschlied
+Title-Alternative-Name: Wer nicht, wenn warm von Hand zu Hand
+Title-Opus: WoO 111
+Title-Dates: 1791--1792
+
+Title-Type: Song
+Title-Key: G major
+Title-Name: An Laura
+Title-Alternative-Name: Freud’ umblühe dich auf allen Wegen
+Title-Opus: WoO 112
+Title-Dates: 1792
+
+Title-Type: Song
+Title-Key: E major
+Title-Name: Klage
+Title-Alternative-Name: Dein Silver schien durch Eichengrün
+Title-Opus: WoO 113
+Title-Dates: 1790
+
+Title-Type: Song
+Title-Key: E major
+Title-Name: Ein Selbstgespräch
+Title-Alternative-Name: Ich, der mit flatterndem Sinn
+Title-Opus: WoO 114
+Title-Dates: 1793
+
+Title-Type: Song
+Title-Key: D major
+Title-Name: An Minna
+Title-Alternative-Name: Nur bei dir, an deinem Herzen
+Title-Opus: WoO 115
+Title-Dates: 1792
+
+Title-Type: Song
+Title-Key: C minor
+Title-Name: Que le temps me dure
+Title-Comment: 1st version
+Title-Opus: WoO 116
+Title-Dates: 1793
+
+Title-Type: Song
+Title-Key: C major
+Title-Name: Que le temps me dure
+Title-Comment: 2nd version
+Title-Opus: WoO 116
+Title-Dates: 1793
+
+Title-Type: Song
+Title-Key: C major
+Title-Name: Der freie Mann
+Title-Punct: ;
+Title-Comment: "Wer ist ein freier Mann?"; with unison chorus
+Title-Opus: WoO 117
+Title-Dates: 1792--1794
+
+Title-RAW: Song "Seufzer eines Ungeliebten"; "Hast du nicht Liebe zugemessen", and
+Title-Name: Gegenliebe
+Title-Alternative-Name: Wüsst’ ich, wüsst’ ich
+Title-Opus: WoO 118
+Title-Dates: 1794--1795
+
+Title-Type: Song
+Title-Key: G major
+Title-Name: O care selve
+Title-Punct: ,
+Title-Comment: with unison chorus
+Title-Opus: WoO 119
+Title-Dates: 1794--1795
+
+Title-Type: Song
+Title-Key: F major
+Title-Name: Man strebt, die Flamme zu verhehlen
+Title-Opus: WoO 120
+Title-Dates: 1800--1802
+
+Title-Type: Song
+Title-Key: G major
+Title-Name: Abschiedsgesang an Wiens Bürger
+Title-Alternative-Name: Keine Klage soll erschallen
+Title-Opus: WoO 121
+Title-Dates: 1796
+
+Title-Type: Song
+Title-Key: C major
+Title-Name: Kriegslied der Osterreicher
+Title-Punct: ;
+Title-Comment: "Ein grosses deutches Volk sind wir" (with unison chorus)
+Title-Opus: WoO 122
+Title-Dates: 1797
+
+Title-Type: Song
+Title-Key: G major
+Title-Name: Zärtliche Liebe
+Title-Comment: (Tender Love)
+Title-Alternative-Name: Ich liebe dich, so wie du mich
+Title-Opus: WoO 123
+Title-Dates: 1795
+
+Title-Type: Song
+Title-Key: A major
+Title-Name: La partenza
+Title-Comment: (Der Abschied)
+Title-Alternative-Name: Ecco quel fiero istante!
+Title-Opus: WoO 124
+Title-Dates: 1795
+
+Title-Type: Song
+Title-Key: E flat major
+Title-Name: La tiranna
+Title-Punct: ,
+Title-Comment: Canzonetta
+Title-Alternative-Name: Ah grief to think!
+Title-Opus: WoO 125
+Title-Dates: 1798--1799
+
+Title-Type: Song
+Title-Key: E major
+Title-Name: Opferlied
+Title-Comment: (Sacrificial Song)
+Title-Alternative-Name: Die Flamme lodert
+Title-Opus: WoO 126
+Title-Dates: 1794--1795
+
+Title-Type: Song
+Title-Key: C major
+Title-Name: Neue Liebe, neues Leben
+Title-Comment: (New love, new life); "Herz, mein Herz, was soll das geben?" (1st setting)
+Title-Opus: WoO 127
+Title-Dates: 1798--1799
+
+Title-Type: Song
+Title-Key: G major
+Title-Name: Plaisir d’aimer
+Title-Name: Plaisir d’aimer besoin d’une âme tendre
+Title-Opus: WoO 128
+Title-Dates: 1798--1799
+
+Title-Type: Song
+Title-Key: F major
+Title-Name: Der Wachtelschlag
+Title-Comment: (The Quail’s Call)
+Title-Name: Ach, wie schalt’s dorten so lieblich hervor
+Title-Opus: WoO 129
+Title-Dates: 1803
+
+Title-Type: Song
+Title-Key: C minor
+Title-Name: Gedenke mein
+Title-Alternative-Name: Gedenke mein, ich denke dein
+Title-Opus: WoO 130
+Title-Dates: 1804--1820
+
+Title-RAW: Sketch
+Title-For: Solo Voice(s) & Instrument(s)
+Title-Key: D minor
+Title-Name: Erlkönig
+Title-Comment: "Wer reitet so spat durch Nacht und Wind?"; authorship: unfinished
+Title-Opus: WoO 131
+Title-Dates: 1794--1796
+
+Title-Type: Song
+Title-Key: E flat major
+Title-Name: Als die Geliebte sich trennen wollte
+Title-Alternative-Name: Der Hoffnung letzter Schimmer sinkt dahin
+Title-Opus: WoO 132
+Title-Dates: 1806
+
+Title-Type: Song
+Title-Key: A flat major
+Title-Name: In questa tomba oscura
+Title-Punct: ,
+Title-Comment: Arietta (In this dark Tomb)
+Title-Opus: WoO 133
+Title-Dates: 1806--1807
+
+Title-Type: Song
+Title-Key: G minor
+Title-Name: Sehnsucht
+Title-Punct: ;
+Title-Comment: "Nur wer die Sehnsucht kennt" (1st setting)
+Title-Opus: WoO 134-1
+Title-Dates: 1807--1808
+
+Title-Type: Song
+Title-Key: G minor
+Title-Name: Sehnsucht
+Title-Punct: ;
+Title-Comment: "Nur wer die Sehnsucht kennt" (2nd setting)
+Title-Opus: WoO 134-2
+Title-Dates: 1807--1808
+
+Title-Type: Song
+Title-Key: E flat major
+Title-Name: Sehnsucht
+Title-Punct: ;
+Title-Comment: "Nur wer die Sehnsucht kennt" (3rd setting)
+Title-Opus: WoO 134-3
+Title-Dates: 1807--1808
+
+Title-Type: Song
+Title-Key: G minor
+Title-Name: Sehnsucht
+Title-Punct: ;
+Title-Comment: "Nur wer die Sehnsucht kennt" (4th setting)
+Title-Opus: WoO 134-4
+Title-Dates: 1807--1808
+
+Title-Type: Song
+Title-Key: C minor
+Title-Name: Die laute Klage
+Title-Alternative-Name: Turteltaube, du klagtest so laut
+Title-Opus: WoO 135
+Title-Dates: 1814--1815
+
+Title-Type: Song
+Title-Key: D major
+Title-Name: Andenken
+Title-Comment: (Memories)
+Title-Alternative-Name: Ich denke dein
+Title-Opus: WoO 136
+Title-Dates: 1808
+
+Title-Type: Song
+Title-Key: B flat major
+Title-Name: Gesang aus der Ferne
+Title-Comment: (Song from far away); "Als mir noch die Träne" (2nd setting)
+Title-Opus: WoO 137
+Title-Dates: 1809
+
+Title-Type: Song
+Title-Key: B flat major
+Title-Name: Der Jüngling in der Fremde
+Title-Alternative-Name: Der Früling entblühet dem Schoß der Natur
+Title-Opus: WoO 138
+Title-Dates: 1809
+
+Title-Type: Song
+Title-Key: D major
+Title-Name: Der Liebende
+Title-Alternative-Name: Welch ein wunderbares Leben
+Title-Opus: WoO 139
+Title-Dates: 1809
+
+Title-RAW: Song "An die Geliebte"; "O daß ich dir vom stillen Auge" (1st setting)
+Title-Opus: WoO 140-1
+Title-Dates: 1811
+
+Title-RAW: Song "An die Geliebte"; "O daß ich dir vom stillen Auge" (2nd setting)
+Title-Opus: WoO 140-2
+Title-Dates: 1814
+
+Title-Type: Song
+Title-Key: C major
+Title-Name: Der Gesang der Nachtigall
+Title-Alternative-Name: Höre, die Nachtigall singt
+Title-Opus: WoO 141
+Title-Dates: 1813
+
+Title-Type: Song
+Title-Key: E minor
+Title-Name: Der Bardengeist
+Title-Alternative-Name: Dort auf dem hohen Felsen sang
+Title-Opus: WoO 142
+Title-Dates: 1813
+
+Title-Type: Song
+Title-Key: E flat major
+Title-Name: Des Kriegers Abschied
+Title-Alternative-Name: Ich zieh’ ins Feld von Lieb’entbrannt
+Title-Opus: WoO 143
+Title-Dates: 1814
+
+Title-Type: Song
+Title-Key: E flat major
+Title-Name: Merkenstein
+Title-Comment: (1st setting)
+Title-Opus: WoO 144
+Title-Dates: 1814
+
+Title-Type: Song
+Title-Key: G major
+Title-Name: Das Geheimnis (Liebe and Wahrheit)
+Title-Alternative-Name: Wo blüht das Blümchen, das nie verblüht?
+Title-Opus: WoO 145
+Title-Dates: 1815
+
+Title-Type: Song
+Title-Key: E major
+Title-Name: Sehnsucht
+Title-Comment: (Longing)
+Title-Alternative-Name: Die stille Nacht umdunkelt
+Title-Opus: WoO 146
+Title-Dates: 1816
+
+Title-Type: Song
+Title-Key: A major
+Title-Name: Ruf vom Berge
+Title-Alternative-Name: Wenn ich ein Vöglein wär
+Title-Opus: WoO 147
+Title-Dates: 1816
+
+Title-Type: Song
+Title-Key: F major
+Title-Name: So oder so
+Title-Alternative-Name: Nord oder Süd!
+Title-Opus: WoO 148
+Title-Dates: 1817
+
+Title-Type: Song
+Title-Key: D major
+Title-Name: Resignation
+Title-Alternative-Name: Lisch aus, mein Licht!
+Title-Opus: WoO 149
+Title-Dates: 1817
+
+Title-Type: Song
+Title-Key: E major
+Title-Name: Abendlied unter’m gestirnten Himmel
+Title-Comment: (Evening Song beneath the Starry Sky)
+Title-Alternative-Name: Wenn die Sonne nieder sinket
+Title-Opus: WoO 150
+Title-Dates: 1820
+
+Title-Type: Song
+Title-Key: G major
+Title-Name: Der edle Mensch sei hülfreich und gut
+Title-Opus: WoO 151
+Title-Dates: 1823
+
+Title-RAW: Folksong Setting "The Return to Ulster", "Once again, but how chang’d"; No. 1 of 25 Irish songs
+Title-Opus: WoO 152-1
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Sweet Power of Song!"; No. 2 of 25 Irish songs
+Title-Opus: WoO 152-2
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Once more I hail thee"; No. 3 of 25 Irish songs
+Title-Opus: WoO 152-3
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The morning air plays on my face"; No. 4 of 25 Irish songs
+Title-Opus: WoO 152-4
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "On the massacre of Glencoe", "O! tell me, harper"; No. 5 of 25 Irish songs
+Title-Opus: WoO 152-5
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "What shall I do to shew how much I love her?"; No. 6 of 25 Irish songs
+Title-Opus: WoO 152-6
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "His boat comes on the sunny tide"; No. 7 of 25 Irish songs
+Title-Opus: WoO 152-7
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Come draw we round a cheerful ring"; No. 8 of 25 Irish songs
+Title-Opus: WoO 152-8
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The Soldier’s Dream", "Our bugles sung truce"; No. 9 of 25 Irish songs
+Title-Opus: WoO 152-9
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The Deserter" (The evening previous to his execution), "If sadly thinking and spirits sinking"; No. 10 of 25 Irish songs
+Title-Opus: WoO 152-10
+Title-Dates: 1812
+
+Title-RAW: Folksong Setting "Thou emblem of faith" (Upon returning a ring); No. 11 of 25 Irish songs
+Title-Opus: WoO 152-11
+Title-Dates: 1812
+
+Title-RAW: Folksong Setting "English Bulls, or The Irishman in London", "Och! have you not heard, Pat"; No. 12 of 25 Irish songs
+Title-Opus: WoO 152-12
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Musing on the roaring ocean"; No. 13 of 25 Irish songs
+Title-Opus: WoO 152-13
+Title-Dates: 1812
+
+Title-RAW: Folksong Setting "Dermot and Shelah", "O who sits so sadly"; No. 14 of 25 Irish songs
+Title-Opus: WoO 152-14
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Let brainspinning swains"; No. 15 of 25 Irish songs
+Title-Opus: WoO 152-15
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Hide not thy anguish"; No. 16 of 25 Irish songs
+Title-Opus: WoO 152-16
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "In vain to this desert my fate I deplore"; No. 17 of 25 Irish songs
+Title-Opus: WoO 152-17
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "They bid me slight my Dermot dear"; No. 18 of 25 Irish songs
+Title-Opus: WoO 152-18
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Wife, Children and Friends", "When the blackletter’d list to the gods"; No. 19 of 25 Irish songs
+Title-Opus: WoO 152-19
+Title-Dates: 1812
+
+Title-RAW: Folksong Setting "Farewell bliss and farewell Nancy"; No. 20 of 25 Irish songs
+Title-Opus: WoO 152-20
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Morning a cruel turmoiler is"; No. 21 of 25 Irish songs
+Title-Opus: WoO 152-21
+Title-Dates: 1812
+
+Title-RAW: Folksong Setting "From Garyone, my happy home", air: "Garyone"; No. 22 of 25 Irish songs
+Title-Opus: WoO 152-22
+Title-Dates: 1812
+
+Title-RAW: Folksong Setting "A wand’ring gypsey, Sirs, am I"; No. 23 of 25 Irish songs
+Title-Opus: WoO 152-23
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The Traugh Welcome", "Shall a son of O’Donnell be cheerless and cold"; No. 24 of 25 Irish songs
+Title-Opus: WoO 152-24
+Title-Dates: 1812
+
+Title-RAW: Folksong Setting "O harp of Erin", "O harp of Erin thou art now laid low"; air: "I once had a true love"; No. 25 of 25 Irish songs
+Title-Opus: WoO 152-25
+Title-Dates: 1812
+
+Title-RAW: Folksong Setting "When eve’s last rays in twilight die"; No. 1 of 20 Irish songs
+Title-Opus: WoO 153-1
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "No. riches from his scanty store"; No. 2 of 20 Irish songs
+Title-Opus: WoO 153-2
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The British Light Dragoons, or The Plain of Badajos", "’Twas a Marechal of France"; No. 3 of 20 Irish songs
+Title-Opus: WoO 153-3
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Since greybeards inform us that youth will decay"; No. 4 of 20 Irish songs
+Title-Opus: WoO 153-4
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "I dream’d I lay where flow’rs were springing"; No. 5 of 20 Irish songs
+Title-Opus: WoO 153-5
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "Sad and luckless was the season"; No. 6 of 20 Irish songs
+Title-Opus: WoO 153-6
+Title-Dates: 1815
+
+Title-RAW: Folksong Setting "O soothe me, my lyre"; No. 7 of 20 Irish songs
+Title-Opus: WoO 153-7
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "Norah of Balamagairy", "Farewell mirth and hilarity"; No. 8 of 20 Irish songs
+Title-Opus: WoO 153-8
+Title-Dates: 1812--1813
+
+Title-RAW: Folksong Setting "The kiss, dear maid, thy lip has left"; No. 9 of 20 Irish songs
+Title-Opus: WoO 153-9
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "Oh, thou hapless soldier"; No. 10 of 20 Irish songs
+Title-Opus: WoO 153-10
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "When far from the home"; No. 11 of 20 Irish songs
+Title-Opus: WoO 153-11
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "I’ll praise the saints with early song"; No. 12 of 20 Irish songs
+Title-Opus: WoO 153-12
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting: ‘"Tis sunshine at last"; No. 13 of 20 Irish songs
+Title-Opus: WoO 153-13
+Title-Dates: 1815
+
+Title-RAW: Folksong Setting "Paddy O’Rafferty"; No. 14 of 20 Irish songs
+Title-Opus: WoO 153-14
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "‘Tis but in vain, for nothing thrives"; No. 15 of 20 Irish songs
+Title-Opus: WoO 153-15
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "O might I but my Patrick love!" (English); No. 16 of 20 Irish songs
+Title-Opus: WoO 153-16
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "Come, Darby dear! easy, be easy"; No. 17 of 20 Irish songs
+Title-Opus: WoO 153-17
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "No. more, my Mary, I sigh for splendour"; No. 18 of 20 Irish songs
+Title-Opus: WoO 153-18
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "Judy, lovely, matchless creature"; No. 19 of 20 Irish songs
+Title-Opus: WoO 153-19
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "Thy ship must sail, my Henry dear"; No. 20 of 20 Irish songs
+Title-Opus: WoO 153-20
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "The Elfin Fairies", "We fairy elves in secret dells", air: "Planxty Kelly"; No. 1 of 12 Irish songs
+Title-Opus: WoO 154-1
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "O harp of Erin", "O harp of Erin thou art now laid low", air: "I once had a true love"; No. 2 of 12 Irish songs
+Title-Opus: WoO 154-2
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "The Farewell Song", "O Erin", air: "The old woman"; No. 3 of 12 Irish songs
+Title-Opus: WoO 154-3
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "The pulse of a Irishman", air: "St Patrick’s Day"; No. 4 of 12 Irish songs
+Title-Opus: WoO 154-4
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "O who, my dear Dermot", air: "Crooghan a Venee"; No. 5 of 12 Irish songs
+Title-Opus: WoO 154-5
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "Put round the bright wine", air: "Chiling O’Guiry"; No. 6 of 12 Irish songs
+Title-Opus: WoO 154-6
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "From Garyone, my happy home", air: "Garyone"; No. 7 of 12 Irish songs
+Title-Opus: WoO 154-7
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "Save me from the grave and wise", air: "Nora Creina"; No. 8 of 12 Irish songs
+Title-Opus: WoO 154-8
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "O would I were but that sweet linnet!", air: "The pretty girl milking the cows"; No. 9 of 12 Irish songs
+Title-Opus: WoO 154-9
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "The hero may perish", air: "The fox’s sleep"; No. 10 of 12 Irish songs
+Title-Opus: WoO 154-10
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "The Soldier in a Foreign Land", "The piper who sat on his low mossy seat", air: "The Brown Maid"; No. 11 of 12 Irish songs
+Title-Opus: WoO 154-11
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "He promis’d me at parting", air: "Killeavy"; No. 12 of 12 Irish songs
+Title-Opus: WoO 154-12
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "Chase of the Wolf" or "Sion, the Son of Evan", "Hear the shouts of Evan’s son"; No. 1 of 26 Welsh songs
+Title-Opus: WoO 155-1
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The Monks of Bangor’s March", "When the heathen trumpet’s clang"; No. 2 of 26 Welsh songs
+Title-Opus: WoO 155-2
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The Cottage Maid", "I envy not the splendour fine"; No. 3 of 26 Welsh songs
+Title-Opus: WoO 155-3
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Love without Hope", "Her features speak the warmest heart"; No. 4 of 26 Welsh songs
+Title-Opus: WoO 155-4
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The Golden Robe", "A golden robe my Love shall wear"; No. 5 of 26 Welsh songs
+Title-Opus: WoO 155-5
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The Fair Maid of Mona", "How, my love, could hapless doubts o’ertake thee"; No. 6 of 26 Welsh songs
+Title-Opus: WoO 155-6
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "O let the night my blushes hide"; No. 7 of 26 Welsh songs
+Title-Opus: WoO 155-7
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Farewell, thou noisy town"; No. 8 of 26 Welsh songs
+Title-Opus: WoO 155-8
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "To the Aeolian Harp", "Harp of the winds"; No. 9 of 26 Welsh songs
+Title-Opus: WoO 155-9
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Ned Pugh’s Farewell", "To leave my dear girl, my country, and friends"; No. 10 of 26 Welsh songs
+Title-Opus: WoO 155-10
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Merch Megan, or Peggy’s Daughter"1 "In the white cot where Peggy dwells"; No. 11 of 26 Welsh songs
+Title-Opus: WoO 155-11
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Waken, lords and ladies gay"; No. 12 of 26 Welsh songs
+Title-Opus: WoO 155-12
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Helpless Woman", "How cruel are the parents"; No. 13 of 26 Welsh songs
+Title-Opus: WoO 155-13
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The Dream", "Last night worn with anguish"; No. 14 of 26 Welsh songs
+Title-Opus: WoO 155-14
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "When mortals all to rest retire" (English); No. 15 of 26 Welsh songs
+Title-Opus: WoO 155-15
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "The Damsels of Cardigan", "Fair Tivy"; No. 16 of 26 Welsh songs
+Title-Opus: WoO 155-16
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The Dairy House", "A spreading hawthorn shades the seat"; No. 17 of 26 Welsh songs
+Title-Opus: WoO 155-17
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Sweet Richard", "Yes, thou art chang’d since first we met"; No. 18 of 26 Welsh songs
+Title-Opus: WoO 155-18
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The Vale of Clwyd", "Think not I’ll leave"; No. 19 of 26 Welsh songs
+Title-Opus: WoO 155-19
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "To the Blackbird", "Sweet warbler of a strain divine"; No. 20 of 26 Welsh songs
+Title-Opus: WoO 155-20
+Title-Dates: 1813
+
+Title-RAW: Folksong Setting "Cupid’s Kindness", "Dear brother"; No. 21 of 26 Welsh songs
+Title-Opus: WoO 155-21
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Constancy", "Tho’ cruel fate should bid us part"; No. 22 of 26 Welsh songs
+Title-Opus: WoO 155-22
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The Old Strain", "My pleasant home beside the Dee!"; No. 23 of 26 Welsh songs
+Title-Opus: WoO 155-23
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "Three Hundred Pounds", "In yonder snug cottage"; No. 24 of 26 Welsh songs
+Title-Opus: WoO 155-24
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The Parting Kiss", "Laura, thy sighs must now No. more"; No. 25 of 26 Welsh songs
+Title-Opus: WoO 155-25
+Title-Dates: 1815
+
+Title-RAW: Folksong Setting "Good Night", "Ere yet we slumber seek"; No. 26 of 26 Welsh songs
+Title-Opus: WoO 155-26
+Title-Dates: 1810
+
+Title-RAW: Folksong Setting "The Banner of Buccleuch", "From the brown crest of Newark"; No. 1 of 12 Scottish songs
+Title-Opus: WoO 156-1
+Title-Dates: 1819
+
+Title-RAW: Folksong Setting "Duncan Gray", "Duncan Gray came here to; woo"; No. 2 of 12 Scottish songs
+Title-Opus: WoO 156-2
+Title-Dates: 1818
+
+Title-RAW: Folksong Setting "Up! quit thy bower"; No. 3 of 12 Scottish songs
+Title-Opus: WoO 156-3
+Title-Dates: 1819
+
+Title-RAW: Folksong Setting "Ye shepherds of this pleasant vale"; No. 4 of 12 Scottish songs
+Title-Opus: WoO 156-4
+Title-Dates: 1818
+
+Title-RAW: Folksong Setting "Cease your funning"; No. 5 of 12 Scottish songs
+Title-Opus: WoO 156-5
+Title-Dates: 1817
+
+Title-RAW: Folksong Setting "Highland Harry", "My Harry was a gallant gay"; No. 6 of 12 Scottish songs
+Title-Opus: WoO 156-6
+Title-Dates: 1815
+
+Title-RAW: Folksong Setting "Polly Stewart", "O lovely Polly Stewart"; No. 7 of 12 Scottish songs
+Title-Opus: WoO 156-7
+Title-Dates: 1818
+
+Title-RAW: Folksong Setting "Womankind", "The hero may perish his country to save"; No. 8 of 12 Scottish songs
+Title-Opus: WoO 156-8
+Title-Dates: 1818
+
+Title-RAW: Folksong Setting "Lochnagar", "Away ye gay landscapes"; No. 9 of 12 Scottish songs
+Title-Opus: WoO 156-9
+Title-Dates: 1818
+
+Title-RAW: Folksong Setting "Glencoe", "O tell us, Harper"; No. 10 of 12 Scottish songs
+Title-Opus: WoO 156-10
+Title-Dates: 1819
+
+Title-RAW: Folksong Setting "Auld Lang Syne" "Should auld acquaintance be forgot"; No. 11 of 12 Scottish songs
+Title-Opus: WoO 156-11
+Title-Dates: 1818
+
+Title-RAW: Folksong Setting "The Quaker’s Wife", "Dark was the morn and black the sea"; No. 12 of 12 Scottish songs
+Title-Opus: WoO 156-12
+Title-Dates: 1818
+
+Title-RAW: Folksong Setting "God Save the King", "God save our Lord the King" (English); No. 1 of 12 assorted folk songs
+Title-Opus: WoO 157-1
+Title-Dates: 1817
+
+Title-RAW: Folksong Setting "The Soldier", "Then, Soldier! come" (Irish); No. 2 of 12 assorted folk songs
+Title-Opus: WoO 157-2
+Title-Dates: 1815
+
+Title-RAW: Folksong Setting "Charlie is my darling" (Scottish); No. 3 of 12 assorted folk songs
+Title-Opus: WoO 157-3
+Title-Dates: 1819
+
+Title-RAW: Folksong Setting "O sanctissima" (Sicilian); No. 4 of 12 assorted folk songs
+Title-Opus: WoO 157-4
+Title-Dates: 1817
+
+Title-RAW: Folksong Setting "The Miller of Dee", "There was a jolly miller once" (English); No. 5 of 12 assorted folk songs
+Title-Opus: WoO 157-5
+Title-Dates: 1819
+
+Title-RAW: Folksong Setting "A health to the brave" (Irish); No. 6 of 12 assorted folk songs
+Title-Opus: WoO 157-6
+Title-Dates: 1815
+
+Title-RAW: Folksong Setting "Robin Adair", "Since all thy vows, false maid" (Irish); No. 7 of 12 assorted folk songs
+Title-Opus: WoO 157-7
+Title-Dates: 1815
+
+Title-RAW: Folksong Setting "By the side of the Shannon" (Irish); No. 8 of 12 assorted folk songs
+Title-Opus: WoO 157-8
+Title-Dates: 1815
+
+Title-RAW: Folksong Setting "Highlander’s Lament", "My Harry was a gallant gay" (Scottish); No. 9 of 12 assorted folk songs
+Title-Opus: WoO 157-9
+Title-Dates: 1820
+
+Title-RAW: Folksong Setting "Sir Johnnie Cope" (Scottish); No. 10 of 12 assorted folk songs
+Title-Opus: WoO 157-10
+Title-Dates: 1817
+
+Title-RAW: Folksong Setting "The Wandering Minstrel", "I am bow’d down" (Irish); No. 11 of 12 assorted folk songs
+Title-Opus: WoO 157-11
+Title-Dates: 1815
+
+Title-RAW: Folksong Setting "La gondoletta", "La biondina in gondoletta" (Venetian); No. 12 of 12 assorted folk songs
+Title-Opus: WoO 157-12
+Title-Dates: 1816
+
+Title-RAW: Folksong Setting "Ridder Stigs Runer" (Danish); WoO 158a, No. 1 of 23 continental folk songs
+Title-Opus: WoO 158-1
+Title-Dates: 1813,1817
+
+Title-RAW: Folksong Setting "Horch auf, mein Liebchen" (German); WoO 158a, No. 2 of 23 continental folk songs
+Title-Opus: WoO 158-2
+Title-Dates: 1813,1816,1817
+
+Title-RAW: Folksong Setting "Wegen meiner blieb d’Fräula" (German); WoO 158a, No. 3 of 23 continental folk songs
+Title-Opus: WoO 158-3
+Title-Dates: 1816,1817,1820
+
+Title-RAW: Folksong Setting "Wann i in der Früh aufsteh" (Tyrolean); WoO 158a, No. 4 of 23 continental folk songs
+Title-Opus: WoO 158-4
+Title-Dates: 1816,1817,1820
+
+Title-RAW: Folksong Setting "Teppichkrämer-Lied"; "I bin a Tyroler Bua" (Tyrolean); WoO 158a, No. 5 of 23 continental folk songs
+Title-Opus: WoO 158-5
+Title-Dates: 1815,1816,1818
+
+Title-RAW: Folksong Setting "A Madel, ja a Madel" (Tyrolean); WoO 158a, No. 6 of 23 continental folk songs
+Title-Opus: WoO 158-6
+Title-Dates: 1810,1815,1816
+
+Title-RAW: Folksong Setting "Wer solche Buema afipackt" (Tyrolean); WoO 158a, No. 7 of 23 continental folk songs
+Title-Opus: WoO 158-7
+Title-Dates: 1810,1817
+
+Title-RAW: Folksong Setting "Ih mag di nit nehma, du töppeter Hecht" (Tyrolean); WoO 158a, No. 8 of 23 continental folk songs
+Title-Opus: WoO 158-8
+Title-Dates: 1817
+
+Title-RAW: Folksong Setting "Oj, oj upilem sie w karczmie" (Polish); WoO 158a, No. 9 of 23 continental folk songs
+Title-Opus: WoO 158-9
+Title-Dates: 1816
+
+Title-RAW: Folksong Setting "Poszla baba po popiol" (Polish); WoO 158a, No. 10 of 23 continental folk songs
+Title-Opus: WoO 158-10
+Title-Dates: 1816
+
+Title-RAW: Folksong Setting "Yo No. quiero embarcarme" (Iberian); WoO 158a, No. 11 of 23 continental folk songs
+Title-Opus: WoO 158-11
+Title-Dates: 1816
+
+Title-RAW: Folksong Setting "Seus lindos olhos" (Portuguese); WoO 158a, No. 12 of 23 continental folk songs
+Title-Opus: WoO 158-12
+Title-Dates: 1816
+
+Title-RAW: Folksong Setting "Vo lesocke komarockov mnogo urodilos" (Im Walde sind viele Mücklein geboren) (Russian); WoO 158a, No. 13 of 23 continental folk songs
+Title-Opus: WoO 158-13
+Title-Dates: 1816
+
+Title-RAW: Folksong Setting "Akh, recen’ki, recen’ki" (Ach Bächlein, Bächlein, kühle Wasser) (Russian); WoO 158a, No. 14 of 23 continental folk songs
+Title-Opus: WoO 158-14
+Title-Dates: 1816
+
+Title-RAW: Folksong Setting "Kak Posli nasi podruzki" (As They Went) (Unsere Mädchen gingen in den Wald) (Russian); WoO 158a, No. 15 of 23 continental folk songs
+Title-Opus: WoO 158-15
+Title-Dates: 1816
+
+Title-RAW: Folksong Setting "Schöne Minka, ich muß scheiden" (Ukrainian-Cossack); WoO 158a, No. 16 of 23 continental folk songs
+Title-Opus: WoO 158-16
+Title-Dates: 1816
+
+Title-RAW: Folksong Setting "Lilla Carl", Vaggvisa (Swedish lullaby); WoO 158a, No. 17 of 23 continental folk songs
+Title-Opus: WoO 158-17
+Title-Dates: 1817
+
+Title-RAW: Folksong Setting "An ä Bergli bin i gesässe" (Swiss); WoO 158a, No. 18 of 23 continental folk songs
+Title-Opus: WoO 158-18
+Title-Dates: 1816
+
+Title-RAW: Folksong Setting "Una paloma blanca" (Spanish Bolero a Solo); WoO 158a, No. 19 of 23 continental folk songs
+Title-Opus: WoO 158-19
+Title-Dates: 1816
+
+Title-RAW: Folksong Setting "Como la mariposa soy" (Spanish Bolero a due); WoO 158a, No. 20 of 23 continental folk songs
+Title-Opus: WoO 158-20
+Title-Dates: 1816
+
+Title-RAW: Folksong Setting "Tiranilla Española" (Spanish); "La tiranna se embarca"; WoO 158a, No. 21 of 23 continental folk songs
+Title-Opus: WoO 158-21
+Title-Dates: 1816
+
+Title-RAW: Folksong Setting "Édes kinos emlékezet", "Magyar Szüretötö Enek" (Hungarian grape harvest song); WoO 158a, No. 22 of 23 continental folk songs
+Title-Opus: WoO 158-22
+Title-Dates: 1817
+
+Title-RAW: Folksong Setting "Da brava, Catina" (Venetian); WoO 158a, No. 23 of 23 continental folk songs
+Title-Opus: WoO 158-23
+Title-Dates: 1816
+
+Title-RAW: Folksong Setting
+Title-Key: A major
+Title-Name: Adieu, my lov’d harp
+Title-Comment: (Irish); WoO 158b, No. 1 of 7 British folk songs
+Title-Opus: WoO 158-1
+Title-Dates: 1813,1817
+
+Title-RAW: Folksong Setting
+Title-Key: E flat major
+Title-Name: Castle O’Neill
+Title-Comment: (Irish), without words; WoO 158b, No. 2 of 7 British folk songs
+Title-Opus: WoO 158-2
+Title-Dates: 1813,1816,1817
+
+Title-RAW: Folksong Setting "Oh ono chri!" (Scottish) "O was not I a weary wight"; WoO 158b, No. 3 of 7 British folk songs
+Title-Opus: WoO 158-3
+Title-Dates: 1816,1817,1820
+
+Title-RAW: Folksong Setting "Red gleams the sun on yon hill tap" (Scottish); WoO 158b, No. 4 of 7 British folk songs
+Title-Opus: WoO 158-4
+Title-Dates: 1816,1817,1820
+
+Title-RAW: Folksong Setting
+Title-Key: G major
+Title-Name: Erin! O Erin!
+Title-Comment: (Scottish-Irish) "Like the bride lamp that lay"; WoO 158b, No. 5 of 7 British folk songs
+Title-Opus: WoO 158-5
+Title-Dates: 1815,1816,1818
+
+Title-RAW: Folksong Setting "O Mary ye’s be clad in silk" (Scottish); WoO 158b, No. 6 of 7 British folk songs
+Title-Opus: WoO 158-6
+Title-Dates: 1810,1815,1816
+
+Title-RAW: Folksong Setting "Lament for Owen Roe O’Neill" (Irish) without words; WoO 158b, No. 7 of 7 British folk songs
+Title-Opus: WoO 158-7
+Title-Dates: 1810,1817
+
+Title-RAW: Folksong Setting
+Title-Key: E minor
+Title-Name: When my Hero in court appears
+Title-Punct: ;
+Title-Comment: WoO 158c, No. 1 of 6 assorted folk songs
+Title-Opus: WoO 158-1
+Title-Dates: 1813,1817
+
+Title-RAW: Folksong Setting
+Title-Key: B major
+Title-Name: Air de Colin
+Title-Comment: from Rousseau’s "Le Devin du Village"; "Non, non, Colette n’est point trompeuse"; WoO 158c, No. 2 of 6 assorted folk songs
+Title-Opus: WoO 158-2
+Title-Dates: 1813,1816,1817
+
+Title-RAW: Folksong Setting
+Title-Key: B major
+Title-Name: Mark yonder pomp of costly fashion
+Title-Comment: (Scottish); WoO 158c, No. 3 of 6 assorted folk songs
+Title-Opus: WoO 158-3
+Title-Dates: 1816,1817,1820
+
+Title-RAW: Folksong Setting
+Title-Key: A major
+Title-Name: Bonnie wee thing
+Title-Comment: (Scottish) for 3 voices and piano; WoO 158c, No. 4 of 6 assorted folk songs
+Title-Opus: WoO 158-4
+Title-Dates: 1816,1817,1820
+
+Title-RAW: Folksong Setting
+Title-Key: B flat major
+Title-Name: From thee, Eliza, I must go
+Title-Comment: (Scottish) for 3 voices and piano trio; WoO 158c, No. 5 of 6 assorted folk songs
+Title-Opus: WoO 158-5
+Title-Dates: 1815,1816,1818
+
+Title-RAW: Folksong Setting
+Title-Key: E minor
+Title-Punct: :
+Title-Comment: Untitled (Scottish) without words; WoO 158c, No. 6 of 6 assorted folk songs
+Title-Opus: WoO 158-6
+Title-Dates: 1810,1815,1816
+
+Title-RAW: Folksong Setting
+Title-Key: F major
+Title-Name: Air Français
+Title-Comment: (French)
+Title-Opus: WoO 158d
+Title-Opus: WoO 158
+
+Title-Type: 3-part Canon
+Title-Key: F major
+Title-Name: Im Arm der Liebe ruht sich’s wohl
+Title-Opus: WoO 159
+Title-Dates: 1795
+
+Title-Type: 3-part Canon
+Title-Key: G major
+Title-Punct: :
+Title-Comment: for Three Unison Voices (Allegretto) without Text
+Title-Opus: WoO 160-1
+Title-Dates: 1795
+
+Title-RAW: 4-part Canon: for Four Unison Voices (Moderato) without Text
+Title-Opus: WoO 160-2
+Title-Dates: 1795
+
+Title-Type: 3-part Canon
+Title-Key: C major
+Title-Name: Ewig dein!
+Title-Comment: (Forever thine!)
+Title-Opus: WoO 161
+Title-Dates: 1811
+
+Title-Type: 4-part Canon
+Title-Key: B flat major
+Title-Name: Ta ta ta, lieber Mälzel
+Title-Punct: ;
+Title-Comment: authorship: spurious
+Title-Opus: WoO 162
+Title-Dates: 1812
+
+Title-Type: 3-part Canon
+Title-Key: F minor
+Title-Name: Kurz ist der Schmerz, und ewig ist die Freude
+Title-Comment: (Suffering is transitory, but joy is eternal) (1st setting)
+Title-Opus: WoO 163
+Title-Dates: 1813
+
+Title-Type: 3-part Canon
+Title-Key: C major
+Title-Name: Freundschaft ist die Quelle wahrer Glückseligkeit
+Title-Comment: (Friendship is the source of true bliss)
+Title-Opus: WoO 164
+Title-Dates: 1814
+
+Title-RAW: 4-part Canon "Glück zum neuen Jahr!" (1st setting)
+Title-Opus: WoO 165
+Title-Dates: 1815
+
+Title-Type: 3-part Canon
+Title-Key: F major
+Title-Name: Kurz ist der Schmerz, und ewig ist die Freude
+Title-Comment: (Suffering is transitory, but joy is eternal) (2nd setting)
+Title-Opus: WoO 166
+Title-Dates: 1815
+
+Title-Type: 3-part Canon
+Title-Key: C major
+Title-Name: Brauchle, Linke
+Title-Opus: WoO 167
+Title-Dates: 1815
+
+Title-Type: 3-part Riddle Canon
+Title-Key: F major
+Title-Name: Das Schweigen
+Title-Alternative-Name: Lerne Schweigen, o Freund
+Title-Opus: WoO 168-1
+Title-Dates: 1816
+
+Title-Type: 3-part Canon
+Title-Key: F major
+Title-Name: Das Reden
+Title-Alternative-Name: Rede, wenn’s um einen Freund dir gilt
+Title-Opus: WoO 168-2
+Title-Dates: 1816
+
+Title-Type: 2-part Riddle Canon
+Title-Key: C major
+Title-Name: Ich küße Sie, drücke Sie an mein Herz
+Title-Opus: WoO 169
+Title-Dates: 1816
+
+Title-Type: 2-part Canon
+Title-Key: C major
+Title-Name: Ars longa, vita brevis
+Title-Comment: (first version)
+Title-Opus: WoO 170
+Title-Dates: 1816
+
+Title-Type: 4-part Canon
+Title-Key: G major
+Title-Name: Glück fehl’ dir vor allem!
+Title-Punct: ;
+Title-Comment: authorship: spurious
+Title-Opus: WoO 171
+Title-Dates: 1817
+
+Title-Type: 3-part Canon
+Title-Key: E flat major
+Title-Name: Ich bitt’ dich, schreib’ mir die Es-Scala auf
+Title-Opus: WoO 172
+Title-Dates: 1818
+
+Title-Type: 2-part Riddle Canon
+Title-Key: B flat major
+Title-Name: Hol’ euch der Teufel! B’hüt euch Gott!
+Title-Opus: WoO 173
+Title-Dates: 1819
+
+Title-Type: 4-part Canon
+Title-Key: B flat major
+Title-Name: Glaube und hoffe
+Title-Opus: WoO 174
+Title-Dates: 1819
+
+Title-Type: 4-part Riddle Canon
+Title-Name: Sankt Petrus war ein Fels/ Bernardus war ein Sankt
+Title-Opus: WoO 175
+Title-Dates: 1820
+
+Title-Type: 3-part Canon
+Title-Key: F major
+Title-Name: Glück zum neuen Jahr!
+Title-Comment: (2nd setting)
+Title-Opus: WoO 176
+Title-Dates: 1819
+
+Title-Type: Canon
+Title-Key: E major
+Title-Name: Bester Magistrat, Ihr friert
+Title-Punct: ;
+Title-Comment: canon for 2 male voices & 2 double-basses
+Title-Opus: WoO 177
+Title-Dates: 1820
+
+Title-Type: 3-part Canon
+Title-Key: B flat major
+Title-Name: Signor Abate
+Title-Opus: WoO 178
+Title-Dates: 1820
+
+Title-RAW: Intro & 4-part Canon
+Title-Key: C major
+Title-Name: Seiner Kaiserlichen Hoheit...alles Gute, alles Schöne
+Title-Opus: WoO 179
+Title-Dates: 1819
+
+Title-Type: 2-part Canon
+Title-Key: C major
+Title-Name: Auf einen, welcher Hoffmann geheißen
+Title-Alternative-Name: Hoffmann, sei ja kein Hofmann
+Title-Opus: WoO 180
+Title-Dates: 1820
+
+Title-Type: 4-part Canon
+Title-Key: C major
+Title-Name: Gedenket heute an Baden
+Title-Opus: WoO 181-1
+Title-Dates: 1820
+
+Title-Type: 4-part Canon
+Title-Key: C major
+Title-Name: Gehabt euch wohl
+Title-Opus: WoO 181-2
+Title-Dates: 1820
+
+Title-Type: 3-part Canon
+Title-Key: C major
+Title-Name: Tugend ist kein leerer Name
+Title-Opus: WoO 181-3
+Title-Dates: 1820
+
+Title-Type: 3-part Canon
+Title-Key: D minor
+Title-Name: O Tobias!
+Title-Opus: WoO 182
+Title-Dates: 1821
+
+Title-Type: 4-part Canon
+Title-Key: F major
+Title-Name: Bester Herr Graf, Sie sind ein Schaf
+Title-Opus: WoO 183
+Title-Dates: 1823
+
+Title-Type: 5-part Canon
+Title-Key: G major
+Title-Name: Falstafferel, lass dich sehen!
+Title-Opus: WoO 184
+Title-Dates: 1823
+
+Title-Type: 6-part Canon
+Title-Name: Edel sei der Mensch, hülfreich und gut
+Title-Opus: WoO 185
+Title-Dates: 1823
+
+Title-Type: 2-part Canon
+Title-Key: E flat major
+Title-Name: Te solo adoro
+Title-Opus: WoO 186
+Title-Dates: 1824
+
+Title-Type: 4-part Canon
+Title-Key: F major
+Title-Name: Auf einen, welcher Schwenke geheißen
+Title-Alternative-Name: Schwenke dich ohne Schwänke
+Title-Opus: WoO 187
+Title-Dates: 1824
+
+Title-Type: 2-part Riddle Canon
+Title-Key: B flat major
+Title-Name: Gott ist eine feste Burg
+Title-Opus: WoO 188
+Title-Dates: 1825
+
+Title-Type: 4-part Canon
+Title-Key: C major
+Title-Name: Doktor, sperrt das Tor dem Tod
+Title-Opus: WoO 189
+Title-Dates: 1825
+
+Title-Type: 2-part Canon
+Title-Key: C major
+Title-Name: Ich war hier, Doktor, ich war hier
+Title-Opus: WoO 190
+Title-Dates: 1825
+
+Title-Type: 3-part Canon
+Title-Key: B flat major
+Title-Name: Kühl, nicht lau
+Title-Opus: WoO 191
+Title-Dates: 1825
+
+Title-Type: 4-part Riddle Canon
+Title-Key: F major
+Title-Name: Ars longa, vita brevis
+Title-Comment: (second version)
+Title-Opus: WoO 192
+Title-Dates: 1825
+
+Title-Type: Riddle Canon
+Title-Key: C major
+Title-Name: Ars longa, vita brevis
+Title-Comment: (third version)
+Title-Opus: WoO 193
+Title-Dates: 1825
+
+Title-Type: Riddle Canon
+Title-Key: F major
+Title-Name: Si non per portas, per muros
+Title-Opus: WoO 194
+Title-Dates: 1825
+
+Title-Type: 2-part Canon
+Title-Key: A minor
+Title-Name: Freu dich des Lebens
+Title-Opus: WoO 195
+Title-Dates: 1825
+
+Title-Type: 4-part Riddle Canon
+Title-Key: F major
+Title-Name: Es muß sein!
+Title-Opus: WoO 196
+Title-Dates: 1826
+
+Title-Type: 5-part Canon
+Title-Key: C major
+Title-Name: Das ist das Werk, sorgt um das Geld!
+Title-Opus: WoO 197
+Title-Dates: 1826
+
+Title-Type: 2-part Riddle Canon
+Title-Key: C major
+Title-Name: Wir irren allesamt
+Title-Opus: WoO 198
+Title-Dates: 1826
+
+Title-Type: Joke
+Title-Key: D major
+Title-Name: Ich bin der Herr von zu
+Title-Comment: (I am the man for you)
+Title-Opus: WoO 199
+Title-Dates: 1814
+
+Title-Type: Piece
+Title-For: Piano
+Title-Key: G major
+Title-Name: O Hoffnung!
+Title-Opus: WoO 200
+Title-Dates: 1818
+
+Title-Type: Joke
+Title-Key: C major
+Title-Name: Ich bin bereit! Amen
+Title-Comment: (I am ready), beginning of a double fugue
+Title-Opus: WoO 201
+Title-Dates: 1818
+
+Title-Type: Riddle Canon
+Title-Key: F major
+Title-Name: Das Schöne zum Guten!
+Title-Punct: ,
+Title-Comment: musical motto (1st version)
+Title-Opus: WoO 202
+Title-Dates: 1823
+
+Title-Type: Riddle Canon
+Title-Key: A major
+Title-Name: Das Schöne zu dem Guten!
+Title-Punct: ,
+Title-Comment: musical motto (2nd version)
+Title-Opus: WoO 203
+Title-Dates: 1825
+
+Title-Type: Joke
+Title-Key: D minor
+Title-Name: Holz, Holz, geigt die Quartette so
+Title-Comment: (Holz, Holz, you play the quartets as if you were chopping cabbage)
+Title-Opus: WoO 204
+Title-Dates: 1825
+
+Title-Type: Musical greetings
+Title-For: Solo Voice(s)
+Title-Key: C major
+Title-Name: Baron, Baron, Baron
+Title-Punct: ,
+Title-Comment: No. 1 of 10 musical greetings
+Title-Opus: WoO 205-1
+Title-Dates: 1798
+
+Title-Type: Musical greetings
+Title-For: Solo Voice(s)
+Title-Key: C major
+Title-Name: Allein, allein, allein, jedoch. Silentium!!
+Title-Punct: ,
+Title-Comment: No. 2 of 10 musical greetings
+Title-Opus: WoO 205-2
+Title-Dates: 1814
+
+Title-Type: Musical greetings
+Title-For: Solo Voice(s)
+Title-Key: A minor
+Title-Name: O Adjutant
+Title-Punct: ,
+Title-Comment: No. 3 of 10 musical greetings
+Title-Opus: WoO 205-3
+Title-Dates: 1817
+
+Title-Type: Musical greetings
+Title-For: Solo Voice(s)
+Title-Key: C major
+Title-Name: Wo? Wo?
+Title-Punct: ,
+Title-Comment: No. 4 of 10 musical greetings
+Title-Opus: WoO 205-4
+Title-Dates: 1817
+
+Title-Type: Musical greetings
+Title-For: Solo Voice(s)
+Title-Key: D major
+Title-Name: Erfüllung, Erfüllung
+Title-Punct: ,
+Title-Comment: No. 5 of 10 musical greetings
+Title-Opus: WoO 205-5
+Title-Dates: 1819
+
+Title-Type: Musical greetings
+Title-For: Solo Voice(s)
+Title-Key: F major
+Title-Name: Scheut euch nicht
+Title-Punct: ,
+Title-Comment: No. 6 of 10 musical greetings
+Title-Opus: WoO 205-6
+Title-Dates: 1822
+
+Title-Type: Musical greetings
+Title-For: Solo Voice(s)
+Title-Key: E major
+Title-Name: Tobias! Paternostergäßler. Tobias! Paternostergäßlerischer, Bierhäuslerischer musikalischer Philister!
+Title-Punct: ,
+Title-Comment: No. 7 of 10 musical greetings
+Title-Opus: WoO 205-7
+Title-Dates: 1824
+
+Title-Type: Musical greetings
+Title-For: Solo Voice(s)
+Title-Key: D major
+Title-Name: Tobias Tobias
+Title-Punct: ,
+Title-Comment: No. 8 of 10 musical greetings
+Title-Opus: WoO 205-8
+Title-Dates: 1825
+
+Title-Type: Musical greetings
+Title-For: Solo Voice(s)
+Title-Key: C major
+Title-Name: Bester To----(bias)
+Title-Punct: ,
+Title-Comment: No. 9 of 10 musical greetings
+Title-Opus: WoO 205-9
+Title-Dates: 1826
+
+Title-Type: Musical greetings
+Title-For: Solo Voice(s)
+Title-Key: C major
+Title-Name: Erster aller Tobiasse
+Title-Punct: ,
+Title-Comment: No. 10 of 10 musical greetings
+Title-Opus: WoO 205-10
+Title-Dates: 1826
+

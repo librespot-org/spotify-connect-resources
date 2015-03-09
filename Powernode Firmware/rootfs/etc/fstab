@@ -1,0 +1,17 @@
+#
+# /etc/fstab: static file system information.
+#
+# file system   mount       type    options           dump    pass
+#/dev/root       /           ext2    rw,noauto         0       1
+proc            /proc       proc    defaults          0       0
+devpts          /dev/pts    devpts  gid=5,mode=620    0       0
+sysfs           /sys        sysfs   defaults          0       0
+usbfs        /proc/bus/usb  usbfs   defaults          0       0
+
+/dev/fd0        /mnt/floppy auto    noauto,owner      0       0
+/dev/cdrom      /mnt/cdrom  iso9660 noauto,owner,ro   0       0
+
+## other examples, uncomment to activate
+#/dev/hda2      /opt        ext2    defaults          1       2
+#/dev/hda3      swap        swap    defaults          0       0
+

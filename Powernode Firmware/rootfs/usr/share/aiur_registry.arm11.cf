@@ -1,0 +1,31 @@
+#aiurconfig
+
+[ASF]
+mime= video/x-ms-asf
+library = lib_asf_parser_arm11_elinux.so.3.1
+
+[AVI]
+mime= video/x-msvideo
+library = lib_avi_parser_arm11_elinux.3.0.so.3.2.1
+
+[FlashVideo]
+mime = video/x-flv
+library = lib_flv_parser_arm11_elinux.3.0.so
+
+[MPEG]
+mime= video/mpeg, mpegversion=(int)[1,2]; video/mpegts, systemstream=true; video/x-cdxa
+library = lib_mpg2_parser_arm11_elinux.3.0.so.4.00.04
+
+[MOV/MP4/3GP]
+mime= video/quicktime; audio/x-m4a; application/x-3gp
+library = lib_mp4_parser_arm11_elinux.3.0.so.6.4.3
+
+[Matroska]
+mime= video/x-matroska
+library = lib_mkv_parser_arm11_elinux.3.0.so.3.0
+
+[OGG]
+mime= application/ogg; application/x-annodex
+library = lib_ogg_parser_arm11_elinux.3.0.1.07.00
+
+

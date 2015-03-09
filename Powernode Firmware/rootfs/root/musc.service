@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone='no'?><!--*-nxml-*-->
+<!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+<service-group>
+  <name></name>
+  <service>
+    <type>_musc._tcp</type>
+    <port>11000</port>
+    <txt-record>model=</txt-record>
+    <txt-record>version=</txt-record>
+  </service>
+</service-group>

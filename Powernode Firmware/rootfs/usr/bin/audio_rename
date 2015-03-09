@@ -1,0 +1,474 @@
+#!/home/kg/N150/main/rpm/BUILD/perl-native/bin/perl -w
+
+eval 'exec /home/kg/N150/main/rpm/BUILD/perl-native/bin/perl -w -S $0 ${1+"$@"}'
+    if 0; # not running under some shell
+
+eval 'exec /usr/bin/perl -w -S $0 ${1+"$@"}'
+    if 0; # not running under some shell
+
+$VERSION = '1.03';
+
+use MP3::Tag 0.9711;
+use Getopt::Std 'getopts';
+use File::Spec;
+use File::Path;
+use strict;
+
+$Getopt::Std::STANDARD_HELP_VERSION = 1;
+my %opt = (E => '', p => '%{mA}%{n0}_%t', e => '.inf|.tag|.mp3', r => qr(\.mp3$)i);
+
+# WinCyrillic (win1251), short (CDFS), Keep non-filename chars, Dry run, Glob,
+# path via pattern, |-separated list of associated extensions
+# (PEC@R as in mp3info2)
+getopts('csKDGp:e:P:E:C:@Rx', \%opt);
+
+# Interprete Escape sequences:
+my %r = ( 'n' => "\n", 't' => "\t", '\\' => "\\"  );
+for my $e (split //, $opt{E}) {
+  $opt{$e} =~ s/\\([nt\\])/$r{$1}/g if defined $opt{$e};
+}
+if ($opt{'@'}) {
+  for my $k (keys %opt) {
+    $opt{$k} =~ s/\@/%/g;
+  }
+}
+
+# Configure stuff...
+if (defined $opt{C}) {
+  my ($c) = ($opt{C} =~ /^(\W)/);
+  $c = quotemeta $c if defined $c;
+  $c = '(?!)' unless defined $c;		# Never match
+  my @opts = split /$c/, $opt{C};
+  shift @opts if @opts > 1;
+  for $c (@opts) {
+    $c =~ s/^(\w+)=/$1,/;
+    MP3::Tag->config(split /,/, $c);
+  }
+}
+
+my @parse_data;
+if (defined $opt{P}) {
+  my ($c) = ($opt{P} =~ /^\w*(\W)/s);
+  $c = quotemeta $c if defined $c;
+  $c = '(?!)' unless defined $c;		# Never match
+  @parse_data = map [split /$c/], split /$c$c$c/, $opt{P};
+  for $c (@parse_data) {
+    die "Two few parts in parse directive `@$c'.\n" if @$c < 3;
+  }
+}
+
+sub convert_to_filename ($) {
+  my $outfile = shift;
+  $outfile =~ tr( ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ\x80-\x9F)
+		( !cLXY|S"Ca<__R~o+23'mP.,1o>...?AAAAAAACEEEEIIIIDNOOOOOx0UUUUYpbaaaaaaaceeeeiiiidnooooo:ouuuuyPy_);
+  $outfile =~ s/\s+/ /g;
+  $outfile =~ s/\s*-\s*/-/g;
+  #$outfile =~ s/([?.:!,;\/õ"\\\' ])/$filename_subs{$1}/g;
+  $outfile =~ s/[?|.:!,;\/õ"\\\' <>|]/_/g;
+  #$outfile =~ s/_+/_/g;
+  $outfile;
+}
+
+my $translator;
+sub setup_translator () {
+  return if $translator;
+  require FindBin;
+  push @INC, $FindBin::Bin if $FindBin::Bin;	# Pacify "used only once..."
+  require Encode::transliterate_win1251;
+  $translator = Encode::transliterate_win1251::make_translator(
+       (Encode::transliterate_win1251::prepare_translation(
+              Encode::transliterate_win1251::cyr_table(),
+              Encode::transliterate_win1251::lat_table()))[0] );
+}
+
+sub cyr_unicode_to_volapuk ($) {
+  my $in = shift;
+  $in =~ s/([^\x00-\xFF]+)/
+	   require Encode;
+	   {
+             setup_translator unless $translator;
+	     local $_ = Encode::encode('cp1251', $1);
+	     $translator->();
+	     $_;
+	   }
+	  /eg;
+  $in;
+}
+
+sub win1251_to_volapuk ($) {
+  my $in = shift;
+  return cyr_unicode_to_volapuk $in if $in =~ /[^\x00-\xFF]/;
+  setup_translator unless $translator;
+  local $_ = $in;
+  # Detect broken stuff where cyrillic aR is written as latin p
+  my $c = (tr/a-zA-Z//);
+  my $c1 = (tr/p//);
+
+  $translator->();
+
+  my $c2 = (tr/abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ//);
+  # Assume p=cyr(r) if there is a lot of cyrillic stuff
+  # and either p is the only Latin, or p is always surrounded by cyrillic stuff
+  # at least on one side: /((?<=[^\s -~])|(?=.[^\s -~]))p/: funny stuff on one side
+  tr/p/r/ if $c1 and $c2 > 2*$c1
+	     and ($c == $c1 or (not /((?<=[^\s -~])|(?=.[^\s -~]))p/
+			        and not $in =~ /(?!((?<=[^\s -~])|(?=.[^\s -~])))p/));
+  $_
+}
+
+my $EXT = $opt{x} ? '' : '%E';
+warn "Target spec: $opt{p}$EXT\n";
+my @comp = split m|/|, $opt{p};
+my @ext = split m/\|/, $opt{e};
+my ($extl_add, $e) = 0;
+for $e (@ext) {
+    $extl_add = length $e if $extl_add < length $e;
+}
+my @f = @ARGV;
+if ($opt{G}) {
+  require File::Glob;			# "usual" glob() fails on spaces...
+  @f = map File::Glob::bsd_glob($_), @f;
+}
+
+sub mk_path_filename ($) {
+  # Assume '/' for dirnames
+  (my $d = shift) =~ s,(.*)/.*,$1,s;
+  # print "mkpath `$d'\n";
+  mkpath $d;
+}
+
+sub process_file ($) {
+    my $f = shift;
+    print "File: $f\n";
+    my $mp3=MP3::Tag->new($f);
+    if ($mp3) {
+	$mp3->config('parse_data', @parse_data) if @parse_data;
+	my ($ext, $base);
+	if ($opt{x}) {
+	  $ext = '';
+	  $base = $mp3->interpolate("%A%E");
+	} else {
+	  $ext = $mp3->filename_extension();
+	  $base = $mp3->interpolate("%A");
+	}
+	my $extl = length $ext;
+	for $e (@ext) {		# XXX aux files may result in different name?
+	    $extl = length $e if $extl < length $e and -f "$base$e";
+	}
+	my $i = -1;
+	my ($name, $dirname, $lastcomp);
+	while (++$i < @comp) {
+	    my $comp = $comp[$i];
+	    my $ocomp = $comp;
+	    $comp = $mp3->interpolate($comp);
+	    warn("Component `$ocomp' interpolates to empty, skipping the file\n"), return
+		unless defined $comp and length $comp;
+	    unless ($ocomp =~ /%[fFDABN]/) {	# Already valid
+		$comp = win1251_to_volapuk($comp) if $opt{c};
+		$comp = convert_to_filename $comp unless $opt{K};
+	    }
+	    my $last = $i == $#comp;
+	    # mkisofs -J --joliet-long (2.01a32) is 110
+	    my $maxlen = $ENV{AUDIO_MAX_FILENAME_LEN} || 110;
+            $comp = substr $comp, 0, $maxlen - ($last ? $extl : 0) if $opt{s};
+	    if ($last) {
+		my $post1 = '';
+		my $post2 = '';
+		while (1) {
+		    my $n = ((defined $name)
+			     ? File::Spec->catfile($name, "$comp$post1$post2$ext")
+			     : "$comp$post1$post2$ext");
+		    last unless -e $n;
+		    if ($post1) {
+			$post2++;
+		    } else {
+			$post1 = '-';
+			$post2 = 'a';
+		    }
+		    $comp = substr $comp, 0, $maxlen - length "$post1$post2$ext"
+			if $opt{s};
+		}
+	    }
+	    $dirname = $name;
+	    if (not defined $name) {
+		$name = $comp;
+	    } elsif ($last) {
+		$name = File::Spec->catfile($name, $comp);
+		$lastcomp = $comp;
+	    } else {
+		$name = File::Spec->catdir($name, $comp);
+	    }
+	}
+	print("... No change\n"), return if $f eq "$name$ext";
+	print "  ==> `$name$ext'\n";
+	return if $opt{D};
+	mkpath $dirname if defined $dirname and not -d $dirname;
+	mk_path_filename("$name$ext") if $lastcomp and $lastcomp =~ m,[\\/],;
+	undef $mp3;			# Close the file
+	rename $f, "$name$ext" or die "rename: $!";
+	for $e (@ext) {
+	    next unless -f "$base$e";
+	    rename "$base$e", "$name$e" or die "rename $base$e => $name$e: $!";
+	}
+    } else {
+	print "Not found...\n";
+    }
+}
+
+if ($opt{R}) {
+  require File::Find;
+  File::Find::find({wanted => sub {return unless -f and /$opt{r}/io; process_file $_},
+		    no_chdir => 1}, @f);
+} else {
+  my $f;
+  for $f (@f) {
+    process_file $f;
+  }
+}
+
+=head1 NAME
+
+audio_rename - rename an audio file via information got via L<MP3::Tag>.
+
+=head1 SYNOPSIS
+
+  audio_rename -csR -@p "@a/@l/@02n_@t" .
+
+renames all the audio files in this directory and its subdirectories
+into a 3-level directory structure given by
+F<Artist_Name/Album/Filename>, with the basename of F<Filename> being
+the 2-digit track number separated from the title by underscore; it also
+transliterates cyrillic, and shortens long names.
+
+(Due to use of C<-@> and double quotes, this command line should work
+both with UNIXish and DOSish shells; the other examples can be massaged
+likewise.)
+
+(Replacing C<@02n> by C<@{mA}@{n0}> (as in the default value of C<-p>)
+may provide more intelligent semantic.  See the description of C<-p>.
+
+  audio_rename -KD *.wav
+
+Reports how it would rename the F<*.wav> files in this directory
+according to the default B<-p> rule, but without protectiing "funny"
+characters.  Will not do actual renaming.
+
+  audio_rename -sc *.mp3
+
+Rename the F<*.mp3> files in this directory according to the default
+B<-p> rule, translating cyrillic characters into Latin "equivalents",
+shortening the names of long components, and protecting "funny"
+characters.
+
+  audio_rename -p '%a/%{d0}/%B' -G '*/*.mp3'
+
+Assuming one-level subdirectory structure F<dir/filename.ext>, finds
+files with extension F<.mp3>, and "sorts" them into a two-level
+subdirectory structure; toplevel directory is based on the "artist"
+field, the remaing level is preserved.
+
+  audio_rename -p '%a/%{d0}/%B' -R .
+
+Likewise, but does not suppose any particular depth of the current
+directory structure; only the filename and the most internal directory
+name are preserved.
+
+  audio_rename -p '%a/%N' -R .
+
+Likewise, but all directory names (inside the current directory) are
+preserved.
+
+=head1 DESCRIPTION
+
+The script takes a list of files (or, with B<-R> option, directories)
+and renames the given files (or audio files in the directories)
+according to the rules specified through the command line options.
+File extensions are preserved (by default).
+
+Some "companion" files (i.e., files with the same basename, and with an
+extension from a certain list) may be renamed together with audio
+files.  A lot of care is taken to make the resulting file names as
+portable as possible: e.g., "funny" characters in file names are
+dumbed down (unless requested otherwise), long filename components may
+be shortened to certain limits.
+
+A care is taken so that renaming will not overwrite existing files;
+however, on OSes which allow rename() to overwrite files, race
+conditions can ruin the best intentions.  E.g., do not run several
+"overlapping" rename procedures simultaneously!
+
+=head1 Recognized options
+
+General use options:
+
+=over
+
+=item B<-p> C<TARGET_FILENAME_PATTERN>
+
+Target file name/basename pattern; is subject to interpolation via
+C<MP3::Tag> method L<C<interpolate()>|MP3::Tag/interpolate>.  Default
+is C<%{mA}%{n0}_%t>; in simplest cases this uses 2-digit track number
+separated from the title by underscore.  See L<MP3::Tag/interpolate> for
+more details.
+
+Here is the explanation of the default value: due to semantic of escapes
+C<%{mA}> and C<%{n0}>, if C<TPOS> frame (disk number) is present, it is
+encoded as a letter, and put before the track number.  If the track number
+has a form C<N1/N2> (meaning track N1 of N2), then N1 is used, and padded
+by 0s to the width of N2.  If C<N2> is not present, padding to width=2 is
+used.
+
+For example, if C<TPOS> is 3/12, and track is C<14/173>, then what is prepended
+to the title is C<c014_>; if there is no C<TPOS> frame, and track is C<4/8>,
+C<4_> is prepended without any leading 0.
+
+(If you want to modify the semantic of C<%{n0}>, note that it is equivalent
+to C<%{n2:%{n0}}%{!n2:%02n}>.  So while C<%02{n0}> will ALWAYS 0-pad to at
+least width=2, the pattern C<%{n2:%{n0}}%{!n2:%03n}> will 0-pad to width=3
+in the case N2 is absent.
+
+=item B<-e> C<.ext1|.ext2|...>
+
+C<|>-separated list of associated extensions; when renaming
+F<source.mp3> to F<target.mp3>, the similar rename will be done to
+files with the same basename, and extensions F<.ext1>, F<.ext2>, etc.
+Defaults to C<.inf|.tag|.id3>.
+
+=item B<-x>
+
+If not present, the pattern of B<-p> is the basename; the extension of
+the initial file is appended (as interpolated by C<%E>).  If present,
+the pattern of B<-p> is the complete file name.  Behaviour with
+non-empty list of associated extensions is not defined.
+
+=back
+
+The following options have the same meaning as for script C<mp3info2>
+
+=over
+
+=item B<-D>
+
+"Dry run": do not rename, just report the calculated renames.
+
+=item B<-G>
+
+Arguments are glob patterns; expand them.
+
+=item B<-R>
+
+Arguments are directory names, recurse inside using option B<-E> for
+choosing audio files via their extension.
+
+=item B<-r>
+
+Regular expression to use when looking for audio files per option
+B<-R>.  Defaults to C<(?i:\.mp3$)>: will find files ending in F<.mp3>
+(ignoring the case).  Note that this expression is put into a
+case-ignoring regular expression, so if you want it to be
+case-sensitive, protect it as in C<(?-i:REGEXPR)>.
+
+=item B<-E>  C<option_letters>
+
+Controls expansion of escape characters.  It should contain the
+letters of the command-line options where C<\\, \n, \t> are
+interpolated.  Default is none.
+
+=item B<-@>
+
+Replace C<@> by C<%> in option values.  (May be useful since B<-p> and
+B<-P> may have a lot of embedded characters C<%>, which may be hard to
+deal with on some shells, e.g., DOSISH shells.  DOSish shells recognize
+double quotes, so if one wants shell-transparent examples of command lines,
+use -@ and double quotes.)
+
+=item B<-P> C<patterns>
+
+Patterns to parse before application of the rule B<-p>.  See
+L<mp3info2> for details.
+
+=item B<-C> C<config_options>
+
+Configuration options for L<MP3::Tag>.  See L<mp3info2> for details.
+
+=back
+
+File name portability options:
+
+=over
+
+=item B<-s>
+
+Make the components of file names short enough to fit on a CD file
+system.  Currently this means the restriction to 110 chars (as with
+C<mkisofs -J --joliet-long>, at least of version 2.01a32).  The limit
+may be modified per C<AUDIO_MAX_FILENAME_LEN> environment variable.
+
+Note that "components" are parts separated by a literal character C</>
+in the given pattern (not slashes coming from interpolated strings).
+
+=item B<-c>
+
+Latinize file names (for portability) assuming they are in WinCyrillic
+encoding.  Needs F<transliterate_win1251.pm> (in F<examples/mod/Encode>
+directory of the distribution; put it in the subdirectory F<Encode> of the
+script directory).
+
+=item B<-K>
+
+Do not convert "exotic" characters to underscores (those characters
+which have a low portability score, so the files will have problem
+being moved between systems).
+
+=back
+
+Note that this utility performes very similarly to L<mp3info2|mp3info2> utility
+when the latter one is used with B<-p> option; only instead of
+printing the result of interpolation of B<-p>, it uses the result as
+the target file name for renaming (after some "sanitizing" of the
+result).  (However, the defaults for C<-E> options differ!)
+
+Please take into account that the option B<-P> is provided for
+completeness only.  If one needs really complicated parsing rules to
+deduce the resulting file name, it is much safer to use L<mp3info2|mp3info2>
+utility to set the wanted file name into some ID3v2 frame (such as
+C<TXXX[wanted-target-name]>), and then, after checking for errors, use
+this result similarly to
+
+  audio_rename -p "%{TXXX[wanted-target-name]]}" -R .
+
+After rename, one can delete this frame from the resulting files.
+
+If you want to be absolutely error-prone, preserve the initial file
+name inside the files by doing something similar to
+
+  mp3info2 -@F "TXXX[orig-fname]=@A" -R .
+
+before the rename.  If worst comes to worst (but no race conditions
+happend, so files are not overwritten), one should be able to restore
+the status quo by running
+
+  audio_rename -@p "@A" files_or_directories_list
+
+(giving B<-R> option if needed).
+
+=head1 POSSIBLE PROBLEMS
+
+With B<-R> option, there might be situations when the scan of
+subdirectories first finds a source file in some directory, renames
+it, then continues the scan of other subdirectories, and will find the
+target file, so will try to rename it again.
+
+In practice, I do not recall ever encountering this situation; if the
+target file name depends only on the contents of the file, and not its
+name, then the second rename will be tautological, so not visible.
+
+=head1 AUTHOR
+
+Ilya Zakharevich <cpan@ilyaz.org>.
+
+=head1 SEE ALSO
+
+MP3::Tag, MP3::Tag::ParseData, mp3info2
+
+=cut

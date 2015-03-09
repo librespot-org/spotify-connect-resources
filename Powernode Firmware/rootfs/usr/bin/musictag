@@ -1,0 +1,848 @@
+#!/home/kg/N150/main/rpm/BUILD/perl-native/bin/perl
+
+eval 'exec /home/kg/N150/main/rpm/BUILD/perl-native/bin/perl  -S $0 ${1+"$@"}'
+    if 0; # not running under some shell
+use strict;
+use Music::Tag;
+use Getopt::Long;
+use File::Spec;
+use Data::Dumper;
+use Config::Options;
+use Pod::Usage;
+use utf8;
+
+our $VERSION  = .40_01;
+our $options  = Config::Options->new();
+our $BASENAME = "musictag";
+if ( $^X =~ /\/*([^\/]*)$/ ) {
+    $BASENAME = $1;
+}
+
+$options->options(
+    {  trust_time    => 0,
+       trust_track   => 0,
+       trust_title   => 0,
+       inputplugins  => ['Option'],
+       plugins       => [],
+       outputplugins => [],
+       ANSIColor     => 1,
+       AmazonLocale  => "us",
+       LevenshteinXS => 1,
+       forcechange   => 0,
+       ignore_apic   => 1,
+       optionfile    =>
+         [ $ENV{HOME} . "/.musictag/default.conf", $ENV{HOME} . "/.musictag/$BASENAME.conf" ],
+       sort_regex => '[^A-Za-z0-9 _\-]',
+       getinfo    => "",
+       presets    => {
+           clean => {
+               plugins           => [ 'File', 'MusicBrainz', 'Amazon', 'Lyrics' ],
+               keepmtime         => 1,
+               presetdescription =>
+                 '--plugin="File" --plugin="MusicBrainz" --plugin="Amazon" --plugin="Lyrics" --keepmtime',
+           },
+           safeclean => {
+               plugins           => [ 'File', 'MusicBrainz', 'Amazon', 'Lyrics' ],
+               keepmtime         => 1,
+               safe              => 1,
+               presetdescription =>
+                 '--plugin="File" --plugin="MusicBrainz" --plugin="Amazon" --plugin="Lyrics" --keepmtime --safe',
+           },
+           brainz => { inputplugins      => ['MusicBrainz'],
+                       presetdescription => '--plugin="MusicBrainz"',
+                     },
+           brainzsort => {
+               inputplugins => [ 'File', 'MusicBrainz' ],
+               move         => 1,
+               dest         => ".",
+               presetdescription => '--plugin="File" --plugin="MusicBrainz" --move --dest="."',
+                         },
+                  },
+    }
+);
+
+my $cloptions = { plugins => [], outputplugins => [], inputplugins => [] };
+our $clopts = [
+    [  "stdin" => \$cloptions->{stdin},
+       "Take filenames from standard input"
+    ],
+    [  "preset=s" => \$cloptions->{preset},
+       "Choose a preset list of options.  See longhelp for details."
+    ],
+    [  "plugin=s@" => $cloptions->{plugins},
+       "Specify a plugin to add (input and outpout). "
+         . "Plugin options can be expressed in the form option=value"
+    ],
+    [  "outputplugin=s@" => $cloptions->{outputplugins},
+       "Specify an output plugin."
+    ],
+    [  "inputplugin=s@" => $cloptions->{inputplugins},
+       "Specify an input plugin."
+    ],
+    [  "pluginoption=s%" => $cloptions,
+       "Specify additional options for all plugins."
+    ],
+    [  "nochange" => \$cloptions->{nochange},
+       "Do not add default plugin to outputplugins."
+    ],
+    [  "trust_title" => \$cloptions->{trust_title},
+       "Trust title (over track number)"
+    ],
+    [  "trust_track" => \$cloptions->{trust_track},
+       "Trust track number (over title)"
+    ],
+    [  "trust_time" => \$cloptions->{trust_time},
+       "Trust track time more"
+    ],
+    [  "trust_totaltracks" => \$cloptions->{trust_totaltracks},
+       "Trust total number of tracks"
+    ],
+
+    [  "striptags" => \$cloptions->{strip_tag},
+       "Remove tag from file before writing new tag"
+    ],
+    [  "safe" => \$cloptions->{safe},
+       "Do not change artist, album, title, and track number"
+    ],
+    [  "verbose" => \$cloptions->{verbose},
+       "Produce more output"
+    ],
+    [  "quiet" => \$cloptions->{quiet},
+       "Shut up already."
+    ],
+    [  "keepmtime" => \$cloptions->{keepmtime},
+       "Attempt to keep mtime after tag chang."
+    ],
+    [  "sleeptime=f" => \$cloptions->{sleeptime},
+       "Sleep between iterations."
+    ],
+    [  "lyricsoverwrite" => \$cloptions->{lyricsoverwrite},
+       "Overwrite lyrics already saved."
+    ],
+    [  "coveroverwrite" => \$cloptions->{coveroverwrite},
+       "Overwrite cover artwork already saved."
+    ],
+    [  "forcechange" => \$cloptions->{forcechange},
+       "Resave tag no matter what"
+    ],
+    [  "printinfo" => \$cloptions->{printinfo},
+       "Dump raw tag info"
+    ],
+    [  "getinfo=s" => \$cloptions->{getinfo},
+       "Get a specific tag info "
+    ],
+    [  "move" => \$cloptions->{move},
+       "move file to sorted location"
+    ],
+    [  "cp" => \$cloptions->{cp},
+       "copy file to sorted location"
+    ],
+    [  "ln" => \$cloptions->{ln},
+       "link file to sorted location"
+    ],
+    [  "lns" => \$cloptions->{lns},
+       "symbolic link file to sorted location"
+    ],
+    [  "dest=s" => \$cloptions->{dest},
+       "set root path for sorted location"
+    ],
+    [  "nospace" => \$cloptions->{nospace},
+       "sort without spaces"
+    ],
+    [  "sort_regex=s" => \$cloptions->{sort_regex},
+       "Regex of characters to convert to underscore in filenames when sorting"
+    ],
+    [  "printoptions" => \$cloptions->{printoptions},
+       "Dump current options"
+    ],
+    [  "version" => sub { print "musictag $VERSION\n"; exit },
+       "Print current version number"
+    ],
+    [  "help" => \&help,
+       "Your lookin' at it."
+    ],
+    [  "longhelp" => \&longhelp,
+       "Help file with more detail."
+    ],
+
+    # NOTE:  Help will look for the long help line and put a seperater in it for generated options.
+
+    [ "asin=s"        => \$cloptions->{asin},        "Set value: ASIN (Amazon Store ID)" ],
+    [ "artist=s"      => \$cloptions->{artist},      "Set value: artist" ],
+    [ "album=s"       => \$cloptions->{album},       "Set value: album" ],
+    [ "title=s"       => \$cloptions->{title},       "Set value: title" ],
+    [ "track=i"       => \$cloptions->{track},       "Set value: track" ],
+    [ "disc=i"        => \$cloptions->{disc},        "Set value: disc" ],
+    [ "totaltracks=i" => \$cloptions->{totaltracks}, "Set value: totaltracks" ],
+    [ "totaldiscs=i"  => \$cloptions->{totaldiscs},  "Set value: totaldiscs" ],
+    [ "secs=i"        => \$cloptions->{secs},        "Set value: track duration in seconds" ],
+    [ "duration=i"    => \$cloptions->{duration},    "Set value: track duration in microseconds" ],
+              ];
+
+my %seenhash = map { $a = $_->[0]; $a =~ s/=.+$//g; $a => $_->[1] } @{$clopts};
+
+# Please don't set these;
+$seenhash{'tracknum'}  = 1;
+$seenhash{'discnum'}   = 1;
+$seenhash{'bytes'}     = 1;
+$seenhash{'frames'}    = 1;
+$seenhash{'frequency'} = 1;
+$seenhash{'bitrate'}   = 1;
+
+foreach ( sort @{ Music::Tag->datamethods } ) {
+    next if $seenhash{$_};
+    push @{$clopts}, [ $_ . '=s' => \$cloptions->{$_}, "Set value: $_" ];
+}
+
+if ( exists $options->{optionfile} ) {
+    $options->fromfile_perl( $options->{optionfile} );
+}
+
+foreach my $k ( keys %{ $options->{presets} } ) {
+    push @{$clopts},
+      [ $k => sub { $cloptions->{preset} = $k },
+        "Preset option set: "
+          . ( exists $options->{presets}->{$k}->{presetdescription}
+              ? $options->{presets}->{$k}->{presetdescription}
+              : $k
+            )
+      ];
+}
+
+Getopt::Long::GetOptions( map { $_->[0] => $_->[1] } @{$clopts} );
+
+if ( exists $cloptions->{optionfile} ) {
+    $options->fromfile_perl( $cloptions->{optionfile} );
+}
+
+if ( $options->{getinfo} ) {
+    $options->{verbose} = 0;
+    $options->{quiet}   = 1;
+}
+
+my ( $v, $p, $f ) = File::Spec->splitpath($0);
+if ( exists $options->{$f} ) {
+    $options->options( $options->{$f} );
+}
+
+if ( $cloptions->{preset} ) {
+    $options->deepmerge( $options->{presets}->{ $cloptions->{preset} } );
+}
+
+$options->deepmerge($cloptions);
+
+$options->merge( "plugins",       [ split( /,/, join( ',', @{ $options->{plugins} } ) ) ] );
+$options->merge( "inputplugins",  [ split( /,/, join( ',', @{ $options->{inputplugins} } ) ) ] );
+$options->merge( "outputplugins", [ split( /,/, join( ',', @{ $options->{outputplugins} } ) ) ] );
+
+unless ( ( $options->{ANSIColor} ) && ( Music::Tag->_has_module("Term::ANSIColor") ) ) {
+    print STDERR "Missing ANSIColor\n";
+    $options->{ANSIColor} = 0;
+}
+
+if ( $cloptions->{printoptions} ) {
+    my $d = Data::Dumper->new( [$options] );
+    $d->Maxdepth(6)->Terse(1)->Sortkeys(1);
+    binmode( STDOUT, ":utf8" );
+    print $d->Dump();
+    exit;
+}
+
+my @FILES = @ARGV;
+
+if ( $cloptions->{stdin} ) {
+    while (<STDIN>) {
+        chomp;
+        push @FILES, $_;
+    }
+}
+
+foreach (@FILES) {
+    s/[^A-Za-z0-9]+$//g;
+    if ( -d $_ ) {
+        fix_dir($_);
+    }
+    elsif ( -f $_ ) {
+        fix_file($_);
+    }
+}
+
+sub help {
+    print "musictag version $VERSION\n";
+    print "\nUsage: $^X [OPTION]... [FILES]...\n";
+    print "\nUpdate or view information about music files using Music::Tag\n";
+    print "Please see musictag --longhelp for more details.\n\n";
+    my $n = 0;
+    my $d = 0;
+    foreach ( @{$clopts} ) {
+        if ( ( $_->[2] =~ /^Set value:/ ) && ( not $d ) ) {
+            $d++;
+            print "\nData Method Options:\n";
+        }
+        if ( ( $_->[2] =~ /^Preset option set:/ ) && ( not $n ) ) {
+            $n++;
+            print "\nAvailable Preset Options:\n";
+        }
+
+        my $command = $_->[0];
+        my %longhelp = ( s => "VALUE", i => "INT", 's@' => "VALUE", 's%' => "KEY=VALUE" );
+        $command =~ s/=(.+)$/'='. $longhelp{$1}/e;
+        printf "--%-22s  %s\n", $command, $_->[2];
+    }
+    exit 1;
+}
+
+sub longhelp {
+    pod2usage( -verbose => 2 );
+}
+
+sub fix_dir {
+    my $dir = shift;
+    local *DIR;
+    opendir( DIR, $dir ) or die "Couldn't open directory $dir\n";
+    while ( my $fname = readdir(DIR) ) {
+        next if ( $fname =~ /^\./ );
+        my $filename = File::Spec->catfile( $dir, $fname );
+        if ( -d $filename ) {
+            fix_dir($filename);
+        }
+        elsif ( ( $fname =~ /\.mp3$/i ) or ( $fname =~ /\.m4.$/i ) or ($fname =~ /\.flac/i) or ($fname =~ /\.ogg/i) ) {
+            fix_file($filename);
+        }
+    }
+    closedir(DIR);
+}
+
+sub color {
+    if ( $options->{ANSIColor} ) {
+        return Term::ANSIColor::color(@_);
+    }
+    else {
+        return "";
+    }
+}
+
+sub header {
+    my $text = shift;
+    return "" if ( $options->{quiet} );
+    my $left = 76 - length($text);
+    return color('bold white') . "== "
+      . color('green')
+      . $text
+      . color('bold white') . " "
+      . "=" x $left . "\n"
+      . color('reset');
+}
+
+sub plugin_opts {
+    my $pl = shift;
+    my ( $plugin, $popts ) = split( ":", $pl );
+    my @opts = split( /[;]/, $popts );
+    my $ret = Config::Options->new();
+    foreach (@opts) {
+        my ( $k, $v ) = split( "=", $plugin );
+        $ret->options( $k, $v );
+    }
+    if ( exists $options->{$plugin} ) {
+        $ret->options( $options->{$plugin} );
+    }
+    return $ret;
+}
+
+sub fix_file {
+    my $filename = shift;
+
+    if ( $options->{sleeptime} ) {
+        sleep $options->{sleeptime};
+    }
+
+    return if ( $filename =~ /\.(jpg|gif|bmp|txt|nfo|html?|png|cda)/i );
+    print header("Processing $filename");
+
+    my $info = Music::Tag->new( $filename, $options );
+    return unless ($info);
+    $info->get_tag();
+
+    my $backup_info = { artist   => $info->artist,
+                        album    => $info->album,
+                        title    => $info->title,
+                        tracknum => $info->tracknum
+                      };
+
+    my @statback = stat($filename);
+
+    my @inputplugins  = ();
+    my @outputplugins = ();
+
+    if ( scalar @{ $options->{inputplugins} } ) {
+        foreach ( @{ $options->{inputplugins} } ) {
+            if ( $options->{verbose} ) { print "Adding input plugin $_"; }
+            push @inputplugins, $info->add_plugin( $_, plugin_opts($_) );
+        }
+    }
+
+    foreach my $pl ( @{ $options->{plugins} } ) {
+        my $c = 0;
+        foreach ( Music::Tag->available_plugins ) {
+            if ( $_ eq $pl ) {
+                my $p = $info->add_plugin( $_, plugin_opts($_) );
+                if ( $options->{verbose} ) { print "Adding plugin $_"; }
+                if ($p) {
+                    push @inputplugins,  $p;
+                    push @outputplugins, $p;
+                }
+                else {
+                    print STDERR "Could Not Add Plugin: $_\n";
+                }
+                $c++;
+                last;
+            }
+        }
+        unless ($c) {
+            print STDERR "Plugin: $pl Not Found\n";
+        }
+    }
+
+    if ( scalar @{ $options->{outputplugins} } ) {
+        foreach ( @{ $options->{outputplugins} } ) {
+            if ( $options->{verbose} ) { print "Adding output plugin $_"; }
+            push @outputplugins, $info->add_plugin( $_, plugin_opts($_) );
+        }
+    }
+
+    unless ( $options->{nochange} ) {
+        push @outputplugins, $info->plugin;
+    }
+
+    foreach (@inputplugins) {
+        $_->get_tag();
+    }
+
+    if ( $options->{safe} ) {
+        unshift @outputplugins, $info->add_plugin( "Option", $backup_info );
+    }
+
+    if ( $options->{strip_tag} ) {
+        foreach (@outputplugins) {
+            $_->strip_tag();
+        }
+    }
+
+    if ( $info->changed or $options->{forcechange} ) {
+        foreach (@outputplugins) {
+            $_->set_tag();
+        }
+    }
+    $info->close();
+
+    if ( $options->{move} or $options->{cp} or $options->{ln} or $options->{lns} ) {
+        do_move($info);
+    }
+
+    if ( $options->{printinfo} ) {
+        print_info($info);
+    }
+
+    if ( $options->{getinfo} ) {
+        foreach ( @{ Music::Tag->datamethods } ) {
+            if ( lc($_) eq lc( $options->{getinfo} ) ) {
+                my $method = lc($_);
+                print $info->$method, "\n";
+            }
+        }
+    }
+
+    $info = undef;
+    print header("finished");
+}
+
+sub do_move {
+    my $info = shift;
+    my $file = $info->filename;
+    my ( $dest, $path ) = get_dest($info);
+    return unless $path;
+    unless ( -d $path ) {
+        print "mkdir -p $path\n";
+        system( "mkdir", "-p", "$path" );
+    }
+    if ( -e $dest ) {
+        print "$dest exists, checking bitrate\n";
+        my $dinfo = Music::Tag->new($dest)->get_tag();
+        if ( $dinfo && $info ) {
+            print "$file: ", $info->bitrate, " $dest: ", $dinfo->bitrate, "\n";
+            if ( $dinfo->bitrate >= $info->bitrate ) {
+                print "Destination is equal or greater than source, not replacing\n";
+                return undef;
+            }
+        }
+        print "Destination is lower bitrate, replacing\n";
+    }
+    if ( $options->{move} ) {
+        print "mv $file $dest\n";
+        system( "mv", "-f", "$file", "$dest" );
+        return 1;
+    }
+    if ( $options->{ln} ) {
+        print "ln $file $dest\n";
+        system( "ln", "$file", "$dest" );
+        return 2;
+    }
+    if ( $options->{lns} ) {
+        print "ln -s $file $dest\n";
+        system( "ln", "-s", "$file", "$dest" );
+        return 3;
+    }
+    if ( $options->{cp} ) {
+        print "cp $file $dest\n";
+        system( "cp", "$file", "$dest" );
+        return 4;
+    }
+    return;
+}
+
+#This routine destorys values.  Should be called before $info object set to be deleted!
+sub print_info {
+    my $info = shift;
+    if ($info) {
+        if ( $info->picture ) {
+            $info->picture->{_Data} = "[NOT PRINTED]";
+        }
+        my $d = Data::Dumper->new( [ $info->data ] );
+        $d->Maxdepth(2)->Terse(1)->Sortkeys(1);
+        binmode( STDOUT, ":utf8" );
+        print $d->Dump();
+    }
+}
+
+sub get_dest {
+    my $info     = shift;
+    my $filename = $info->filename();
+    $filename =~ /\.([^\.]+)$/;
+    my $suffix = $1 || "mp3";
+    if ($info) {
+        my @dpath =
+          ( $options->{dest}, filename_clean( $info->artist ), filename_clean( $info->album ) );
+        my $dfile = filename_clean( $info->title );
+        if ( $info->track ) {
+            $dfile = $info->track . "-" . $dfile;
+        }
+        $dfile .= "." . $suffix;
+        return File::Spec->catfile( @dpath, $dfile ), File::Spec->catdir(@dpath);
+    }
+    return undef;
+}
+
+sub filename_clean {
+    my $in    = shift;
+    my $regex = $options->{sort_regex};
+    $in =~ s/$regex/_/g;
+    $in =~ s/[^A-Za-z0-9 \-_]/_/g;
+    if ( $options->{nospace} ) {
+        $in =~ s/ /_/g;
+        $in = lc($in);
+    }
+    return $in;
+}
+
+__END__
+
+=head1 musictag
+
+musictag -- Quick access to Music::Tag features
+
+=head1 SYNOPSIS
+
+	musictag --preset "clean" /path/to/mp3/file.mp3
+
+This will perform all cleanup operations on mp3 file.
+
+=head1 OPTIONS
+
+=over 4
+
+=item --stdin
+
+Take filenames from standard input in addition to command line.
+
+=item --preset=s
+
+Choose a preset list of options.  Currently the following presets are defined by default
+
+=over 4
+
+=item clean
+
+Is the equivalent of --plugin="File,MusicBrainz,Amazon,Lyrics" --keepmtime
+
+=item safeclean
+
+Is the equivalent of --plugin="File,MusicBrainz,Amazon,Lyrics" --keepmtime --safe
+
+=item brainz
+
+Is the equivalent of --plugin="MusicBrainz"
+
+=item brainzsort
+
+Is the equivalent of --plugin="File,MusicBrainz" --move=1 --dest="."
+
+=back
+
+=item --plugin
+
+Specify a plugin to add (input and outpout). Plugin options can be expressed in the form option=value.  For example, to use Amazon with the German store, try
+
+	--plugin="Amazon:Locale=de"
+
+
+=item --outputplugin
+
+Specify an output plugin.  This is like --plugin except that it is ONLY used for output.  For example, if you wanted to write cover art to a file but not read from a file you would use
+
+    --plugin="Amazon" --outputplugin="File"
+
+=item --inputplugin=s@
+
+Specify an input plugin.  This is like --outputplugin for input.
+
+=item --pluginoption=s%
+
+Specify additional options for all plugins.  These optons are specified in key-value form.  For example
+
+	--plugin="Amazon,MusicBrainz" --pluginoptions="trust_title=1"
+
+Would set the trusttitle option in both Amazon and MusicBrainz.
+
+=item --nochange
+
+Do not change the music file.  Output plugins are still processed, just not the default plugin associated with the file extension.
+
+=item --trust_title
+
+Trust title (over track number).  Used by MusicBrainz and Amazon plugins.
+
+=item --trust_track
+
+Trust track number (over title).  Used by MusicBrainz and Amazon plugins.
+
+=item --trust_time
+
+Trust track time more.  Used by MusicBrainz and Amazon plugins.
+
+=item --trust_totaltracks
+
+Trust total number of tracks.  Used by MusicBrainz and Amazon plugins.
+
+=item --striptags
+
+Remove tag from file before writing new tag.  Only used by MP3::Tag at the moment.  Useful to convert from id3v2.4 to id3v2.3 or to clean up cruft
+from tags.
+
+=item --safe
+
+Do not change artist, album, title, and track number.  Useful if all you want is a cover, and don't want to risk changing these.
+
+=item --verbose
+
+Produce more output.
+
+=item --quiet
+
+Shut up already.
+
+=item --keepmtime
+
+Attempt to keep mtime after tag change.  Rarely works and requires you to run as root.
+
+=item --sleeptime=f
+
+Sleep between iterations.  Keeps you from hammering Amazon or MusicBrainz.
+
+=item --lyricsoverwrite
+
+Overwrite lyrics already saved. 
+
+=item --coveroverwrite
+
+Overwrite cover artwork already saved.  
+
+=item --forcechange
+
+Resave tag no matter what.
+
+=item --printinfo
+
+Dump raw tag info to stdout.  Very useful.
+
+=item --getinfo=s
+
+Get a specific tag info.  Great for scripts.
+
+=item --move
+
+Move file to sorted location.  If --move is set and a --dest is set, will sort your files.  For example:
+
+	musictag --move --dest="/nicely/sorted/" /poorly/sorted
+
+This will resort the whole folder.
+
+=item --cp
+
+Copy file to sorted location.  Same as move but copies.
+
+=item --ln
+
+Link file to sorted location.  Same as move but links.
+
+=item --lns
+
+Symbolic link file to sorted location.  Same as move but uses symbmolic links.
+
+=item --dest=s
+
+Set root path for sorted location.  Will sort files in Artist/Album.
+
+=item --nospace
+
+sort without spaces.
+
+=item --sort_regex=s
+
+Regex of characters to convert to underscore in filenames when sorting
+
+=item --help
+
+Quick and dirty help.
+
+=item --longhelp
+
+Help file with more detail.
+
+=item B<Tag Set Options>
+
+Setting any of these will set the equivalent tag manually.
+
+=over 4
+
+=item --track=i
+
+=item --disc=i
+
+=item --totaltracks=i
+
+=item --totaldiscs=i
+
+=item --secs=i
+
+=item --duration=i
+
+=item --artist=s
+
+=item --album=s
+
+=item --title=s
+
+=item --comment=s
+
+=item --tracknum=s
+
+=item --year=s
+
+=item --releasedate=s
+
+=item --sortname=s
+
+=item --albumartist=s
+
+=item --albumartist_sortname=s
+
+=item --mb_artistid=s
+
+=item --mb_albumid=s
+
+=item --mb_trackid=s
+
+=item --album_type=s
+
+=item --artist_type=s
+
+=item --lyrics=s
+
+=item --picture=s
+
+=item --url=s
+
+=item --genre=s
+
+=item --discnum=s
+
+=item --tempo=s
+
+=item --label=s
+
+=item --encoder=s
+
+=item --compilation=s
+
+=item --composer=s
+
+=item --copyright=s
+
+=item --rating=s
+
+=item --lastplayed=s
+
+=item --playcount=s
+
+=item --filename=s
+
+=item --asin=s
+
+=item --recorddate=s
+
+=item --country=s
+
+=item --mip_puid=s
+
+=item --originalartist=s
+
+=item --countrycode=s
+
+=item --artist_start=s
+
+=item --artist_end=s
+
+=item --encoded_by=s
+
+=item --songkey=s
+
+=item --disctitle=s
+
+=item --booklet=s
+
+=back
+
+=back
+
+=head1 CONFIGURATION FILE
+
+Configuration file is located at ~/.musictag/default.conf. See sample/default.conf for details.
+
+=head1 SEE ALSO
+
+L<Music::Tag::Amazon>, L<Music::Tag::File>, L<Music::Tag::FLAC>, L<Music::Tag::Lyrics>,
+L<Music::Tag::M4A>, L<Music::Tag::MP3>, L<Music::Tag::MusicBrainz>, L<Music::Tag::OGG>, L<Music::Tag::Option>
+
+=head1 AUTHOR 
+
+Edward Allen III <ealleniii _at_ cpan _dot_ org>
+
+=head1 COPYRIGHT
+
+Copyright (c) 2007,2008 Edward Allen III. Some rights reserved.
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the Artistic License, distributed
+with Perl.
+
+=cut

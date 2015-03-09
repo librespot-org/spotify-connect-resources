@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Diagnostics</title>
+
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" href="css/custom_styles.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+	<link rel="stylesheet" href="css/themes/custom/Bluesound_DraftTest0-1.min.css" />
+    </head>
+    <body>
+	<div data-role="page" id="diagnosticspage">
+            <script type="text/javascript">
+                $(document).on('pageinit', '#diagnosticspage', function() {
+                    $("#statistics").on("change", function() {
+                        var state = $(this).val();
+                        $.get( "/statistics", { enable: state });
+                    });
+                });
+            </script>
+	    <div data-theme="b" data-role="header">
+                <a href="/" data-icon="back" data-rel="back" data-iconpos="notext"></a>
+	        <h1>Diagnostics</h1>
+                <a href="/" data-icon="home" data-transition="slideup" data-iconpos="notext"></a>
+	    </div>
+	    <div data-role="content">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a bs-header-image"><img src="images/logo.png" /></div>
+                    <div class="ui-block-b bs-header-text">
+                        <a data-ajax="false" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right" data-inline="true" style="float:right" href="/diag?print=1" class="ui-link">Advanced diagnostics </a>
+                    </div>
+                </div>
+
+
+	        <div id="signal_graph">
+			<img src="[ssimg]">
+		</div>
+		<div class="diags-wrap">
+			[infotable]
+		</div>
+            
+                <div data-role="fieldcontain" align="center" style="border-bottom-width: 0;">
+                    <label for="statistics" style="margin-top: 2px;">Statistics collection:</label>
+                    <select name="statistics" id="statistics" data-role="slider" data-inline="true" data-mini="true">
+                        <option value="0" [statisticsoff]>Off</option>
+                        <option value="1" [statisticson]>On</option>
+                    </select>
+                    <a href="http://www.bluesound.com/privacy-policy" data-transition="slide" data-mini="true" data-inline="true" data-role="button" data-icon="info" data-iconpos="notext" class="ui-link"></a>
+                </div>
+                    
+		<a data-ajax="false" data-role="button" data-mini="true" data-inline="true" style="float:right" href="/reboot" class="ui-link">Reboot</a>
+		<a data-ajax="false" data-role="button" data-mini="true" data-inline="true" style="float:right" href="/apmode" class="ui-link">Force Hotspot Mode</a>
+	    </div>
+	</div>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Set Player Name</title> 
+
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" href="css/custom_styles.css">
+	<link rel="stylesheet" href="css/themes/custom/Bluesound_DraftTest0-1.min.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+	
+	</head>
+	<body>
+	<div data-role="page" id="nodenamepage">
+	    <div data-theme="b" data-role="header">
+                <a href="/" data-icon="back" data-rel="back" data-iconpos="notext"></a>
+	        <h1>Set Player Name</h1>
+                <a href="/" data-icon="home" data-transition="slideup" data-iconpos="notext"></a>
+	    </div>
+	    <div data-role="content">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a bs-header-image"><img src="images/logo.png" /></div>
+                    <div class="ui-block-b bs-header-text"></div>
+                </div>
+	        <form id="nodeNameForm" action="/nodename" data-ajax="false" method="POST">
+	
+			<div id="shipDiv" data-role="fieldcontain">
+				<label for="nodename">Current name: [current_name]</label>		
+				<input id="nodename" name="nodename" type="text" />
+			</div>
+			<div id="submitDiv" data-role="fieldcontain">    
+				<input type="submit" value="Update player name" data-inline="true"/>
+			</div>
+		</form>
+	    </div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,193 @@
+#
+# Setup and BASH utility functions for use in hotplug agents
+#
+# Most essential parameters are passed from the kernel using
+# environment variables.  For more information, see the docs
+# on-line at http://linux-hotplug.sourceforge.net or the
+# sources for each hotplug-aware kernel subsystem.
+#
+# $Id: hotplug.functions,v 1.24 2004/03/29 19:25:59 kroah Exp $
+#
+#
+
+# DEBUG=yes; export DEBUG
+PATH=/bin:/sbin:/usr/sbin:/usr/bin
+
+KERNEL=`uname -r`
+MODULE_DIR=/lib/modules/$KERNEL
+
+HOTPLUG_DIR=/etc/hotplug
+
+if [ -f /etc/sysconfig/hotplug ]; then
+    . /etc/sysconfig/hotplug
+fi
+
+if [ -x /usr/bin/logger ]; then
+    LOGGER=/usr/bin/logger
+elif [ -x /bin/logger ]; then
+    LOGGER=/bin/logger
+else
+    unset LOGGER
+fi
+#
+# for diagnostics
+#
+if [ -t 1 -o -z "$LOGGER" ]; then
+    mesg () {
+	echo "$@"
+    }
+else
+    mesg () {
+	$LOGGER -t $(basename $0)"[$$]" "$@"
+    }
+fi
+
+debug_mesg () {
+    test "$DEBUG" = "" -o "$DEBUG" = no && return
+    mesg "$@"
+}
+
+
+#
+# Not "modprobe --autoclean" ... one driver module can handle many
+# devices.  Unloading should be done when no devices are present.
+# Autocleaning happens if none of the devices are open, once any of
+# them gets opened; wrong timing.
+#
+MODPROBE="/sbin/modprobe -s -q"
+#MODPROBE="/sbin/modprobe -vs"
+
+
+####################################################################
+#
+# usage: load_driver type filename description
+#
+# modprobes driver module(s) if appropriate, and optionally
+# invokes a driver-specific setup script (or user-mode driver).
+#
+# the "modules.*map" format file is guaranteed to exist
+#
+load_drivers ()
+{
+    local LOADED TYPE FILENAME DESCRIPTION LISTER
+    DRIVERS=""
+
+    # make this routine more readable
+    TYPE=$1
+    FILENAME=$2
+    DESCRIPTION=$3
+
+    # should we use usbmodules, pcimodules?  not on 2.5+, because sysfs
+    # ought to expose the data we need to find all candidate drivers.
+    # (on 2.5.48 it does for usb; but maybe not yet for pci.)
+    case "$KERNEL" in
+    2.2*|2.3*|2.4*)	LISTER=`which ${TYPE}modules` ;;
+    *)			LISTER="" ;;
+    esac
+
+    if [ "$LISTER" != "" ]; then
+	# lister programs MIGHT be preferable to parsing from shell scripts:
+	# - usbmodules used for (a) multi-interface devices, (b) coldplug
+	# - pcimodules used only for coldplug
+	case $TYPE in
+	usb)
+	    # "usbutils-0.8" (or later) is needed in $PATH
+	    # only works if we have usbfs
+	    # ... reads more descriptors than are passed in env
+	    # ... doesn't handle comment syntax either
+	    if [ "$DEVICE" = "" -o ! -f "$DEVICE" ]; then
+		LISTER=
+	    else
+		DRIVERS=`$LISTER --mapfile $FILENAME --device $DEVICE`
+	    fi ;;
+
+	pci)
+	    debug_mesg "pcimodules is scanning more than $PCI_SLOT ..."
+	    DRIVERS=`$LISTER`
+	    ;;
+	esac
+    fi
+
+    # try parsing by shell scripts if no luck yet
+    if [ "$DRIVERS" = "" ]; then
+	${TYPE}_map_modules < $FILENAME
+    fi
+
+    # FIXME remove dups and blacklisted modules from $DRIVERS here
+
+    if [ "$DRIVERS" = "" ]; then
+	return
+    fi
+
+    # Note that DRIVERS aren't all going to be modules.
+    # For USB, some user-mode drivers or setup scripts may be listed.
+    debug_mesg Setup $DRIVERS for $DESCRIPTION
+
+    # either kernel or user mode drivers may need to be set up
+    for MODULE in $DRIVERS
+    do
+	# maybe driver modules need loading
+        LOADED=false
+	if ! lsmod | grep -q "^$MODULE " > /dev/null 2>&1; then
+	    if grep -q "^$MODULE\$" $HOTPLUG_DIR/blacklist \
+		    >/dev/null 2>&1; then
+		debug_mesg "... blacklisted module:  $MODULE"
+		continue
+	    fi
+
+	    # statically linked modules aren't shown by 'lsmod',
+	    # and user mode drivers will ONLY have a setup script;
+	    # it's not an error if a module doesn't exist or won't load.
+	    if $MODPROBE -n $MODULE >/dev/null 2>&1 &&
+		    ! $MODPROBE $MODULE >/dev/null 2>&1 ; then
+		mesg "... can't load module $MODULE"
+	    else
+		# /etc/modules.conf may have set non-default module
+		# parameters ... handle per-device parameters in apps
+		# (ioctls etc) not in setup scripts or modules.conf
+		LOADED=true
+	    fi
+	else
+	    # This module is already loaded
+	    LOADED=true
+	fi
+
+	# always run setup scripts after any matching kernel code has had
+	# a chance to do its thing, no matter whether it was dynamically
+	# or statically linked, or if there is only a user mode driver.
+	# the script might re-enumerate usb devices after firmware download,
+	# giving kernel code another chance.
+	if [ -x $HOTPLUG_DIR/$TYPE/$MODULE ]; then
+	    debug_mesg Module setup $MODULE for $DESCRIPTION
+	    $HOTPLUG_DIR/$TYPE/$MODULE
+	    LOADED=true
+	fi
+
+	if [ $LOADED = false ]; then
+	    mesg "missing kernel or user mode driver $MODULE "
+	fi
+	if echo "$MODULE" | grep -q "usb-storage" > /dev/null 2>&1 ; then
+	    [ -x /usr/sbin/updfstab ] &&  /usr/sbin/updfstab
+	fi
+    done
+}
+
+####################################################################
+#
+# usage: log_to_stdout filename
+#
+# writes a copy of the current hotplug event to stdout.
+# add buffering, to avoid interleaving reports!
+#
+log_to_stdout ()
+{
+    if [ -x /bin/date ]; then
+	echo "HOTPLUG_TIME='$(/bin/date)'"
+    fi
+
+    env | egrep -v '^PATH=|^PWD=|^_=|^OLDPWD=|^SHLVL=|^HOME='
+    echo ''
+    # empty line terminates events
+}
+
+# vim:syntax=sh

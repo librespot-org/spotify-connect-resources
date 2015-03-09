@@ -1,0 +1,77 @@
+input, textarea {
+	-webkit-appearance: none;
+}
+.home_initial_header_img {
+//    display: block;
+    margin: 0 auto;
+    padding-top: 20px;
+    text-align: center;
+}
+#submitDiv {
+	text-align: center;
+}
+.ui-body-c .ui-link:active {
+color: #2433cd;
+font-weight: bold;
+}
+.ui-body-c .ui-link:hover {
+color: #345345;
+font-weight: bold;
+}
+#signal_graph {
+	min-height:160px;
+	text-align:center;
+	padding-top:50px;
+}
+.signal-strength-wrap {
+	text-align:center;
+	padding-bottom:20px;
+}
+.signal-strength  {
+	color:#154070;
+}
+.signal-strength em {
+	color:#14a325;
+}
+
+.diags-wrap {
+	text-align:left;
+	padding-bottom:20px;
+	width:90%;
+	margin-left:auto;
+	margin-right:auto;
+}
+.centered-table {
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.ui-header .ui-title {
+	margin: .6em 10% .8em;
+}
+
+.ui-grid-a .bs-header-image {
+	vertical-align: bottom;
+	width: 20%;
+}
+
+.ui-grid-a .bs-header-image img {
+	max-width:100%;
+	max-height:5em;
+}
+
+.ui-grid-a .bs-header-text {
+	vertical-align: bottom;
+	padding-left: 3%;
+	width: 76%;
+}
+
+.bs-list-logo {
+	float:right;
+	margin-right:1em;
+}
+
+.bs-list-logo img {
+	height:1em;
+}
+

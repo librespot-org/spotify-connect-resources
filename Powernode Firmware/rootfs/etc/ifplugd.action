@@ -1,0 +1,14 @@
+#!/bin/bash
+
+eth=$1
+action=$2
+
+if [[ $action == "up" ]]; then
+	udhcpc -h $(hostname) -i $eth -p /var/run/udhcpc.$eth
+else
+	[[ -e /var/run/udhcpc.$eth ]] && kill $(cat /var/run/udhcpc.$eth)
+	ip route flush dev $eth
+	ip addr flush dev $eth
+fi
+
+exit 0

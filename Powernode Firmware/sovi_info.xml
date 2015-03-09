@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<info>
+	<versions>
+		<board>N150</board>
+		<name>POWERNODE</name>
+		<git>1.14.1</git>
+		<env>1</env>
+		<kernel>20140606</kernel>
+		<ddfa>120</ddfa>
+		<rootfs>20141211</rootfs>
+		<bridge>none</bridge>
+	</versions>
+	<settings>
+		<wifi>auto</wifi>
+		<rs232>none</rs232>
+		<ddfa_dev>/dev/ttymxc1</ddfa_dev>
+		<volume_host>no</volume_host>
+		<volume_ramp>log</volume_ramp>
+		<volume_min>75</volume_min>
+		<crossover>adjustable</crossover>
+		<server>no</server>
+		<cdrom>none</cdrom>
+		<bt>bluez</bt>
+	</settings>
+</info>

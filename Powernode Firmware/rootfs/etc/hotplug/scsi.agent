@@ -1,0 +1,69 @@
+#!/bin/sh
+#
+# SCSI hotplug agent for 2.5 kernels 
+#
+#	ACTION=add
+#	DEVPATH=devices/scsi0/0:0:0:0
+#
+
+cd /etc/hotplug
+. ./hotplug.functions
+
+case $ACTION in
+
+add)
+    # 2.5.50 kernel bug: this happens sometimes
+    if [ ! -d /sys/$DEVPATH ]; then
+	mesg "bogus sysfs DEVPATH=$DEVPATH"
+	exit 1
+    fi
+
+    TYPE_ATTR=/sys$DEVPATH/type
+
+    # Possibly sleep here to try and avoid races with scsi attributes and block
+    # devices
+    count=10
+    while [ ! -f $TYPE_ATTR -a $count -gt 0 ]
+    do
+	# We seem to always hit this now, so don't output any message.
+	debug_mesg "waiting for $TYPE_ATTR"
+	sleep 1
+	count=$(($count-1))
+    done
+
+    if [ ! -f $TYPE_ATTR ]
+    then
+    	mesg "Attribute $TYPE_ATTR does not exist"
+	exit 1
+    fi
+
+    TYPE=$(cat $TYPE_ATTR) 
+    case "$TYPE" in
+    # 2.5.51 style attributes; <scsi/scsi.h> TYPE_* constants
+    0)		TYPE=disk ; MODULE=sd_mod ;;
+    # FIXME some tapes use 'osst' not 'st'
+    1)		TYPE=tape ; MODULE=st ;;
+    2)		TYPE=printer ;;
+    3)		TYPE=processor ;;
+    4)		TYPE=worm ; MODULE=sr_mod ;;
+    5)		TYPE=cdrom ; MODULE=sr_mod ;;
+    6)		TYPE=scanner ;;
+    7)		TYPE=mod ; MODULE=sd_mod ;;
+    8)		TYPE=changer ;;
+    9)		TYPE=comm ;;
+    14)		TYPE=enclosure ;;
+    esac
+    if [ "$MODULE" != "" ]; then
+	mesg "$TYPE at $DEVPATH"
+	modprobe $MODULE
+    else
+	debug_mesg "how to add device type=$TYPE at $DEVPATH ??"
+    fi
+    ;;
+
+*)
+    debug_mesg SCSI $ACTION event not supported
+    exit 1
+    ;;
+
+esac

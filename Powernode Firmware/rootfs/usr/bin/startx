@@ -1,0 +1,7 @@
+#!/bin/sh
+
+Xfbdev -ac -mouse mouse -keybd keyboard &
+sleep 3
+DISPLAY=:0 twm
+killall Xfbdev
+

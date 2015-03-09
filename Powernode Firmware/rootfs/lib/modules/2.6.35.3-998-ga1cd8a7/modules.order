@@ -1,0 +1,16 @@
+kernel/drivers/scsi/scsi_wait_scan.ko
+kernel/drivers/usb/gadget/g_ether.ko
+kernel/drivers/usb/gadget/g_file_storage.ko
+kernel/drivers/usb/gadget/g_serial.ko
+kernel/drivers/hid/usbhid/usbhid.ko
+kernel/sound/core/snd-hwdep.ko
+kernel/sound/core/snd-rawmidi.ko
+kernel/sound/usb/snd-usb-audio.ko
+kernel/sound/usb/snd-usbmidi-lib.ko
+kernel/sound/soc/codecs/snd-soc-mxc-spdif.ko
+kernel/sound/soc/imx/snd-soc-imx-spdif-dai.ko
+kernel/sound/soc/imx/snd-soc-imx-spdif.ko
+kernel/net/wireless/cfg80211.ko
+kernel/net/wireless/lib80211.ko
+kernel/net/mac80211/mac80211.ko
+kernel/lib/crc-ccitt.ko

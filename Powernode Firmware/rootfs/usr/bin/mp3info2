@@ -1,0 +1,1223 @@
+#!/home/kg/N150/main/rpm/BUILD/perl-native/bin/perl -w
+
+eval 'exec /home/kg/N150/main/rpm/BUILD/perl-native/bin/perl -w -S $0 ${1+"$@"}'
+    if 0; # not running under some shell
+
+use FindBin;
+use lib "$FindBin::Bin";
+
+use MP3::Tag 1.12;		# Need conditional %L; %{mP}
+use Getopt::Std 'getopts';
+use Config;
+use File::Path;
+
+$VERSION = '1.12';
+use strict;
+
+$Getopt::Std::STANDARD_HELP_VERSION = 1;
+my %opt;
+sub MULTIV::TIEHASH {bless \my $a, 'MULTIV'}
+sub MULTIV::STORE {shift; my $k = shift; $opt{$k} ||= []; push @{$opt{$k}}, shift}
+
+my %opt_d = (r => '(?i:\.mp3$)', E => 'p/i:Fp');
+my @oARGV = @ARGV;
+my $opts = 'c:a:t:l:n:g:y:uDp:C:P:E:G@Rr:I2e:d:F:xN';
+my %o;
+tie %o, 'MULTIV';
+exec 'perldoc', '-F', $0 unless @ARGV;
+
+sub massage_o {
+  getopts($opts, \%o);
+  for my $o (keys %opt) {
+    if (-1 == index $opts, "$o:") {
+      $opt{$o} = @{$opt{$o}};		# Number of occurences
+    } elsif ($o =~ /[PFCd]/) {		# Keep as is
+    } else {
+      die "Multiple option `-$o' not supported" if @{$opt{$o}} > 1;
+      $opt{$o} = $opt{$o}[0];
+    }
+  }
+  %opt = (%opt_d, %opt);
+}
+massage_o();
+
+sub my_decode($$) {	# If file names are utf-ized, glob fails???
+  # De-utf-ize if possible...
+  join '', map chr ord, split //, &Encode::decode;
+}
+
+sub my_decode_deep($$);
+sub my_decode_deep($$) {
+  my($e,$t) = (shift, shift);
+  if (ref $t eq 'ARRAY') {
+    return [map my_decode_deep($e, $_), @$t];
+  } elsif (ref $t) {
+    die "panic: reference of type `$t' unexpected"
+  }
+  # De-utf-ize if possible...
+  join '', map chr ord, split //, Encode::decode($e, $t);
+}
+
+# if ($opt{e} and exists $opt{p} ? 0 == length $opt{p} : 1) {
+if ($opt{e}) {
+  my $skip;
+  if ($opt{e} =~ /^[1-7]$/) {
+    require Encode;
+    my $locale = $ENV{LC_CTYPE} || $ENV{LC_ALL} || $ENV{LANG};
+    if ($^O eq 'os2' and not eval {Encode::resolve_alias($locale)} ) {
+      require OS2::Process;
+      $locale = 'cp' . OS2::Process::out_codepage();
+    }
+    $skip = !($opt{e} & 1);
+    # Reinterpret @ARGV
+    @ARGV = map my_decode($locale, $_), @ARGV if $opt{e} & 4;
+    # Reinterpret opts
+    @opt{keys %opt} = map my_decode_deep($locale, $_), values %opt
+      if $opt{e} & 2;
+    $opt{e} = $locale;
+  } elsif ($opt{e} eq 'binary') {
+    binmode STDOUT;
+    $skip = 1;
+  }
+  binmode STDOUT, ":encoding($opt{e})" unless $skip;
+}
+
+my $e_opt = MP3::Tag->get_config('extra_config_keys');
+MP3::Tag->config('extra_config_keys', @$e_opt, qw(empty-F-deletes frames_write_creates_dirs));
+MP3::Tag->config('empty-F-deletes', 1)
+  unless defined MP3::Tag->get_config1('empty-F-deletes');
+
+# keys of %opt to the MP3::Tag keywords:
+my %trans = (	't' => 'title',
+		'a' => 'artist',
+		'l' => 'album',
+		'y' => 'year',
+		'g' => 'genre',
+		'c' => 'comment',
+		'n' => 'track'  );
+
+# Interprete Escape sequences:
+my %r = ( 'n' => "\n", 't' => "\t", '\\' => "\\"  );
+my ($e_backsl, $e_interp);
+if ($opt{E} =~ s/^\+//) {
+  ($e_backsl, $e_interp) = ((split m(/i:), $opt{E}, 2), '');
+  $e_backsl .= 'p' unless $e_backsl =~ /p/;
+  $e_interp =~ s/[Fp]//g;
+  $e_interp .= 'Fp';
+} else {
+  ($e_backsl, $e_interp) = ((split m(/i:), $opt{E}, 2), '');
+}
+for my $e (split //, $e_backsl) {
+  $opt{$e} =~ s/\\([nt\\])/$r{$1}/g if defined $opt{$e};
+}
+$e_interp = {map +($_, 1), split //, $e_interp};
+
+if ($opt{'@'}) {
+  for my $k (keys %opt) {
+    if (ref $opt{$k}) {
+      s/\@/%/g for @{ $opt{$k} };
+    } else {
+      $opt{$k} =~ s/\@/%/g;
+    }
+  }
+}
+
+my %F_human = qw( composer	TCOM
+		  text_by	TEXT
+		  orchestra	TPE2
+		  conductor	TPE3
+		  disk_n	TPOS);	# Only most useful, and not -l etc...
+
+my $FNAME = qr/(?:		# 1: Whole specifier
+		 \w{4}		# 2: Frame name
+		 (?:
+		   \d\d		# 3: Frame number
+		 |
+		   (?: \( [^()]* (?:\([^()]+\)[^()]*)* \) )? # 4: Language part
+		   (?: \[ (?: \\. | [^]\\] )* \] )? # 5: Description part
+		 )?
+	       )
+	      /x;
+my $FNAME_human = join '|', keys %F_human;
+
+my @set_f;
+my %textish = map +($_, 1), qw( _encoding Text Language Description URL );
+for my $F (@{ $opt{F} }) {
+  my ($lead, @s) = ($F =~ /^(\W)/);
+  if (defined $lead) {
+    @s = split /\Q$lead$lead$lead/, substr $F, 1;
+  } else {
+    @s = $F;
+  }
+  for my $s (@s) {
+    $s =~ /^($FNAME|$FNAME_human|(?:TAGS|ID3v[12])(?=\s+[\?<>]))(?:=|\s+(\??<|>)\s+)(.*)/so
+      or die "unrecognized part of -F option: `$s'";
+    my $FF = $F_human{$1} || $1;
+    push @set_f, [$FF, $3, ($2 || '')];
+  }
+}
+
+my (@del, @del_tag);
+for my $o (@{ $opt{d} }) {
+  my @D;
+  push @D, $1 while $o =~ s/^ ( $FNAME | ID3v[12] ) (,|$) //xo;
+  die "Unrecognized part of -d option: `$o'" if length $o;
+  push @del_tag, grep  /^ID3v[12]$/, @D;
+  push @del,     grep !/^ID3v[12]$/, @D;
+}
+
+# Configure stuff...
+MP3::Tag->config(autoinfo => qw(ParseData ID3v2 ID3v1)) if $opt{N}; # Naive algo
+
+for my $C (@{ $opt{C} || [] }) {
+  my ($c) = ($C =~ /^(\W)/);
+  $c = quotemeta $c if defined $c;
+  $c = '(?!)' unless defined $c;		# Never match
+  my @opts = split /$c/, $C;
+  shift @opts if @opts > 1;
+  for $c (@opts) {
+    $c =~ s/^(\w+)=/$1,/;
+    MP3::Tag->config(split /,/, $c);
+  }
+}
+
+unless ($opt{N}) {{
+  my $cfg = $ENV{MP3TAG_NORMALIZE_FIELDS};
+  last if defined $cfg and not $cfg;
+  last unless defined $cfg or $ENV{HOME} and -d "$ENV{HOME}/.music_fields";
+  no strict 'refs';
+  eval 'require Normalize::Text::Music_Fields';
+  for my $elt ( qw( title track artist album comment year genre
+		    title_track artist_collection person ) ) {
+    MP3::Tag->config("translate_$elt", \&{"Normalize::Text::Music_Fields::normalize_$elt"})
+	if defined &{"Normalize::Text::Music_Fields::normalize_$elt"};
+  }
+  MP3::Tag->config("short_person", \&Normalize::Text::Music_Fields::short_person)
+      if defined &Normalize::Text::Music_Fields::short_person;
+  $cfg = '' if not defined $cfg or $cfg =~ /^[01]$/;
+  my @d = split /$Config{path_sep}/, $cfg;
+  Normalize::Text::Music_Fields::set_path(@d)
+   if @d and defined &Normalize::Text::Music_Fields::set_path;
+}}
+
+my @parse_data;
+die 'Option -P requires ParseData in autoinfo'
+  if $opt{P} and not grep $_ eq 'ParseData', @{ MP3::Tag->get_config('autoinfo') };
+for my $o (@{ $opt{P} }) {
+  my ($c) = ($o =~ /^\w*(\W)/s);
+  $c = quotemeta $c if defined $c;
+  $c = '(?!)' unless defined $c;		# Never match
+  push @parse_data, map [split /$c/, $_, -1], split /$c$c$c/, $o;
+}
+for my $c (@parse_data) {
+  die "Two few parts in parse directive `@$c'.\n" if @$c < 3;
+}
+
+# E.g., to make Inf overwrite existing title, do
+# mp3info2.pl -C title,Inf,ID3v2,ID3v1,filename -u *.mp3
+
+sub new_tag_object ($) {
+  my $fname = shift;
+  return MP3::Tag->new($fname) unless $fname eq '';
+  MP3::Tag->new_fake('settable');
+}
+
+sub process_file ($) {
+    my $f = shift;
+    my $mp3 = new_tag_object($f); # BUGXX Can't merge into if(): extra refcount
+    if ($mp3) {
+      print $mp3->interpolate(<<EOC) unless exists $opt{p};
+File: %F
+EOC
+      for my $tag (@del_tag) {	# delete whole tags
+				  $mp3->delete_tag($tag);
+				}
+      $mp3 = new_tag_object($f) if @del_tag;
+
+      #$mp3->get_tags;
+	# XXXX won't copy ID3v1/2 tags otherwise...
+      my $need_data = ($opt{u} or not $opt{D} or $opt{2} or @set_f or @del or 1);
+      for my $k (keys %trans) {	# if not -D, id3v2 may be modified
+	$need_data = 1 if exists $opt{$k};
+      }			# If $need_data FALSE, $modify will be FALSE
+      my $data;			# XXXX May be needed by interpolate()???
+      $data = $mp3->autoinfo('from') if $need_data;
+      my $modify = $opt{2};
+      my (@args, @set_v);
+      for my $k (keys %trans) {
+	if (exists $opt{$k}) {
+	  my $i = ($e_interp->{$k} ? 'i' : '');
+	  push @set_v, [$trans{$k}, $opt{$k}, $e_interp->{$k}];
+	  #push @args, ["mz$i", $opt{$k}, "%$k"];
+	  if (exists $data->{$trans{$k}}) {
+	    # If the autocalculated value differs, or comes from non-ID3-tag
+	    # write to a tag
+	    if ( $data->{$trans{$k}}->[0] ne $opt{$k}
+		 or $data->{$trans{$k}}->[1] !~ /^id3/i ) {
+	      warn "Need to change $trans{$k}\n";
+	      $data->{$trans{$k}} = [$opt{$k}, 'cmd'];
+	      $modify = 1;
+	    }
+	  } else {
+	    warn "Need to add $trans{$k}\n"
+	      unless $f eq '';
+	    $data->{$trans{$k}} = [$opt{$k}, 'cmd'];
+	    $modify = 1;
+	  }
+	}
+      }
+      if ($opt{u} and not $modify) { # Update
+	for my $k (keys %$data) {
+	  next if $k eq 'song'; # Alias for title (otherwise double warn)
+	  next if $data->{$k}->[1] =~ /^(ID3|cmd)/;
+	  next unless defined $data->{$k}->[0];
+	  next unless length  $data->{$k}->[0];
+	  $modify = 1;
+	  warn "Need to propagate $k from $data->{$k}->[1]\n";
+	}
+      }
+
+      my $odata = $data;
+      # Now, when we know what should be updated, retry with arguments
+
+      if (@args or @set_v or @parse_data or @set_f) {
+	$mp3 = new_tag_object($f);
+	$mp3->config('parse_data', @parse_data, @args);
+	for my $set (@set_v) {
+	  my $v = $set->[1];
+	  $v = $mp3->interpolate($v) if $set->[2];
+	  my $meth = $set->[0] . '_set';
+	  $mp3->$meth($v);
+	}
+	for my $set (@set_f) {
+	  my($have, $b, $whole, $e);
+	  if ($set->[2] =~ /^(?:\?<|(>))$/) {
+	    my $write = $1;
+	    $have = ($set->[0] =~ /^(TAGS|ID3v[12])$/
+		     or $mp3->have_id3v2_frame_by_descr($set->[0]));
+	    next if $write and not $have;
+	  }
+	  my $v = $set->[1];
+	  $v = $mp3->interpolate($v) if $e_interp->{F};
+	  next if $set->[2] eq '?<' and not -e $v;
+
+	  unless ($whole = ($set->[0] =~ /^(TAGS|ID3v[12])$/)) {
+	    my($FF) = MP3::Tag::ID3v2->what_data(substr $set->[0], 0, 4);
+	    $b = grep !$textish{$_}, @$FF;
+	  }
+
+	  if ($set->[2] eq '>') { # we know frame exists
+	    my $o;
+	    if ($whole) {
+	      $mp3->get_tags;
+	      if ($set->[0] eq 'TAGS') {
+		next unless exists $mp3->{ID3v2} or exists $mp3->{ID3v1};
+		$o = $mp3->interpolate("%{ID3v2}%{ID3v1}");
+	      } else {
+		next unless exists $mp3->{$set->[0]};
+		$o = $mp3->interpolate("%{$set->[0]}");
+	      }
+	    } else {
+	      $o = $mp3->select_id3v2_frame_by_descr($set->[0]);
+	    }
+	    next unless defined $o; # Should not happen???
+	    die "An attempt to extract `non-simple' frame `$set->[0]' to a file"
+	      if ref $o;
+	    unless (open FF, "> $v") {
+	      my $rc;
+	      if (MP3::Tag->get_config1('frames_write_creates_dirs')) {
+		my ($dir) = ($v =~ m,^(.*)[\\/],s);
+		if (defined $dir and not -d $dir) {
+		  mkpath $dir;		# would die on error
+		  $rc = open FF, "> $v"
+		}
+	      }
+	      die "Can't open `$v' for write: $!" unless $rc;
+	    }
+	    binmode FF if $b;
+	    syswrite FF, $o, length $o or die "syswrite to `$v': $!"
+	      if length $o;
+	    close FF  or die "Can't close `$v' for read: $!";
+	    next;
+	  }
+	  if ($set->[2]) {	# < or ?<
+	    my $cond = ($set->[2] eq '?<');
+	    next if $cond and not -e $v;
+	    if ($whole) {
+	      my $from = MP3::Tag->new($v) or die "Can't create tags for `$v'";
+	      $from->get_tags;
+	      if ($set->[0] =~ /^(TAGS|(ID3v1)?)$/) { # Process "simple" fields
+		my $from1 = ($2 ? $from->{ID3v1} : $from);	# $2: ID3v1
+		for my $field (values %trans) {	# Use "named method" for access
+		  my $v = ($from1 and $from1->$field());
+		  next unless defined $v and length $v;
+		  my $check_v = (not $cond or $mp3->$field);
+		  next unless defined $check_v and length $check_v;
+		  my $ff = $field .= '_set';
+		  $mp3->$ff($v);
+		  $modify++;
+		}
+	      }
+	      $modify +=
+		$from->copy_id3v2_frames($mp3, ($cond ? '' : 'delete'), 'flags')
+		  if $set->[0] =~ /^(TAGS|ID3v2)$/;
+	      next;
+	    }
+	    open FF, "< $v" or die "Can't open `$v' for read: $!";
+	    if ($b) { binmode FF }
+	    elsif ($e = $mp3->get_config1('decode_encoding_files')) {
+	      eval "binmode FF, ':encoding($e)'"; # old binmode won't compile...
+	      warn $@ if $@ and $] >= 5.008;
+	    }
+	    undef $/;
+	    $v = <FF>;
+	    close FF  or die "Can't close `$v' for read: $!";
+	    $v =~ s/^\s+//, $v =~ s/^\s+// unless $b;
+	  }
+	  undef $v if not length $v and $mp3->get_config1('empty-F-deletes');
+	  $mp3->select_id3v2_frame_by_descr($set->[0], $v);
+	  $modify++;
+	}
+	$mp3->get_tags;
+	$data = $mp3->autoinfo('from') if $need_data;
+      }
+      for my $del (@del) {	# delete
+	my $c = $mp3->select_id3v2_frame_by_descr($del, undef);
+	warn "No frames found for $del.\n" unless $c;
+	$modify++ if $c;
+      }
+
+      # Recheck whether we need to update
+      if (not $modify and $opt{u} and @parse_data) {
+	for my $k (keys %$data) {
+	  $modify = 1, last
+	    if defined $data->{$k} and
+	      (not defined $odata->{$k} or $data->{$k} ne $odata->{$k});
+	}
+      }
+      $mp3->id3v2_frames_autofill()
+	unless @{$opt{d}} or $opt{N} or $f eq ''
+	  or not ($modify or $opt{u} or $mp3->is_id3v2_modified);
+      $opt{u} and warn "No update needed\n" unless $modify or $mp3->is_id3v2_modified;
+
+      my ($com,$lyr,$p) = map $mp3->interpolate("%{$_}"), qw(TCOM TEXT TPE1);
+      my ($perf,$_p) = 'Artist:  %a'; # Fallback; otherwise print "Performer:"
+      unless (exists $opt{p} or $opt{I}) {
+	if (defined $p and not $mp3->{ID3v1}	# No forward propagation problems
+	    and length($_p = $mp3->interpolate('%{TPE1}'))) {
+	  $perf = "Performer: $_p";
+	} elsif (length($_p = $mp3->interpolate('%{TXXX[TPE1]}'))) {
+	  $perf = "Performer: $_p";
+	} elsif ($p and defined $com and defined $lyr
+		 and $p ne $com and $p ne $lyr) { # So we know it is different
+	  $perf = "Performer: $p";
+	}
+      }
+      print $mp3->interpolate(exists $opt{p} ? $opt{p} : <<EOC);
+Title:   %-50t Track: %n
+%{TCOM:Composer: %{TCOM}
+}%{TEXT:Text: %{TEXT}
+}$perf
+%{TPE2:Orchestra (etc): %{TPE2}
+}%{TPE3:Conductor (etc): %{TPE3}
+}Album:   %{TPOS:%-46l}%{!TPOS:%-50l} Year:  %y%{TPOS:  Disk: %{TPOS}}
+Comment: %-50c Genre: %g
+EOC
+
+      if ($opt{x}) {
+	print $mp3->interpolate(<<EOC); # Aligned for MPEG2 L3
+%{mP}:      %-12{T[?Hh,?{mL}m,{SML}s]} %{w:%wx%h%{bD:x%{bD}} }%{L:MPEG %v Layer %L    %r KB/s, %qKHz (%o)}
+%{C:Copyright:  %-4C         Frames Padded: %-4p Frames:   %-7u }%{ID3v1:ID3v1: present}%{ID3v2:
+ID3v2: %{ID3v2-modified:modified}%{!ID3v2-modified:%{ID3v2-stripped}+%{ID3v2-pad}pad=%{ID3v2-size} Bytes}; frames present: %{frames}}
+EOC
+      }
+      if (($opt{x} || 0) > 1) {
+	my $binary = $opt{x} > 2 ? '_' : '';
+	print $mp3->interpolate("%{ID3v2:%{${binary}out_frames[<<//>>]}\n}");
+      }
+      return unless ($modify or $opt{u} and ($opt{u}>1 or $mp3->is_id3v2_modified))
+	and not $opt{D};	# Dry run
+      $mp3->frames_translate if $opt{2};
+      $mp3->update_tags($data, $opt{2});
+    } else {
+      print "Not found...\n";
+    }
+}
+
+my @f = @ARGV;
+if ($opt{G}) {
+  require File::Glob;			# "usual" glob() fails on spaces...
+  @f = map File::Glob::bsd_glob($_), @f;
+}
+if ($opt{R}) {
+  require File::Find;
+  File::Find::find({wanted => sub {return unless -f and /$opt{r}/o; process_file $_},
+		    no_chdir => 1}, @f);
+} else {
+  my $f;
+  for $f (@f) {
+    process_file $f;
+  }
+}
+
+=head1 NAME
+
+mp3info2 - get/set MP3 tags; uses L<MP3::Tag> to get default values.
+
+=head1 SYNOPSIS
+
+  # Print the information in tags and autodeduced info
+  mp3info2 *.mp3
+
+  # In addition, set the year field to 1981
+  mp3info2 -y 1981 *.mp3
+
+  # Same without printout of info, recursively in the current directory
+  mp3info2 -R -p "" -y 1981 .
+
+  # Do not deduce any field, print (normalized) info from the tags only
+  mp3info2 -C autoinfo=ID3v2,ID3v1 *.mp3
+
+  # As above, but without normalization/autofill, the raw information in tags
+  mp3info2 -N *.mp3
+
+  # As above, but only with ID2v1 tag read
+  mp3info2 -NC autoinfo=ID3v1 *.mp3
+
+  # Get artist from CDDB_File, autodeduce other info, write it to tags
+  mp3info2 -C artist=CDDB_File -u *.mp3
+
+  # For title, prefer information from .inf file; autodeduce rest, update
+  mp3info2 -C title=Inf,ID3v2,ID3v1,filename -u *.mp3
+
+  # Same, and get the artist from CDDB file
+  mp3info2 -C title=Inf,ID3v2,ID3v1,filename -C artist=CDDB_File -u *.mp3
+
+  # Write a script for conversion of .wav to .mp3, autodeducing tags
+  mp3info2 -p "lame -h --vbr-new --tt '%t' --tn %n --ta '%a' --tc '%c' --tl '%l' --ty '%y' '%f'\n" *.wav >xxx.sh
+
+=head1 DESCRIPTION
+
+The program prints a message summarizing tag info (obtained via
+L<MP3::Tag|MP3::Tag> module) for specified files.
+
+It may also update the information in ID3 tags.  This happens in three
+different cases.
+
+=over
+
+=item *
+
+If the information supplied in command-line options C<t a l y g c n>
+differs from the content of the corresponding ID3 tags (or there is no
+corresponding ID3 tags).
+
+=item *
+
+If options C<-d> or C<-F> were given.
+
+=item *
+
+if C<MP3::Tag> obtains the info from other means than MP3 tags, and
+C<-u> forces the update of the ID3 tags.
+
+=back
+
+(All these ways are disabled by C<-D> option.)  ID3v2 tag is written
+if needed, or if C<-2> option is given.  (Automatic fill-in of
+deduceable fields (via the method id3v2_frames_autofill()) is
+performed unless C<-d> or C<-N> options are given.)
+
+The option C<-u> writes (C<u>pdates) the fetched information to the
+MP3 ID3 tags.  This option is assumed if there are command-line options
+which explicitly set tag elements (C<-a>, C<-t> etc., and C<-F>, C<-d>).
+(Effects of this option may be overridden by giving C<-D>
+option.)  If C<-2> option is also given, forces write of ID3v2 tag
+even if the info fits the ID3v1 tag (in addition, this option enables
+auto-update of "personal name" fields, and corresponding titles
+according to values of C<translate_person>, C<person_frames> etc.
+configuration settings; see L<"Normalization of fields">).  This option
+is ignored if no change to tags is detected; however, one can force an
+update by repeating this option (useful if you expect the change the
+"format" of the tag, as opposed to its "content").
+
+The option C<-p> prints a message using the next argument as format
+(by default C<\\>, C<\t>, C<\n> are replaced by backslash, tab and
+newline; governed by the value of C<-E> option); see
+L<MP3::Tag/"interpolate"> for details of the format of sprintf()-like
+escapes.  If no option C<-p> is given, message in default format will
+be emitted.  The value of option C<-e> is the encoding used for the
+output; if the value is a number, system-specific encoding is guessed
+(and used for the output if bit 0x1 is set); if bit 0x2 is set, then,
+command line options are assumed to be in the guessed encoding; if bit
+0x4 is set, then, command line arguments are assumed to be in the
+guessed encoding.  Use the value C<binary> to do binary output.
+
+With option C<-D> (dry run) no update is performed, no matter what the
+other options are.  With this option, no parsing of tags is performed unless
+needed.
+
+Use options
+
+  t a l y g c n
+
+to overwrite the information (title artist album year genre comment
+track-number) obtained via C<MP3::Tag> heuristics (C<-u> switch is
+implied if any one of these arguments differs from what would be found
+otherwise; use C<-D> switch to disable auto-update).  By default, the
+values of these options are not C<%>-interpolated; this may be changed by
+C<-E> option.
+
+The option C<-d> should contain the comma-separated list of ID3v2
+frames to delete.  A frame specification is the same as what might be
+given to C<"%{...}"> frame interpolation command, e.g., C<TIT3>,
+C<COMM03>, C<COMM(fra)[short title]>; the difference with modify-access
+is that B<ALL> (and not the B<first> of) matching frames are deleted.
+(Option -d may be repeated.)
+
+For example, C<-d APIC> would remove all picture frames.  In addition, if the
+list contains C<ID3v1> or C<ID3v2>, whole tags will be deleted.
+
+Likewise, the option C<-F> allows setting of arbitrary C<ID3v2>
+frames: if one needs to set one frame, use the directive C<FRAME_spec=VALUE>:
+
+  -F TIT2=The_new_Title
+
+Again, on modify, B<ALL> matching frames are deleted first, so be carefull with
+
+  -F COMM=MyComment
+
+Option C<-F> may be repeated to set more than one frame.  If configuration
+variable C<empty-F-deletes> is TRUE (default), empty arguments will delete
+the frame.
+
+One can replace C<FRAME_spec=VALUE> by C<FRAME_spec E<lt> FILE>; in
+this case the value to set is read from the file named F<FILE>; if the
+frame is text-only (meaning: at most C<[encoded]Text URL Language
+Description> fields are present), the file is read in text mode (and
+with starting/trailing whitespace stripped), otherwise it is read in
+binary mode.  (Whitespace is required about the C<E<lt>> signs.)  If
+C<E<lt>> is replaced by C<?E<lt>>, the value is set only if frame is
+not yet present, and if the file exists; if replaced by C<E<gt>>, the
+value (if present) is written to F<FILE> (creation of intermediate directories
+is controlled by configuration option C<frames_write_creates_dirs>, the
+default is FALSE).
+
+Additionally, C<FRAME_spec> may be one of C<ID3v1> or C<ID3v2> or C<TAGS>;
+in this case, whole tags are written or read.  For example, for C<TAGS E<lt>
+FILE>, C<title artist album year genre comment track> info is calculated from
+F<FILE>, which may be raw tags, as produced with C<E<gt>>, or a valid MP3
+file; if L<Image::ExifTool|Image::ExifTool> is present, the data may be
+read from arbitrary multimedia file.  (Likewise,  for C<ID3v1 E<lt> FILE>,
+the same info is extracted from
+C<ID3v1> tag only.) After this, in case of C<ID3v2> or C<TAGS>, C<ID3v2>
+frames are copied from the C<ID3v2> tag one-by-one.  (With suitable
+modifications for C<?E<lt>>.)
+
+By default, the "VALUE" for C<-F> is C<%>-interpolated; this can be
+changed by option C<-E>.  For user convenience, human-friendlier forms
+C<composer, text_by, orchestra, conductor, disk_n> can be used instead of
+C<TCOM, TEXT, TPE2, TPE3, TPOS>.
+
+The option C<-P RECIPE> is a very powerful generalization of what can be done
+by options C<-F>, C<-d>, and C<-t -a -l -y -g -c -n>.  It may be
+repeated; the values should contain the parse recipes.  They become the
+configuration item C<parse_data> of C<MP3::Tag>; eventually this information
+is processed by L<MP3::Tag::ParseData|MP3::Tag::ParseData> module (if the
+latter is present in the chain of heuristics; see option C<-C>).  The
+C<RECIPE> is split into C<$flags, $string, @patterns> on its first
+non-alphanumeric character; the first of @patterns which matches
+$string is going to be executed (for side effects).  (See examples:
+L<EXAMPLES: parse rules>.)
+
+If option C<-G> is specified, the file names on the command line are
+considered as glob patterns.  This may be useful if the maximal
+command-line length is too low.  With the option C<-R> arguments can
+be directories, which are searched recursively for audio (default
+F<*.mp3>) files to process; use option C<-r> to reset the regular
+expression to look for (the default is C<(?i:\.mp3$)>).
+
+The option C<-E> controls expansion of escape characters.  It should
+contain the letters of the command-line options where C<\\, \n, \t>
+are interpolated; one can append the letters of C<t a l y g c n F>
+options requiring C<%>-interpolation after the separator C</i:> (for
+C<-F>, only the values are interpolated).  The default value is
+C<p/i:Fp>: only C<-p> is C<\>-interpolated, and only C<-F> and C<-p>
+are subject to C<%>-interpolation.  If all one wants is to I<add> to
+the defaults, preceed the value of C<-E> (containing added options) by
+C<"+">.  (Some parts of the value of option C<-P> are interpolated,
+but this should be governed by flags, not C<-E>; do I<NOT> put C<P>
+into the C<%>-interpolated part of C<-E>.)
+
+If the option C<-@> is given, all characters C<@> in the options are
+replaced by C<%>.  This may be convenient if the shell treats C<%>
+specially (e.g., DOSISH shells).
+
+If option C<-I> is given, no guessworking for I<artist> field is performed
+on typeout.
+
+The option C<-C CONFIG_OPT=VALUE1,VALUE2...> sets C<MP3::Tag> configuration
+data the same way as C<MP3::Tag->config()> would do (recall that the value
+is an array; separate elements by commas if more than one).  The option may
+be repeated to set more than one value.  Note that since C<ParseData> is used
+to process C<-P> parse recipes, it should be better be kept in the
+C<autoinfo> configuration (and related fields C<author> etc) in presence of C<-P>.
+
+If the option C<-x> is given, the technical information about the audio
+file is printed (MP3 level, duration, number of frames, padding, copyright,
+and the list of ID3v2 frame names in format suitable to C<%{...}> escapes).
+If C<-x> is repeated, content of frames is also printed out (may output
+non-printable chars, if it is repeated more than twice).
+
+If option C<-N> is given, all the "smarts" are disabled - no
+normalization of fields happens, and (by default) no attempt to deduce the
+values of fields from non-ID3 information is done.  This option is
+(currently) equivalent to having C<-C autoinfo=ParseData,ID3v2,ID3v1>
+as the first directive, to having no F<Normalize::Text::Music_Fields.pm>
+present on @INC path, and not calling autofill() method.
+
+=head1 Normalization of fields
+
+(The loading of normalization module and all subsequent operations may be
+disabled by the option C<-N>, or by setting the environment variable
+C<MP3TAG_NORMALIZE_FIELDS> to be FALSE.  If not prohibited,
+the module is attempted to be loaded if directory F<~/.music_fields>
+is present, or C<MP3TAG_NORMALIZE_FIELDS> is set and TRUE.)
+
+If loading of the module C<Normalize::Text::Music_Fields> is successful,
+the following is applicable:
+
+If the value of C<MP3TAG_NORMALIZE_FIELDS> is defined and not 1, this value
+is broken into directories as a PATH, and load path of
+C<Normalize::Text::Music_Fields> is set to be this list of directories.
+Then L<MP3::Tag> is instructed (via corresponding configuration settings) to
+use C<normalize_artist> (etc.) methods defined by this module.  These methods
+may normalize certain tag data.  The current version defines methods for
+"normalization" of personal names, and titles (based on the composer).  This
+normalization is driven through user-editable configuration tables.
+
+In addition to automatical normalization of MP3 tag data, one can use
+"fake MP3 files" to manually access some features of this module.
+For this, use an empty file name, and C<-D> option.  E.g,
+
+  mp3info2 -D -a beethoven                       -p "%a\n"         ""
+  mp3info2 -D -a beethoven                       -p "%{shP[%a]}\n" ""
+  mp3info2 -D -a beethoven -t "sonata #28"       -p "%t\n"         ""
+  mp3info2 -D -a beethoven -t "allegretto, Bes" -@p "@t\n"         ""
+  mp3info2 -D -a beethoven -t "op93"            -@p "@t\n"         ""
+
+will print the normalized person-name for C<beethoven>, the
+corresponding normalized short person-name, and the normalized title
+for C<sonata #28> of composer C<beethoven>.  E.g., with the shipped
+normalization tables, it will print
+
+  Ludwig van Beethoven (1770-1827)
+  L. van Beethoven
+  Piano Sonata No. 28 in A major; Op. 101 (1816)
+  Allegretto for Piano Trio in B flat major; WoO 39 (1812)
+  Symphony No. 8 in F major; Op. 93 (comp. 1812, f.p. Vienna, 1814-02-27, cond. Beethoven; pubd. 1816)
+
+=head1 The order of operation
+
+Currently, the operations are done in the following order
+
+=over 2
+
+=item
+
+Deletion of ID3v1 or ID3v2 as a whole via C<-d> option;
+
+=item
+
+Recipies of C<-P> option are set up (to be triggered by interpolation);
+
+=item
+
+The setting done via C<-a/-t/-l/-y/-g/-c/-n> options;
+
+=item
+
+The settings done via C<-F> option;
+
+=item
+
+Deletion of individual frames via C<-d> option;
+
+=item
+
+autofill of ID3v2 (id) frames;
+
+=item
+
+Emit info based on C<-p> and C<-x> options;
+
+=item
+
+Trigger recipies of C<-P> (if not triggered by interpolation);
+
+=item
+
+Update tags if needed.
+
+=back
+
+=head1 Usage strategy: escalation of complexity
+
+The purpose of this script is to to make handling of ID3 tags as simple
+I<as possible>.
+
+On one end of the scale, one can perform arbitrarily
+complex manipulations with tags using L<C<MP3::Tag>|MP3::Tag> Perl module.
+
+On the other end, it is much more convenient to handle simplest manipulations
+with tags using this script's options C<-t -a -l -y -g -c -n> and C<-p
+-F -d>.  For slightly more complicated tasks, one may need to use the
+more elaborate method of I<parse rules>, provided to this script by
+the option C<-P>; the rules depend heavily on I<interpolation>, see
+L<MP3::Tag/interpolate>, L<MP3::Tag/interpolate_with_flags>.
+
+To simplify upgrade from "simplest manipulations" to "more elaborate
+ones", here we provide "parse rule" I<synonyms> to the simplest
+options.  So if you start with C<-t -a -l -y -g -c -n> and C<-p -F -d>
+options which "almost work" for you, you have a good chance to be able
+to fully achieve your aim by modifying the synonyms described below.
+
+(Below we assume that C<-E> option is set to its default value, so
+C<-F -p> are C<%>-interpolated, other options are not.  Note also that
+if your TTY's encoding is recognized by Perl, it is highly recommended
+to set C<-e 3> option; on DOSISH shells, better use C<-@>, and replace
+C<%>'s by C<@>'s below.)
+
+=over 14
+
+=item C<-t VALUE>
+
+  -P "mz/VALUE/%t"
+
+=item C<-a -l -y -g -c -n>
+
+Likewise.
+
+=item C<-F> "TIT2=VALUE"
+
+  -P "mzi/VALUE/%{TIT2}"
+
+=item C<-F> "APIC[myDescr] < FILE"
+
+  -F "APIC[myDescr]=%{I(fimbB)FILE}"
+
+or
+
+  -P "mzi/%{I(fimbB)FILE}/%{APIC[myDescr]}"
+
+(remove C<bB> for text-only frames).
+
+=item C<-F> "APIC[myDescr] > FILE"
+
+  -P "bOi,%{APIC[myDescr]},FILE"
+
+(remove C<b> for text-only frames); or use C<-e binary -p
+"%{APIC[myDescr]}"> with redirection, see L<"EXAMPLES: parse rules">.
+
+=item C<-d> TIT2
+
+  -P "m//%{TIT2}"
+
+=item C<-F> "TIT2 ?< FILE"
+
+Very tricky.  This won't set distinguish empty file and non-existing one:
+
+  -P "mzi/%{TIT2:1}0%{I(fFim)FILE}/10/10%{TIT2}/0%{U1}"
+
+(add C<bB> to C<fFim> for non-text-only frames); the last part may be
+omitted if one omits the flag C<m> - it is present to catch misprints
+only.
+
+=back
+
+For details on "parse rules", see L<EXAMPLES: parse rules> and
+L<MP3::Tag::ParseData/DESCRIPTION>.
+
+=head1 EXAMPLES: parse rules
+
+Only the C<-P> option is complicated enough to deserve comments...
+For full details on I<parse rules>, see
+L<MP3::Tag::ParseData/DESCRIPTION>; for full details on interpolation,
+see L<MP3::Tag/interpolate>, L<MP3::Tag/interpolate_with_flags>.
+
+For a (silly) example, one can replace C<-a Homer -t Iliad> by
+
+  -P mz=Homer=%a -P mz=Iliad=%t
+
+A less silly example is forcing a particular way of parsing a file name via
+
+  -P "im=%{d0}/%f=%a/%n %t.%e"
+
+It is broken into
+
+ flags		string	 	pattern1
+ "im"		"%{d0}/%f"	"%a/%n %t.%e"
+
+The flag letters stand for I<interpolate>, I<must_match>.  This
+interpolates the string C<"%{d0}/%f"> and parses the result (which is
+the file name with one level of the directory part preserved) using
+the given pattern; thus the directory name becomes the artist, the
+leading numeric part - the track number, and the rest of the file name
+(without extension) - the title.  Note that since multiple patterns
+are allowed, one can similarly allow for multiple formats of the
+names, e.g.
+
+  -P "im=%{d0}/%f=%a/%n %t.%e=%a/%t (%y).%e"
+
+allows for the file basename to be also of the form "TITLE (YEAR)".  An
+alternative way to obtain the same results is
+
+  -P "im=%{d0}=%a" -P "im=%f=%n %t.%e=%t (%y).%e"
+
+which corresponds to two recipies:
+
+ flags		string	 	pattern1	pattern2
+ "im"		"%{d0}"		"%a"
+ "im"		"%f"		"%n %t.%e"	"%t (%y).%e"
+
+Of course, one could use
+
+ "im"		"%B"		"%n %t"		"%t (%y)"
+
+as a replacement for the second one.
+
+Note that it may be more readable to set I<artist> to C<%{d0}> by an
+explicit asignment, with arguments similar to
+
+  -E "p/i:Fpa" -a "%{d0}"
+
+(this value of C<-E> requests C<%>-interpolation of the option C<-a>
+in addition to the default C<\>-interpolation of C<-p>, and
+C<%>-interpolation of C<-F> and C<-p>; one can shortcut it with C<-E +/i:a>).
+
+To give more examples,
+
+  -P "if=%D/.comment=%c"
+
+will read comment from the file F<.comment> in the directory of the audio file;
+
+  -P "ifn=%D/.comment=%c"
+
+has similar effect if the file F<.comment> has one-line comments, one per
+track (this assumes the the track number can be found by other means).
+
+Suppose that a file F<Parts> in a directory of MP3 files has the following
+format: it has a preamble, then has a short paragraph of information per
+audio file, preceded by the track number and dot:
+
+   ...
+
+   12. Rezitativ.
+   (Pizarro, Rocco)
+
+   13. Duett: jetzt, Alter, jetzt hat es Eile, (Pizarro, Rocco)
+
+   ...
+
+The following command puts this info into the title of the ID3 tag (provided
+the audio file names are informative enough so that MP3::Tag can deduce the
+track number):
+
+ mp3info2 -u -C parse_split='\n(?=\d+\.)' -P 'fl;Parts;%=n. %t'
+
+If this paragraph of information has the form C<TITLE (COMMENT)> with the
+C<COMMENT> part being optional, then use
+
+ mp3info2 -u -C parse_split='\n(?=\d+\.)' -P 'fl;Parts;%=n. %t (%c);%=n. %t'
+
+If you want to remove a dot or a comma got into the end of the title, use
+
+ mp3info2 -u -C parse_split='\n(?=\d+\.)' \
+   -P 'fl;Parts;%=n. %t (%c);%=n. %t' -P 'iR;%t;%t[.,]$'
+
+The second pattern of this invocation is converted to
+
+  ['iR', '%t' => '%t[.,]$']
+
+which essentially applies the substitution C<s/(.*)[.,]$/$1/s> to the title.
+
+Now suppose that in addition to F<Parts>, we have a text file F<Comment> with
+additional info; we want to put this info into the comment field I<after>
+what is extracted from C<TITLE (COMMENT)>; separate these two parts of
+the comment by an empty line:
+
+ mp3info2 -E C -C 'parse_split=\n(?=\d+\.)' -C 'parse_join=\n\n' \
+  -P 'f;Comment;%c'           -P 'fl;Parts;%=n. %t'              \
+  -P 'i;%t///%c;%t (%c)///%c' -P 'iR;%t;%t[.,]$'
+
+This assumes that the title and the comment do not contain C<'///'> as a
+substring.  Explanation: the first pattern of C<-P>,
+
+  ['f', 'Comment' => '%c'],
+
+reads comment from the file C<Comment> into the comment field; the second,
+
+  ['fl', 'Parts'  => '%=n. %t'],
+
+reads a chunk of C<Parts> into the title field.  The third one
+
+  ['i', '%t///%c' => '%t (%c)///%c']
+
+rearranges the title and comment I<provided> the title is of the form C<TITLE
+(COMMENT)>.  (The configuration option C<parse_join> takes care of separating
+two chunks of comment corresponding to two occurences of C<%c> on the right
+hand side.)
+
+Finally, the fourth pattern is the same as in the preceding example; it
+removes spurious punctuation at the end of the title.
+
+More examples: removing string "with violin" from the start of the
+comment field (removing comment altogether if nothing remains):
+
+  mp3info2 -u -P 'iz;%c;with violin%c' *.mp3
+
+setting the artist field without letting auto-update feature deduce
+other fields from other sources;
+
+  mp3info2 -C autoinfo=ParseData -a "A. U. Thor" *.mp3
+
+setting a comment field unless it it already present:
+
+  mp3info2 -u -P 'i;%c///with piano;///%c' *.mp3
+
+The last example shows how to actually write "programs" in the
+language of the C<-P> option: the example gives a conditional
+assignment.  With user variables (as in C<%{U8}>) for temporaries, and
+a possibility to use regular expressions, one
+could provide arbitrary programmatic logic.  Of course, at some level
+of complexity one should better switch to direct interfacing with
+C<MP3::Tag> Perl module (use the code of this Perl script as an example!).
+
+Here is a typical task setting "advanced" id3v2 frames: composer (C<TCOM>),
+orchestra (C<TPE2>), conductor (C<TPE3>).  We assume a directory tree which
+contains MP3 files tagged with the following conventions: C<artist> is
+actually a composer; C<comment> is of one of two forms:
+
+  Performers; Orchestra; Conductor
+  Orchestra; Conductor
+
+To set the specific MP3 frames via C<-P> rules, use
+
+  mp3info2 -@P "mi/@a/@{TCOM}" \
+    -P "mi/@c/@{U1}; @{TPE2}; @{TPE3}/@{TPE2}; @{TPE3}" -R .
+
+With C<-F> options, this can be simplified as
+
+  mp3info2 -@F "TCOM=@a" -P "mi/@c/@{U1}; @{TPE2}; @{TPE3}/@{TPE2}; @{TPE3}" -R .
+
+or
+
+  mp3info2 -@F "composer=@a" -P "mi/@c/@{U1}; @{TPE2}; @{TPE3}/@{TPE2}; @{TPE3}" -R .
+
+To copy ID3 tags of MP3 files in the current directory to files in directory
+F</tmp/mp3> with the extension F<.tag> (and print "progress report"), use
+
+  mp3info2 -p "@N@E\n" -@P "bODi,@{ID3v2}@{ID3v1},/tmp/mp3/@N.tag" -DNR .
+
+Since we did not use C<z> flag, MP3 files without tags are skipped.
+
+Now suppose that there are two parallel file hierarchies of audio files,
+and of lyrics: audio files are in F<audio/dir_name/audio_name.mp3> with
+corresponding lyrics file in F<text/dir_name/audio_name.mp3>.  To attach
+lyrics to MP3 files (in C<COMM> frame with description C<lyrics> in language
+C<eng> - I<this is a non-standard location, see below!>), call
+
+  mp3info2 -@P "fim;../text/@{d0}/@B.txt;@{COMM(eng)[lyrics]}" -Ru .
+
+inside the directory F<audio>.  (Change C<fim> to C<Ffim> to ignore
+the audio files for which the corresponding text file does not exist.)
+(Of course, to follow the specifications, one should have used the
+field C<"%{USLT(eng)[]}"> instead of C<"%{COMM(eng)[lyrics]}">; see below
+for variations).  
+
+Finish by a very simple example: all what the pattern
+
+  -P 'i;%t;%t'
+
+does is removal of trailing and leading blanks from the title (which
+is deduced by other means).
+
+=head1 More examples
+
+With C<-F> option, one could set the C<USLT> frame as
+
+  mp3info2 -@F "USLT(eng)[] < ../text/@{d0}/@B.txt" -Ru .
+
+Print out such a frame (in any language) with
+
+  mp3info2 -@p "@{USLT[]}\n" file.mp3
+
+Similarly, to print out the APIC frame with empty description, use
+
+  mp3info2 -e binary -@p "@{APIC[]}" file.mp3 > output_picture_file
+
+or (with description "cover")
+
+  mp3info2 -@P "bOi,@{APIC[cover]},output_picture_file.jpg" audio_07.mp3
+
+To set such a frame from file F<xxx.gif> (with the default C<Picture Type>,
+C<"Cover (front)">, and empty description), do one of
+
+  mp3info2 -F  "APIC  <          xxx.gif"  file.mp3
+  mp3info2 -@F "APIC[]=@{I(fimbB)xxx.gif}" file.mp3
+
+The difference of C<APIC> and C<APIC[]> is that the first removes all
+C<APIC> frames first, and the second removes only all C<APIC> frames with
+empty description - but arbitrary image type.  So it may be more suitable
+to use the full specification, as in C<APIC(Cover (front))[]>.
+
+To remove C<APIC> frames with empty descriptions, arbitrary C<Picture Type>s
+(and C<MIME type>s which may be correctly calculated by F<mp3info2>, e.g.,
+C<TIFF/JPEG/GIF/PNG>), use
+
+  mp3info2 -d "APIC[]" file.mp3
+
+(note that this wouldn't free disk space, unless "shrink" is forced by
+configuration variables).  To do the same with the "Conductor" picture type
+only, do
+
+  mp3info2 -d "APIC(Conductor)[]" file.mp3
+
+To scan through subdirectories, and add file F<cover.jpg> from the
+directory of the file as a "default" C<APIC> frame, but only if there
+is no C<APIC> frame, and a file exists, do
+
+  mp3info2 -@F "APIC ?< @D/cover.jpg" -R .
+
+This deletes empty frames for date, C<TCOP, TENC, WXXX[], COMM(eng)[]>, and
+removes the leading 0 from track number from MP3 file in current directory:
+
+  mp3info2 -@ -E +/i:y -F "TCOP=@{TCOP}" -F "TENC=@{TENC}"
+    -F "WXXX[]=@{WXXX[]}" -F "COMM(eng)[]=@{COMM(eng)[]}"
+    -y "@y" -P "mi/@n/0@n/@n" *.mp3
+
+=head1 Examples on dealing with broken encodings
+
+One of principal weaknesses of ID3 specification was that it required that
+data is provided in C<latin-1> encoding.  Since most languages in the world
+are not expressible in C<latin-1>, this lead to (majority?) of ID3 tags being
+not standard-conforming.  Newer versions of the specs fixed this shortcoming,
+but the damage was already done.  Fortunately, this script can use abilities
+of L<C<MP3::Tag>|MP3::Tag/ENVIRONMENT> to convert from non-conforming content
+to a conforming one.
+
+The following example converts ID3v2 tags which were written in
+(non-standard-conforming) encoding C<cp1251> to be in
+standard-conforming encoding.  For the purpose of this example, assume that
+ID3v1 tags are in the same encoding (and that one wants to leave them in the
+encoding C<cp1251>); the files to process are found in the current directory
+and (recursively) in its subdirectories (C<set> syntax for DOSISH shells):
+
+  set MP3TAG_DECODE_V1_DEFAULT=cp1251
+  set MP3TAG_DECODE_V2_DEFAULT=cp1251
+  mp3info2 -C id3v2_fix_encoding_on_write=1 -u2R .
+
+For more information, see L<MP3::Tag/ENVIRONMENT>, L<MP3::Tag/config>,
+and L<MP3::Tag/CUSTOMIZATION>.
+
+=head1 INCOMPATIBILITIES with F<mp3info>
+
+This tool is loosely modeled on the program F<mp3info>; it is "mostly"
+backward compatible (especially when in "naive" mode via C<-N>), and
+allows a very significant superset of functionality.  Known backward
+incompatibilities are:
+
+  -G -h -r -d -x
+
+Missing functionality:
+
+  -f -F -i
+
+Incompatible C<%>-I<escapes>:
+
+  %e %E 	- absolutely different semantic
+  %v		- has no trailing 0s
+  %q		- has fractional part
+  %r		- is a number, not a word "Variable" for VBR
+  %u		- is one less (in presence of descriptor frame only?)
+
+Missing C<%>-I<escapes>:
+
+  %b %G
+
+Backslash escapes: only C<\\>, C<\n>, C<\t> supported.
+
+C<-x> prints data in a different format, not all fields are present, and
+ID3v2 tag names are output.
+
+=head1 ENVIRONMENT
+
+With C<-e> 1, 2 or 3, this script may consult environment variables
+C<LC_CTYPE, LC_ALL, LANG> to deduce the current encoding.  No other
+environment variables are directly read by this script.
+
+Note however, that L<MP3::Tag> module has a rich set of defaults for
+encoding settings settable by environment variables; see
+L<MP3::Tag/"ENVIRONMENT">.  So these variables affect (indirectly) how
+this script works.
+
+=head1 OBSOLETE INTERFACE
+
+If you do not understand what it is about, it is safe to ignore this
+announcement:
+
+The old, pre-version=C<1.05> way (by triplication of a separator, without
+repetition of options) to provide multiple commands to C<-F> and <-P>
+options is still supported, but is strongly discouraged.  (It does not
+conflict with the current interface.)
+
+=head1 AUTHOR
+
+Ilya Zakharevich <cpan@ilyaz.org>.
+
+=head1 Utilities to create CDDB file
+
+Good CD reapers (e.g., F<cdda2wav> with option C<cddb=0>) create a
+CDDB file with fetched information - as far as an Internet connection is
+present.  However, if not available, other options exist.
+
+The scripts (supplied with the distribution in
+F<./examples>) can create a "stub" CDDB file basing on:
+
+=over 23
+
+=item F<fulltoc2fake_cddb.pl>
+
+a dump of a full TOC of a CD; create one, e.g., by
+
+  readcd -fulltoc dev=0,1,0 -f=audiocd
+
+=item F<inf2fake_cddb.pl>
+
+directory of F<*.inf> files (e.g., created by F<cdda2wav> without
+Internet connection);
+
+=item F<dir_mp3_2fake_cddb.pl>
+
+a directory of MP3 files ripped from a CD (via some guesswork).
+
+=back
+
+Passing this stub to the script F<cddb2cddb.pl>, it can be transformed
+to a "filled" CDDB file via a connection to some online database.  Use
+C<-r> option if multiple records in the database match the CD
+signature.
+
+  fulltoc2fake_cddb audiocd.toc | cddb2cddb     > audio.cddb
+  inf_2fake_cddb	        | cddb2cddb     > audio.cddb
+  dir_mp3_2fake_cddb	        | cddb2cddb -r3 > audio.cddb # 3rd record
+
+When such a CDDB file is present, it will be used by L<MP3::Tag>
+module to deduce the information about an audio file.  This information
+is (by default, transparently) used by this script.
+
+=head1 SEE ALSO
+
+MP3::Tag, MP3::Tag::ParseData, audio_rename, typeset_audio_dir
+
+=cut

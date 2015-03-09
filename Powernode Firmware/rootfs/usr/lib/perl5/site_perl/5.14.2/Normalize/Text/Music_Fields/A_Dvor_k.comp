@@ -1,0 +1,1861 @@
+# format = mail-header
+
+
+# opus_rex \b(?:[Bb](?:\b|(?=\d))\.?|Op(?:us\b|\.))\s*\d+[a-d]?(?:[.,;\s]\s*No\.\s*\d+(?:\.\d+)*)?
+
+# opus_dup Op. 11
+
+# opus_dup Op. 112
+
+# opus_dup Op. 114
+
+# opus_dup Op. 115
+
+# opus_dup Op. 12
+
+# opus_dup Op. 14
+
+# opus_dup Op. 19a
+
+# opus_dup Op. 19b
+
+# opus_dup Op. 25
+
+# opus_dup Op. 30
+
+# opus_dup Op. 32
+
+# opus_dup Op. 37
+
+# opus_dup Op. 40
+
+# opus_dup Op. 46
+
+# opus_dup Op. 49
+
+# opus_dup Op. 50
+
+# opus_dup Op. 53
+
+# opus_dup Op. 54
+
+# opus_dup Op. 59
+
+# opus_dup Op. 62
+
+# opus_dup Op. 64
+
+# opus_dup Op. 68, No. 5
+
+# opus_dup Op. 71
+
+# opus_dup Op. 72
+
+# opus_dup Op. 79
+
+# opus_dup Op. 8
+
+# opus_dup Op. 84
+
+# opus_dup Op. 86
+
+# opus_dup Op. 94
+
+# opus_dup Op. 99
+
+
+
+
+
+
+Title-Name: Forget-me-not Polka
+Title-For: piano
+Title-Opus: B. 1
+Title-Dates: 1856
+
+
+
+Title-Type: Mass
+Title-Key: B flat major
+Title-Comment: [lost]
+Title-Opus: B. 2
+Title-Dates: 1859
+
+
+
+Title-Type: Polka
+Title-Key: E major
+Title-For: piano
+Title-Opus: B. 3
+Title-Dates: 1860
+
+
+
+Title-Name: The Woman Harpist
+Title-Comment: [lost]
+Title-Opus: B. 4
+Title-Dates: 1860
+
+
+
+Title-Type: Polka
+Title-Comment: [lost]
+Title-Opus: B. 5
+Title-Dates: 1860
+
+
+
+Title-Type: Gallop
+Title-Comment: [lost]
+Title-Opus: B. 6
+Title-Dates: 1860
+
+
+
+Title-Type: String Quintet
+Title-No: 1
+Title-Key: A minor
+X-Title-Opus-Alt: B. 7
+Title-Opus: Op. 1
+Title-Dates: 1861
+
+
+
+Title-Type: String Quartet
+Title-No: 1
+Title-Key: A major
+X-Title-Opus-Alt: B. 8
+Title-Opus: Op. 2
+Title-Dates: 1862
+
+
+
+Title-Type: Symphony
+Title-No: 1
+Title-Key: C minor
+Title-Name: The Bells of Zlonice
+Title-Opus: B. 9
+Title-Dates: 1865
+
+
+
+Title-Type: Cello Concerto
+Title-Key: A major
+Title-Comment: [orchestrated by Jarmil Burghauser]
+Title-Opus: B. 10
+Title-Dates: 1865
+
+
+
+Title-Name: Cypresses
+Title-Comment: [18 songs on poems by G. Pfleger-Moravsky]
+Title-Opus: B. 11
+Title-Dates: 1865
+
+
+
+Title-Type: Symphony
+Title-No: 2
+Title-Key: B flat major
+X-Title-Opus-Alt: B. 12
+Title-Opus: Op. 4
+Title-Dates: 1865
+
+
+
+Title-Count: Two
+Title-Type: Songs
+Title-For: baritone
+Title-Opus: B. 13
+Title-Dates: 1865
+
+
+
+Title-Type: Clarinet Quintet
+Title-Key: B flat minor
+Title-Comment: [lost]
+Title-Opus: B. 14
+Title-Dates: 1866
+
+
+
+Title-Count: Seven
+Title-Type: Interludes
+Title-For: orchestra
+Title-Opus: B. 15
+Title-Dates: 1867
+
+
+
+Title-Type: Serenade
+Title-For: flute, violin, viola, and triangle
+Title-Opus: B. 15bis
+Title-Dates: 1867
+
+
+
+Title-Name: Alfred
+Title-RAW: , heroic opera in 3 acts
+Title-Opus: B. 16
+Title-Dates: 1870
+
+
+
+Title-RAW: Tragic Overture
+Title-Related-How: from
+Title-Related-Name: Alfred
+Title-Opus: B. 16a
+Title-Dates: 1870
+
+
+
+Title-Type: String Quartet
+Title-No: 2
+Title-Key: B flat major
+Title-Opus: B. 17
+Title-Dates: 1869
+
+
+
+Title-Type: String Quartet
+Title-No: 3
+Title-Key: D major
+Title-Opus: B. 18
+Title-Dates: 1870
+
+
+
+Title-Type: String Quartet
+Title-No: 4
+Title-Key: E minor
+Title-Opus: B. 19
+Title-Dates: 1870
+
+
+
+Title-Type: Cello Sonata
+Title-Key: F minor
+Title-Comment: [lost]
+Title-Opus: B. 20
+Title-Dates: 1871
+
+
+
+Title-Name: The King and the Charcoalburner
+Title-Type-After-Name: comic opera
+Title-Comment: [1st version]
+X-Title-Opus-Alt: B. 21
+Title-Opus: Op. 12
+Title-Dates: 1871
+
+
+
+Title-RAW: Concert Overture
+Title-Key: F major
+Title-Comment: [from 1st version of "The King and the Charcoalburner"]
+X-Title-Opus-Alt: B. 21a
+Title-Opus: Op. 12
+Title-Dates: 1871
+
+
+
+Title-Type: Potpourri
+Title-Related-How: from
+Title-Related-Name: The King and the Charcoalburner I
+Title-Opus: B. 22
+Title-Dates: 1872
+
+
+
+Title-RAW: Songs on words by Eliska Krásnohorská
+Title-Opus: B. 23
+Title-Dates: 1871
+
+
+
+Title-Name: Sirotek the Orphan
+Title-Comment: [after a ballad by K. J. Erben]
+Title-Opus: B. 24
+Title-Dates: 1871
+
+
+
+Title-Name: Rosemary
+Title-Comment: [after a poem by K. J. Erben]
+Title-Opus: B. 24a
+Title-Dates: 1871
+
+
+
+Title-Type: Piano Trio
+Title-Comment: [lost]
+X-Title-Opus-Alt: B. 25
+Title-Opus: Op. 13, No. 1
+Title-Dates: 1871
+
+
+
+Title-Type: Piano Trio
+Title-Comment: [lost]
+X-Title-Opus-Alt: B. 26
+Title-Opus: Op. 13, No. 2
+Title-Dates: 1872
+
+
+
+Title-Name: The Heirs of the White Mountain
+Title-Comment: [hymn after a poem by V. Halék]
+Title-Opus: B. 27
+Title-Dates: 1872
+
+
+
+Title-Type: Piano Quintet
+Title-No: 1
+Title-Key: A major
+X-Title-Opus-Alt: B. 28
+Title-Opus: Op. 5
+Title-Dates: 1872
+
+
+
+Title-RAW: Four Songs on Serbian Folk Poems
+X-Title-Opus-Alt: B. 29
+Title-Opus: Op. 6
+Title-Dates: 1872
+
+
+
+Title-Type: Songs
+Title-Related-How: from the
+Title-Related-Name: Dvur Králove
+Title-Punct: (
+Title-Name: Queen's Court
+Title-RAW: ) Manuscript
+X-Title-Opus-Alt: B. 30
+Title-Opus: Op. 7
+Title-Dates: 1872
+
+
+
+Title-Count: Three
+Title-Type: Nocturnes
+Title-Comment: [incomplete, except for No. 2 "May Night"]
+Title-Opus: B. 31
+Title-Dates: 1872
+
+
+
+Title-Name: Silhouettes
+Title-For: piano
+X-Title-Opus-Alt: B. 32
+Title-Opus: Op. 8
+Title-Dates: 1872
+
+
+
+Title-Type: Violin Sonata
+Title-Key: A minor
+Title-Comment: [lost]
+Title-Opus: B. 33
+Title-Dates: 1873
+
+
+
+Title-Type: Symphony
+Title-No: 3
+Title-Key: E flat major
+X-Title-Opus-Alt: B. 34
+Title-Opus: Op. 10
+Title-Dates: 1873
+
+
+
+Title-Name: Romeo and Juliet
+Title-RAW: Overture
+Title-Comment: [lost]
+Title-Opus: B. 35
+Title-Dates: 1873
+
+
+
+Title-RAW: Octet Serenade
+Title-Comment: [lost]
+Title-Opus: B. 36
+Title-Dates: 1873
+
+
+
+Title-Type: String Quartet
+Title-No: 5
+Title-Key: F minor
+X-Title-Opus-Alt: B. 37
+Title-Opus: Op. 9
+Title-Dates: 1873
+
+
+
+Title-Type: Romance
+Title-Key: F minor
+Title-For: violin and piano
+X-Title-Opus-Alt: B. 38
+Title-Opus: Op. 11
+Title-Dates: 1877
+
+
+
+Title-Type: Romance
+Title-Key: F minor
+Title-For: violin and orchestra
+Title-Comment: [arrangement of B. 38]
+X-Title-Opus-Alt: B. 39
+Title-Opus: Op. 11
+Title-Dates: 1877
+
+
+
+Title-Type: String Quartet
+Title-No: 6
+Title-Key: A minor
+X-Title-Opus-Alt: B. 40
+Title-Opus: Op. 12
+Title-Dates: 1873
+
+
+
+Title-RAW: Andante appassionato
+Title-Key: A minor
+Title-For: string quartet
+Title-Opus: B. 40a
+Title-Dates: 1873
+
+
+
+Title-Type: Symphony
+Title-No: 4
+Title-Key: D minor
+X-Title-Opus-Alt: B. 41
+Title-Opus: Op. 13
+Title-Dates: 1874
+
+
+
+Title-Name: The King and the Charcoalbuner
+Title-Comment: [2nd version of B. 21]
+X-Title-Opus-Alt: B. 42
+Title-Opus: Op. 14
+Title-Dates: 1874
+
+
+
+Title-RAW: Porpourri on The King and the Charcoalburner
+Title-Comment: [2nd version of B. 22]
+Title-Opus: B. 43
+Title-Dates: 1875
+
+
+
+Title-RAW: Symphonic Poem (Rhapsody)
+Title-Key: A minor
+X-Title-Opus-Alt: B. 44
+Title-Opus: Op. 14
+Title-Dates: 1874
+
+
+
+Title-Type: String Quartet
+Title-No: 7
+Title-Key: A minor
+X-Title-Opus-Alt: B. 45
+Title-Opus: Op. 16
+Title-Dates: 1874
+
+
+
+Title-Name: The Stubborn Lovers
+Title-Type-After-Name: comic opera
+X-Title-Opus-Alt: B. 46
+Title-Opus: Op. 17
+Title-Dates: 1874
+
+
+
+Title-Type: Nocturne
+Title-Key: B major
+Title-For: strings
+X-Title-Opus-Alt: B. 47
+Title-Opus: Op. 40
+Title-Dates: 1883
+
+
+
+Title-Type: Nocturne
+Title-Key: B major
+Title-For: violin and piano
+X-Title-Opus-Alt: B. 48a
+Title-Opus: Op. 40
+Title-Dates: 1883
+
+
+
+Title-Type: Nocturne
+Title-Key: B major
+Title-For: piano four hands
+X-Title-Opus-Alt: B. 48b
+Title-Opus: Op. 40
+Title-Dates: 1875
+
+
+
+Title-Type: String Quintet
+Title-No: 2
+Title-Key: G major
+Title-Comment: [formerly Op. 18]
+X-Title-Opus-Alt: B. 49
+Title-Opus: Op. 77
+Title-Dates: 1875
+
+
+
+Title-RAW: Moravian Duets
+X-Title-Opus-Alt: B. 50
+Title-Opus: Op. 20
+Title-Dates: 1875
+
+
+
+Title-Type: Piano Trio
+Title-No: 1
+Title-Key: B flat major
+X-Title-Opus-Alt: B. 51
+Title-Opus: Op. 21
+Title-Dates: 1875
+
+
+
+Title-Type: Serenade
+Title-For: Strings
+Title-Key: E major
+X-Title-Opus-Alt: B. 52
+Title-Opus: Op. 22
+Title-Dates: 1875
+
+
+
+Title-Type: Piano Quartet
+Title-No: 1
+Title-Key: D major
+X-Title-Opus-Alt: B. 53
+Title-Opus: Op. 23
+Title-Dates: 1875
+
+
+
+Title-Type: Symphony
+Title-No: 5
+Title-Key: F major
+Title-Comment: [formerly Op. 24]
+X-Title-Opus-Alt: B. 54
+Title-Opus: Op. 76
+Title-Dates: 1875
+
+
+
+Title-Name: Vanda
+Title-Type-After-Name: tragic opera
+X-Title-Opus-Alt: B. 55
+Title-Opus: Op. 25
+Title-Dates: 1875
+
+
+
+Title-Type: Piano Trio
+Title-No: 2
+Title-Key: G minor
+X-Title-Opus-Alt: B. 56
+Title-Opus: Op. 26
+Title-Dates: 1876
+
+
+
+Title-Type: String Quartet
+Title-No: 8
+Title-Key: E major
+Title-Comment: [formerly Op. 27]
+X-Title-Opus-Alt: B. 57
+Title-Opus: Op. 80
+Title-Dates: 1876
+
+
+
+Title-Count: Two
+Title-Type: Minuets
+Title-For: piano
+X-Title-Opus-Alt: B. 58
+Title-Opus: Op. 28
+Title-Dates: 1876
+
+
+
+Title-Count: Four
+Title-Type: Choruses
+Title-For: mixed choir
+X-Title-Opus-Alt: B. 59
+Title-Opus: Op. 29
+Title-Dates: 1876
+
+
+
+Title-RAW: Moravian Duets
+X-Title-Opus-Alt: B. 60
+Title-Opus: Op. 32
+Title-Dates: 1876
+
+
+
+Title-Name: Evening Songs
+Title-Comment: [after poems by V. Hálek]
+X-Title-Opus-Alt: B. 61
+Title-Opus: Op. 31
+Title-Dates: 1876
+
+
+
+Title-RAW: Moravian Duets
+X-Title-Opus-Alt: B. 62
+Title-Opus: Op. 32
+Title-Dates: 1876
+
+
+
+Title-Type: Piano Concerto
+Title-Key: G minor
+X-Title-Opus-Alt: B. 63
+Title-Opus: Op. 33
+Title-Dates: 1876
+
+
+
+Title-RAW: Dumka
+Title-Key: D minor
+Title-For: piano
+X-Title-Opus-Alt: B. 64
+Title-Opus: Op. 35
+Title-Dates: 1876
+
+
+
+Title-RAW: Theme and Variations
+Title-For: piano
+X-Title-Opus-Alt: B. 65
+Title-Opus: Op. 36
+Title-Dates: 1876
+
+
+
+Title-RAW: Choral Songs
+Title-For: male voices
+Title-Opus: B. 66
+Title-Dates: 1877
+
+
+
+Title-Name: The Cunning Peasant
+Title-Type-After-Name: comic opera
+X-Title-Opus-Alt: B. 67
+Title-Opus: Op. 37
+Title-Dates: 1877
+
+
+
+Title-Type: Overture
+Title-Related-How: to
+Title-Related-Name: The Cunning Peasant
+X-Title-Opus-Alt: B. 67a
+Title-Opus: Op. 37
+Title-Dates: 1877
+
+
+
+Title-RAW: Ave Maria
+X-Title-Opus-Alt: B. 68
+Title-Opus: Op. 19b
+Title-Dates: 1877
+
+
+
+Title-RAW: Moravian Duets
+X-Title-Opus-Alt: B. 69
+Title-Opus: Op. 38
+Title-Dates: 1877
+
+
+
+Title-Type: Symphonic Variations
+Title-Comment: [formerly Op. 28]
+X-Title-Opus-Alt: B. 70
+Title-Opus: Op. 78
+Title-Dates: 1877
+
+
+
+Title-RAW: Stabat Mater
+X-Title-Opus-Alt: B. 71
+Title-Opus: Op. 58
+Title-Dates: 1877
+
+
+
+Title-Name: Bouquet of Czech Folksongs
+Title-Opus: B. 72
+Title-Dates: 1877
+
+
+
+Title-Name: Song of a Czech
+Title-Opus: B. 73
+Title-Dates: 1877
+
+
+
+Title-RAW: Scottish Dances
+Title-For: piano
+X-Title-Opus-Alt: B. 74
+Title-Opus: Op. 41
+Title-Dates: 1877
+
+
+
+Title-Type: String Quartet
+Title-No: 9
+Title-Key: D minor
+Title-Comment: [dedicated to Johannes Brahms]
+X-Title-Opus-Alt: B. 75
+Title-Opus: Op. 34
+Title-Dates: 1877
+
+
+
+Title-Name: From a Bouquet of Czech Folksongs
+X-Title-Opus-Alt: B. 76
+Title-Opus: Op. 43
+Title-Dates: 1878
+
+
+
+Title-Type: Serenade
+Title-Key: D minor
+Title-For: Wind Instruments
+X-Title-Opus-Alt: B. 77
+Title-Opus: Op. 44
+Title-Dates: 1878
+
+
+
+Title-RAW: Slavonic Dances for piano four hands, 1st series
+X-Title-Opus-Alt: B. 78
+Title-Opus: Op. 46
+Title-Dates: 1878
+
+
+
+Title-Type: Bagatelles
+Title-For: two violins, cello, and harmonium/piano
+X-Title-Opus-Alt: B. 79
+Title-Opus: Op. 47
+Title-Dates: 1878
+
+
+
+Title-Type: String Sextet
+Title-Key: A major
+X-Title-Opus-Alt: B. 80
+Title-Opus: Op. 48
+Title-Dates: 1878
+
+
+
+Title-Type: Capriccio
+Title-For: violin and piano
+X-Title-Opus-Alt: B. 81
+Title-Opus: Op. 24
+Title-Dates: 1878
+
+
+
+Title-Name: Hymnus ad Laudus in festo Sanctae Trinitatis
+Title-Opus: B. 82
+Title-Dates: 1878
+
+
+
+Title-RAW: Slavonic Dances
+Title-For: orchestra
+Title-Comment: [orchestration of B. 78]
+X-Title-Opus-Alt: B. 83
+Title-Opus: Op. 46
+Title-Dates: 1878
+
+
+
+Title-RAW: Three Modern Greek Songs
+X-Title-Opus-Alt: B. 84a
+Title-Opus: Op. 50
+Title-Dates: 1878
+
+
+
+Title-RAW: Three Modern Greek Songs
+X-Title-Opus-Alt: B. 84b
+Title-Opus: Op. 50
+Title-Dates: 1878
+
+
+
+Title-RAW: Furiants
+Title-For: piano
+X-Title-Opus-Alt: B. 85
+Title-Opus: Op. 42
+Title-Dates: 1878
+
+
+
+Title-RAW: Slavonic Rhapsodies
+X-Title-Opus-Alt: B. 86
+Title-Opus: Op. 45
+Title-Dates: 1878
+
+
+
+Title-RAW: Choral Songs
+Title-For: male voices
+X-Title-Opus-Alt: B. 87
+Title-Opus: Op. 27
+Title-Dates: 1878
+
+
+
+Title-RAW: Festival March
+Title-For: orchestra
+X-Title-Opus-Alt: B. 88
+Title-Opus: Op. 54
+Title-Dates: 1879
+
+
+
+Title-Type: Mazurek
+Title-For: violin and piano
+X-Title-Opus-Alt: B. 89
+Title-Opus: Op. 49
+Title-Dates: 1879
+
+
+
+Title-Type: Mazurek
+Title-For: violin and orchestra
+X-Title-Opus-Alt: B. 90
+Title-Opus: Op. 49
+Title-Dates: 1879
+
+
+
+Title-RAW: Psalm 149
+Title-For: choir and orchestra
+Title-Comment: [1st version]
+X-Title-Opus-Alt: B. 91
+Title-Opus: Op. 79
+Title-Dates: 1879
+
+
+
+Title-Type: String Quartet
+Title-No: 10
+Title-Key: E flat major
+X-Title-Opus-Alt: B. 92
+Title-Opus: Op. 51
+Title-Dates: 1879
+
+
+
+Title-RAW: Czech Suite
+Title-Key: D major
+Title-For: orchestra
+X-Title-Opus-Alt: B. 93
+Title-Opus: Op. 39
+Title-Dates: 1879
+
+
+
+Title-Type: Polonaise
+Title-Key: A major
+Title-For: cello and piano
+Title-Opus: B. 94
+Title-Dates: 1879
+
+
+
+Title-Name: Ave maris stella
+X-Title-Opus-Alt: B. 95a
+Title-Opus: Op. 19b
+Title-Dates: 1879
+
+
+
+Title-Name: O sanctissima dulcis Virgo Maria!
+Title-RAW: for alto, baritone, and organ
+X-Title-Opus-Alt: B. 95b
+Title-Opus: Op. 19a
+Title-Dates: 1879
+
+
+
+Title-Name: O sanctissima dulcis Virgo Maria
+Title-Comment: [version of B. 95b, substituting soprano for baritone]
+X-Title-Opus-Alt: B. 95b bis
+Title-Opus: Op. 19a
+Title-Dates: 1879
+
+
+
+Title-Type: Violin Concerto
+Title-Key: A minor
+X-Title-Opus-Alt: B. 96
+Title-Opus: Op. 53
+Title-Dates: 1880
+
+
+
+Title-Name: Vanda
+Title-RAW: , concert overture
+X-Title-Opus-Alt: B. 97
+Title-Opus: Op. 25
+Title-Dates: 1879
+
+
+
+Title-Name: Silhouettes
+Title-For: piano
+X-Title-Opus-Alt: B. 98
+Title-Opus: Op. 8
+Title-Dates: 1879
+
+
+
+Title-RAW: Prague Waltzes
+Title-For: orchestra
+Title-Opus: B. 99
+Title-Dates: 1879
+
+
+
+Title-Type: Polonaise
+Title-Key: E flat major
+Title-For: orchestra
+Title-Opus: B. 100
+Title-Dates: 1879
+
+
+
+Title-Type: Waltzes
+Title-For: piano
+Title-Comment: [Orchestrated by Burghauser  ]
+X-Title-Opus-Alt: B. 101
+Title-Opus: Op. 54
+Title-Dates: 1880
+
+
+
+Title-Name: The Heirs of the White Mountain
+Title-Comment: [after a poem by V. Halék]
+X-Title-Opus-Alt: B. 102
+Title-Opus: Op. 30
+Title-Dates: 1880
+
+
+
+Title-RAW: Eclogues
+Title-For: piano
+X-Title-Opus-Alt: B. 103
+Title-Opus: Op. (56)
+Title-Dates: 1880
+
+
+
+Title-RAW: Gypsy Songs
+Title-Comment: [after poems by A. Heyduk]
+X-Title-Opus-Alt: B. 104
+Title-Opus: Op. 55
+Title-Dates: 1880
+
+
+
+Title-Count: Two
+Title-Type: Waltzes
+Title-For: strings
+X-Title-Opus-Alt: B. 105
+Title-Opus: Op. 54
+Title-Dates: 1880
+
+
+
+Title-Type: Violin Sonata
+Title-Key: F major
+X-Title-Opus-Alt: B. 106
+Title-Opus: Op. 57
+Title-Dates: 1880
+
+
+
+Title-RAW: Moravian Duets
+X-Title-Opus-Alt: B. 107
+Title-Opus: Op. 32
+Title-Dates: 1880
+
+
+
+Title-Type: Violin Concerto
+Title-Key: A minor
+Title-Comment: [final version of B. 96]
+X-Title-Opus-Alt: B. 108
+Title-Opus: Op. 53
+Title-Dates: 1880
+
+
+
+Title-RAW: Album Leaves
+Title-For: piano
+Title-Opus: B. 109
+Title-Dates: 1880
+
+
+
+Title-Type: Piano Pieces
+X-Title-Opus-Alt: B. 110
+Title-Opus: Op. 52
+Title-Dates: 1880
+
+
+
+Title-Type: Mazurkas
+Title-For: piano
+X-Title-Opus-Alt: B. 111
+Title-Opus: Op. 56
+Title-Dates: 1880
+
+
+
+Title-Type: Symphony
+Title-No: 6
+Title-Key: D major
+X-Title-Opus-Alt: B. 112
+Title-Opus: Op. 60
+Title-Dates: 1879
+
+
+
+Title-Name: Child's Song
+Title-Opus: B. 113
+Title-Dates: 1880
+
+
+
+Title-Type: Polka
+Title-For: orchestra
+Title-Name: For the Prague Students
+X-Title-Opus-Alt: B. 114
+Title-Opus: Op. 53A/1
+Title-Dates: 1880
+
+
+
+Title-Name: Ballad of King Matthias
+Title-Comment: [from 2nd version of The King and the Charcoalburner, B. 42]
+X-Title-Opus-Alt: B. 115
+Title-Opus: Op. 14
+Title-Dates: 1881
+
+
+
+Title-Type: Moderato
+Title-Key: A major
+Title-For: piano
+Title-Opus: B. 116
+Title-Dates: 1881
+
+
+
+Title-Name: Legends
+Title-For: piano four hands
+X-Title-Opus-Alt: B. 117
+Title-Opus: Op. 59
+Title-Dates: 1881
+
+
+
+Title-Name: There on our roof ...
+Title-Comment: [Moravian folk song]
+Title-Opus: B. 118
+Title-Dates: 1881
+
+
+
+Title-Type: Gallop
+Title-Key: E major
+Title-For: orchestra
+X-Title-Opus-Alt: B. 119
+Title-Opus: Op. 53A/2
+Title-Dates: 1881
+
+
+
+Title-RAW: String Quartet Fragment
+Title-Key: F major
+Title-Opus: B. 120
+Title-Dates: 1881
+
+
+
+Title-Type: String Quartet
+Title-No: 11
+Title-Key: C major
+X-Title-Opus-Alt: B. 121
+Title-Opus: Op. 61
+Title-Dates: 1881
+
+
+
+Title-Name: Legends
+Title-For: orchestra
+Title-Comment: [orchestration of B. 117]
+X-Title-Opus-Alt: B. 122
+Title-Opus: Op. 59
+Title-Dates: 1881
+
+
+
+Title-RAW: Songs on Poems by Pfleger-Moravsky
+Title-Opus: B. 123, No. 4
+Title-Dates: 1881
+
+
+
+Title-Name: Josef Kajetán Tyl
+Title-Comment: [incidental music for the play by F. F. Samberk]
+X-Title-Opus-Alt: B. 125
+Title-Opus: Op. 62
+Title-Dates: 1881
+
+
+
+Title-Name: My Home
+Title-Type-After-Name: overture
+Title-Related-How: to
+Title-Related-Name: Josef Kajetán Tyl
+X-Title-Opus-Alt: B. 125a
+Title-Opus: Op. 62
+Title-Dates: 1882
+
+
+
+Title-Name: In Nature's Realm
+Title-Comment: [after poems by V. Hálek]
+X-Title-Opus-Alt: B. 126
+Title-Opus: Op. 63
+Title-Dates: 1882
+
+
+
+Title-Name: Dmitrij
+Title-RAW: historical opera
+X-Title-Opus-Alt: B. 127
+Title-Opus: Op. 64
+Title-Dates: 1882
+
+
+
+Title-Name: Dmitrij
+Title-Type-After-Name: overture
+X-Title-Opus-Alt: B. 127a
+Title-Opus: Op. 64
+Title-Dates: 1882
+
+
+
+Title-RAW: Two Evening Songs
+Title-Comment: [after poems by V. Hálek]
+X-Title-Opus-Alt: B. 128
+Title-Opus: Op. 3
+Title-Dates: 1882
+
+
+
+Title-Type: Impromptu
+Title-Key: D minor
+Title-For: piano
+Title-Opus: B. 129
+Title-Dates: 1883
+
+
+
+Title-Type: Piano Trio
+Title-No: 3
+Title-Key: F minor
+X-Title-Opus-Alt: B. 130
+Title-Opus: Op. 65
+Title-Dates: 1883
+
+
+
+Title-RAW: Scherzo capriccioso
+Title-For: orchestra
+X-Title-Opus-Alt: B. 131
+Title-Opus: Op. 66
+Title-Dates: 1883
+
+
+
+Title-Name: Hussite
+Title-RAW: Overture
+X-Title-Opus-Alt: B. 132
+Title-Opus: Op. 67
+Title-Dates: 1883
+
+
+
+Title-Name: From the Bohemian Forest
+Title-For: piano four hands
+Title-Comment: [Orchestrated by Henk de Vlieger]
+X-Title-Opus-Alt: B. 133
+Title-Opus: Op. 68
+Title-Dates: 1883
+
+
+
+Title-Name: The Heirs of the White Mountain
+Title-Comment: [revision of B. 102]
+X-Title-Opus-Alt: B. 134
+Title-Opus: Op. 30
+Title-Dates: 1883
+
+
+
+Title-Name: The Specter's Bride
+Title-RAW: , dramatic cantata
+X-Title-Opus-Alt: B. 135
+Title-Opus: Op. 69
+Title-Dates: 1884
+
+
+
+Title-RAW: Dumka
+Title-Key: C minor
+Title-For: piano
+X-Title-Opus-Alt: B. 136
+Title-Opus: Op. 12, No. 1
+Title-Dates: 1884
+
+
+
+Title-RAW: Furiant
+Title-Key: G minor
+Title-For: piano
+X-Title-Opus-Alt: B. 137
+Title-Opus: Op. 12, No. 2
+Title-Dates: 1879
+
+
+
+Title-Type: Humoresque
+Title-Key: F sharp major
+Title-For: piano
+Title-Opus: B. 138
+Title-Dates: 1884
+
+
+
+Title-Type: Ballade
+Title-Key: D minor
+Title-For: piano
+X-Title-Opus-Alt: B. 139
+Title-Opus: Op. 15, No. 1
+Title-Dates: 1884
+
+
+
+Title-Name: The Wild Duck
+Title-RAW: , folk song
+Title-Opus: B. 140
+Title-Dates: 1884
+
+
+
+Title-Type: Symphony
+Title-No: 7
+Title-Key: D minor
+X-Title-Opus-Alt: B. 141
+Title-Opus: Op. 70
+Title-Dates: 1885
+
+
+
+Title-RAW: Two Czech Folk Poems
+Title-Opus: B. 142
+Title-Dates: 1885
+
+
+
+Title-Name: Hymn of the Czech Peasants
+Title-Opus: B. 143
+Title-Dates: 1885
+
+
+
+Title-Name: Saint Ludmila
+Title-Type-After-Name: oratorio
+X-Title-Opus-Alt: B. 144
+Title-Opus: Op. 71
+Title-Dates: 1886
+
+
+
+Title-RAW: Slavonic Dances for piano four hands, 2nd series
+X-Title-Opus-Alt: B. 145
+Title-Opus: Op. 72
+Title-Dates: 1886
+
+
+
+Title-Name: In Folk Tone
+Title-Comment: [collection of Slavonic and Czech folksongs]
+X-Title-Opus-Alt: B. 146
+Title-Opus: Op. 73
+Title-Dates: 1886
+
+
+
+Title-RAW: Slavonic Dances
+Title-For: orchestra
+Title-Comment: [orchestration of B. 145]
+X-Title-Opus-Alt: B. 147
+Title-Opus: Op. 72
+Title-Dates: 1887
+
+
+
+Title-RAW: Terzetto
+Title-Key: C major
+Title-For: two violins and 1 viola
+X-Title-Opus-Alt: B. 148
+Title-Opus: Op. 74
+Title-Dates: 1887
+
+
+
+Title-RAW: Miniatures
+Title-For: two violins and violas
+X-Title-Opus-Alt: B. 149
+Title-Opus: Op. 75a
+Title-Dates: 1887
+
+
+
+Title-RAW: Romantic Pieces
+Title-For: violin and piano
+X-Title-Opus-Alt: B. 150
+Title-Opus: Op. 75
+Title-Dates: 1887
+
+
+
+Title-Name: The King and the Charcoalburner
+Title-Comment: [3rd version of B. 21]
+X-Title-Opus-Alt: B. 151
+Title-Opus: Op. 14
+Title-Dates: 1887
+
+
+
+Title-Name: Cypresses
+Title-Comment: [arrangements of a dozen pieces from B. 11 (Nos. 2-4, 6-9, 12, 14, 16-18)]
+Title-Opus: B. 152
+Title-Dates: 1887
+
+
+
+Title-Type: Mass
+Title-Key: D major
+Title-Comment: [1st version]
+X-Title-Opus-Alt: B. 153
+Title-Opus: Op. 86
+Title-Dates: 1887
+
+
+
+Title-RAW: Psalm 149
+Title-For: choir and orchestra
+Title-Comment: [2nd version of B. 91]
+X-Title-Opus-Alt: B. 154
+Title-Opus: Op. 79
+Title-Dates: 1887
+
+
+
+Title-Type: Piano Quintet
+Title-No: 2
+Title-Key: A major
+X-Title-Opus-Alt: B. 155
+Title-Opus: Op. 81
+Title-Dates: 1887
+
+
+
+Title-Name: Two Little Pearls
+Title-For: piano
+Title-Opus: B. 156
+Title-Dates: 1887
+
+
+
+Title-RAW: Four Songs on Poems by O. Malybrok-Stieler
+X-Title-Opus-Alt: B. 157
+Title-Opus: Op. 82
+Title-Dates: 1888
+
+
+
+Title-RAW: Album Leaf
+Title-For: piano
+Title-Opus: B. 158
+Title-Dates: 1888
+
+
+
+Title-Name: The Jacobin
+Title-Type-After-Name: opera
+X-Title-Opus-Alt: B. 159
+Title-Opus: Op. 84
+Title-Dates: 1888
+
+
+
+Title-Name: Love Songs
+Title-Comment: [revision of Cypresses, B. 11]
+X-Title-Opus-Alt: B. 160
+Title-Opus: Op. 83
+Title-Dates: 1888
+
+
+
+Title-Name: Poetic Tone Poems
+Title-For: piano
+X-Title-Opus-Alt: B. 161
+Title-Opus: Op. 85
+Title-Dates: 1889
+
+
+
+Title-Type: Piano Quartet
+Title-No: 2
+Title-Key: E flat major
+X-Title-Opus-Alt: B. 162
+Title-Opus: Op. 87
+Title-Dates: 1889
+
+
+
+Title-Type: Symphony
+Title-No: 8
+Title-Key: G major
+X-Title-Opus-Alt: B. 163
+Title-Opus: Op. 88
+Title-Dates: 1889
+
+
+
+Title-Type: Gavotte
+Title-For: three violins
+Title-Opus: B. 164
+Title-Dates: 1890
+
+
+
+Title-Type: Requiem
+X-Title-Opus-Alt: B. 165
+Title-Opus: Op. 89
+Title-Dates: 1890
+
+
+
+Title-Type: Piano Trio
+Title-No: 4
+Title-Key: E minor
+Title-Name: Dumky
+X-Title-Opus-Alt: B. 166
+Title-Opus: Op. 90
+Title-Dates: 1891
+
+
+
+Title-Type: Fanfares
+Title-For: four trumpets and timpani
+Title-Opus: B. 167
+Title-Dates: 1891
+
+
+
+Title-Name: In Nature's Realm
+Title-RAW: , concert overture
+X-Title-Opus-Alt: B. 168
+Title-Opus: Op. 91
+Title-Dates: 1891
+
+
+
+Title-Name: Carnival Overture
+X-Title-Opus-Alt: B. 169
+Title-Opus: Op. 92
+Title-Dates: 1891
+
+
+
+Title-RAW: Slavonic Dance
+Title-Key: E minor
+Title-For: violin and piano
+Title-Comment: [arrangement of B. 78 No. 2]
+X-Title-Opus-Alt: B. 170
+Title-Opus: Op. 46, No. 2
+Title-Dates: 1891
+
+
+
+Title-Type: Rondo
+Title-Key: G minor
+Title-For: cello and piano
+X-Title-Opus-Alt: B. 171
+Title-Opus: Op. 94
+Title-Dates: 1891
+
+
+
+Title-RAW: Slavonic Dances in A and G minor
+Title-For: cello and piano
+Title-Comment: [arrangement of B. 78 Nos. 3 and 8]
+X-Title-Opus-Alt: B. 172
+Title-Opus: Op. 46, No. 3,8
+Title-Dates: 1891
+
+
+
+Title-Name: Silent Woods
+Title-RAW: for cello and piano (Published as
+Title-Name: Waldesruhe
+Title-Punct: )
+Title-Comment: [arrangement of Ze Sumavy (From the Bohemian Forest) Op.68 / B.133 No.5]
+X-Title-Opus-Alt: B. 173
+Title-Opus: Op. 68, No. 5
+Title-Dates: 1891
+
+
+
+Title-Name: Othello
+Title-RAW: Overture
+X-Title-Opus-Alt: B. 174
+Title-Opus: Op. 93
+Title-Dates: 1892
+
+
+
+Title-Type: Mass
+Title-Key: D major
+Title-Comment: [2nd version of B. 153]
+X-Title-Opus-Alt: B. 175
+Title-Opus: Op. 86
+Title-Dates: 1892
+
+
+
+Title-RAW: Te Deum
+X-Title-Opus-Alt: B. 176
+Title-Opus: Op. 103
+Title-Dates: 1892
+
+
+
+Title-Name: The American Flag
+Title-Type-After-Name: cantata
+Title-Comment: [after a poem by J. R. Drake]
+X-Title-Opus-Alt: B. 177
+Title-Opus: Op. 102
+Title-Dates: 1893
+
+
+
+Title-Type: Symphony
+Title-No: 9
+Title-Key: E minor
+Title-Name: From the New World
+X-Title-Opus-Alt: B. 178
+Title-Opus: Op. 95
+Title-Dates: 1893
+
+
+
+Title-Type: String Quartet
+Title-No: 12
+Title-Key: F major
+Title-Name: American
+X-Title-Opus-Alt: B. 179
+Title-Opus: Op. 96
+Title-Dates: 1893
+
+
+
+Title-Type: String Quintet
+Title-No: 3
+Title-Key: E flat major
+Title-Name: American
+X-Title-Opus-Alt: B. 180
+Title-Opus: Op. 97
+Title-Dates: 1893
+
+
+
+Title-Type: Rondo
+Title-Key: G minor
+Title-For: cello and orchestra
+Title-Comment: [arrangement of B. 171]
+X-Title-Opus-Alt: B. 181
+Title-Opus: Op. 94
+Title-Dates: 1893
+
+
+
+Title-Name: Silent Woods
+Title-For: cello and orchestra
+Title-Comment: [arrangement of Ze Sumavy (From the Bohemian Forest) Op.68/B.173 No.5]
+X-Title-Opus-Alt: B. 182
+Title-Opus: Op. 68, No. 5
+Title-Dates: 1893
+
+
+
+Title-Type: Violin Sonatina
+Title-Key: G major
+X-Title-Opus-Alt: B. 183
+Title-Opus: Op. 100
+Title-Dates: 1893
+
+
+
+Title-Type: Suite
+Title-Key: A major
+Title-Name: American
+Title-For: piano
+X-Title-Opus-Alt: B. 184
+Title-Opus: Op. 98
+Title-Dates: 1894
+
+
+
+Title-RAW: Biblical Songs
+X-Title-Opus-Alt: B. 185
+Title-Opus: Op. 99
+Title-Dates: 1894
+
+
+
+Title-Name: Dmitrij
+Title-Comment: [2nd version of B. 127]
+X-Title-Opus-Alt: B. 186
+Title-Opus: Op. 64
+Title-Dates: 1894
+
+
+
+Title-Type: Humoresques
+Title-For: piano
+X-Title-Opus-Alt: B. 187
+Title-Opus: Op. 101
+Title-Dates: 1894
+
+
+
+Title-Count: Two
+Title-Type: Piano Pieces
+Title-Opus: B. 188
+Title-Dates: 1894
+
+
+
+Title-RAW: Biblical Songs
+Title-Comment: [orchestration of B. 185]
+X-Title-Opus-Alt: B. 189
+Title-Opus: Op. 99
+Title-Dates: 1895
+
+
+
+Title-Type: Suite
+Title-Key: A major
+Title-Name: American
+Title-Comment: [orchestration of B. 184]
+X-Title-Opus-Alt: B. 190
+Title-Opus: Op. 98b
+Title-Dates: 1895
+
+
+
+Title-Type: Cello Concerto
+Title-Key: B minor
+X-Title-Opus-Alt: B. 191
+Title-Opus: Op. 104
+Title-Dates: 1895
+
+
+
+Title-Type: String Quartet
+Title-No: 13
+Title-Key: G major
+X-Title-Opus-Alt: B. 192
+Title-Opus: Op. 106
+Title-Dates: 1895
+
+
+
+Title-Type: String Quartet
+Title-No: 14
+Title-Key: A flat major
+X-Title-Opus-Alt: B. 193
+Title-Opus: Op. 105
+Title-Dates: 1895
+
+
+
+Title-Name: Lullaby
+Title-Comment: [after a poem by F. L. Jelinek]
+Title-Opus: B. 194
+Title-Dates: 1895
+
+
+
+Title-Name: The Water Goblin
+Title-Type-After-Name: symphonic poem
+X-Title-Opus-Alt: B. 195
+Title-Opus: Op. 107
+Title-Dates: 1896
+
+
+
+Title-Name: The Noon Witch
+Title-Type-After-Name: symphonic poem
+X-Title-Opus-Alt: B. 196
+Title-Opus: Op. 108
+Title-Dates: 1896
+
+
+
+Title-Name: The Golden Spinning Wheel
+Title-Type-After-Name: symphonic poem
+X-Title-Opus-Alt: B. 197
+Title-Opus: Op. 109
+Title-Dates: 1896
+
+
+
+Title-Name: The Wild Dove
+Title-Type-After-Name: symphonic poem
+X-Title-Opus-Alt: B. 198
+Title-Opus: Op. 110
+Title-Dates: 1896
+
+
+
+Title-Name: A Hero's Song
+Title-Type-After-Name: symphonic poem
+X-Title-Opus-Alt: B. 199
+Title-Opus: Op. 111
+Title-Dates: 1897
+
+
+
+Title-Name: Jacobin
+Title-Comment: [revision of B. 159]
+X-Title-Opus-Alt: B. 200
+Title-Opus: Op. 84
+Title-Dates: 1897
+
+
+
+Title-Name: The Devil and Kate
+Title-Type-After-Name: opera
+X-Title-Opus-Alt: B. 201
+Title-Opus: Op. 112
+Title-Dates: 1899
+
+
+
+Title-Type: Overture
+Title-Related-How: to
+Title-Related-Name: Kate and the Devil
+X-Title-Opus-Alt: B. 201a
+Title-Opus: Op. 112
+Title-Dates: 1899
+
+
+
+Title-Name: Festival Song
+Title-Comment: [after a poem by J. Vrchlicky]
+X-Title-Opus-Alt: B. 202
+Title-Opus: Op. 113
+Title-Dates: 1900
+
+
+
+Title-Name: Rusalka
+Title-Type-After-Name: opera
+X-Title-Opus-Alt: B. 203
+Title-Opus: Op. 114
+Title-Dates: 1900
+
+
+
+Title-Type: Overture
+Title-Related-How: to
+Title-Related-Name: Rusalka
+X-Title-Opus-Alt: B. 203a
+Title-Opus: Op. 114
+Title-Dates: 1900
+
+
+
+Title-Name: Song of the Smith of Lesetin
+Title-Opus: B. 204
+Title-Dates: 1901
+
+
+
+Title-Name: Saint Ludmila
+Title-Comment: [opera adapted from cantata B. 144]
+X-Title-Opus-Alt: B. 205
+Title-Opus: Op. 71
+Title-Dates: 1901
+
+
+
+Title-Name: Armida
+Title-Type-After-Name: opera
+X-Title-Opus-Alt: B. 206
+Title-Opus: Op. 115
+Title-Dates: 1903
+
+
+
+Title-Type: Overture
+Title-Related-How: to
+Title-Related-Name: Armida
+X-Title-Opus-Alt: B. 206a
+Title-Opus: Op. 115
+Title-Dates: 1903
+
+
+

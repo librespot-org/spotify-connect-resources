@@ -1,0 +1,84 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Backup / Restore Vault</title> 
+
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" href="css/custom_styles.css">
+	<link rel="stylesheet" href="css/themes/custom/Bluesound_DraftTest0-1.min.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+	
+	</head>
+	<body>
+	<script>
+	$(document).ready(function() {
+		setTimeout(refresh, 1000);
+	});
+	function refresh() {
+		$.get("backup_state", update, "text");
+	};
+	function update(text) {
+//              $("#progress").append(text + "<br>");
+		if (text.length == 0) {
+			// redirect
+			window.location.href = 'backup';
+		}
+		if (text == '{reload}') {
+			window.location.href = 'backup';
+			return;
+		}
+		$("#progress").text(text);
+		setTimeout(refresh, 5000);
+	}
+	</script>
+
+        <div data-role="page" id="nodenamepage">
+            <div data-theme="b" data-role="header">
+                <a href="/" data-icon="back" data-rel="back" data-iconpos="notext"></a>
+                <h1>Backup / Restore Vault Music</h1>
+                <a href="/" data-icon="home" data-transition="slideup" data-iconpos="notext"></a>
+            </div>
+            <div data-role="content">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a bs-header-image"><img src="images/logo.png" /></div>
+                    <div class="ui-block-b bs-header-text"></div>
+                </div>
+
+		<!-- note exact placement of comment tags matching class for end of div! -->
+		<div class="formatting" data-role="content">
+			Format progress:
+			<div class="formatting-progress" id="progress">
+				Starting formatting...
+			</div>
+		</div><!-- formatting -->
+
+		<div class="backup" data-role="content">
+			Backup progress:
+			<div class="backup-progress" id="progress">
+				Starting backup...
+			</div>
+			<div>Note: You can continue to use your player during backup.</div>
+			<form id="stop-backup" method="POST" action="/backup" data-ajax="false">
+				<input type="submit" value="Cancel backup" name="stop" data-inline="true" />
+				<input type="submit" value="Main Menu" name="main" data-inline="true" />
+			</form>
+		</div><!-- backup -->
+
+		<div class="restore" data-role="content">
+			Restore progress:
+			<div class="restore-progress" id="progress">
+				Starting restore...
+			</div>
+			<div>Note: You can continue to use your player during restore.</div>
+			<form id="stop-restore" method="POST" action="/backup" data-ajax="false">
+				<input type="submit" value="Cancel restore" name="stop" data-inline="true" />
+				<input type="submit" value="Main Menu" name="main" data-inline="true" />
+			</form>
+		</div><!-- restore -->
+            </div>
+        </div>
+</body>
+</html>

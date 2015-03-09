@@ -1,0 +1,61 @@
+#!/bin/sh
+#
+# Firmware-specific hotplug policy agent.
+#
+# Kernel firmware hotplug params include:
+#
+#       ACTION=%s [add or remove]
+#       DEVPATH=%s [in 2.5 kernels, /sys/$DEVPATH]
+#       FIRMWARE=%s
+#
+# HISTORY:
+#
+# 24-Jul-2003   Initial version of "new" hotplug agent.
+#
+# $Id: firmware.agent,v 1.3 2004/03/14 15:52:56 ukai Exp $
+#
+
+cd /etc/hotplug
+. ./hotplug.functions
+# DEBUG=yes export DEBUG
+
+# directory of the firmware files
+FIRMWARE_DIR=/usr/lib/hotplug/firmware
+
+# mountpoint of sysfs
+SYSFS=$(sed -n 's/^.* \([^ ]*\) sysfs .*$/\1/p' /proc/mounts)
+
+# use /proc for 2.4 kernels
+if [ "$SYSFS" = "" ]; then
+    SYSFS=/proc
+fi
+
+#
+# What to do with this firmware hotplug event?
+#
+case "$ACTION" in
+
+add)
+    if [ ! -e $SYSFS/$DEVPATH/loading ]; then
+        sleep 1
+    fi
+
+    if [ -f "$FIRMWARE_DIR/$FIRMWARE" ]; then
+        echo 1 > $SYSFS/$DEVPATH/loading
+        cp "$FIRMWARE_DIR/$FIRMWARE" $SYSFS/$DEVPATH/data
+        echo 0 > $SYSFS/$DEVPATH/loading
+    else
+        echo -1 > $SYSFS/$DEVPATH/loading
+    fi
+
+    ;;
+
+remove)
+    ;;
+
+*)
+    mesg "Firmware '$ACTION' event not supported"
+    exit 1
+    ;;
+
+esac

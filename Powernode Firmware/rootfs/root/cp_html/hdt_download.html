@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Download from HDtracks</title> 
+
+<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.min.css" />
+<link rel="stylesheet" href="css/custom_styles.css">
+<link rel="stylesheet" href="css/themes/custom/Bluesound_DraftTest0-1.min.css" />
+<script src="js/jquery.js"></script>
+<script src="js/jquery.mobile-1.1.0.min.js"></script>
+
+</head>
+<body>
+<div data-role="page" id="hdtdownloadspage">
+[metarefresh]
+    <div data-theme="b" data-role="header" [headervisible]>
+        <a href="/" data-icon="back" data-rel="back" data-iconpos="notext"></a>
+        <h1>Download from HDtracks</h1>
+        <a href="/" data-icon="home" data-iconpos="notext"></a>
+    </div>
+    <div data-role="content">
+        <div class="ui-grid-a">
+            <div class="ui-block-a bs-header-image">
+                <a href="http://www.hdtracks.com/"><img src="/images/HDTLogo.png" /></a>
+            </div>
+            <div class="ui-block-b bs-header-text">
+                Download purchases from HDtracks.
+                Select <b>Shop</b> to visit the HDtracks online store. Select <b>Update</b> to check for downloads<br>
+                [status]
+                <span [errorvisibility] style="color:red;"><a data-role="button" data-icon="alert" data-iconpos="notext" data-inline="true"></a>[error]</span>
+                <br>Note: All files are downloaded in FLAC format.
+            </div>
+        </div>
+        <form id="credentialsForm" action="/hdtdownload" method="POST" data-ajax="false">
+            <input type="hidden" name="noheader" value="[noheader]">
+            <div id="autodownload" data-role="fieldcontain" style="visibility: [autovisibility]">
+                <label for="auto">Automatically download new purchases:</label>
+                <select name="auto" id="auto" data-role="slider" data-mini="true">
+                	<option value="0" [autooff]>Off</option>
+                	<option value="1" [autoon]>On</option>
+                </select>
+            </div>
+            <div id="credentials" data-role="fieldcontain">
+                <label for="usertext" id="userlabel">User name:</label>
+                <input id="usertext" name="user" type="text" size="20" maxlength="90" tabindex="1" value="[username]" />
+                <label for="passtext" id="passlabel">Password:</label>
+                <input id="passtext" name="password" type="password" maxlength="90" tabindex="2" value="[password]" />
+            </div>
+            <div id="submitDiv" data-role="fieldcontain">
+                <a href="http://www.hdtracks.com/" data-role="button" data-inline="true" >Shop</a>
+                <input type="submit" name="action" value="Update" data-inline="true" />
+                <span [downloadvisibility]><input type="submit" name="action" value="Download" data-inline="true"/></span>
+                <span [stopvisibility]><input type="submit" name="action" value="Stop" data-inline="true"/></span>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

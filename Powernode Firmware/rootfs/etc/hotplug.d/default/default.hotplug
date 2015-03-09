@@ -1,0 +1,114 @@
+#!/bin/bash
+#
+# This version of /sbin/hotplug should works on most GNU/Linux systems
+# using Linux 2.2.18+ or 2.4.* kernels.  On 2.2.*, only USB has such
+# hotplugging support; on 2.4.*, so do PCI/Cardbus and network interfaces.
+#
+# In 2.5, both classes and busses can report hotplug events as part
+# of the driver model core functionality.  Plus, /sys/$DEVPATH is
+# available for scripting, as well as the $ACTION being reported.
+#
+# The kernel HOTPLUG configuration option needs to be enabled, and most
+# device drivers will be compiled for MODULES (make allmod).
+#
+#
+# HISTORY:
+#
+# 21-Nov-2002	Optionally log events; 2.5 notes (db)
+# 26-Feb-2001	Cleanup (Gioele Barabucci)
+# 14-Feb-2001	Better diagnostics: logging, agent list (contributors)
+# 04-Jan-2001	First "New" version, which only delegates to
+#		specialized hotplug agents.
+#
+# $Id: default.hotplug,v 1.3 2004/03/14 15:38:15 ukai Exp $
+#
+
+exec < /dev/null
+test -t 1 || exec > /dev/null
+test -t 2 || exec 2>&1
+
+cd /etc/hotplug
+. ./hotplug.functions
+
+# DEBUG=yes export DEBUG
+
+debug_mesg "arguments ($*) env (`env`)"
+
+#
+# Only one required argument:  event type type being dispatched.
+# Examples:  usb, pci, isapnp, net, ieee1394, printer, disk,
+# parport, input, ide, cpu, system, ... with 2.5, lots more.
+# Other parameters are passed in the environment, or positionally
+# through argv.
+# 
+if [ $# -lt 1 -o "$1" = "help" -o "$1" = "--help" ]; then
+    if [ -t ]; then
+	echo "Usage: $0 AgentName [AgentArguments]"
+
+	AGENTS=""
+	for AGENT in /etc/hotplug/*.agent ; do
+	    TYPE=`basename $AGENT | sed s/.agent//`
+	    if [ -x $AGENT ]; then
+		AGENTS="$AGENTS $TYPE"
+	    else
+		AGENTS="$AGENTS ($TYPE)"
+	    fi
+	done
+	echo "AgentName values on this system: $AGENTS" 
+    else
+	mesg "illegal usage $*"
+    fi
+    exit 1
+fi
+
+#
+# Delegate event handling:
+#   /sbin/hotplug FOO ..args.. ==> /etc/hotplug/FOO.agent ..args..
+#
+AGENT=/etc/hotplug/$1.agent
+if [ -x $AGENT ]; then
+    shift
+    if [ "$DEBUG" != "" ]; then
+	mesg "invoke $AGENT ($@)"
+    fi
+    exec $AGENT "$@"
+    mesg "couldn't exec $AGENT"
+    exit 1
+fi
+
+debug_mesg "no runnable $AGENT is installed"
+
+#
+# Optionally log events we don't handle directly.
+# Some program or person has asked for $LOG data.
+#
+LOG=/var/log/hotplug/$1.events
+if [ ! -w $LOG ]; then
+    # catch-all for unclaimed events
+    LOG=/var/log/hotplug/events
+fi
+if [ -w $LOG ]; then
+    # record all basic event data
+    HOTPLUG_TYPE=$1
+    shift
+    HOTPLUG_ARGS="$*"
+    export HOTPLUG_ARGS HOTPLUG_TYPE
+
+    # use to tempfile to buffer events
+    # FIXME buffering acts oddly when logging to pipes,
+    # it'd be better not to need a tempfile
+    TMP=$(mktemp /var/log/hotplug/e-$HOTPLUG_TYPE-XXXXXXXX)
+    if [ $? -ne 0 ]; then
+	mesg "couldn't create tempfile for logging"
+	exit 1
+    fi
+
+    debug_mesg "log to $LOG ($HOTPLUG_TYPE $HOTPLUG_ARGS)"
+    log_to_stdout > $TMP
+    cat $TMP >> $LOG
+    rm -f $TMP
+
+    exit 0
+fi
+
+exit 1

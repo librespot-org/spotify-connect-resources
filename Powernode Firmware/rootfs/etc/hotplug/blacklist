@@ -1,0 +1,23 @@
+#
+# Listing a module here prevents the hotplug scripts from loading it.
+# Usually that'd be so that some other driver will bind it instead,
+# no matter which driver happens to get probed first.  Sometimes user
+# mode tools can also control driver binding.
+#
+# Syntax:  driver name alone (without any spaces) on a line. Other
+# lines are ignored.
+#
+
+# uhci ... usb-uhci handles the same pci class
+usb-uhci
+# usbcore ... module is loaded implicitly, ignore it otherwise
+usbcore
+
+# tulip ... de4x5, xircom_tulip_cb, dmfe (...) handle same devices
+de4x5
+# At least 2.4.3 and later xircom_tulip doesn't have that conflict
+# xircom_tulip_cb
+dmfe
+
+#evbug is a debug tool and should be loaded explicitly
+evbug

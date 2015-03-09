@@ -1,0 +1,101 @@
+#!/bin/sh
+# vim: syntax=sh
+#
+# pci.rc	mostly to recover lost boot-time pci hotplug events
+#
+# $Id: pci.rc,v 1.10 2004/03/26 22:34:24 kroah Exp $
+#
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+cd /etc/hotplug
+. ./hotplug.functions
+
+pci_boot_events ()
+{
+    # make sure the pci agent will run
+    ACTION=add
+    PCI_CLASS=0
+    PCI_ID=0:0
+    PCI_SLOT=0:0.0
+    PCI_SLOT_NAME=0:0.0
+    PCI_SUBSYS_ID=0:0
+    export ACTION PCI_CLASS PCI_ID PCI_SLOT PCI_SLOT_NAME PCI_SUBSYS_ID
+
+    if [ -d /sys/bus ]; then
+	# 2.6 kernels
+	if [ -d /sys/bus/pci/devices/ ]; then
+	    cd /sys/bus/pci/devices/
+	    for PCI_DEVICE in *; do
+		set `echo $PCI_DEVICE \
+		    | sed -e 's/\([^:]*\):\(.*\):\(.*\)\.\(.*\)/\1 \2 \3 \4/'`
+		PCI_SLOT_NAME=$2:$3.$4
+		PCI_CLASS="`cat $PCI_DEVICE/class`"
+		PCI_CLASS=${PCI_CLASS#0x}
+		vendor_id=`cat $PCI_DEVICE/vendor`
+		device_id=`cat $PCI_DEVICE/device`
+		PCI_ID="${vendor_id#0x}:${device_id#0x}"
+		sub_vendor_id=`cat $PCI_DEVICE/subsystem_vendor`
+		sub_device_id=`cat $PCI_DEVICE/subsystem_device`
+		PCI_SUBSYS_ID="${sub_vendor_id#0x}:${sub_device_id#0x}"
+		/sbin/hotplug pci
+	    done
+	fi
+    else
+	# 2.4 kernels
+	LISTER=`which pcimodules`
+	if [ "$LISTER" = "" -o ! -f /proc/bus/pci/devices -o ! -x pci.agent ]; then
+	    echo $"** can't synthesize pci hotplug events"
+	    return
+	fi
+
+	# these notifications will be handled by pcimodules
+	for BUS in `cd /proc/bus/pci;find * -type d -print`; do
+	    for SLOT_FUNC in `cd /proc/bus/pci/$BUS; echo *`; do
+		PCI_SLOT=$BUS:$SLOT_FUNC
+		/sbin/hotplug pci
+	    done
+	done
+    fi
+
+    return 0
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	pci_boot_events
+        ;;
+  stop)
+	# echo $"pci stop -- ignored"
+        ;;
+  status)
+	echo $"PCI Status for kernel: "  `uname -srm`
+	echo ''
+
+	if [ -f /proc/bus/pci/devices ]; then
+	    COUNT=`ls /proc/bus/pci | wc -l`
+	    if [ $COUNT -gt 1 ]; then
+		COUNT=`expr $COUNT - 1`
+		echo $"PCI up; bus count is $COUNT"
+		if [ -x /sbin/lspci ]; then
+		    /sbin/lspci
+		fi
+	    else
+		echo $"no PCI busses?"
+	    fi
+	    echo ''
+	else
+	    echo $"no PCI /proc support?"
+	fi
+	echo ''
+
+	;;
+  restart)
+	# always invoke by absolute path, else PATH=$PATH:
+	$0 stop && $0 start
+	;;
+  *)
+        echo $"Usage: $0 {start|stop|status|restart}"
+        exit 1
+esac

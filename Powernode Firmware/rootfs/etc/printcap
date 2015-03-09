@@ -1,0 +1,8 @@
+# /etc/printcap
+#
+# Please don't edit this file directly unless you know what you are doing!
+# Be warned that the control-panel printtool requires a very strict format!
+# Look at the printcap(5) man page for more info.
+#
+# This file can be edited with the printtool in the control-panel.
+

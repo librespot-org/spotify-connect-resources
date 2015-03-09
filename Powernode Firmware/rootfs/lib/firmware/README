@@ -1,0 +1,19 @@
+ath6kl firmware
+===============
+
+This is the firmware for the ath6kl driver for AR6003 chipsets.
+
+Install
+=======
+
+Copy the ath6k/ directory into /lib/firmware/
+
+Driver page
+===========
+
+http://wireless.kernel.org/en/users/Drivers/ath6kl
+
+Firmware updates
+================
+
+You are expected to get updates from the linux-firmware.git tree.

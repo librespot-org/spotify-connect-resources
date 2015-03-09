@@ -1,0 +1,332 @@
+
+=head1 NAME 
+
+MP3::Tag::ID3v2_Data - get_frame() data format and supported frames
+
+=head1 SYNOPSIS
+
+  $mp3 = MP3::Tag->new($filename);
+  $mp3->get_tags();
+  $id3v2 = $mp3->{ID3v2} if exists $mp3->{id3v2};
+
+  ($info, $long) = $id3v2->get_frame($id);    # or
+
+  ($info, $long) = $id3v2->get_frame($id, 'raw');
+
+
+=head1 DESCRIPTION 
+
+This document describes how to use the results of the get_frame function of 
+MP3::Tag::ID3v2, thus the data format of frames retrieved with 
+MP3::Tag::ID3v2::get_frame().
+
+It contains also a list of all supported ID3v2-Frames.
+
+=head2 get_frame()
+
+ ($info, $long) = $id3v2->get_frame($id);    # or
+ 
+ ($info, $long) = $id3v2->get_frame($id, 'raw');
+
+$id has to be a name of a frame like "APIC".  For more variants of calling
+see L<get_frame()|MP3::Tag::ID3v2>.
+
+The names of all frames found in a tag can be retrieved with the L<get_frame_ids()|MP3::Tag::ID3v2> function.
+
+=head2 Using the returned data
+
+In the ID3v2.3 specifications 73 frames are defined, which can contain very
+different information. That means that get_frame returns the information
+of different frames also in different ways.
+
+=over 4
+
+=item Simple Frames
+
+A lot of the tags contain only a text string and encoding information. If
+you call ($info, $long) = $id3v2->get_frame($id) for such a frame, $info will contain
+the text string and $long will contain the english name of the frame.
+ 
+Example:
+  get_frame("TIT2");     # returns
+
+  ("Birdhouse In Your Soul", "Title/songname/content description")
+
+=item Complex Frames
+
+For more complex frames the returned $info is a reference to a hash, where
+each entry of the hash decribes a part of the information found in the
+frame. The key of a hash entry contains the name of this part, the according
+value contains the information itself.
+
+Example:
+  get_frame("APIC");     # returns
+  
+  ( { "Description" => "Flood", 
+      "MIME Type" => "/image/jpeg", 
+      "Picture Type" => "Cover (front)",
+      "_Data" => "..data of jpeg picture (binary).."
+     },
+   "Attached Picture");
+
+=item Other Frames
+
+Some frames are not supported at the moment, ie the data found in the frame
+is not returned in a descriptive way. But you can read the data of this
+frames (and also of all other frames too) in raw mode. Then the complete
+data field of the frame is returned, without any modifications. This means
+that the returned data will be almost binary data.
+
+Example:
+  get_frame("TIT2", 'raw');    # returns
+
+  ("\x00Birdhouse In Your Soul", "Title/songname/content description")
+
+=back
+
+The frames which (in addition to C<Text>/C<URL>) contain only
+C<Description> and C<Language> fields are in some intermediate position
+between "simple" and "complex" frames.  They can be handled very similarly
+to "simple" frames by using "long names", such as C<COMM[description]>
+or C<COMM(LANG)[description]>, and the corresponding "quick" API such
+as frame_select().
+  
+
+
+=head2 List of Simple Frames
+
+Following Frames are supported 
+and return a single string (text). In the List you can find the frame IDs 
+and the long names of the frames as returned by $id3v2->get_frame():
+
+=over 4
+
+
+=item IPLS : Involved people list
+
+=item MCDI : Music CD identifier
+
+=item PCNT : Play counter
+
+=item TALB : Album/Movie/Show title
+
+=item TBPM : BPM (beats per minute)
+
+=item TCOM : Composer
+
+=item TCON : Content type
+
+=item TCOP : Copyright message
+
+=item TDAT : Date
+
+=item TDLY : Playlist delay
+
+=item TDRC : Recording time
+
+=item TENC : Encoded by
+
+=item TEXT : Lyricist/Text writer
+
+=item TFLT : File type
+
+=item TIME : Time
+
+=item TIPL : Involved people list
+
+=item TIT1 : Content group description
+
+=item TIT2 : Title/songname/content description
+
+=item TIT3 : Subtitle/Description refinement
+
+=item TKEY : Initial key
+
+=item TLAN : Language(s)
+
+=item TLEN : Length
+
+=item TMCL : Musician credits list
+
+=item TMED : Media type
+
+=item TOAL : Original album/movie/show title
+
+=item TOFN : Original filename
+
+=item TOLY : Original lyricist(s)/text writer(s)
+
+=item TOPE : Original artist(s)/performer(s)
+
+=item TORY : Original release year
+
+=item TOWN : File owner/licensee
+
+=item TPE1 : Lead performer(s)/Soloist(s)
+
+=item TPE2 : Band/orchestra/accompaniment
+
+=item TPE3 : Conductor/performer refinement
+
+=item TPE4 : Interpreted, remixed, or otherwise modified by
+
+=item TPOS : Part of a set
+
+=item TPUB : Publisher
+
+=item TRCK : Track number/Position in set
+
+=item TRDA : Recording dates
+
+=item TRSN : Internet radio station name
+
+=item TRSO : Internet radio station owner
+
+=item TSIZ : Size
+
+=item TSRC : ISRC (international standard recording code)
+
+=item TSSE : Software/Hardware and settings used for encoding
+
+=item TYER : Year
+
+=item WCOM : Commercial information
+
+=item WCOP : Copyright/Legal information
+
+=item WOAF : Official audio file webpage
+
+=item WOAR : Official artist/performer webpage
+
+=item WOAS : Official audio source webpage
+
+=item WORS : Official internet radio station homepage
+
+=item WPAY : Payment
+
+=item WPUB : Publishers official webpage
+
+=back
+
+
+
+=head2 List of Complex Frames
+
+Following frames are supported and return a reference to a hash. The
+list shows which keys can be found in the returned hash:
+
+=over 4
+
+
+=item AENC : Audio encryption
+
+  Keys: URL, Preview start, Preview length, _Data
+
+=item APIC : Attached picture
+
+  Keys: MIME type, Picture Type, Description, _Data
+
+=item COMM : Comments
+
+  Keys: Language, Description, Text
+
+=item COMR : Commercial frame
+
+  Keys: Price, Valid until, URL, Received as, Name of Seller, Description, MIME type, _Logo
+
+=item ENCR : Encryption method registration
+
+  Keys: Owner ID, Method symbol, _Data
+
+=item GEOB : General encapsulated object
+
+  Keys: MIME type, Filename, Description, _Data
+
+=item GRID : Group identification registration
+
+  Keys: Owner, Symbol, _Data
+
+=item LINK : Linked information
+
+  Keys: ID, URL, Text
+
+=item OWNE : Ownership frame
+
+  Keys: Price payed, Date of purchase, Text
+
+=item POPM : Popularimeter
+
+  Keys: URL, Rating, Counter
+
+=item PRIV : Private frame
+
+  Keys: Text, _Data
+
+=item RBUF : Recommended buffer size
+
+  Keys: Buffer size, Embedded info flag, Offset to next tag
+
+=item RVRB : Reverb
+
+  Keys: Reverb left (ms), Reverb right (ms), Reverb bounces (left), Reverb bounces (right), Reverb feedback (left to left), Reverb feedback (left to right), Reverb feedback (right to right), Reverb feedback (right to left), Premix left to right, Premix right to left
+
+=item SYTC : Synchronized tempo codes
+
+  Keys: Time Stamp Format, _Data
+
+=item TXXX : User defined text information frame
+
+  Keys: Description, Text
+
+=item UFID : Unique file identifier
+
+  Keys: Text, _Data
+
+=item USER : Terms of use
+
+  Keys: Language, Text
+
+=item USLT : Unsychronized lyric/text transcription
+
+  Keys: Language, Description, Text
+
+=item WXXX : User defined URL link frame
+
+  Keys: Description, URL
+
+=back
+
+
+
+=head2 List of Other Frames
+
+Following frames are only supported in raw mode:
+
+=over 4
+
+
+=item CRM : Encrypted meta frame
+
+=item EQUA : Equalization
+
+=item ETCO : Event timing codes
+
+=item LNK : Linked information
+
+=item MLLT : MPEG location lookup table
+
+=item PIC : Attached picture
+
+=item POSS : Position synchronisation frame
+
+=item RVAD : Relative volume adjustment
+
+=item SYLT : Synchronized lyric/text
+
+=back
+
+
+=head1 SEE ALSO
+
+L<MP3::Tag>, L<MP3::Tag::ID3v2>
+

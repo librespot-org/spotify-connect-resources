@@ -1,0 +1,251 @@
+#!/bin/bash
+#
+# Dasd hotplug policy agent for Linux 2.4 kernels
+#
+# Copyright (c) 2002 SuSE Linux AG, Nuremberg
+#
+# the GNU Public License applies
+#
+# Author:  Susanne Oberhauser <froh@suse.de>, 2002
+#
+#
+# Kernel DASD hotplug params include:
+#
+#   s390 device address
+: ${DEVNO?Bad DASD invocation: \$DEVNO is not set}
+
+#   Linux major and minor
+: ${MAJOR?Bad DASD invocation: \$MAJOR is not set}
+: ${MINOR?Bad DASD invocation: \$MINOR is not set}
+
+#   Linux device name (dasda, ...)
+: ${DASDNAME?Bad DASD invocation: \$DASDNAME is not set}
+
+#   Hotplug event type (add, remove, partchk or partremove)
+: ${ACTION?Bad DASD invocation: \$ACTION is not set}
+
+#
+# they are generated here: /usr/src/linux/drivers/s390/block/dasd.c
+#
+
+#
+# HISTORY:
+#
+# 2002-08-06 Susanne Oberhauser <froh@suse.de>
+#            created script
+
+cd /etc/hotplug
+. hotplug.functions
+
+test -d /dev/dasd -a -d /dev/labels || {
+    debug_mesg "/etc/rc.d/init.d/boot.dasd_devfs_compat is not started.
+ignoring $ACTION  $DEVNO  $MAJOR $MINOR  $DASDNAME"
+    exit 0
+}
+
+mesg "$ACTION  $DEVNO  $MAJOR $MINOR  $DASDNAME"
+
+
+test -r dasd.permissions && . dasd.permissions || {
+    mesg DASD permission handling not found
+    exit 1
+}
+
+# to preserve the script from doing anything real, call it with
+# CONDOM=echo
+: ${CONDOM=}
+# abort on error or unset variables:
+set -o errexit
+set -o nounset
+
+function die {
+    mesg "$*"
+    exit 1
+}
+
+
+function create_node #
+# environment:
+#  TYPE (char, block)
+#  NODE (filename including any leading directories)
+#  MAJOR, MINOR
+#  OWNER (user.group or unset, which means)
+#  PERMISSIONS (symbolic or unset, which means minimal settings)
+#
+# when this function exits sucessfully,
+# $NODE exists as $TYPE-device with $MAJOR and $MINOR, belongs to
+# $OWNER and has $PERMISSIONS.
+
+{
+    debug_mesg "create_node  $PERMISSIONS $OWNER $MAJOR $MINOR $TYPE $NODE"
+    case "$TYPE" in
+	block|b) TYPE=b;;
+	char|c)  TYPE=c;;
+	*) die "create_node: wrong TYPE given"
+    esac
+
+
+    # Don't remove the node, if it has the correct major/minor
+
+    if test -e "$NODE"
+    then
+
+	# if the file exists, check that it is a $TYPE device with the
+	# correct major and minor
+
+	if test -$TYPE "$NODE"
+	then
+	    ls -l $NODE | {
+
+		read existing_mode existing_nlink \
+		    existing_user existing_group \
+		    existing_major existing_minor \
+		    dummy
+
+		if test "$existing_major" != "$MAJOR," -o "$existing_minor" != "$MINOR"
+		then
+		    # create a new node using the existing
+		    # permissions, ownership and timestamp
+		    $CONDOM rm -f $NODE
+		    $CONDOM mknod --mode="a="  $NODE $TYPE $MAJOR $MINOR
+		fi
+	    }
+	else
+            # create a new node using the existing
+            # permissions, ownership and timestamp
+	    $CONDOM rm -f $NODE
+	    $CONDOM mknod --mode="a="  $NODE $TYPE $MAJOR $MINOR
+	fi
+    else
+	# TODO?: this does not support missing directories, yet:
+	# if the node does not exist yet, create it
+	$CONDOM mknod --mode="a="  $NODE $TYPE $MAJOR $MINOR
+    fi
+
+    # always set ownership and permissions
+    $CONDOM chown $OWNER       $NODE
+    $CONDOM chmod $PERMISSIONS $NODE
+}
+
+
+function create_symlink
+# uses these from the environment:
+# LINK
+# TARGET
+# OWNER (user.group) of the link.  Directory components belong to root.root
+# CONDOM
+{
+    debug_mesg "create_symlink $OWNER  $LINK -> $TARGET"
+    # first create the directory if necessary:
+    local link_dir=$(dirname "$LINK")
+    test -d "$link_dir" || {
+	test -e "$link_dir" && die "$link_dir exists but is not a directory:
+$(ls -l $link_dir)"
+    } || {
+	$CONDOM install --directory --owner=root --group=root "$link_dir"
+    }
+    test -e "$LINK" && rm -rf "$LINK"
+    $CONDOM ln -snf "$TARGET" "$LINK"
+    $CONDOM chown   "$OWNER"  "$LINK"
+}
+
+case $ACTION in
+    add)
+	export NODE=/dev/$DASDNAME
+	export TYPE=block
+	# get $OWNER and $PERMISSIONS
+	MISC=$DEVNO \
+	    dasd_permissions
+	create_node
+	LINK=/dev/dasd/$DEVNO/device TARGET=$NODE \
+	    create_symlink
+	LINK=/dev/dasd/$DEVNO/disk TARGET=$NODE \
+	    create_symlink
+	;;
+
+    remove)
+	$CONDOM rm -f /dev/$DASDNAME*
+	VOLSER=$(ls -l /dev/dasd/$DEVNO/VOLSER | sed -e 's,.*-> ,,')
+	$CONDOM rm -rf /dev/dasd/$DEVNO
+	test "${VOLSER}" != "" && $CONDOM rm -f "$VOLSER"
+	;;
+
+    partchk)
+	export NODE=/dev/$DASDNAME
+	export VOLSER=$(dasdview -j -f $NODE | sed -e 's,[[:space:]]\+$,,')
+	CHECKED_VOLSER=$(
+	    echo "$VOLSER" |
+	    sed -e '
+		# spaces, slashes, asterisks and questionmarks are no good for filenames
+		s/[ /*?]/  space, slash, asterisk or questionmark /g
+		# nor are nonprinting characters
+		s/[^[:print:]]/ nonprinting characters /g
+		# "." and ".." are evil as well
+		s/^\.$/ dot /
+		s/^\.\.$/ dot dot /
+		'
+	    )
+
+	if test "$VOLSER" != "$CHECKED_VOLSER"
+        then
+		mesg "VOLSER label of $NODE is no legal filename: <$VOLSER> ->  <$CHECKED_VOLSER> ignoring it."
+		VOLSER=""
+	fi
+		
+
+	# If the volser label has changed, this is also notified as a
+	# 'partchk' action.  remove the old volser if present and
+	# different from the new one.
+
+	# The VOLSER symlink in the DEVNO directory points to the
+	# VOLSER file for deletion of the VOLSER label after device
+	# removal (the device is no longer available then to query the
+	# VOLSER from there).
+
+	test -e /dev/dasd/$DEVNO/VOLSER && {
+	    OLD_VOLSER="$(ls -l /dev/dasd/$DEVNO/VOLSER | sed -e 's,.*-> ,,')"
+	    test "$OLD_VOLSER" = "/dev/labels/$VOLSER" || {
+		$CONDOM rm -f "$OLD_VOLSER"
+	    }
+	}
+
+	# Get ownership and permissions for the nodes and ownership
+	# for the symlinks:
+
+	MISC=$VOLSER-$DEVNO \
+	    dasd_permissions
+	# add the volser symlink if no other dasd uses that volser yet.
+	test "$VOLSER" != "" -a ! -e /dev/labels/"$VOLSER" && {
+	    LINK=/dev/labels/"$VOLSER" TARGET=../dasd/$DEVNO \
+		create_symlink
+
+	    TARGET=/dev/labels/"$VOLSER" LINK=/dev/dasd/$DEVNO/VOLSER \
+		create_symlink
+	}
+
+	# TODO: for the time being, we ignore /proc/partitions and
+	# create all candidate partitions
+	export TYPE=block
+	for partition in 1 2 3
+	  do
+
+	  NODE=/dev/$DASDNAME$partition
+
+	  # get ownership and permissions for the partition
+	  MISC="$VOLSER"-$DEVNO-$partition dasd_permissions
+
+	  MINOR=$((MINOR + partition)) create_node
+
+	  LINK=/dev/dasd/$DEVNO/part$partition TARGET=$NODE \
+	      create_symlink
+	done
+	;;
+
+    partremove)
+	$CONDOM rm -f /dev/$DASDNAME[123]
+	$CONDOM rm -rf /dev/dasd/$DEVNO/part*
+	;;
+    *)
+	mesg DASD $ACTION event not supported
+	exit 1 ;;
+esac

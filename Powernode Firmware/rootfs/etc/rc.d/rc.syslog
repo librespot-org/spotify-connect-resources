@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [[ $1 == "sync" ]]; then
+	logread >> /var/log/messages
+	sync
+	exit 0
+fi
+
+function current_time
+{
+	date +%s
+}
+
+function file_time
+{
+	date +%s -r $1
+}
+
+# disable log after 30 days
+if [[ -e /var/data/log_enable ]]; then
+	if (( $(current_time) - $(file_time /var/data/log_enable) > 30*24*60*60 )); then
+		rm /var/data/log_enable
+	fi
+fi
+
+# start syslogd
+if [[ -e /var/data/log_enable ]]; then
+	syslogd -s 5000 -b 5
+else
+	syslogd -C256
+fi

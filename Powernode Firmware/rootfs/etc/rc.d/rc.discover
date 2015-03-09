@@ -1,0 +1,34 @@
+#!/bin/bash -e
+
+function get_sovi_info
+{
+	sed -r "s:.*<$1>(.*)</$1>.*:\1:;t;d" /etc/sovi_info.xml
+}
+
+function lc
+{
+	echo "$1" | tr '[A-Z]' '[a-z]'
+}
+
+SDDP_CONF="/tmp/sddp.conf"
+
+BOARD="$(get_sovi_info board)"
+MANUFACTURER="Bluesound"
+TYPE="$(lc $MANUFACTURER):$BOARD"
+PRIMARY_PROXY="media_service"
+PROXIES="$PRIMARY_PROXY"
+DRIVER="$(lc $MANUFACTURER)_$PRIMARY_PROXY.c4z"
+
+function config
+{
+	echo "Type=$TYPE"
+	echo "PrimaryProxy=$PRIMARY_PROXY"
+	echo "Proxies=$PROXIES"
+	echo "Manufacturer=$MANUFACTURER"
+	echo "Model=$BOARD"
+	echo "Driver=$DRIVER"
+	echo "MaxAge=1800"
+}
+
+config > $SDDP_CONF
+sovi-discover --sddp $SDDP_CONF &

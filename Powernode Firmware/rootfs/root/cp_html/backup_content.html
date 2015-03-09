@@ -1,0 +1,124 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Backup / Restore Vault</title> 
+
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" href="css/custom_styles.css">
+	<link rel="stylesheet" href="css/themes/custom/Bluesound_DraftTest0-1.min.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+	
+	</head>
+	<body>
+        <div data-role="page" id="nodenamepage">
+            <div data-theme="b" data-role="header">
+                <a href="/" data-icon="back" data-rel="back" data-iconpos="notext"></a>
+                <h1>Backup / Restore Vault Music</h1>
+                <a href="/" data-icon="home" data-transition="slideup" data-iconpos="notext"></a>
+            </div>
+            <div data-role="content">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a bs-header-image"><img src="images/logo.png" /></div>
+                    <div class="ui-block-b bs-header-text"></div>
+                </div>
+
+		<!-- note exact placement of comment tags matching class for end of div! -->
+		<div class="no-drive" data-role="content">
+			No disk drive is connected. <p>Please connect a USB disk to use for backup or restore.
+			<div><a href="/">Return to Main Menu</a></div>
+		</div><!-- no-drive -->
+
+		<div class="not-backup-disk" data-role="content">
+			The connected disk drive does not appear to be a Bluesound backup drive.
+			<p>You will need to format this drive for use exclusively as a Bluesound backup drive. 
+			<p>Do you want to format this drive?
+			<form id="format-form" method="POST" action="/backup" data-ajax="false">
+			    <div id="submitDiv">
+				<input type="submit" value="Next" name="format" data-inline="true" data-icon="arrow-r" data-iconpos="right" style="float:right" />
+			    </div>
+			</form>
+		</div><!-- not-backup-disk -->
+
+		<div class="confirm-format" data-role="content">
+			FORMATTING THIS DRIVE WILL ERASE ALL CONTENT.
+			<p>Do you want to continue?
+			<form id="format-confirm-form" method="POST" action="/backup" data-ajax="false">
+			    <div id="submitDiv">
+				<input type="submit" value="Back" name="format-confirm" data-inline="true" data-icon="arrow-l" data-iconpos="left" style="float:left" />
+				<input type="submit" value="Next" name="format-confirm" data-inline="true" data-icon="arrow-r" data-iconpos="right" style="float:right" />
+			    </div>
+			</form>
+		</div><!-- confirm-format -->
+
+		<div class="disk-too-small" data-role="content">
+			The connected disk drive is too small for backup.
+			<p>The minimum drive size is [mindrivesize], and the connected drive is [cdrivesize].
+			<p>Please connect a larger drive.
+		</div><!-- disk-too-small -->
+
+		<div class="formatting" data-role="content">
+			Format progress:
+			<div class="formatting-progress">
+				(Some kind of progress indicator tag here.)
+			</div>
+		</div><!-- formatting -->
+
+		<div class="restore-or-backup" data-role="content">
+			A backup drive has been detected.
+			<form id="backup-restore" method="POST" action="/backup" data-ajax="false">
+			    <div data-role="fieldcontain">
+				<fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
+				    <input name="rb" id="backup" value="backup" type="radio" checked />
+				    <label for="backup">Backup music library</label>
+				    <input name="rb" id="restore" value="restore" type="radio" />
+				    <label for="restore">Restore music library</label>
+				</fieldset>
+				    <div id="submitDiv">
+					<input type="submit" value="Cancel" name="action" data-inline="true" data-icon="arrow-l" data-iconpos="left" style="float:left" />
+					<input type="submit" value="Next" name="action" data-inline="true" data-icon="arrow-r" data-iconpos="right" style="float:right" />
+				    </div>
+			    </div>
+			</form>
+		</div><!-- restore-or-backup -->
+
+		<div class="confirm-backup" data-role="content">
+			The backup will create an exact copy of all music on the player. Any music not on the player will be removed from the backup drive.
+			<form id="format-confirm-form" method="POST" action="/backup" data-ajax="false">
+			    <div id="submitDiv">
+				<input type="submit" value="Back" name="backup-confirm" data-inline="true" data-icon="arrow-l" data-iconpos="left" style="float:left" />
+				<input type="submit" value="Next" name="backup-confirm" data-inline="true" data-icon="arrow-r" data-iconpos="right" style="float:right" />
+			    </div>
+			</form>
+		</div><!-- confirm-backup -->
+
+		<div class="confirm-restore" data-role="content">
+			The restore will add all music from your backup drive to the player. It will not delete any music from the player.
+			<form id="format-confirm-form" method="POST" action="/backup" data-ajax="false">
+			    <div id="submitDiv">
+				<input type="submit" value="Back" name="restore-confirm" data-inline="true" data-icon="arrow-l" data-iconpos="left" style="float:left" />
+				<input type="submit" value="Next" name="restore-confirm" data-inline="true" data-icon="arrow-r" data-iconpos="right" style="float:right" />
+			    </div>
+			</form>
+		</div><!-- confirm-restore -->
+
+		<div class="backup-finished" data-role="content">
+			Backup complete.
+			<form id="stop-backup" method="POST" action="/backup" data-ajax="false">
+				<input type="submit" value="Main Menu" name="main" data-inline="true" />
+			</form>
+		</div><!-- backup-finished -->
+
+		<div class="restore-finished" data-role="content">
+			Restore complete.
+			<form id="stop-backup" method="POST" action="/backup" data-ajax="false">
+				<input type="submit" value="Main Menu" name="main" data-inline="true" />
+			</form>
+		</div><!-- restore-finished -->
+
+            </div>
+        </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+#!/bin/bash
+
+function cw1200
+{
+	logger "$0: found cw1200"
+	if [ -e /var/data/intertek ]; then
+		modprobe cw1200_core etf_mode=1
+	else
+		modprobe cw1200_core macaddr=$(printf %012x $((0x$(sed s/://g /sys/class/net/eth0/address) + 1)) | sed "s/../0x&,/g; s/,$//")
+	fi
+	modprobe cw1200_wlan_sdio
+}
+
+function ath6kl
+{
+	logger "$0 found ath6kl"
+	if [[ $1 == "SDIO" ]]; then
+		modprobe ath6kl_sdio
+	elif [[ $1 == "USB" ]]; then
+		modprobe ath6kl_usb
+	fi
+}
+
+if lsusb | grep "0cf3:9374"; then
+	ath6kl USB
+	exit
+fi
+
+if lsusb | grep "2001:3c1a"; then
+	modprobe rt2800usb
+	exit
+fi
+
+if lsusb | grep "0cf3:9271"; then
+	modprobe ath9k_htc
+	exit
+fi
+
+base=/sys/bus/sdio/devices
+
+for dir in $(ls $base); do
+	vendor=$(cat $base/$dir/vendor)
+	device=$(cat $base/$dir/device)
+
+	if [[ $vendor == "0x0020" && $device == "0x2280" ]]; then
+		cw1200
+	elif [[ $vendor == "0x0271" && $device == "0x0301" ]]; then
+		ath6kl SDIO
+	elif [[ $vendor == "0x0271" && $device == "0x0400" ]]; then
+		ath6kl SDIO
+	fi
+done

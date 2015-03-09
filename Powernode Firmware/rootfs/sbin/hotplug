@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# A generic /sbin/hotplug multiplexer program
+#
+# This script allows any program to be called when /sbin/hotplug is
+# called.  It will run any programs located in the default hotplug
+# directory (currently /etc/hotplug.d/) that match up with the first
+# argument that this script is called with.  The matching is done by
+# adding a directory name to the default directory and looking for any
+# programs in that directory that are executable, and end in .hotplug
+# (to allow backup programs to be live on safely.)
+# 
+# For example, if /sbin/hotplug is called with the usb argument then
+# this script will look in the /etc/hotplug.d/usb/ directory for any
+# executable programs that end in .hotplug.
+#
+# After all programs in the argument directory are executed, the
+# "default" directory is searched for any executable programs in it,
+# that end in .hotplug.  The default directory is currently
+# /etc/hotplug.d/default/
+#
+# - Greg Kroah-Hartman
+#   May 1, 2003
+#
+# Released under the GPL Version 2.
+#
+
+DIR="/etc/hotplug.d"
+
+for I in "${DIR}/$1/"*.hotplug "${DIR}/"default/*.hotplug ; do
+	if [ -f $I ]; then
+		test -x $I && $I $1 ;
+	fi
+done
+
+exit 1

@@ -1,0 +1,1 @@
+ACTION=="add", KERNEL=="sr[0-9]*", SYMLINK+="cdrom", RUN+="/etc/udev/rules.d/automount.sh"

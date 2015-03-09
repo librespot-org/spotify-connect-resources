@@ -1,0 +1,82 @@
+#!/bin/sh
+#
+# Network hotplug policy agent for Linux 2.4 kernels
+#
+# Kernel NET hotplug params include:
+#	
+#	ACTION=%s [register or unregister]
+#	INTERFACE=%s
+#
+# HISTORY:
+#
+# 25-Feb-2001	Special case ppp and similar (redhat)
+# 23-Jan-2001	Log invocation of "ifup" if debugging
+# 04-Jan-2001	Initial version of "new" hotplug agent.
+#
+# $Id: net.agent,v 1.18 2004/03/29 22:23:31 kroah Exp $
+#
+
+cd /etc/hotplug
+. ./hotplug.functions
+# DEBUG=yes export DEBUG
+
+if [ "$INTERFACE" = "" ]; then
+    mesg Bad NET invocation: \$INTERFACE is not set
+    exit 1
+fi
+
+case $ACTION in
+add|register)
+    # Red Hat specific hack...
+    if [ -f /etc/redhat-release ]; then
+	# Don't do anything if the network is stopped
+	if [ ! -f /var/lock/subsys/network ]; then
+	    exit 0
+	fi
+    fi
+
+    case $INTERFACE in
+	# interfaces that are registered after being "up" (?)
+	ppp*|ippp*|isdn*|plip*|lo*|irda*|dummy*|ipsec*|tun*|tap*)
+	    debug_mesg assuming $INTERFACE is already up
+	    exit 0
+	    ;;
+	# interfaces that are registered then brought up
+	*)
+	    # NOTE:  network configuration relies on administered state,
+	    # we can't do much here without distro-specific knowledge
+	    # such as whether/how to invoke DHCP, set up bridging, etc.
+
+	    # Run ifrename as needed - Jean II
+	    # Remap interface names based on MAC address. This workaround
+	    # the dreaded configuration problem "all my cards are 'eth0'"...
+	    # This needs to be done before ifup otherwise ifup will get
+	    # confused by the name changed and because iface need to be
+	    # down to change its name.
+	    if [ -x /sbin/ifrename ] && [ -r /etc/iftab ]; then
+		debug_mesg invoke ifrename for $INTERFACE
+		NEWNAME=`/sbin/ifrename -i $INTERFACE`
+		if [ -n "$NEWNAME" ]; then
+		    debug_mesg iface $INTERFACE is remapped to $NEWNAME
+		    INTERFACE=$NEWNAME
+		fi;
+	    fi
+
+	    # RedHat and similar
+	    export IN_HOTPLUG=1
+	    if [ -x /sbin/ifup ]; then
+		debug_mesg invoke ifup $INTERFACE
+		exec /sbin/ifup $INTERFACE
+	    else
+		mesg "how do I bring interfaces up on this distro?"
+	    fi
+	    ;;
+    esac
+    mesg $1 $ACTION event not handled
+    ;;
+
+*)
+    debug_mesg NET $ACTION event not supported
+    exit 1 ;;
+
+esac

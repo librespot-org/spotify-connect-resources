@@ -1,0 +1,22 @@
+=head2 Fri Aug 24 12:41:18 2012: C<Module> L<XML::SimpleObject|XML::SimpleObject>
+
+=over 4
+
+=item *
+
+C<installed into: /usr/lib/perl5/site_perl/5.14.2>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.53>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+

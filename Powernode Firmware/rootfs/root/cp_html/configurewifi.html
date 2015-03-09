@@ -1,0 +1,110 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Configure Wireless</title> 
+
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" href="css/custom_styles.css">
+	<link rel="stylesheet" href="css/themes/custom/Bluesound_DraftTest0-1.min.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+    </head>
+    <body>
+	<div data-role="page" id="configurewifipage">
+	<script language="Javascript" type="text/javascript">
+	$(document).on('pageinit', '#configurewifipage', initForm);
+	function initForm() {
+		disableStuff();
+		document.getElementById("essid").selectIndex = 0;
+		document.getElementById("essid").onchange = disableStuff;
+		document.getElementById("nametext").selectIndex = 0;
+		document.getElementById("nametext").onchange = disableStuff;
+	}
+	function disableStuff() {
+		var essid = document.getElementById("essid");
+		var essidval = essid.options[essid.selectedIndex].value;
+		var keytext = document.getElementById("keytext");
+		var keylabel = document.getElementById("keylabel");
+		var cname = document.getElementById("nametext");
+		var cnameval = cname.options[cname.selectedIndex].value;
+		var cnametext = document.getElementById("customnametext");
+		var cnamelabel = document.getElementById("customnamelabel");
+		// if 'private' is selected, redirect.
+		if (essidval == 'private') {
+			// jqm way
+			$.mobile.changePage("/wifimanual");
+		}
+		if(essidval.indexOf("\tW",0) == -1) {
+			keytext.disabled = true;
+			keylabel.style.color = "#999999";
+			
+		} else {
+			keytext.disabled = false;
+			keylabel.style.color = "#0a0a0a";
+		}
+		if (cnameval != 'custom') {
+			cnametext.disabled = true;
+			cnamelabel.style.color = "#999999";
+			cnametext.value = cnameval;
+		} else {
+			cnametext.disabled = false;
+			cnamelabel.style.color = "#0a0a0a";
+		}
+	}
+	</script>
+	    <div data-theme="b" data-role="header">
+                <a href="/" data-icon="back" data-rel="back" data-iconpos="notext"></a>
+	        <h1>Configure Wireless</h1>
+                <a href="/" data-icon="home" data-transition="slideup" data-iconpos="notext"></a>
+	    </div>
+	    <div data-role="content">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a bs-header-image"><img src="images/logo.png" /></div>
+                    <div class="ui-block-b bs-header-text"></div>
+                </div>
+	        <form id="nodeNameForm" action="/wificfg" method="POST" data-ajax="false">
+	
+			<div id="wificonfigure" data-role="fieldcontain">
+				<label for="essid">Configure Wireless:</label>		
+				<select id="essid" name="essid" tabindex="1">
+<!-- OPTIONS -->
+<!--
+					<option value="sweetk|WPA">sweetk [protected (WPA)]</option>
+					<option value="NETGEAR|">NETGEAR</option>
+    				<option value="VISO-Air-1|WPA">VISO-Air-1 [protected (WPA)]</option>
+					<option value="ShortDove|WPA2">ShortDove [protected (WPA2)]</option>
+					<option value="ShortDove-guest|">ShortDove-guest </option>
+-->
+				</select>
+			</div>
+			<div id="passdiv" data-role="fieldcontain">
+				<label for="keytext" id="keylabel">Enter password or key (if protected):</label>		
+				<input id="keytext" name="key" type="password" tabindex="2"/>
+			</div>
+			<div id="nodediv" data-role="fieldcontain">
+				<label for="nametext" id="namelabel">Player name:</label>		
+				<select id="nametext" name="name" tabindex="3">
+					<option value="custom">Enter custom name below:</option>
+					<option value="Living Room">Living Room</option>
+    				<option value="Dining Room">Dining Room</option>
+					<option value="Master Bedroom">Master Bedroom</option>
+					<option value="Kitchen">Kitchen</option>
+					<option value="Bedroom 1">Bedroom 1</option>
+					<option value="Bedroom 2">Bedroom 2</option>
+					<option value="Kid's Room">Kid's Room</option>
+				</select>
+			</div>
+			<div id="customdiv" data-role="fieldcontain">
+				<label for="customnametext" id="customnamelabel">Custom name:</label>		
+				<input id="customnametext" name="customname" type="text" value="[current_name]" size="20" maxlength="30"/>
+			</div>
+			<div id="submitDiv" data-role="fieldcontain">    
+				<input type="submit" value="Update" data-inline="true"/>
+			</div>
+			</form>
+	    </div>
+	</div>
+    </body>
+</html>

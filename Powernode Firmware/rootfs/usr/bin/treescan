@@ -1,0 +1,110 @@
+#!/usr/bin/perl
+
+eval 'exec /home/kg/N150/main/rpm/BUILD/perl-native/bin/perl  -S $0 ${1+"$@"}'
+    if 0; # not running under some shell
+
+# inspired by treescan by Jamie Lokier <jamie@imbolc.ucc.ie>
+# about 40% faster than the original version (on my fs and raid :)
+
+use common::sense;
+use Getopt::Long;
+use Time::HiRes ();
+use IO::AIO;
+
+our $VERSION = $IO::AIO::VERSION;
+
+Getopt::Long::Configure ("bundling", "no_ignore_case", "require_order", "auto_help", "auto_version");
+
+my ($opt_silent, $opt_print0, $opt_stat, $opt_nodirs,
+    $opt_nofiles, $opt_grep, $opt_progress);
+
+GetOptions
+   "quiet|q"    => \$opt_silent,
+   "print0|0"   => \$opt_print0,
+   "stat|s"     => \$opt_stat,
+   "dirs|d"     => \$opt_nofiles,
+   "files|f"    => \$opt_nodirs,
+   "grep|g=s"   => \$opt_grep,
+   "progress|p" => \$opt_progress,
+   or die "Usage: try $0 --help";
+
+@ARGV = "." unless @ARGV;
+
+$opt_grep &&= qr{$opt_grep}s;
+
+my ($n_dirs, $n_files, $n_stats) = (0, 0, 0);
+my ($n_last, $n_start) = (Time::HiRes::time) x 2;
+
+sub printfn {
+   my ($prefix, $files, $suffix) = @_;
+
+   if ($opt_grep) {
+      @$files = grep "$prefix$_" =~ $opt_grep, @$files;
+   }
+   
+   if ($opt_print0) {
+      print map "$prefix$_$suffix\0", @$files;
+   } elsif (!$opt_silent) {
+      print map "$prefix$_$suffix\n", @$files;
+   }
+}
+
+sub scan {
+   my ($path) = @_;
+
+   $path .= "/";
+
+   IO::AIO::poll_cb;
+
+   if ($opt_progress and $n_last + 1 < Time::HiRes::time) {
+      $n_last = Time::HiRes::time;
+      my $d = $n_last - $n_start;
+      printf STDERR "\r%d dirs (%g/s) %d files (%g/s) %d stats (%g/s)       ",
+             $n_dirs, $n_dirs / $d,
+             $n_files, $n_files / $d,
+             $n_stats, $n_stats / $d
+         if $opt_progress;
+   }
+
+   aioreq_pri -1;
+   ++$n_dirs;
+   aio_scandir $path, 8, sub {
+      my ($dirs, $files) = @_
+         or return warn "$path: $!\n";
+
+      printfn "", [$path]   unless $opt_nodirs;
+      printfn $path, $files unless $opt_nofiles;
+
+      $n_files += @$files;
+
+      if ($opt_stat) {
+         aio_wd $path, sub {
+            my $wd = shift;
+
+            aio_lstat [$wd, $_] for @$files;
+            $n_stats += @$files;
+         };
+      }
+
+      &scan ("$path$_") for @$dirs;
+   };
+}
+
+IO::AIO::max_outstanding 100; # two fds per directory, so limit accordingly
+IO::AIO::min_parallel 20;
+
+for my $seed (@ARGV) {
+   $seed =~ s/\/+$//;
+   aio_lstat "$seed/.", sub {
+      if ($_[0]) {
+         print STDERR "$seed: $!\n";
+      } elsif (-d _) {
+         scan $seed;
+      } else {
+         printfn "", $seed, "/";
+      }
+   };
+}
+
+IO::AIO::flush;
+

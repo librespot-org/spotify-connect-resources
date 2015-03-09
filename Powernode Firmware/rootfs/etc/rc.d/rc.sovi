@@ -1,0 +1,76 @@
+#!/bin/bash
+
+function get_sovi_info
+{
+	sed -r "s:.*<$1>(.*)</$1>.*:\1:;t;d" /etc/sovi_info.xml
+}
+
+BOARD=$(get_sovi_info board)
+SERVER=$(get_sovi_info server)
+CDROM=$(get_sovi_info cdrom)
+
+logger "Starting sovi processes."
+/etc/rc.d/rc.stage0 &
+cd /root
+./dspout.sh
+if [[ $CDROM != "none" ]]; then
+	cdromd &
+	perl ./joc.pl -n &
+fi
+perl ./cp.pl -c /var/data &
+perl ./automounter.pl -c /var/data &
+perl ./ms.pl -d /var/data &
+
+
+# create list of processes to monitor
+
+function add
+{
+	list="$list $1"
+}
+
+add sovi_hal
+add dbus-daemon
+add avahi-daemon
+add avahi-browse-sovi
+add sovi-discover
+add bluetoothd
+add sovi-bt
+add rc.stage0
+add dspout
+add cp.pl
+add automounter.pl
+add ms.pl
+
+if [[ $SERVER == "yes" ]]; then
+	add smbd
+	add nmbd
+fi
+
+if [[ $CDROM != "none" ]]; then
+	add cdromd
+	add joc.pl
+fi
+
+function check
+{
+	pgrep -f $1 > /dev/null 2>&1
+}
+
+# if something dies immediately, give at least some time to do something about it
+sleep 120
+
+while true; do
+	sleep 30
+
+	for process in $list; do
+		if ! check $process; then
+			dmesg | logger
+			logger "***********************************"
+			logger "$process has died!!! Rebooting..."
+			logger "***********************************"
+			/etc/rc.d/rc.syslog sync
+			reboot
+		fi
+	done
+done

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# load kernel drivers
+modprobe btusb
+modprobe ath3k
+modprobe bcm203x
+
+# setup /var/lib/bluetooth
+mkdir -p /var/lib
+mkdir -p /var/data/bluetooth
+ln -s /var/data/bluetooth /var/lib
+
+/usr/libexec/bluetooth/bluetoothd --noplugin=avrcp &
+
+# wait a while to give bluetoothd and ms.pl time to be ready
+sleep 15
+
+[[ ! -e /var/data/bt_aac_enable ]] && BT_AAC=--disable-aac
+chrt -r 1 sovi-bt $BT_AAC &

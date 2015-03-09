@@ -1,0 +1,54 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Configure Bluetooth Settings</title> 
+
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" href="css/custom_styles.css">
+	<link rel="stylesheet" href="css/themes/custom/Bluesound_DraftTest0-1.min.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+	
+	</head>
+	<body>
+        <div data-role="page" id="nodenamepage">
+            <div data-theme="b" data-role="header">
+                <a href="/" data-icon="back" data-rel="back" data-iconpos="notext"></a>
+                <h1>Configure Bluetooth Settings</h1>
+                <a href="/" data-icon="home" data-transition="slideup" data-iconpos="notext"></a>
+            </div>
+            <div data-role="content">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a bs-header-image"><img src="images/logo.png" /></div>
+                    <div class="ui-block-b bs-header-text"></div>
+                </div>
+                <form id="btform" method="POST" action="/bluetooth" data-ajax="false">
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
+                            <legend>Bluetooth Mode:</legend>
+                            <input name="autoplay" id="autoplay1" value="0" type="radio" />
+                            <label for="autoplay1">Manual</label>
+                            <input name="autoplay" id="autoplay2" value="1" type="radio" />
+                            <label for="autoplay2">Automatic</label>
+                            <input name="autoplay" id="autoplay3" value="2" type="radio" />
+                            <label for="autoplay3">Guest</label>
+                        </fieldset>
+		    <div data-role="content">
+		    Manual mode allows you to switch between sources in the navigation drawer.<p>
+		    Automatic mode switches to the Bluetooth source when a connected Bluetooth device starts playing audio. You can then switch between sources in the navigation drawer.<p> 
+		    Guest mode switches to the Bluetooth source when a connected Bluetooth device starts playing audio. If you change to another source, Bluetooth will disconnect. The Bluetooth source does not appear in the navigation drawer.
+		    </div>
+                    </div>
+                    <div id="submitDiv">
+                        <input type="submit" value="Disconnect [devicename]" name="disconnect" data-inline="true" />
+                    </div>
+                    <div id="submitDiv">
+                        <input type="submit" value="Update" data-inline="true" />
+                    </div>
+                </form>
+            </div>
+        </div>
+</body>
+</html>

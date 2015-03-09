@@ -1,0 +1,150 @@
+#!/bin/sh
+#
+# input.rc	This loads handlers for those input devices
+#		that have drivers compiled in kernel
+#		Currently stopping is not supported
+#
+# Best invoked via /etc/rc.d/init.d/hotplug or equivalent, with
+# writable /tmp, /usr mounted, and syslogging active.
+#
+
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+PROCDIR=/proc/bus/input
+
+# source function library
+if [ -f /etc/rc.d/init.d/functions ]; then
+	. /etc/rc.d/init.d/functions
+elif [ -f /etc/rc.d/init.d/functions ]; then
+	. /etc/rc.d/init.d/functions
+fi
+
+if [ -f /etc/hotplug/hotplug.functions ]; then
+	. /etc/hotplug/hotplug.functions
+fi
+
+input_reset_state () {
+
+    PRODUCT=
+    NAME=
+    PHYS=
+    EV=
+    KEY=
+    REL=
+    ABS=
+    MSC=
+    LED=
+    SND=
+    FF=
+
+}
+
+#
+# "COLD PLUG" ... load input handlers for compile-in input drivers loaded
+# before the OS could really handle hotplug, perhaps because /sbin or
+# $HOTPLUG_DIR wasn't available or /tmp wasn't writable.  When/if the
+# /sbin/hotplug program is invoked then, hotplug event notifications
+# get dropped.  To make up for such "cold boot" errors, we synthesize
+# all the hotplug events we expect to have seen already.  They can be
+# out of order, and some might be duplicates.
+#
+input_boot_events ()
+{
+    # do not even try if /proc/bus/input is missing
+    [ -d $PROCDIR ] || return
+
+    if [ ! -r $PROCDIR/devices ]; then
+	    echo $"** can't synthesize input events - $PROCDIR/devices missing"
+	    return
+    fi
+
+    ACTION=add
+    export ACTION
+
+    export PRODUCT NAME PHYS EV KEY REL ABS MSC LED SND FF
+    input_reset_state
+
+    local line
+
+    #
+    # the following reads from /proc/bus/input/devices. It is inherently
+    # racy (esp. as this file may be changed by input.agent invocation)
+    # but so far input devices do not appear in sysfs
+    #
+    while read line; do
+	case "$line" in
+	    I:* )	# product ID
+		eval "${line#I: }"
+		PRODUCT=$Bus/$Vendor/$Product/$Version
+	    ;;
+	    N:* )	# name
+		eval "${line#N: }"
+		NAME="$Name"
+	    ;;
+	    P:* )	# Physical
+		eval "${line#P: }"
+		PHYS=$Phys
+	;;
+	    B:* )	# Controls supported
+		line="${line#B: }"
+		eval "${line%%=*}=\"${line#*=}\""
+	    ;;
+	    "" )	# End of block
+		debug_mesg "Invoking input.agent"
+		debug_mesg "PRODUCT=$PRODUCT"
+		debug_mesg "NAME=$NAME"
+		debug_mesg "PHYS=$PHYS"
+		debug_mesg "EV=$EV"
+		debug_mesg "KEY=$KEY"
+		debug_mesg "REL=$REL"
+		debug_mesg "ABS=$ABS"
+		debug_mesg "MSC=$MSC"
+		debug_mesg "LED=$LED"
+		debug_mesg "SND=$SND"
+		debug_mesg "FF=$FF"
+		/etc/hotplug/input.agent < /dev/null
+		input_reset_state
+	    ;;
+	esac
+    done < $PROCDIR/devices
+}
+
+
+# See how we were called.
+case "$1" in
+  start)
+	input_boot_events
+        ;;
+  stop)
+	: not supported currently
+        ;;
+  status)
+	echo $"INPUT status for kernel: " `uname -srm`
+	echo ''
+
+	echo "INPUT devices:"
+	if [ -r $PROCDIR/devices ]; then
+	    grep "^[INHP]:" $PROCDIR/devices
+	else
+	    echo "$PROCDIR/devices not available"
+	fi
+	echo ''
+
+	echo "INPUT handlers:"
+	if [ -r $PROCDIR/handlers ]; then
+	    cat $PROCDIR/handlers
+	else
+	    echo "$PROCDIR/handlers not available"
+	fi
+
+	echo ''
+
+	;;
+  restart)
+	# always invoke by absolute path, else PATH=$PATH:
+	$0 stop && $0 start
+	;;
+  *)
+        echo $"Usage: $0 {start|stop|status|restart}"
+        exit 1
+esac

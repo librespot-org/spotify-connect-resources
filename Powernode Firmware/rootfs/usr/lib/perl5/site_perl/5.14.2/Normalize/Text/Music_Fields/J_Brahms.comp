@@ -1,0 +1,868 @@
+# format = mail-header
+
+
+
+## This is a very primitive list, not taking into account sub-opuses
+
+
+Title-Type: Piano Sonata
+Title-No: 1
+Title-Key: C major
+Title-Opus: 1
+Title-Dates: 1852
+
+
+
+Title-Type: Piano Sonata
+Title-No: 2
+Title-Key: F sharp minor
+Title-Opus: 2
+Title-Dates: 1852
+
+
+
+Title-Count: Six
+Title-Type: Songs
+Title-Opus: 3
+Title-Dates: 1853
+
+
+
+Title-Type: Scherzo
+Title-Key: E flat minor
+Title-For: piano
+Title-Opus: 4
+Title-Dates: 1851
+
+
+
+Title-Type: Piano Sonata
+Title-No: 3
+Title-Key: F minor
+Title-Opus: 5
+Title-Dates: 1853
+
+
+
+Title-Count: Six
+Title-Type: Songs
+Title-Opus: 6
+
+
+
+Title-Count: Six
+Title-Type: Songs
+Title-Opus: 7
+
+
+
+Title-Type: Piano Trio
+Title-No: 1
+Title-Key: B major
+Title-Opus: 8
+Title-Dates: 1854
+
+
+
+Title-RAW: Variations on a theme by Robert Schumann
+Title-Key: F sharp minor
+Title-For: piano
+Title-Opus: 9
+Title-Dates: 1854
+
+
+
+Title-Count: Four
+Title-Type: Ballades
+Title-For: piano
+Title-Opus: 10
+Title-Dates: 1854
+
+
+
+Title-Type: Serenade
+Title-No: 1
+Title-Key: D major
+Title-For: orchestra
+Title-Opus: 11
+Title-Dates: 1857
+
+
+
+Title-Name: Ave Maria
+Title-Opus: 12
+
+
+
+Title-Name: Begräbnisgesang
+Title-Opus: 13
+
+
+
+Title-Count: Eight
+Title-Type: Songs and Romances
+Title-Opus: 14
+
+
+
+Title-Type: Piano Concerto
+Title-No: 1
+Title-Key: D minor
+Title-Opus: 15
+Title-Dates: 1859
+
+
+
+Title-Type: Serenade
+Title-No: 2
+Title-Key: A major
+Title-For: orchestra
+Title-Opus: 16
+Title-Dates: 1859
+
+
+
+Title-Count: Four
+Title-Type: Songs
+Title-For: female voices, two horns and harp
+Title-Opus: 17
+
+
+
+Title-Type: String Sextet
+Title-No: 1
+Title-Key: B flat major
+Title-Opus: 18
+Title-Dates: 1860
+
+
+
+Title-Count: Five
+Title-Type: Poems
+Title-Opus: 19
+
+
+
+Title-Count: Three
+Title-Type: Duets
+Title-Opus: 20
+
+
+
+Title-RAW: Two Sets of Variations
+Title-For: piano
+Title-Opus: 21
+
+
+
+Title-Name: Marienlieder
+Title-Opus: 22
+
+
+
+Title-RAW: Variations on a Theme by Robert Schumann
+Title-For: piano, four hands
+Title-Opus: 23
+Title-Dates: 1861
+
+
+
+Title-RAW: Variations and Fugue on a Theme by Handel
+Title-For: piano
+Title-Opus: 24
+Title-Dates: 1861
+
+
+
+Title-Type: Piano Quartet
+Title-No: 1
+Title-Key: G minor
+Title-Opus: 25
+Title-Dates: 1861
+
+
+
+Title-Type: Piano Quartet
+Title-No: 2
+Title-Key: A major
+Title-Opus: 26
+Title-Dates: 1861
+
+
+
+Title-RAW: Psalm 13
+Title-Opus: 27
+
+
+
+Title-Count: Four
+Title-Type: Duets
+Title-Opus: 28
+
+
+
+Title-Count: Two
+Title-Type: Motets
+Title-Opus: 29
+Title-Dates: 1860, published 1864
+
+
+
+Title-RAW: Geistliches Lied
+Title-Opus: 30
+
+
+
+Title-Count: Three
+Title-Type: Vocal Quartets
+Title-Opus: 31
+
+
+
+Title-Count: Nine
+Title-Type: Songs
+Title-Opus: 32
+
+
+
+Title-Count: Fifteen
+Title-Type: Romances
+Title-Related-How: from Tieck's
+Title-Related-Name: Liebesgeschichte der schönen Magelone
+Title-Opus: 33
+
+
+
+Title-Type: Piano Quintet
+Title-Key: F minor
+Title-Opus: 34
+Title-Dates: 1864
+
+
+
+Title-Type: Sonata
+Title-For: 2 Pianos
+Title-Key: F minor
+Title-Opus: 34b
+
+
+
+Title-RAW: Variations on a Theme by Paganini
+Title-For: Piano
+Title-Opus: 35
+Title-Dates: 1862-1863
+
+
+
+Title-Type: String Sextet
+Title-No: 2
+Title-Opus: 36
+
+
+
+Title-Count: Three
+Title-Type: Sacred Choruses
+Title-Opus: 37
+
+
+
+Title-Type: Cello Sonata
+Title-No: 1
+Title-Key: E minor
+Title-Opus: 38
+Title-Dates: 1862-65
+
+
+
+Title-Count: Sixteen
+Title-Type: Waltzes
+Title-For: piano, four hands
+Title-Opus: 39
+Title-Dates: 1865
+
+
+
+Title-Type: Trio
+Title-For: Horn, Violin and Piano
+Title-Key: E flat major
+Title-Opus: 40
+Title-Dates: 1865
+
+
+
+Title-Count: Five
+Title-Type: Songs
+Title-For: male voices
+Title-Opus: 41
+
+
+
+Title-Count: Three
+Title-Type: secular songs
+Title-For: choir
+Title-Opus: 42
+
+
+
+Title-Count: Four
+Title-Type: Songs
+Title-Opus: 43
+
+
+
+Title-Count: Twelve
+Title-Type: Songs and Romances
+Title-Opus: 44
+
+
+
+Title-Name: Ein deutsches Requiem
+Title-Opus: 45
+Title-Dates: 1868
+
+
+
+Title-Count: Four
+Title-Type: Songs
+Title-Opus: 46
+
+
+
+Title-Count: Five
+Title-Type: Songs
+Title-Opus: 47
+
+
+
+Title-Count: Seven
+Title-Type: Songs
+Title-Opus: 48
+
+
+
+Title-RAW: Five Songs -- (#4, "Wiegenlied", is also known as "Brahms' Lullaby")
+Title-Opus: 49
+
+
+
+Title-Name: Rinaldo
+Title-Opus: 50
+
+
+
+Title-Count: Two
+Title-Type: String Quartets
+Title-Opus: 51
+
+
+
+Title-Count: Eighteen
+Title-Name: Liebeslieder-Waltzer
+Title-For: piano, four hands and vocal quartet
+Title-Name: ad libitum
+Title-Opus: 52
+Title-Dates: 1874
+
+
+
+Title-RAW: Alto Rhapsody
+Title-Opus: 53
+
+
+
+Title-Name: Schicksalslied
+Title-Opus: 54
+
+
+
+Title-Name: Triumphlied
+Title-Opus: 55
+
+
+
+Title-RAW: Variations on a Theme by Joseph Haydn
+Title-Opus: 56
+Title-Dates: 1873
+
+
+
+Title-Count: Eight
+Title-Type: Songs
+Title-Opus: 57
+
+
+
+Title-Count: Eight
+Title-Type: Songs
+Title-Opus: 58
+
+
+
+Title-Count: Eight
+Title-Type: Songs
+Title-Opus: 59
+
+
+
+Title-Type: Piano Quartet
+Title-No: 3
+Title-Key: C minor
+Title-Opus: 60
+
+
+
+Title-Count: Four
+Title-Type: Duets
+Title-Opus: 61
+
+
+
+Title-Count: Seven
+Title-Type: secular songs
+Title-For: choir
+Title-Opus: 62
+
+
+
+Title-Count: Nine
+Title-Type: Songs
+Title-Opus: 63
+
+
+
+Title-Count: Three
+Title-Type: Vocal Quartets
+Title-Opus: 64
+
+
+
+Title-RAW: Neue Liebeslieder - 15 Waltzes
+Title-Opus: 65
+
+
+
+Title-Count: Five
+Title-Type: Duets
+Title-Opus: 66
+
+
+
+Title-Type: String Quartet
+Title-No: 3
+Title-Key: B flat major
+Title-Opus: 67
+Title-Dates: 1876
+
+
+
+Title-Type: Symphony
+Title-No: 1
+Title-Key: C minor
+Title-Opus: 68
+Title-Dates: 1876 première
+
+
+
+Title-Count: Nine
+Title-Type: Songs
+Title-Opus: 69
+
+
+
+Title-Count: Four
+Title-Type: Songs
+Title-Opus: 70
+
+
+
+Title-Count: Five
+Title-Type: Songs
+Title-Opus: 71
+
+
+
+Title-Count: Five
+Title-Type: Songs
+Title-Opus: 72
+
+
+
+Title-Type: Symphony
+Title-No: 2
+Title-Key: D major
+Title-Opus: 73
+Title-Dates: 1877
+
+
+
+Title-Count: Two
+Title-Type: Motets
+Title-Opus: 74
+
+
+
+Title-Count: Four
+Title-Type: Ballads and Romances
+Title-Opus: 75
+
+
+
+Title-Count: Eight
+Title-Type: Pieces
+Title-For: piano
+Title-Opus: 76
+Title-Dates: 1878
+
+
+
+Title-Type: Violin Concerto
+Title-Key: D major
+Title-Opus: 77
+Title-Dates: 1878
+
+
+
+Title-Type: Violin Sonata
+Title-No: 1
+Title-Key: G major
+Title-Opus: 78
+
+
+
+Title-Count: Two
+Title-Type: Rhapsodies
+Title-For: piano
+Title-Opus: 79
+Title-Dates: 1879
+
+
+
+Title-Name: Academic Festival Overture
+Title-For: orchestra
+Title-Opus: 80
+Title-Dates: 1880
+
+
+
+Title-Name: Tragic Overture
+Title-For: orchestra
+Title-Opus: 81
+Title-Dates: 1880
+
+
+
+Title-Name: Nänie
+Title-Opus: 82
+Title-Dates: 1881
+
+
+
+Title-Type: Piano Concerto
+Title-No: 2
+Title-Key: B flat major
+Title-Opus: 83
+Title-Dates: 1881
+
+
+
+Title-Type: Romances and Songs
+Title-Opus: 84
+
+
+
+Title-Count: Six
+Title-Type: Songs
+Title-Opus: 85
+
+
+
+Title-Count: Six
+Title-Type: Songs
+Title-Opus: 86
+
+
+
+Title-Type: Piano Trio
+Title-No: 2
+Title-Key: C major
+Title-Opus: 87
+
+
+
+Title-Type: String Quintet
+Title-No: 1
+Title-Key: F major
+Title-Opus: 88
+Title-Dates: 1882
+
+
+
+Title-Name: Gesang der Parzen
+Title-Opus: 89
+
+
+
+Title-Type: Symphony
+Title-No: 3
+Title-Key: F major
+Title-Opus: 90
+Title-Dates: 1883
+
+
+
+Title-Count: Two
+Title-Type: Songs
+Title-For: Voice, Viola & Piano
+Title-Opus: 91
+
+
+
+Title-Count: Four
+Title-Type: Vocal Quartets
+Title-Opus: 92
+
+
+
+Title-Count: Six
+Title-Type: Songs and Romances
+Title-For: choir
+Title-Opus: 93
+
+
+
+Title-Count: Five
+Title-Type: Songs
+Title-Opus: 94
+
+
+
+Title-Count: Seven
+Title-Type: Songs
+Title-Opus: 95
+
+
+
+Title-Count: Four
+Title-Type: Songs
+Title-Opus: 96
+
+
+
+Title-Count: Six
+Title-Type: Songs
+Title-Opus: 97
+
+
+
+Title-Type: Symphony
+Title-No: 4
+Title-Key: E minor
+Title-Opus: 98
+Title-Dates: 1885
+
+
+
+Title-Type: Cello Sonata
+Title-No: 2
+Title-Key: F major
+Title-Opus: 99
+Title-Dates: 1886
+
+
+
+Title-Type: Violin Sonata
+Title-No: 2
+Title-Key: A major
+Title-Opus: 100
+Title-Dates: 1886
+
+
+
+Title-Type: Piano Trio
+Title-No: 3
+Title-Key: C minor
+Title-Opus: 101
+Title-Dates: 1886
+
+
+
+Title-Type: Double Concerto
+Title-For: Violin and Cello
+Title-Key: A minor
+Title-Opus: 102
+Title-Dates: 1887
+
+
+
+Title-Name: Zigeunerlieder
+Title-Opus: 103
+
+
+
+Title-Count: Five
+Title-Type: songs
+Title-For: choir
+Title-Opus: 104
+
+
+
+Title-Count: Five
+Title-Type: Songs
+Title-Opus: 105
+
+
+
+Title-Count: Five
+Title-Type: Songs
+Title-Opus: 106
+
+
+
+Title-Count: Five
+Title-Type: Songs
+Title-Opus: 107
+
+
+
+Title-Type: Violin Sonata
+Title-No: 3
+Title-Key: D minor
+Title-Opus: 108
+
+
+
+Title-Name: Fest- und Gedenksprüche
+Title-For: choir
+Title-Opus: 109
+
+
+
+Title-Count: Three
+Title-Type: Motets
+Title-Opus: 110
+
+
+
+Title-Type: String Quintet
+Title-No: 2
+Title-Key: G major
+Title-Name: Prater
+Title-Opus: 111
+Title-Dates: 1890
+
+
+
+Title-Count: Six
+Title-Type: Vocal Quartets
+Title-Opus: 112
+
+
+
+Title-Count: Thirteen
+Title-Type: Canons
+Title-For: female choir
+Title-Opus: 113
+
+
+
+Title-Type: Trio
+Title-For: Piano, Clarinet, and Cello
+Title-Key: A minor
+Title-Opus: 114
+Title-Dates: 1891
+
+
+
+Title-Type: Quintet
+Title-For: Clarinet and Strings
+Title-Key: B minor
+Title-Opus: 115
+Title-Dates: 1891
+
+
+
+Title-Count: Seven
+Title-Type: Fantasias
+Title-For: piano
+Title-Opus: 116
+Title-Dates: 1892
+
+
+
+Title-Count: Three
+Title-Type: Intermezzi
+Title-For: piano
+Title-Opus: 117
+Title-Dates: 1892
+
+
+
+Title-Count: Six
+Title-Type: Pieces
+Title-For: Piano
+Title-Opus: 118
+Title-Dates: 1893
+
+
+
+Title-Count: Four
+Title-Type: Pieces
+Title-For: piano
+Title-Opus: 119
+Title-Dates: 1893
+
+
+
+Title-Count: Two
+Title-Type: Clarinet Sonatas
+Title-Opus: 120
+
+
+
+Title-Name: Vier ernste Gesänge
+Title-RAW: ("Four Serious Songs")
+Title-Opus: 121
+Title-Dates: 1896
+
+
+
+Title-Count: Eleven
+Title-Type: Chorale Preludes
+Title-For: organ
+Title-Opus: 122
+Title-Dates: 1896
+
+
+
+Title-RAW: Hungarian Dances (1869) (Brahms considered these adaptations, not original works, and so he did not assign an Opus #) [1]
+Title-Opus: WoO 1
+
+
+
+Title-RAW: Chorale Prelude and Fugue on â€žO Traurigkeit, o Herzeleidâ€œ
+Title-For: organ
+Title-Opus: WoO 7
+
+
+
+Title-Type: Fugue
+Title-Key: A flat minor
+Title-For: organ
+Title-Opus: WoO 8
+
+
+
+Title-Type: Prelude and Fugue
+Title-Key: A minor
+Title-For: organ
+Title-Opus: WoO 9
+
+
+
+Title-Type: Prelude and Fugue
+Title-Key: G minor
+Title-For: organ
+Title-Opus: WoO 10
+
+
+

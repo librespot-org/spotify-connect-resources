@@ -1,0 +1,174 @@
+#       $NetBSD: services,v 1.18 1996/03/26 00:07:58 mrg Exp $
+#
+# Network services, Internet style
+#
+#       from: @(#)services      5.8 (Berkeley) 5/9/91
+#
+tcpmux          1/tcp           
+echo            7/tcp
+echo            7/udp
+discard         9/tcp           sink null
+discard         9/udp           sink null
+systat          11/tcp          users
+daytime         13/tcp
+daytime         13/udp
+netstat         15/tcp
+qotd            17/tcp          quote
+msp             18/tcp          
+msp             18/udp          
+chargen         19/tcp          ttytst source
+chargen         19/udp          ttytst source
+ftp-data        20/tcp          
+ftp             21/tcp
+ssh             22/tcp
+ssh             22/udp
+telnet          23/tcp
+# 24 - private
+smtp            25/tcp          mail
+# 26 - unassigned
+time            37/tcp          timserver
+time            37/udp          timserver
+rlp             39/udp          resource        
+nameserver      42/tcp          name            
+whois           43/tcp          nicname
+domain          53/tcp          nameserver      
+domain          53/udp          nameserver
+mtp             57/tcp                          
+bootps          67/tcp          
+bootps          67/udp
+bootpc          68/tcp          
+bootpc          68/udp
+tftp            69/udp
+gopher          70/tcp          
+gopher          70/udp
+rje             77/tcp          netrjs
+finger          79/tcp
+www             80/tcp          http    
+www             80/udp                  
+link            87/tcp          ttylink
+kerberos        88/tcp          krb5    
+kerberos        88/udp
+supdup          95/tcp
+# 100 - reserved
+hostnames       101/tcp         hostname        
+iso-tsap        102/tcp         tsap            
+csnet-ns        105/tcp         cso-ns  
+csnet-ns        105/udp         cso-ns
+rtelnet         107/tcp         
+rtelnet         107/udp
+pop2            109/tcp         pop-2 postoffice        
+pop2            109/udp
+pop3            110/tcp         pop-3 
+pop3            110/udp
+sunrpc          111/tcp
+sunrpc          111/udp
+auth            113/tcp         authentication tap ident
+sftp            115/tcp
+uucp-path       117/tcp
+nntp            119/tcp         readnews untp   
+ntp             123/tcp
+ntp             123/udp                         
+netbios-ns      137/tcp                         
+netbios-ns      137/udp
+netbios-dgm     138/tcp                         
+netbios-dgm     138/udp
+netbios-ssn     139/tcp                         
+netbios-ssn     139/udp
+imap2           143/tcp         imap            
+imap2           143/udp
+snmp            161/udp                         
+snmp-trap       162/udp         snmptrap        
+cmip-man        163/tcp                         
+cmip-man        163/udp
+cmip-agent      164/tcp
+cmip-agent      164/udp
+xdmcp           177/tcp                         
+xdmcp           177/udp
+nextstep        178/tcp         NeXTStep NextStep       
+nextstep        178/udp         NeXTStep NextStep       
+bgp             179/tcp                         
+bgp             179/udp
+prospero        191/tcp                         
+prospero        191/udp
+irc             194/tcp                         
+irc             194/udp
+smux            199/tcp                         
+smux            199/udp
+at-rtmp         201/tcp                         
+at-rtmp         201/udp
+at-nbp          202/tcp                         
+at-nbp          202/udp
+at-echo         204/tcp                         
+at-echo         204/udp
+at-zis          206/tcp                         
+at-zis          206/udp
+z3950           210/tcp         wais            
+z3950           210/udp         wais
+ipx             213/tcp                         
+ipx             213/udp
+imap3           220/tcp                         
+imap3           220/udp                         
+ulistserv       372/tcp                         
+ulistserv       372/udp
+#
+# UNIX specific services
+#
+exec            512/tcp
+biff            512/udp         comsat
+login           513/tcp
+who             513/udp         whod
+shell           514/tcp         cmd             
+syslog          514/udp
+printer         515/tcp         spooler         
+talk            517/udp
+ntalk           518/udp
+route           520/udp         router routed   
+timed           525/udp         timeserver
+tempo           526/tcp         newdate
+courier         530/tcp         rpc
+conference      531/tcp         chat
+netnews         532/tcp         readnews
+netwall         533/udp                         
+uucp            540/tcp         uucpd           
+remotefs        556/tcp         rfs_server rfs  
+#
+webster         765/tcp                         
+webster         765/udp
+# temporary entry (not officially registered by the Samba Team!)
+swat            901/tcp         
+#
+ingreslock      1524/tcp
+ingreslock      1524/udp
+prospero-np     1525/tcp                
+prospero-np     1525/udp
+rfe             5002/tcp                
+rfe             5002/udp                
+#
+#
+# Kerberos (Project Athena/MIT) services
+# Note that these are for Kerberos v4, and are unofficial.
+#
+5A
+klogin          543/tcp                 
+kshell          544/tcp         krcmd   
+kerberos-adm    749/tcp                 
+kerberos4       750/udp         kdc     
+kerberos4       750/tcp         kdc     
+kerberos-master 751/udp                 
+kerberos-master 751/tcp                 
+krbupdate       760/tcp         kreg    
+kpasswd         761/tcp         kpwd    
+eklogin         2105/tcp                
+#
+# Unofficial but necessary (for NetBSD) services
+#
+supfilesrv      871/tcp                 
+supfiledbg      1127/tcp                
+#
+# AppleTalk DDP entries (DDP: Datagram Delivery Protocol)
+#
+rtmp            1/ddp                   
+nbp             2/ddp                   
+echo            4/ddp                   
+zip             6/ddp                   
+

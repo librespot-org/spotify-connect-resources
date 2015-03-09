@@ -1,0 +1,76 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Configure Audio Settings</title> 
+
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" href="css/custom_styles.css">
+	<link rel="stylesheet" href="css/themes/custom/Bluesound_DraftTest0-1.min.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+	
+	</head>
+	<body>
+        <div data-role="page" id="nodenamepage">
+            <div data-theme="b" data-role="header">
+                <a href="/" data-icon="back" data-rel="back" data-iconpos="notext"></a>
+                <h1>Configure Audio Settings</h1>
+                <a href="/" data-icon="home" data-transition="slideup" data-iconpos="notext"></a>
+            </div>
+            <div data-role="content">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a bs-header-image"><img src="images/logo.png" /></div>
+                    <div class="ui-block-b bs-header-text"></div>
+                </div>
+                <form id="analogForm" method="POST" action="/audiosettings" data-ajax="false">
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup" data-type="vertical" data-mini="true"  [volumevisibility]>
+                            <legend>Audio output level:</legend>
+                            <input name="volume" id="radio1" value="variable" type="radio" />
+                            <label for="radio1">Variable</label>
+                            <input name="volume" id="radio2" value="fixed" type="radio" />
+                            <label for="radio2">Fixed</label>
+                        </fieldset>
+                        <div data-role="fieldcontain" data-mini="true" style="visibility: [limitsvisibility]">
+                            <input type="hidden" name="max_vol_current" value="[max_vol_current]">
+                            <input type="hidden" name="min_vol_current" value="[min_vol_current]">
+                            <span [limitsvisibility]>
+                                <label for="max_vol">Top volume limit (dB):</label>     
+                                <input id="max_vol" name="max_vol" value="[max_vol_current]" tabindex="1">
+                                <label for="min_vol">Bottom volume limit (dB):</label>      
+                                <input id="min_vol" name="min_vol" value="[min_vol_current]">
+                            </span>
+                        </div>
+                        <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
+                            <legend>Replay-gain:</legend>
+                            <input name="gain" id="gain1" value="none" type="radio" />
+                            <label for="gain1">Replay-gain disabled</label>
+                            <input name="gain" id="gain2" value="track" type="radio" />
+                            <label for="gain2">Use track gain</label>
+                            <input name="gain" id="gain3" value="album" type="radio" />
+                            <label for="gain3">Use album gain</label>
+                            <input name="gain" id="gain4" value="smart" type="radio" />
+                            <label for="gain4">Use smart gain</label>
+                        </fieldset>
+                        <fieldset data-role="controlgroup" data-type="vertical" data-mini="true" [modevisibility]>
+                            <legend>Output mode:</legend>
+                            <input name="mode" id="mode1" value="default" type="radio" />
+                            <label for="mode1">Normal</label>
+                            <input name="mode" id="mode2" value="left" type="radio" />
+                            <label for="mode2">Left channel only</label>
+                            <input name="mode" id="mode3" value="right" type="radio" />
+                            <label for="mode3">Right channel only</label>
+                            <input name="mode" id="mode4" value="mono" type="radio" />
+                            <label for="mode4">Mono</label>
+                        </fieldset>
+                    </div>
+                    <div id="submitDiv">
+                        <input type="submit" value="Update" data-inline="true" />
+                    </div>
+                </form>
+            </div>
+        </div>
+</body>
+</html>

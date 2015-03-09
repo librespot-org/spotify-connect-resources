@@ -1,0 +1,66 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Configure Music Services</title> 
+
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.min.css" />
+	<link rel="stylesheet" href="css/custom_styles.css">
+	<link rel="stylesheet" href="css/themes/custom/Bluesound_DraftTest0-1.min.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+	
+	</head>
+	<body>
+	<div data-role="page" id="configservicespage">
+            <div data-theme="b" data-role="header">
+                <!-- Use explicit ref to "/" for back as can arrive here via direct link -->
+                <a href="/" data-icon="back" data-transition="slide" data-direction="reverse" data-iconpos="notext"></a>
+                <h1>Configure Music Services</h1>
+                <a href="/" data-icon="home" data-transition="slideup" data-iconpos="notext"></a>
+            </div>
+	    <div data-role="content">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a bs-header-image"><img src="images/logo.png" /></div>
+                    <div class="ui-block-b bs-header-text"></div>
+                </div>
+	        <ul data-role="listview" data-divider-theme="b" data-inset="true">
+                    <li id="aupeo" data-theme="c"><a href="/credentials?service=Aupeo" data-transition="slide">Aupeo
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/Aupeo100pxWidthGreen.png" class="bs-list-img"></scan></a></li>
+                    <li id="deezer" data-theme="c"><a href="/credentials?service=Deezer" data-transition="slide">Deezer
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/DeezerLogo.png" class="bs-list-img"></scan></a></li>
+                    <li id="hdtdownload" data-theme="c"><a href="/hdtdownload" data-transition="slide">HDtracks
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/HDTLogo.png" class="bs-list-img"></scan></a></li>
+                    <li id="hradownload" data-theme="c"><a href="/hradownload" data-transition="slide">HIGHRESAUDIO
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/HRALogo.png" class="bs-list-img"></scan></a></li>
+                    <li id="juke" data-theme="c"><a href="/credentials?service=Juke" data-transition="slide">JUKE
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/JukeLogo.png" class="bs-list-img"></scan></a></li>
+                    <li id="lastfm" data-theme="c"><a href="/credentials?service=Lastfm" data-transition="slide">Last.fm
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/lastfm_red.png"></scan></a></li>
+                    <li id="murfie" data-theme="c"><a href="/credentials?service=Murfie" data-transition="slide">Murfie
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/MurfieLogo.png"></scan></a></li>
+                    <li id="napster" data-theme="c"><a href="/credentials?service=Napster" data-transition="slide">Napster
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/NapsterLogo.png"></scan></a></li>
+                    <li id="qobuz" data-theme="c"><a href="/credentials?service=Qobuz" data-transition="slide">Qobuz
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/qobuzLogo.png"></scan></a></li>
+                    <li id="rdio" data-theme="c"><a href=/credentials?service=Rdio data-transition="slide">Rdio
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/RdioBlueLogo.png"></scan></a></li>
+                    <li id="rhapsody" data-theme="c"><a href="/credentials?service=Rhapsody" data-transition="slide">Rhapsody
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/RhapsodyLogo.png"></scan></a></li>
+                    <li id="slacker" data-theme="c"><a href=/credentials?service=Slacker data-transition="slide">Slacker
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/SlackerLogo.png"></scan></a></li>
+                    <li id="spotify" data-theme="c"><a href="/spotifyinfo" data-transition="slide">Spotify
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/SpotifyLogo.png"></scan></a></li>
+                    <li id="tidal" data-theme="c"><a href="/credentials?service=Tidal" data-transition="slide">Tidal
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/TidalLogo.png"></scan></a></li>
+                    <li id="tunein" data-theme="c"><a href="/credentials?service=TuneIn" data-transition="slide">TuneIn
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/TuneIn_onWhite.png"></scan></a></li>
+	            <li id="wimp" data-theme="c"><a href="/credentials?service=WiMP" data-transition="slide">WiMP
+                        <scan class="bs-list-logo" data-inline="true"><img src="images/wimp_logo_cropped.png"></scan></a></li>
+		</ul>
+	    </div>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,21 @@
+# vss device definition
+# Master=DVI, Slave=TV
+# please add "video=video=mxcdi1fb:YUV444,720P60 video=mxcdi0fb:RGB24,1024x768M-16@60" to kernel startup command line
+
+# master display
+[DVI]
+type = framebuffer
+format = RGBP
+fb_num = 2
+main_fb_num = 0
+vs_max = 4
+
+# slave display
+[TV]
+type = framebuffer
+format = YUYV
+fb_num = 1
+mode0 = "U:720x480i-60"
+mode1 = "U:720x576i-50"
+mode2 = "U:1280x720p-60"
+vs_max = 4

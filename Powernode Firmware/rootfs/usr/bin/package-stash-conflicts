@@ -1,0 +1,23 @@
+#!/home/kg/N150/main/rpm/BUILD/perl-native/bin/perl
+
+eval 'exec /home/kg/N150/main/rpm/BUILD/perl-native/bin/perl  -S $0 ${1+"$@"}'
+    if 0; # not running under some shell
+
+use strict;
+use warnings;
+# PODNAME: package-stash-conflicts
+
+use Getopt::Long;
+use Package::Stash::Conflicts;
+
+my $verbose;
+GetOptions( 'verbose|v' => \$verbose );
+
+if ($verbose) {
+    Package::Stash::Conflicts->check_conflicts;
+}
+else {
+    my @conflicts = Package::Stash::Conflicts->calculate_conflicts;
+    print "$_\n" for map { $_->{package} } @conflicts;
+    exit @conflicts;
+}

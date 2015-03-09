@@ -1,0 +1,15 @@
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin
+
+PS1='[\u@\h \W]\$ '
+
+export PATH
+
+alias ll='ls -l'
+alias la='ll -a'
+
+export PS1='\u@\h \w$ '
+export PS2='> '
+export PS3='? '
+export PS4='[$LINENO]+'
+
+export GST_PLUGIN_PATH=/usr/lib/fsl_mm_linux/lib/gstreamer-0.10

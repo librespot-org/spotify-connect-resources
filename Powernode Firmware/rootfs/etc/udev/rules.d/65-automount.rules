@@ -1,0 +1,1 @@
+KERNEL=="sd[a-z]*", RUN+="/etc/udev/rules.d/automount.sh $ATTR{idVendor} $ATTR{idProduct}"

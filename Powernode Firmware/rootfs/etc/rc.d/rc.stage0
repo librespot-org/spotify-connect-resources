@@ -1,0 +1,117 @@
+#!/bin/bash
+
+function get_sovi_info
+{
+	sed -r "s:.*<$1>(.*)</$1>.*:\1:;t;d" /etc/sovi_info.xml
+}
+
+board=$(get_sovi_info board)
+feed=$(get_sovi_info feed)
+baseurl="http://upgrade.nadelectronics.com/$(echo $board | tr '[A-Z]' '[a-z]')/stage0/$feed"
+stage0_dir=/var/data/upgrade/stage0
+
+rm -rf $stage0_dir
+
+function log
+{
+	logger -t "$(basename $0)" "$1"
+}
+
+function check_stage0
+{
+	# if stage0 not running
+	if ! pgrep -x stage0 > /dev/null 2>&1; then
+		log "stage0 has died"
+		rm -rf $stage0_dir
+		return 1
+	fi
+
+	return 0
+}
+
+function download_stage0
+{
+	# prepare download directory
+	rm -rf $stage0_dir.new
+	mkdir -p $stage0_dir.new
+	cd $stage0_dir.new
+
+	# download md5 file
+	curl -s $baseurl/stage0.tar.bz2.md5 > stage0.tar.bz2.md5
+	curl_err=$?
+
+	# is the md5 the same as the stage0 we already have?
+	if diff stage0.tar.bz2.md5 $stage0_dir/stage0.tar.bz2.md5 > /dev/null 2>&1; then
+		return 0
+	fi
+
+	# does this even look like a valid md5 file?
+	if ! grep -q -E '^[[:xdigit:]]*[[:space:]]*stage0.tar.bz2' stage0.tar.bz2.md5; then
+		return 1
+	fi
+
+	# download and extract tarball
+	curl -s $baseurl/stage0.tar.bz2 | tee >(md5sum | sed 's/-/stage0.tar.bz2/' > download.md5) | tar -xvj
+
+	# is the md5 bad?
+	if ! diff stage0.tar.bz2.md5 download.md5 > /dev/null 2>&1; then
+		return 1
+	fi
+
+	log "download OK"
+
+	# kill the old stage0
+	killall stage0 > /dev/null 2>&1
+	sleep 10
+	rm -rf $stage0_dir
+
+	# start new stage0
+	mv $stage0_dir.new $stage0_dir
+	$stage0_dir/stage0 &
+
+	return 0
+}
+
+# Basic script operation:
+#
+# state init:
+#  Attempt to download and run stage0 every minute while cannot resolve host.
+#  On other errors increase timeout exponentially to avoid hammering server.
+#
+# state running:
+#  Every hour check if stage0 is running. If it has died go back to the init
+#  state.
+
+state='init'
+timeout=1
+
+while true; do
+	sleep $((60 * timeout)) &
+	pid=$!
+	echo $pid > /var/run/rc.stage0.sleep.pid
+	wait $pid
+	rm /var/run/rc.stage0.sleep.pid
+
+	if [[ $state == 'init' ]] || ((++i > 24)); then
+		i=0
+		if download_stage0; then
+			state='running'
+			timeout=60
+		else
+			# if cannot resolve host
+			if ((curl_err == 6)); then
+				timeout=1
+				log "cannot resolve host, waiting $timeout minute(s)"
+			else
+				timeout=$((timeout << 1))
+				if ((timeout > 1440)); then timeout=1440; fi
+				log "error downloading stage0, waiting $timeout minute(s)"
+			fi
+		fi
+	else
+		if ! check_stage0; then
+			state='init'
+			timeout=1
+		fi
+	fi
+done
