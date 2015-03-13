@@ -1,0 +1,3 @@
+[submodule "spotify-connect"]
+	path = spotify-connect
+	url = https://github.com/plietar/spotify-connect
