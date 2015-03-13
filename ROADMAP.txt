@@ -16,7 +16,7 @@ The Libspotify_Embedded library:
 @plietar has already started work here: https://github.com/plietar/spotify-connect, a copy of which is available here: https://github.com/sashahilton00/spotify-connect-resources/tree/master/spotify-connect so by all means continue development on that. NB. It is @plietar's work, copied here for centralization purposes.
 
 Any other contributions regarding libspotify_embedded are also welcome, just submit a pr to the repo ;)
-For the sake of consistency, please use the rocki libspotify_embedded where possible, so that we all have the same environment, and do not run into errors that differ due to different libraries.
+For the sake of consistency, please use the rocki or powernode libspotify_embedded where possible, so that we all have the same environment, and (mostly) do not run into errors that differ due to different libraries.
 
 Please post any useful info to the gitter chat, found here: https://gitter.im/sashahilton00/spotify-connect-resources as it just makes keeping track of development much easier.
 
