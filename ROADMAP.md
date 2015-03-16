@@ -1,25 +1,30 @@
-UPDATE 16/03/15: 
+###UPDATE 16/03/15: 
 
 Due to plietar’s efforts, we now have a pretty good idea of the encryption routine used for playback control in Spotify Connect. Anyone who is handy with cryptography, specifically anyone who could provide some information/assistance surrounding the Shannon cipher, head on over to the chatroom. With a bit of luck, we should soon have the encryption implemented, at which point we can start thinking about either reversing further (audio streams), or just creating a wrapper around libspotify. Who knows what lies ahead :)
 
-13/03/15:
+###13/03/15:
 
 At this stage, we need to analyse numerous elements involved with libspotify_embedded, including the following:
 
-The Web API:
+#The Web API:
 
-- We need to look into how libspotify communicates with Spotify servers. As mentioned by @plietar, the communication seems to be based on protobuf, and we believe it to be controlled by GAIA, a proprietary communication protocol found in libspotify_embedded. This will need to be reversed and documented if we are to be able to stream audio.
+We need to look into how libspotify communicates with Spotify servers. As mentioned by @plietar, the communication seems to be based on protobuf, and we believe it to be controlled by GAIA, a proprietary communication protocol found in libspotify_embedded. This will need to be reversed and documented if we are to be able to stream audio.
 For info on the protobuf schemas, have a look at the work on this repo: https://github.com/TooTallNate/node-spotify-web and here: https://gist.github.com/adammw/9706428
 N.B. We do not know if these schemas are the same used in libspotify_embedded, but the debug output suggests they are.
 
-- Spotify Connect control. this also looks like it is controlled through GAIA, via SpircManager. It appears that once a connection to a Connect speaker has been done over the local network, all playback control is done through Spotify servers. Again, this needs to be reversed and documented.
+###Spotify Connect control
+This also looks like it is controlled through GAIA, via SpircManager. It appears that once a connection to a Connect speaker has been done over the local network, all playback control is done through Spotify servers. Again, this needs to be reversed and documented.
 
--API endpoints. We don't know if these are different from the ones used by desktop Spotify and play.spotify.com, so any information and documentation on that would be helpful.
+###API endpoints
+We don't know if these are different from the ones used by desktop Spotify and play.spotify.com, so any information and documentation on that would be helpful.
 
-The Libspotify_Embedded library:
+#The Libspotify_Embedded library:
 
--Function documentation. a list of the main functions can be found here: http://divideoverflow.com/2014/08/reversing-spotify-connect/ but this is by no means exhaustive. Thorough documentation and code is definitely needed before we can think of getting a stable, working solution in place.
+###Function documentation
+A list of the main functions can be found here: http://divideoverflow.com/2014/08/reversing-spotify-connect/ but this is by no means exhaustive. Thorough documentation and code is definitely needed before we can think of getting a stable, working solution in place.
 @plietar has already started work here: https://github.com/plietar/spotify-connect, a copy of which is available here: https://github.com/sashahilton00/spotify-connect-resources/tree/master/spotify-connect so by all means continue development on that. NB. It is @plietar's work, copied here for centralization purposes.
+
+---
 
 Any other contributions regarding libspotify_embedded are also welcome, just submit a pr to the repo ;)
 For the sake of consistency, please use the rocki or powernode libspotify_embedded where possible, so that we all have the same environment, and (mostly) do not run into errors that differ due to different libraries.
