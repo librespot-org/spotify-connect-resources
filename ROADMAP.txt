@@ -1,3 +1,9 @@
+UPDATE 16/03/15: 
+
+Due to plietar’s efforts, we now have a pretty good idea of the encryption routine used for playback control in Spotify Connect. Anyone who is handy with cryptography, specifically anyone who could provide some information/assistance surrounding the Shannon cipher, head on over to the chatroom. With a bit of luck, we should soon have the encryption implemented, at which point we can start thinking about either reversing further (audio streams), or just creating a wrapper around libspotify. Who knows what lies ahead :)
+
+13/03/15:
+
 At this stage, we need to analyse numerous elements involved with libspotify_embedded, including the following:
 
 The Web API:
