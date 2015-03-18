@@ -1,16 +1,27 @@
 Roadmap:
 
 ~~Get a copy of libspotify_embedded_shared.so and the relevant binaries.~~
+
 ~~Work out function calls in library, and what they do.~~
+
 ~~Implement interface to the library API.~~
+
 Work out communication protocol ~~and crypto~~.
+
 ~~Implement prototype~~
+
 Make prototype stable and iron out errors/add functionality.
+
 Figure out audio crypto.
+
 Integrate audio crypto into prototype.
-Reach stable prototype that doesn't have any proprietary dependencies
-Build initial official client
+
+Reach stable prototype that doesn't have any proprietary dependencies.
+
+Build initial official client.
+
 Reach stable official client, complete with full functionality and cross platform compatibility.
+
 Who knows what else awaits?
 
 
