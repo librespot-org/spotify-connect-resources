@@ -13,7 +13,7 @@ https://medium.com/@b3ngr33ni3r/hijacking-spotify-web-control-5014b0a1a360 (Not 
 ##POC/Working Example
 
 https://gist.github.com/Fornoth/562a2db691051c381a8f (POC for Spotify Connect zeroconf)
-https://github.com/wouterdevinck/clonos-poc-spotify
+https://github.com/wouterdevinck/clonos-poc-spotify (looks like someone started, but gave up)
 https://github.com/plietar/spotify-connect (working Connect prototype, currently under active development)
 
 
@@ -21,3 +21,6 @@ https://github.com/plietar/spotify-connect (working Connect prototype, currently
 
 https://github.com/anujdas/despotify/ (Old, but Spotify still use pretty much the same encryption routine)
 https://github.com/jkwatson/jotify (implementation of the encryption routine, based heavily off despotify)
+https://github.com/Hexxeh/spotify-websocket-api (useful for looking into hermes/mercury protocol)
+
+

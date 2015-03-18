@@ -1,3 +1,25 @@
+Roadmap:
+
+~~Get a copy of libspotify_embedded_shared.so and the relevant binaries.~~
+~~Work out function calls in library, and what they do.~~
+~~Implement interface to the library API.~~
+Work out communication protocol ~~and crypto~~.
+~~Implement prototype~~
+Make prototype stable and iron out errors/add functionality.
+Figure out audio crypto.
+Integrate audio crypto into prototype.
+Reach stable prototype that doesn't have any proprietary dependencies
+Build initial official client
+Reach stable official client, complete with full functionality and cross platform compatibility.
+Who knows what else awaits?
+
+
+###UPDATE 18/03/15: 
+
+Plenty of progress has occurred on the spotify-connect repo; spotify.h now contains a near complete implementation of an interface to the libspotify_embedded_shared.so library.
+We have now managed to work out the communication protocol for playback control (hermes/mercury), and have a semi-functional system in play, we're just working on understanding the last few bits.
+The general consensus for the project seems to be that we might as well go the whole hog, so next up is the audio crypto layer. I have found a couple of references to SpotifyCipher::decryptXTEA, so hopefully we're on to something there, fingers crossed.
+
 ###UPDATE 16/03/15: 
 
 Due to plietar’s efforts, we now have a pretty good idea of the encryption routine used for playback control in Spotify Connect. Anyone who is handy with cryptography, specifically anyone who could provide some information/assistance surrounding the Shannon cipher, head on over to the chatroom. With a bit of luck, we should soon have the encryption implemented, at which point we can start thinking about either reversing further (audio streams), or just creating a wrapper around libspotify. Who knows what lies ahead :)
