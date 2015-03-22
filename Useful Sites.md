@@ -14,7 +14,8 @@ https://medium.com/@b3ngr33ni3r/hijacking-spotify-web-control-5014b0a1a360 (Not 
 
 https://gist.github.com/Fornoth/562a2db691051c381a8f (POC for Spotify Connect zeroconf)
 https://github.com/wouterdevinck/clonos-poc-spotify (looks like someone started, but gave up)
-https://github.com/plietar/spotify-connect (working Connect prototype, currently under active development)
+https://github.com/plietar/spotify-connect (working Connect prototype, currently under active development)  
+https://github.com/Fornoth/spotify-connect-web (web interface built on top of Paul's prototype).
 
 
 ##Encryption Related
