@@ -1,3 +1,6 @@
 [submodule "spotify-connect"]
 	path = spotify-connect
 	url = https://github.com/plietar/spotify-connect
+[submodule "spotify-connect-web"]
+	path = spotify-connect-web
+	url = https://github.com/Fornoth/spotify-connect-web.git

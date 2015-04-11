@@ -12,6 +12,6 @@ Server: irc.freenode.net
 Channel: #spotifyconnect
 
 
-Any contributions welcome. I will try and setup some sort of Roadmap based on what we currently know in the coming days.
+Any contributions welcome. If you would like to get a working prototype running, have a look at the spotify-connect-web directory.
 
---ATTENTION: the spotify-connect folder holds a working implementation of Spotify Connect, so if you wish to help with development, please add your contributions there--
+--ATTENTION: the spotify-connect folder holds a working implementation of Spotify Connect, so if you wish to help with development, please add your contributions there.--
