@@ -13,8 +13,8 @@ Channel: #spotifyconnect
 
 **If you are looking for (working) implementations of Spotify Connect, they can be found here:**
 
-https://github.com/plietar/librespot (Rust/C)
-https://github.com/crsmoro/scplayer (Java)
+https://github.com/plietar/librespot (Rust/C)  
+https://github.com/crsmoro/scplayer (Java)  
 
 N.B. The libraries above probably need some work. Please do lend a hand if possible.
 
