@@ -11,6 +11,12 @@ IRC:
 Server: irc.freenode.net
 Channel: #spotifyconnect
 
+**If you are looking for (working) implementations of Spotify Connect, they can be found here:**
+
+https://github.com/plietar/librespot (Rust/C)
+https://github.com/crsmoro/scplayer (Java)
+
+N.B. The libraries above probably need some work. Please do lend a hand if possible.
 
 Any contributions welcome. If you would like to get a working prototype running, have a look at the spotify-connect-web directory.
 

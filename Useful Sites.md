@@ -1,5 +1,10 @@
 Just a list of sites that offer information/code relating to Spotify Connect. Useful for background reading/seeing what has already been done.
 
+##In Progress Libraries
+
+https://github.com/plietar/librespot
+https://github.com/crsmoro/scplayer
+
 ##General
 
 http://divideoverflow.com/2014/08/reversing-spotify-connect/  
