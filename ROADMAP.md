@@ -6,24 +6,27 @@ Roadmap:
 
 ~~Implement interface to the library API.~~
 
-Work out communication protocol ~~and crypto~~.
+~~Work out communication protocol and crypto~~.
 
 ~~Implement prototype~~
 
-Make prototype stable and iron out errors/add functionality.
+~~Figure out audio crypto.~~
 
-Figure out audio crypto.
+~~Integrate audio crypto into prototype.~~
 
-Integrate audio crypto into prototype.
+Make prototype stable and iron out errors/add functionality. Also remove proprietary dependencies.
 
-Reach stable prototype that doesn't have any proprietary dependencies.
+Create a C wrapper for librespot, and add callbacks so that external programs using the library can detect when music has started/stopped/etc.
 
-Build initial official client.
+Release initial official client library.
 
 Reach stable official client, complete with full functionality and cross platform compatibility.
 
 Who knows what else awaits?
 
+###UPDATE 2/12/15: 
+
+Lots has been going on. Plietar has created the first implementation of a library, located in the librespot directory. The library is mostly there, but there are a few small things that have yet to be worked out, such as, how does Spotify sync play queues? (Anyone at Spotify DevOps, throw us a bone in the chat please :) ) Also, Crsmoro has created a Java implementation of Spotify Connect, which I have yet to test, but from what I have heard, it is relatively stable. So we are edging closer to a release client. If anyone knows Rust, and fancies a weekend project, there are a few things that need to be ironed out in librespot, and a C wrapper needs to be written for the rust library so that it can be used in other projects. In the meantime, I hope everyone is gearing up for a merry Christmas :)
 
 ###UPDATE 18/03/15: 
 
