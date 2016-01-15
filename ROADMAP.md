@@ -14,7 +14,7 @@ Roadmap:
 
 ~~Integrate audio crypto into prototype.~~
 
-Make prototype stable and iron out errors/add functionality. Also remove proprietary dependencies.
+Make prototype stable and iron out errors/add functionality. ~~Also remove proprietary dependencies.~~
 
 Create a C wrapper for librespot, and add callbacks so that external programs using the library can detect when music has started/stopped/etc.
 

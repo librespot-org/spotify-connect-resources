@@ -4,3 +4,6 @@
 [submodule "spotify-connect-web"]
 	path = spotify-connect-web
 	url = https://github.com/Fornoth/spotify-connect-web.git
+[submodule "scplayer"]
+	path = scplayer
+	url = https://github.com/crsmoro/scplayer

@@ -15,9 +15,15 @@ Channel: #spotifyconnect
 
 https://github.com/plietar/librespot (Rust/C)  
 https://github.com/crsmoro/scplayer (Java) (This version is not open source. It uses the libraries etracted from firmware.)
+https://github.com/Fornoth/spotify-connect-web (As above, uses the extracted libraries. Has a nice web interface.)
 
-N.B. The libraries above probably need some work. Please do lend a hand if possible.
+N.B. The libraries are nearing release. There are a few bugs and features that still need implementing, but it's mostly done. If someone wants to start on a wrapper for the rust library, drop into the chat.
 
-Any contributions welcome. If you would like to get a working prototype running, have a look at the spotify-connect-web directory.
+There is also a project which only implements control of Spotify Connect devices:
+
+https://github.com/badfortrains/spotcontrol
+
+If you just want to compile and run, take a look at the documentation in the spotify-connect folder.
+Any contributions welcome. If you would like to get a working prototype with web interface running, have a look at the spotify-connect-web directory.
 
 --ATTENTION: the spotify-connect folder holds a working implementation of Spotify Connect, so if you wish to help with development, please add your contributions there.--
