@@ -1,0 +1,6 @@
+package spotify.player.proto;
+
+message PlayerLicense {
+ required string identifier = 1;
+}
+

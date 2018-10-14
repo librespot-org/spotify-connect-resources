@@ -1,0 +1,15 @@
+package spotify.player.proto;
+
+message PlaylistV1UriRequest {
+ repeated string v2_uris = 1;
+}
+
+message PlaylistV1UriReply {
+ message V2UriToV1UriEntry {
+  optional string key = 1;
+  optional string value = 2;
+ }
+
+ repeated V2UriToV1UriEntry v2_uri_to_v1_uri = 1;
+}
+

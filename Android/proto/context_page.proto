@@ -1,0 +1,17 @@
+package spotify.player.proto;
+
+import "context_track.proto";
+
+message ContextPage {
+ message MetadataEntry {
+  optional string key = 1;
+  optional string value = 2;
+ }
+
+ optional string page_url = 1;
+ optional string next_page_url = 2;
+ repeated MetadataEntry metadata = 3;
+ repeated ContextTrack tracks = 4;
+ optional bool loading = 5;
+}
+

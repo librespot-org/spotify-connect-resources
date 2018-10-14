@@ -1,0 +1,14 @@
+package spotify.player.proto;
+
+message ContextPlayerOptions {
+ required bool shuffling_context = 1;
+ required bool repeating_context = 2;
+ required bool repeating_track = 3;
+}
+
+message ContextPlayerOptionOverrides {
+ optional bool shuffling_context = 1;
+ optional bool repeating_context = 2;
+ optional bool repeating_track = 3;
+}
+

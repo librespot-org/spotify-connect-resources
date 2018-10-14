@@ -1,0 +1,14 @@
+package spotify.player.proto;
+
+message ContextTrack {
+ message MetadataEntry {
+  optional string key = 1;
+  optional string value = 2;
+ }
+
+ optional string uri = 1;
+ optional string uid = 2;
+ optional bytes gid = 3;
+ repeated MetadataEntry metadata = 4;
+}
+

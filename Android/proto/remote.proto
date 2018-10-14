@@ -1,0 +1,15 @@
+package spotify.player.shuffle.remote;
+
+message ServiceRequest {
+ message Track {
+  required string uri = 1;
+  required string uid = 2;
+ }
+
+ repeated Track tracks = 1;
+}
+
+message ServiceResponse {
+ repeated uint32 order = 1;
+}
+

@@ -1,0 +1,7 @@
+package spotify.player.proto;
+
+message TrackInstantiator {
+ optional uint64 unique = 1;
+ optional uint64 count = 2;
+}
+

@@ -1,0 +1,13 @@
+package spotify.player.proto;
+
+import "context_index.proto";
+import "context_track.proto";
+
+message TrackInstance {
+ required ContextTrack track = 1;
+ required uint64 id = 2;
+ optional uint64 initial_position = 3;
+ required bool initially_paused = 4;
+ optional ContextIndex index = 5;
+}
+

@@ -1,0 +1,7 @@
+package spotify.cosmos_util.proto;
+
+message EpisodeSyncState {
+ optional string offline_state = 1;
+ optional uint32 sync_progress = 2;
+}
+

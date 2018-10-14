@@ -1,0 +1,8 @@
+package spotify.cosmos_util.proto;
+
+message AlbumCollectionState {
+ optional string collection_link = 1;
+ optional uint32 num_tracks_in_collection = 2;
+ optional bool complete = 3;
+}
+
