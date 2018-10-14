@@ -1,0 +1,8 @@
+package spotify.cosmos_util.proto;
+
+message EpisodeCollectionState {
+ optional bool is_in_collection = 1;
+ optional bool is_new = 2;
+ optional bool is_in_listen_later = 3;
+}
+

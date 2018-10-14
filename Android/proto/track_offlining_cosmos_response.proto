@@ -1,0 +1,19 @@
+package spotify.track_offlining_cosmos.proto;
+
+message DecoratedTrack {
+ optional string uri = 1;
+ optional string title = 2;
+}
+
+message ListResponse {
+ repeated string uri = 1;
+}
+
+message DecorateResponse {
+ repeated DecoratedTrack tracks = 1;
+}
+
+message StatusResponse {
+ optional bool offline = 1;
+}
+

@@ -1,0 +1,6 @@
+package spotify.cosmos_util.proto;
+
+message TrackPlayState {
+ optional bool is_playable = 1;
+}
+

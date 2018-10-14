@@ -1,0 +1,6 @@
+package spotify.cosmos_util.proto;
+
+message ShowPlayState {
+ optional string latest_played_episode_link = 1;
+}
+

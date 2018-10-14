@@ -1,0 +1,24 @@
+package spotify_playedstate.proto;
+
+message PlayedStateItem {
+
+ enum Type {
+  EPISODE = 0;
+ }
+ optional Type type = 1;
+ optional bytes id = 2;
+ optional int64 client_timestamp = 3;
+ optional int32 play_position = 4;
+ optional bool played = 5;
+}
+
+message PlayedState {
+ optional int64 server_timestamp = 1;
+ optional bool truncated = 2;
+ repeated PlayedStateItem state = 3;
+}
+
+message PlayedStateItemList {
+ repeated PlayedStateItem state = 1;
+}
+

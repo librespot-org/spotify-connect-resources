@@ -1,0 +1,72 @@
+package com.spotify.canvaz;
+
+import "google/protobuf/timestamp.proto";
+
+
+enum Type {
+ IMAGE = 0;
+ VIDEO = 1;
+ VIDEO_LOOPING = 2;
+ VIDEO_LOOPING_RANDOM = 3;
+ GIF = 4;
+}
+
+enum Status {
+ READY = 0;
+ METADATA_UPLOADED = 1;
+ CANVAS_UPLOADED = 2;
+ TRANSCODING_FAILED = 3;
+}
+message TrimInfo {
+ optional int32 startAtMs = 1;
+ optional int32 durationMs = 2;
+}
+
+message CropInfo {
+ optional int32 top = 1;
+ optional int32 left = 2;
+ optional int32 width = 3;
+ optional int32 height = 4;
+}
+
+message CreateCanvasRequest {
+ optional string entityUri = 1;
+ optional Type type = 2;
+ optional TrimInfo trimInfo = 3;
+ optional CropInfo cropInfo = 4;
+ optional google.protobuf.Timestamp availableFrom = 5;
+}
+
+message FetchCanvasRequest {
+ repeated string entityUris = 1;
+}
+
+message CanvasResponse {
+ optional string id = 1;
+ optional string url = 2;
+ optional Type type = 3;
+ optional Status status = 4;
+ optional string entityUri = 5;
+ optional string uploadUrl = 6;
+ optional int64 uploadUrlTtl = 7;
+}
+
+message CanvasListResponse {
+ repeated CanvasResponse canvases = 1;
+}
+
+message CanvasUploadUpdateRequest {
+ optional string objectId = 1;
+}
+
+message CanvasTranscodeUpdateRequest {
+ optional string entityUri = 1;
+ optional string canvasId = 2;
+ optional bool success = 3;
+ optional string transcodedFile = 4;
+ optional int32 width = 5;
+ optional int32 height = 6;
+ optional int64 sizeInBytes = 7;
+ optional int32 totalDurationInMs = 8;
+}
+

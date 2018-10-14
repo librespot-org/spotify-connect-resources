@@ -1,0 +1,13 @@
+package spotify.protobuf_deltas.proto;
+
+message Delta {
+
+ enum Type {
+  DELETE = 0;
+  INSERT = 1;
+ }
+ required Type type = 1;
+ required uint32 index = 2;
+ required uint32 length = 3;
+}
+

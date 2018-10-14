@@ -1,0 +1,5 @@
+package spotify.collection_cosmos.changes_request.proto;
+
+message Response {
+}
+

@@ -1,0 +1,9 @@
+package spotify.cosmos_util.proto;
+
+message ImageGroup {
+ optional string standard_link = 1;
+ optional string small_link = 2;
+ optional string large_link = 3;
+ optional string xlarge_link = 4;
+}
+

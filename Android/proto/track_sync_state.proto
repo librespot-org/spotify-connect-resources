@@ -1,0 +1,7 @@
+package spotify.cosmos_util.proto;
+
+message TrackSyncState {
+ optional string offline = 1;
+ optional uint32 sync_progress = 2;
+}
+
