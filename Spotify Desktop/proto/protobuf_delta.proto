@@ -1,0 +1,16 @@
+syntax = "proto2";
+package spotify.protobuf_deltas.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message Delta {
+	enum Type {
+		DELETE = 0;
+		INSERT = 1;
+	}
+	required .spotify.protobuf_deltas.proto.Delta.Type type = 1;
+	required uint32 index = 2;
+	required uint32 length = 3;
+}

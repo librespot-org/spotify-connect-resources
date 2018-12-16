@@ -1,0 +1,18 @@
+syntax = "proto2";
+package spotify.player.shuffle.remote;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message ServiceRequest {
+	message Track {
+		required string uri = 1;
+		required string uid = 2;
+	}
+	repeated .spotify.player.shuffle.remote.ServiceRequest.Track tracks = 1;
+}
+
+message ServiceResponse {
+	repeated uint32 order = 1;
+}

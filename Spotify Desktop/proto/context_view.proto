@@ -1,0 +1,26 @@
+syntax = "proto2";
+package spotify.player.context_view.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "context_track.proto";
+import "context_view_cyclic_list.proto";
+import "context_view_entry.proto";
+
+
+message ContextView {
+	message ContextMapEntry {
+		optional string key = 1;
+		optional .spotify.player.context_view.proto.Entry value = 2;
+	}
+	message PatchMapEntry {
+		optional string key = 1;
+		optional .spotify.player.proto.ContextTrack value = 2;
+	}
+	repeated .spotify.player.context_view.proto.ContextView.ContextMapEntry context_map = 1;
+	repeated .spotify.player.context_view.proto.ContextView.PatchMapEntry patch_map = 2;
+	repeated .spotify.player.context_view.proto.Entry entries = 3;
+	optional uint32 iteration_size = 4;
+	optional .spotify.player.context_view.cyclic_list.proto.CyclicEntryKeyList cyclic_list = 5;
+	optional string shuffle_seed = 6;
+}

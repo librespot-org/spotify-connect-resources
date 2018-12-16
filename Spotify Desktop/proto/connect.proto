@@ -1,0 +1,152 @@
+syntax = "proto3";
+package connectstate;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "player.proto";
+
+enum PutStateReason {
+	UNKNOWN_PUT_STATE_REASON = 0;
+	SPIRC_HELLO = 1;
+	SPIRC_NOTIFY = 2;
+	NEW_DEVICE = 3;
+}
+enum MemberType {
+	SPIRC_V2 = 0;
+	SPIRC_V3 = 1;
+	CONNECT_STATE = 2;
+	DEVICE_AND_PLAYER_STATE_OBSERVER = 3;
+	CONNECT_STATE_WITH_SPIRC_COMMANDS = 4;
+}
+enum ClusterUpdateReason {
+	UNKNOWN_CLUSTER_UPDATE_REASON = 0;
+	DEVICES_DISAPPEARED = 1;
+	DEVICE_STATE_CHANGED = 2;
+	NEW_DEVICE_APPEARED = 3;
+}
+enum DeviceType {
+	UNKNOWN = 0;
+	COMPUTER = 1;
+	TABLET = 2;
+	SMARTPHONE = 3;
+	SPEAKER = 4;
+	TV = 5;
+	AVR = 6;
+	STB = 7;
+	AUDIO_DONGLE = 8;
+	GAME_CONSOLE = 9;
+	CAST_VIDEO = 10;
+	CAST_AUDIO = 11;
+	AUTOMOBILE = 12;
+	UNKNOWN_SPOTIFY = 100;
+	CAR_THING = 101;
+}
+
+message ClusterUpdate {
+	optional .connectstate.Cluster cluster = 1;
+	optional .connectstate.ClusterUpdateReason update_reason = 2;
+	optional string ack_id = 3;
+	repeated string devices_that_changed = 4;
+}
+
+message LocalDevice {
+	optional string id = 1;
+	optional string name = 2;
+	optional .connectstate.DeviceType type = 3;
+}
+
+message PutLocalDevicesRequest {
+	repeated .connectstate.LocalDevice local_devices = 1;
+}
+
+message Device {
+	optional .connectstate.DeviceInfo device_info = 1;
+	optional .connectstate.PlayerState player_state = 2;
+}
+
+message Cluster {
+	message DeviceEntry {
+		optional string key = 1;
+		optional .connectstate.DeviceInfo value = 2;
+	}
+	optional int64 timestamp = 1;
+	optional string active_device_id = 2;
+	optional .connectstate.PlayerState player_state = 3;
+	repeated .connectstate.Cluster.DeviceEntry device = 4;
+	optional bytes transfer_data = 5;
+}
+
+message PutStateRequest {
+	optional string callback_url = 1;
+	optional .connectstate.Device device = 2;
+	optional .connectstate.MemberType member_type = 3;
+	optional bool is_active = 4;
+	optional .connectstate.PutStateReason put_state_reason = 5;
+	optional uint32 message_id = 6;
+	optional string last_command_sent_by_device_id = 7;
+	optional uint32 last_command_message_id = 8;
+	optional uint64 started_playing_at = 9;
+	repeated .connectstate.LocalDevice local_devices = 10;
+}
+
+message SubscribeRequest {
+	optional string callback_url = 1;
+}
+
+message DeviceInfo {
+	optional bool can_play = 1;
+	optional uint32 volume = 2;
+	optional string name = 3;
+	optional .connectstate.Capabilities capabilities = 4;
+	repeated .connectstate.DeviceMetadata metadata = 5;
+	optional string device_software_version = 6;
+	optional .connectstate.DeviceType device_type = 7;
+	optional string connection_id = 8;
+	optional string spirc_version = 9;
+	optional string device_id = 10;
+	optional bool is_private_session = 11;
+}
+
+message DeviceMetadata {
+	optional string type = 1;
+	optional string metadata = 2;
+}
+
+message Capabilities {
+	optional bool can_be_player = 2;
+	optional bool restrict_to_local = 3;
+	optional bool gaia_eq_connect_id = 5;
+	optional bool supports_logout = 6;
+	optional bool is_observable = 7;
+	optional int32 volume_steps = 8;
+	repeated string supported_types = 9;
+	optional bool command_acks = 10;
+	optional bool supports_rename = 11;
+	optional bool hidden = 12;
+	optional bool disable_volume = 13;
+	optional bool connect_disabled = 14;
+	optional bool supports_playlist_v2 = 15;
+	optional bool is_controllable = 16;
+	optional bool supports_external_episodes = 17;
+	optional bool supports_set_backend_metadata = 18;
+	optional bool supports_transfer_command = 19;
+	optional bool supports_command_request = 20;
+}
+
+message ConnectCommandOptions {
+	optional int32 message_id = 1;
+}
+
+message LogoutCommand {
+	optional .connectstate.ConnectCommandOptions command_options = 1;
+}
+
+message SetVolumeCommand {
+	optional int32 volume = 1;
+	optional .connectstate.ConnectCommandOptions command_options = 2;
+}
+
+message RenameCommand {
+	optional string rename_to = 1;
+	optional .connectstate.ConnectCommandOptions command_options = 2;
+}

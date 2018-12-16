@@ -1,0 +1,10 @@
+syntax = "proto2";
+package spotify.cosmos_util.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message ShowCollectionState {
+	optional bool is_in_collection = 1;
+}

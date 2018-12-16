@@ -1,0 +1,11 @@
+syntax = "proto3";
+package google.protobuf;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message Timestamp {
+	optional int64 seconds = 1;
+	optional int32 nanos = 2;
+}

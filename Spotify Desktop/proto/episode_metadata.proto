@@ -1,0 +1,33 @@
+syntax = "proto2";
+package spotify.cosmos_util.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "image_group.proto";
+
+
+message EpisodeShowMetadata {
+	optional string link = 1;
+	optional string name = 2;
+	optional string publisher = 3;
+	optional .spotify.cosmos_util.proto.ImageGroup covers = 4;
+}
+
+message EpisodeMetadata {
+	optional .spotify.cosmos_util.proto.EpisodeShowMetadata show = 1;
+	optional string link = 2;
+	optional string name = 3;
+	optional uint32 length = 4;
+	optional .spotify.cosmos_util.proto.ImageGroup covers = 5;
+	optional string manifest_id = 6;
+	optional string description = 7;
+	optional int64 publish_date = 8;
+	optional .spotify.cosmos_util.proto.ImageGroup freeze_frames = 9;
+	optional string language = 10;
+	optional bool available = 11;
+	optional int32 media_type_enum = 12;
+	optional int32 number = 13;
+	optional bool backgroundable = 14;
+	optional string preview_manifest_id = 15;
+	optional bool is_explicit = 16;
+}

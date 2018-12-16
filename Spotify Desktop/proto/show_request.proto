@@ -1,0 +1,38 @@
+syntax = "proto2";
+package spotify.show_cosmos.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "episode_metadata.proto";
+import "show_metadata.proto";
+import "show_episode_state.proto";
+import "show_show_state.proto";
+
+
+message Item {
+	optional string header_field = 1;
+	optional .spotify.cosmos_util.proto.EpisodeMetadata episode_metadata = 2;
+	optional .spotify.show_cosmos.proto.EpisodeCollectionState episode_collection_state = 3;
+	optional .spotify.show_cosmos.proto.EpisodeOfflineState episode_offline_state = 4;
+	optional .spotify.show_cosmos.proto.EpisodePlayState episode_play_state = 5;
+}
+
+message Header {
+	optional .spotify.cosmos_util.proto.ShowMetadata show_metadata = 1;
+	optional .spotify.show_cosmos.proto.ShowCollectionState show_collection_state = 2;
+	optional .spotify.show_cosmos.proto.ShowPlayState show_play_state = 3;
+}
+
+message OnlineData {
+	optional uint32 num_followers = 1;
+}
+
+message Response {
+	repeated .spotify.show_cosmos.proto.Item item = 1;
+	optional .spotify.show_cosmos.proto.Header header = 2;
+	optional .spotify.show_cosmos.proto.OnlineData online_data = 3;
+	optional uint32 unfiltered_length = 4;
+	optional uint32 length = 5;
+	optional bool loading_contents = 6;
+	optional uint32 unranged_length = 7;
+}

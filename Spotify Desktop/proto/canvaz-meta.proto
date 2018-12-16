@@ -1,0 +1,14 @@
+syntax = "proto3";
+package com.spotify.canvaz;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "google/protobuf/timestamp.proto";
+
+enum Type {
+	IMAGE = 0;
+	VIDEO = 1;
+	VIDEO_LOOPING = 2;
+	VIDEO_LOOPING_RANDOM = 3;
+	GIF = 4;
+}

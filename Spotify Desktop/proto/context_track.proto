@@ -1,0 +1,17 @@
+syntax = "proto2";
+package spotify.player.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message ContextTrack {
+	message MetadataEntry {
+		optional string key = 1;
+		optional string value = 2;
+	}
+	optional string uri = 1;
+	optional string uid = 2;
+	optional bytes gid = 3;
+	repeated .spotify.player.proto.ContextTrack.MetadataEntry metadata = 4;
+}

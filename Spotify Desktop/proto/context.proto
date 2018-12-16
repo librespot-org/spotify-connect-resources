@@ -1,0 +1,21 @@
+syntax = "proto2";
+package spotify.player.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "context_page.proto";
+import "restrictions.proto";
+
+
+message Context {
+	message MetadataEntry {
+		optional string key = 1;
+		optional string value = 2;
+	}
+	optional string uri = 1;
+	optional string url = 2;
+	repeated .spotify.player.proto.Context.MetadataEntry metadata = 3;
+	optional .spotify.player.proto.Restrictions restrictions = 4;
+	repeated .spotify.player.proto.ContextPage pages = 5;
+	optional bool loading = 6;
+}

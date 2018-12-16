@@ -1,0 +1,9 @@
+syntax = "proto2";
+package spotify.collection_cosmos.changes_request.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message Response {
+}

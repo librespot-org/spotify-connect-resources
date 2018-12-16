@@ -1,0 +1,22 @@
+syntax = "proto2";
+package spotify.frecency.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message Frecency {
+	optional double ln_frecency = 1;
+	optional uint64 event_count = 2;
+	optional uint32 event_kind = 3;
+	optional uint64 last_event_time = 4;
+}
+
+message ContextFrecencies {
+	optional string context_uri = 1;
+	repeated .spotify.frecency.proto.Frecency context_frecencies = 2;
+}
+
+message ContextFrecencyFile {
+	repeated .spotify.frecency.proto.ContextFrecencies contexts = 1;
+}

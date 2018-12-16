@@ -1,0 +1,68 @@
+syntax = "proto2";
+package spotify.collection_cosmos.decorate_request.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "album_collection_state.proto";
+import "artist_collection_state.proto";
+import "episode_collection_state.proto";
+import "show_collection_state.proto";
+import "track_collection_state.proto";
+import "episode_played_state.proto";
+import "show_played_state.proto";
+import "track_played_state.proto";
+import "album_sync_state.proto";
+import "artist_sync_state.proto";
+import "episode_sync_state.proto";
+import "track_sync_state.proto";
+import "album_metadata.proto";
+import "artist_metadata.proto";
+import "episode_metadata.proto";
+import "show_metadata.proto";
+import "track_metadata.proto";
+
+
+message Album {
+	optional .spotify.cosmos_util.proto.AlbumMetadata album_metadata = 1;
+	optional .spotify.cosmos_util.proto.AlbumCollectionState album_collection_state = 2;
+	optional .spotify.cosmos_util.proto.AlbumSyncState album_offline_state = 3;
+	optional string link = 4;
+}
+
+message Artist {
+	optional .spotify.cosmos_util.proto.ArtistMetadata artist_metadata = 1;
+	optional .spotify.cosmos_util.proto.ArtistCollectionState artist_collection_state = 2;
+	optional .spotify.cosmos_util.proto.ArtistSyncState artist_offline_state = 3;
+	optional string link = 4;
+}
+
+message Episode {
+	optional .spotify.cosmos_util.proto.EpisodeMetadata episode_metadata = 1;
+	optional .spotify.cosmos_util.proto.EpisodeCollectionState episode_collection_state = 2;
+	optional .spotify.cosmos_util.proto.EpisodeSyncState episode_offline_state = 3;
+	optional .spotify.cosmos_util.proto.EpisodePlayState episode_play_state = 4;
+	optional string link = 5;
+}
+
+message Show {
+	optional .spotify.cosmos_util.proto.ShowMetadata show_metadata = 1;
+	optional .spotify.cosmos_util.proto.ShowCollectionState show_collection_state = 2;
+	optional .spotify.cosmos_util.proto.ShowPlayState show_play_state = 3;
+	optional string link = 4;
+}
+
+message Track {
+	optional .spotify.cosmos_util.proto.TrackMetadata track_metadata = 1;
+	optional .spotify.cosmos_util.proto.TrackSyncState track_offline_state = 2;
+	optional .spotify.cosmos_util.proto.TrackPlayState track_play_state = 3;
+	optional .spotify.cosmos_util.proto.TrackCollectionState track_collection_state = 4;
+	optional string link = 5;
+}
+
+message Response {
+	repeated .spotify.collection_cosmos.decorate_request.proto.Show show = 1;
+	repeated .spotify.collection_cosmos.decorate_request.proto.Episode episode = 2;
+	repeated .spotify.collection_cosmos.decorate_request.proto.Album album = 3;
+	repeated .spotify.collection_cosmos.decorate_request.proto.Artist artist = 4;
+	repeated .spotify.collection_cosmos.decorate_request.proto.Track track = 5;
+}

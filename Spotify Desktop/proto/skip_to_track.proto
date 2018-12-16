@@ -1,0 +1,14 @@
+syntax = "proto2";
+package spotify.player.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message SkipToTrack {
+	optional string page_url = 1;
+	optional uint64 page_index = 2;
+	optional string track_uid = 3;
+	optional string track_uri = 4;
+	optional uint64 track_index = 5;
+}

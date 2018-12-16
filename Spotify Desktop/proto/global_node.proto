@@ -1,0 +1,13 @@
+syntax = "proto2";
+package spotify.player.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "context_player_options.proto";
+import "player_license.proto";
+
+
+message GlobalNode {
+	optional .spotify.player.proto.ContextPlayerOptions options = 1;
+	optional .spotify.player.proto.PlayerLicense license = 2;
+}

@@ -1,0 +1,11 @@
+syntax = "proto2";
+package spotify.player.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message ContextIndex {
+	optional uint32 page = 1;
+	optional uint32 track = 2;
+}

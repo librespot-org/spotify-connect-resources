@@ -1,0 +1,11 @@
+syntax = "proto3";
+package google.protobuf;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message Any {
+	optional string type_url = 1;
+	optional bytes value = 2;
+}

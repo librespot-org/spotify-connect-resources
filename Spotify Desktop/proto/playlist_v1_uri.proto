@@ -1,0 +1,18 @@
+syntax = "proto2";
+package spotify.player.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message PlaylistV1UriRequest {
+	repeated string v2_uris = 1;
+}
+
+message PlaylistV1UriReply {
+	message V2UriToV1UriEntry {
+		optional string key = 1;
+		optional string value = 2;
+	}
+	repeated .spotify.player.proto.PlaylistV1UriReply.V2UriToV1UriEntry v2_uri_to_v1_uri = 1;
+}

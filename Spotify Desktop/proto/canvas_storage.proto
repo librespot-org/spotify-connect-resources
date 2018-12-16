@@ -1,0 +1,17 @@
+syntax = "proto3";
+package spotify.canvas.proto.storage;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "canvaz.proto";
+
+
+message CanvasCacheEntry {
+	optional string entity_uri = 1;
+	optional uint64 expires_on_seconds = 2;
+	optional .com.spotify.canvazcache.EntityCanvazResponse.Canvaz canvas = 3;
+}
+
+message CanvasCacheFile {
+	repeated .spotify.canvas.proto.storage.CanvasCacheEntry entries = 1;
+}

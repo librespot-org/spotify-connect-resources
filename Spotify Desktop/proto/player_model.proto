@@ -1,0 +1,13 @@
+syntax = "proto2";
+package spotify.player.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "command_options.proto";
+
+
+message PlayerModel {
+	optional bool is_paused = 1;
+	optional uint64 hash = 2;
+	optional .spotify.player.proto.CommandOptions command_options = 3;
+}

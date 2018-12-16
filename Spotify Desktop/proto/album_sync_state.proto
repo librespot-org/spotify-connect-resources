@@ -1,0 +1,12 @@
+syntax = "proto2";
+package spotify.cosmos_util.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message AlbumSyncState {
+	optional string offline = 1;
+	optional string inferred_offline = 2;
+	optional uint32 sync_progress = 3;
+}

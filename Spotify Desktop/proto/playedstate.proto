@@ -1,0 +1,27 @@
+syntax = "proto2";
+package spotify_playedstate.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message PlayedStateItem {
+	enum Type {
+		EPISODE = 0;
+	}
+	optional .spotify_playedstate.proto.PlayedStateItem.Type type = 1;
+	optional bytes id = 2;
+	optional int64 client_timestamp = 3;
+	optional int32 play_position = 4;
+	optional bool played = 5;
+}
+
+message PlayedState {
+	optional int64 server_timestamp = 1;
+	optional bool truncated = 2;
+	repeated .spotify_playedstate.proto.PlayedStateItem state = 3;
+}
+
+message PlayedStateItemList {
+	repeated .spotify_playedstate.proto.PlayedStateItem state = 1;
+}

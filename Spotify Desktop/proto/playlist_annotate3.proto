@@ -1,0 +1,37 @@
+syntax = "proto2";
+package spotify_playlist_annotate3.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+enum RenderFeatures {
+	NORMAL_FEATURES = 1;
+	EXTENDED_FEATURES = 2;
+}
+enum AbuseReportState {
+	OK = 0;
+	TAKEN_DOWN = 1;
+}
+
+message TakedownRequest {
+	optional .spotify_playlist_annotate3.proto.AbuseReportState abuse_report_state = 1;
+}
+
+message AnnotateRequest {
+	optional string description = 1;
+	optional string image_uri = 2;
+}
+
+message TranscodedPicture {
+	optional string target_name = 1;
+	optional string uri = 2;
+}
+
+message PlaylistAnnotation {
+	optional string description = 1;
+	optional string picture = 2;
+	optional .spotify_playlist_annotate3.proto.RenderFeatures deprecated_render_features = 3 [default = NORMAL_FEATURES];
+	repeated .spotify_playlist_annotate3.proto.TranscodedPicture transcoded_picture = 4;
+	optional bool is_abuse_reporting_enabled = 6 [default = true];
+	optional .spotify_playlist_annotate3.proto.AbuseReportState abuse_report_state = 7 [default = OK];
+}
