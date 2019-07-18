@@ -16,8 +16,8 @@ Channel: #spotifyconnect
 https://github.com/plietar/librespot (Rust/C)  
 https://github.com/crsmoro/scplayer (Java) (This version is not open source. It uses the libraries etracted from firmware.)
 https://github.com/Fornoth/spotify-connect-web (As above, uses the extracted libraries. Has a nice web interface.)
-https://github.com/dtcooper/raspotify (Wrapper for librespot)
-https://github.com/spocon/spocon (Debian/Ubuntu package wrapper for librespot-java - includes armhf distributions like Raspbian or NOOBS as well)
+https://github.com/dtcooper/raspotify (Wrapper for librespot) \
+https://github.com/spocon/spocon (Debian/Ubuntu package wrapper [librespot-java](https://github.com/librespot-org/librespot-java) - includes armhf,arm64,armel)
 
 N.B. The libraries are nearing release. There are a few bugs and features that still need implementing, but it's mostly done. If someone wants to start on a wrapper for the rust library, drop into the chat.
 
