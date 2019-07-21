@@ -1,0 +1,19 @@
+package spotify.player.proto;
+
+import "context.proto";
+import "context_view.proto";
+import "prepare_play_options.proto";
+import "skip_to_track.proto";
+import "track_instance.proto";
+import "track_instantiator.proto";
+
+message ContextNode {
+ optional int32 index = 1;
+ optional TrackInstance current_track = 2;
+ optional TrackInstantiator instantiate = 3;
+ optional Context context = 4;
+ optional context_view.proto.ContextView context_view = 5;
+ optional SkipToTrack pending_skip_to = 6;
+ optional PreparePlayOptions prepare_options = 7;
+}
+

@@ -1,0 +1,16 @@
+syntax = "proto2";
+package spotify.player.proto.transfer;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "context.proto";
+import "context_player_options.proto";
+import "play_origin.proto";
+
+
+message Session {
+	optional .spotify.player.proto.PlayOrigin play_origin = 1;
+	optional .spotify.player.proto.Context context = 2;
+	optional string current_uid = 3;
+	optional .spotify.player.proto.ContextPlayerOptionOverrides option_overrides = 4;
+}

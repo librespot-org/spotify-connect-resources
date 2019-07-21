@@ -1,0 +1,16 @@
+syntax = "proto2";
+package spotify.player.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "context_track.proto";
+import "track_instance.proto";
+import "track_instantiator.proto";
+
+
+message PlayQueueNode {
+	repeated .spotify.player.proto.ContextTrack queue = 1;
+	optional .spotify.player.proto.TrackInstance instance = 2;
+	optional .spotify.player.proto.TrackInstantiator instantiator = 3;
+	optional uint32 next_uid = 4;
+}

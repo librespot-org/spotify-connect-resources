@@ -1,0 +1,35 @@
+package spotify.show_cosmos.proto;
+
+import "episode_metadata.proto";
+import "show_metadata.proto";
+import "show_episode_state.proto";
+import "show_show_state.proto";
+
+message Item {
+ optional string header_field = 1;
+ optional cosmos_util.proto.EpisodeMetadata episode_metadata = 2;
+ optional EpisodeCollectionState episode_collection_state = 3;
+ optional EpisodeOfflineState episode_offline_state = 4;
+ optional EpisodePlayState episode_play_state = 5;
+}
+
+message Header {
+ optional cosmos_util.proto.ShowMetadata show_metadata = 1;
+ optional ShowCollectionState show_collection_state = 2;
+ optional ShowPlayState show_play_state = 3;
+}
+
+message OnlineData {
+ optional uint32 num_followers = 1;
+}
+
+message Response {
+ repeated Item item = 1;
+ optional Header header = 2;
+ optional OnlineData online_data = 3;
+ optional uint32 unfiltered_length = 4;
+ optional uint32 length = 5;
+ optional bool loading_contents = 6;
+ optional uint32 unranged_length = 7;
+}
+

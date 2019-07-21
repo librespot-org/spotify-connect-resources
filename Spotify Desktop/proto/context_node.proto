@@ -1,0 +1,24 @@
+syntax = "proto2";
+package spotify.player.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "context.proto";
+import "context_view.proto";
+import "play_origin.proto";
+import "prepare_play_options.proto";
+import "skip_to_track.proto";
+import "track_instance.proto";
+import "track_instantiator.proto";
+
+
+message ContextNode {
+	optional int32 index = 1;
+	optional .spotify.player.proto.TrackInstance current_track = 2;
+	optional .spotify.player.proto.TrackInstantiator instantiate = 3;
+	optional .spotify.player.proto.Context context = 4;
+	optional .spotify.player.context_view.proto.ContextView context_view = 5;
+	optional .spotify.player.proto.SkipToTrack pending_skip_to = 6;
+	optional .spotify.player.proto.PreparePlayOptions prepare_options = 7;
+	optional .spotify.player.proto.PlayOrigin play_origin = 8;
+}

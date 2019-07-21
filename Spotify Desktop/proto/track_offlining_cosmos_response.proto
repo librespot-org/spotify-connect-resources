@@ -1,0 +1,23 @@
+syntax = "proto2";
+package spotify.track_offlining_cosmos.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message DecoratedTrack {
+	optional string uri = 1;
+	optional string title = 2;
+}
+
+message ListResponse {
+	repeated string uri = 1;
+}
+
+message DecorateResponse {
+	repeated .spotify.track_offlining_cosmos.proto.DecoratedTrack tracks = 1;
+}
+
+message StatusResponse {
+	optional bool offline = 1;
+}

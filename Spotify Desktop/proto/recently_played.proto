@@ -1,0 +1,24 @@
+syntax = "proto2";
+package spotify.recently_played.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message Context {
+	optional string context_link = 1;
+	optional string item_link = 2;
+	optional int32 timestamp = 4;
+	optional bool hidden = 5;
+}
+
+message Track {
+	optional string track_link = 1;
+	optional int64 timestamp = 2;
+	optional bool hidden = 3;
+}
+
+message Cache {
+	repeated .spotify.recently_played.proto.Context contexts = 1;
+	repeated .spotify.recently_played.proto.Track tracks = 2;
+}

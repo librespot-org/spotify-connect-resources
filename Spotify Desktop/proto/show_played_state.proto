@@ -1,0 +1,10 @@
+syntax = "proto2";
+package spotify.cosmos_util.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message ShowPlayState {
+	optional string latest_played_episode_link = 1;
+}

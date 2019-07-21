@@ -1,0 +1,9 @@
+package spotify.player.context_view.proto;
+
+import "context_view_entry.proto";
+
+message EntryKey {
+ optional Entry.Type type = 1;
+ optional string data = 2;
+}
+

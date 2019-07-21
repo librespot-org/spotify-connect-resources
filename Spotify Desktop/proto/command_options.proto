@@ -1,0 +1,14 @@
+syntax = "proto2";
+package spotify.player.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message CommandOptions {
+	optional bool override_restrictions = 1;
+	optional bool only_for_local_device = 2;
+	optional bool system_initiated = 3;
+	optional int64 command_initiated_time = 4;
+	optional int64 command_received_time = 5;
+}

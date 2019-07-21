@@ -1,0 +1,15 @@
+syntax = "proto2";
+package spotify.explicit_content.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message KeyValuePair {
+	required string key = 1;
+	required string value = 2;
+}
+
+message UserAttributesUpdate {
+	repeated .spotify.explicit_content.proto.KeyValuePair pairs = 1;
+}

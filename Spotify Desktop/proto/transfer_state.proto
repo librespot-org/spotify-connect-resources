@@ -1,0 +1,17 @@
+syntax = "proto2";
+package spotify.player.proto.transfer;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "context_player_options.proto";
+import "playback.proto";
+import "session.proto";
+import "queue.proto";
+
+
+message TransferState {
+	optional .spotify.player.proto.ContextPlayerOptions options = 1;
+	optional .spotify.player.proto.transfer.Playback playback = 2;
+	optional .spotify.player.proto.transfer.Session current_session = 3;
+	optional .spotify.player.proto.transfer.Queue queue = 4;
+}

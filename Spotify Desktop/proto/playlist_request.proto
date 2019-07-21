@@ -1,0 +1,58 @@
+syntax = "proto2";
+package spotify.playlist.cosmos.playlist_request.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "episode_collection_state.proto";
+import "episode_metadata.proto";
+import "episode_played_state.proto";
+import "episode_sync_state.proto";
+import "track_metadata.proto";
+import "playlist_playlist_state.proto";
+import "playlist_track_state.proto";
+import "playlist_user_state.proto";
+import "image_group.proto";
+
+
+message Item {
+	optional string header_field = 1;
+	optional uint32 add_time = 2;
+	optional .spotify.playlist.cosmos.proto.User added_by = 3;
+	optional .spotify.cosmos_util.proto.TrackMetadata track_metadata = 4;
+	optional .spotify.playlist.cosmos.proto.TrackCollectionState track_collection_state = 5;
+	optional .spotify.playlist.cosmos.proto.TrackOfflineState track_offline_state = 6;
+	optional string row_id = 7;
+	optional .spotify.playlist.cosmos.proto.TrackPlayState track_play_state = 8;
+	repeated .spotify.playlist.cosmos.proto.FormatListAttribute format_list_attributes = 9;
+	optional .spotify.cosmos_util.proto.EpisodeMetadata episode_metadata = 10;
+	optional .spotify.cosmos_util.proto.EpisodeSyncState episode_offline_state = 11;
+	optional .spotify.cosmos_util.proto.EpisodeCollectionState episode_collection_state = 12;
+	optional .spotify.cosmos_util.proto.EpisodePlayState episode_play_state = 13;
+	optional .spotify.cosmos_util.proto.ImageGroup display_covers = 14;
+}
+
+message Playlist {
+	optional .spotify.playlist.cosmos.proto.PlaylistMetadata playlist_metadata = 1;
+	optional .spotify.playlist.cosmos.proto.PlaylistOfflineState playlist_offline_state = 2;
+}
+
+message RecommendationItem {
+	optional .spotify.cosmos_util.proto.TrackMetadata track_metadata = 1;
+	optional .spotify.playlist.cosmos.proto.TrackCollectionState track_collection_state = 2;
+}
+
+message Response {
+	repeated .spotify.playlist.cosmos.playlist_request.proto.Item item = 1;
+	optional .spotify.playlist.cosmos.playlist_request.proto.Playlist playlist = 2;
+	optional uint32 unfiltered_length = 3;
+	optional uint32 unranged_length = 4;
+	optional uint64 duration = 5;
+	optional bool loading_contents = 6;
+	optional uint64 last_modification = 7;
+	optional uint32 num_followers = 8;
+	optional bool playable = 9;
+	repeated .spotify.playlist.cosmos.playlist_request.proto.RecommendationItem recommendations = 10;
+	optional bool has_explicit_content = 11;
+	optional bool contains_spotify_tracks = 12;
+	optional bool contains_episodes = 13;
+}

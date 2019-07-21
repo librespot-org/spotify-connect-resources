@@ -1,0 +1,21 @@
+syntax = "proto2";
+package spotify.player.context_view.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+import "context_index.proto";
+import "context_track.proto";
+
+
+message Entry {
+	enum Type {
+		TRACK = 0;
+		DELIMITER = 1;
+		PAGE_PLACEHOLDER = 2;
+		CONTEXT_PLACEHOLDER = 3;
+	}
+	optional .spotify.player.context_view.proto.Entry.Type type = 1;
+	optional .spotify.player.proto.ContextTrack track = 2;
+	optional .spotify.player.proto.ContextIndex index = 3;
+	optional int32 page_index = 4;
+}

@@ -1,0 +1,16 @@
+syntax = "proto2";
+package spotify.collection.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message BanItem {
+	required string item_uri = 1;
+	required string context_uri = 2;
+	required int64 timestamp = 3;
+}
+
+message Bans {
+	repeated .spotify.collection.proto.BanItem items = 1;
+}

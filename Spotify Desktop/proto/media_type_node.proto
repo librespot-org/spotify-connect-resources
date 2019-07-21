@@ -1,0 +1,12 @@
+syntax = "proto2";
+package spotify.player.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message MediaTypeNode {
+	optional string current_uri = 1;
+	optional string media_type = 2;
+	optional string media_manifest_id = 3;
+}

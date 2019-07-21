@@ -1,0 +1,10 @@
+package spotify.player.proto;
+
+import "context_player_options.proto";
+import "player_license.proto";
+
+message GlobalNode {
+ optional ContextPlayerOptions options = 1;
+ optional PlayerLicense license = 2;
+}
+

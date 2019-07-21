@@ -1,0 +1,10 @@
+package spotify.player.proto;
+
+import "track_instance.proto";
+import "track_instantiator.proto";
+
+message RepeatingTrackNode {
+ optional TrackInstance instance = 1;
+ optional TrackInstantiator instantiator = 2;
+}
+

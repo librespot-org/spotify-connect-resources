@@ -1,0 +1,33 @@
+package spotify.collection_cosmos.track_list_request.proto;
+
+import "track_collection_state.proto";
+import "track_played_state.proto";
+import "track_sync_state.proto";
+import "track_metadata.proto";
+
+message Item {
+ optional string header_field = 1;
+ optional uint32 index = 2;
+ optional uint32 add_time = 3;
+ optional cosmos_util.proto.TrackMetadata track_metadata = 4;
+ optional cosmos_util.proto.TrackSyncState track_offline_state = 5;
+ optional cosmos_util.proto.TrackPlayState track_play_state = 6;
+ optional cosmos_util.proto.TrackCollectionState track_collection_state = 7;
+}
+
+message GroupHeader {
+ optional string header_field = 1;
+ optional uint32 index = 2;
+ optional uint32 length = 3;
+}
+
+message Response {
+ repeated Item item = 1;
+ optional uint32 unfiltered_length = 2;
+ optional uint32 unranged_length = 3;
+ optional bool loading_contents = 4;
+ optional string offline = 5;
+ optional uint32 sync_progress = 6;
+ repeated GroupHeader group_index = 7;
+}
+

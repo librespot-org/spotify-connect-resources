@@ -1,0 +1,31 @@
+package spotify.listen_later_cosmos.proto;
+
+import "episode_collection_state.proto";
+import "episode_metadata.proto";
+import "episode_played_state.proto";
+import "episode_sync_state.proto";
+import "show_collection_state.proto";
+import "show_metadata.proto";
+import "show_played_state.proto";
+
+message Episode {
+ optional string header = 1;
+ optional cosmos_util.proto.EpisodeMetadata episode_metadata = 2;
+ optional cosmos_util.proto.EpisodeCollectionState episode_collection_state = 3;
+ optional cosmos_util.proto.EpisodeSyncState episode_offline_state = 4;
+ optional cosmos_util.proto.EpisodePlayState episode_played_state = 5;
+}
+
+message Show {
+ optional cosmos_util.proto.ShowMetadata show_metadata = 1;
+ optional cosmos_util.proto.ShowCollectionState show_collection_state = 2;
+ optional cosmos_util.proto.ShowPlayState show_played_state = 3;
+}
+
+message EpisodesResponse {
+ optional uint32 unfiltered_length = 1;
+ optional uint32 unranged_length = 2;
+ repeated Episode episode = 3;
+ repeated Show show = 4;
+}
+

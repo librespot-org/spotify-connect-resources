@@ -1,0 +1,19 @@
+package spotify.player.context_view.proto;
+
+import "context_index.proto";
+import "context_track.proto";
+
+message Entry {
+
+ enum Type {
+  TRACK = 0;
+  DELIMITER = 1;
+  PAGE_PLACEHOLDER = 2;
+  CONTEXT_PLACEHOLDER = 3;
+ }
+ optional Type type = 1;
+ optional proto.ContextTrack track = 2;
+ optional proto.ContextIndex index = 3;
+ optional int32 page_index = 4;
+}
+

@@ -1,0 +1,28 @@
+syntax = "proto2";
+package spotify.popcount2.proto;
+
+// Proto extractor compiled unit - https://github.com/HearthSim/proto-extractor
+
+
+
+message PopcountRequest {
+}
+
+message PopcountResult {
+	optional sint64 count = 1;
+	optional bool truncated = 2;
+	repeated string user = 3;
+}
+
+message PopcountUserUpdate {
+	optional string user = 1;
+	optional sint64 timestamp = 2;
+	optional bool added = 3;
+}
+
+message PopcountUpdate {
+	repeated .spotify.popcount2.proto.PopcountUserUpdate updates = 1;
+	optional sint64 common_timestamp = 2;
+	optional sint64 remove_older_than_timestamp = 3;
+	optional bool verify_counter = 4;
+}

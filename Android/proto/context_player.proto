@@ -1,0 +1,12 @@
+package spotify.player.proto;
+
+message ContextPlayer {
+ message PlayerModelEntry {
+  optional string key = 1;
+  optional string value = 2;
+ }
+
+ repeated PlayerModelEntry player_model = 1;
+ optional uint64 playback_position = 2;
+}
+

@@ -1,0 +1,6 @@
+package spotify.cosmos_util.proto;
+
+message ShowCollectionState {
+ optional bool is_in_collection = 1;
+}
+

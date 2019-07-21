@@ -1,0 +1,20 @@
+package spotify.recently_played.proto;
+
+message Context {
+ optional string context_link = 1;
+ optional string item_link = 2;
+ optional int32 timestamp = 4;
+ optional bool hidden = 5;
+}
+
+message Track {
+ optional string track_link = 1;
+ optional int64 timestamp = 2;
+ optional bool hidden = 3;
+}
+
+message Cache {
+ repeated Context contexts = 1;
+ repeated Track tracks = 2;
+}
+
